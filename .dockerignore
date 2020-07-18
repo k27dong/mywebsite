@@ -1,0 +1,22 @@
+# react
+build/
+
+# vscode
+.vscode/
+
+# nodejs
+node_modules/
+
+# virtualenv
+venv/
+
+# git
+.git/
+
+# conf
+.gitignore
+.prettierrc
+.dockerignore
+docker-compose.yml
+Dockerfile
+README.md
