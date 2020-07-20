@@ -8,11 +8,13 @@ services:
     container_name: flask
     expose:
       - 5000
+    ports:
+        - "5000:5000"
 
-#   nginx:
-#     build:
-#         context: .
-#         dockerfile: Dockerfile
-#     container_name: nginx
-#     ports:
-#       - "3000:3000"
+  nginx:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    container_name: nginx
+    ports:
+      - "3000:3000"
