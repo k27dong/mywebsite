@@ -12,8 +12,6 @@ CONTENT_DIR = "docs/"
 INFO_LIST = {"title", "date"}
 BLOG_LIST = {}
 
-print("here")
-
 # load all docs
 for filename in os.listdir(CONTENT_DIR):
   if filename.endswith('.md'):
@@ -27,6 +25,10 @@ for filename in os.listdir(CONTENT_DIR):
     })
   else:
     print("Error: found wrong doc")
+
+@app.route('/test')
+def test():
+    return "yes", 200
 
 @app.route('/api/get_blog_list', methods=['GET', 'POST'])
 def get_blog_list():
