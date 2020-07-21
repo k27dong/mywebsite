@@ -5,8 +5,9 @@ import ReactMarkdown from "react-markdown"
 import { withRouter } from "react-router-dom"
 import styled from "styled-components"
 import BlogPage from "./blog-page"
+import CodeBlock from "./code-block"
+import InlineCodeBlock from "./inline-code-block"
 import { CONST, ConvertDate } from "../util"
-
 
 const Post = (props) => {
   const id = props.match.params.id
@@ -20,7 +21,6 @@ const Post = (props) => {
         id: id,
       })
       .then((res) => {
-        console.log(res.data)
         res.data.date = new Date(res.data.date)
         setContent(res.data)
       })
@@ -67,7 +67,11 @@ const Post = (props) => {
           <Title>{content.title}</Title>
           <Info>{ConvertDate(content.date, "post")}</Info>
           <PostBody>
-            <ReactMarkdown source={content.body} escapeHtml={false} />
+            <ReactMarkdown
+              source={content.body}
+              escapeHtml={false}
+              renderers={{ code: CodeBlock, inlineCode: InlineCodeBlock}}
+            />
           </PostBody>
         </PostContainer>
       )}

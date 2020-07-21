@@ -5,6 +5,7 @@ const CONST = {
   UWENG: "https://uwaterloo.ca/engineering/",
   SAFYRELABS: "https://www.safyrelabs.com/",
   HOST: "http://localhost:5000/",
+  CURRENTYEAR: (new Date).getFullYear(),
 }
 
 const ConvertDate = (date, format) => {

@@ -28,7 +28,9 @@ const BlogList = () => {
       })
   }, [])
 
-  const blog_area = (bloglist) => {
+  let curr_year = CONST.CURRENTYEAR
+
+  const blog_block = (blog, i) => {
     const PostBlock = styled.div`
       margin-top: 0;
       display: -webkit-box;
@@ -79,17 +81,27 @@ const BlogList = () => {
       padding-right: 30px;
     `
 
-    return bloglist.map((blog, i) => (
-      <PostBlock>
-        <Date>{ConvertDate(blog.date, "main")}</Date>
-        <PostText>
-          <Post to={"post/" + blog.abbrlink}>{blog.title}</Post>
-        </PostText>
-      </PostBlock>
-    ))
+    let render_year_flag = false
+
+    if (i === 0 || blog.date.getFullYear() !== curr_year) {
+      render_year_flag = true
+      curr_year = blog.date.getFullYear()
+    }
+
+    return (
+      <>
+        {render_year_flag && <h1>{blog.date.getFullYear()}</h1>}
+        <PostBlock key={i}>
+          <Date>{ConvertDate(blog.date, "main")}</Date>
+          <PostText>
+            <Post to={"post/" + blog.abbrlink}>{blog.title}</Post>
+          </PostText>
+        </PostBlock>
+      </>
+    )
   }
 
-  return <>{loading ? <></> : blog_area(bloglist)}</>
+  return <>{loading ? <></> : bloglist.map((blog, i) => blog_block(blog, i))}</>
 }
 
 export default BlogList
