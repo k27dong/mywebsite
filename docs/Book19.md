@@ -9,9 +9,7 @@ categories:
 - other
 ---
 
-<a href="#zh"><sup>Chinese Version</sup></a>
-
-<span style="font-size: 12px;">The original title was displayed if no official translation is available</span>
+The original title was displayed if no official translation is available
 
 ## Dec
 - Bullfrog (Hu Bo)
@@ -28,7 +26,7 @@ categories:
 - The Enormous Turnip, The Difficult Avocado (H. Murakami)
 
 ## Sep
-- Red Star Over China (E. Snow) 
+- Red Star Over China (E. Snow)
 - Six Memos for the Next Millennium (I. Calvino)
 - Men Without Women (H. Murakami)
 
@@ -67,8 +65,6 @@ In school.
 
 <br>
 
-<p id="zh"></p>
-
 ## 十二月
 - 牛蛙 (胡迁)
 
@@ -82,7 +78,7 @@ In school.
 - 渡河入林 (海明威)
 - 局外人 (加缪)
 - 大萝卜和难挑的鳄梨 (村上春树)
-  
+
 ## 九月
 - 西行漫记 / 红星照耀中国 (埃德加·斯诺)
 - 新千年文学备忘录 (卡尔维诺)
@@ -108,7 +104,7 @@ In school.
 
 ## 二月
 - 流浪地球 (刘慈欣)
-- 我所理解的生活 (韩寒) 
+- 我所理解的生活 (韩寒)
 - 围城 (钱鍾书)
 - 可爱的洪水猛兽 (韩寒)
 
