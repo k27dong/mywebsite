@@ -4,7 +4,7 @@ LABEL maintainer = "me@ke-fan.me"
 
 WORKDIR /blog
 COPY package*.json ./
-RUN npm install
+RUN npm install --no-optional
 COPY src ./src
 COPY public ./public
 RUN npm run build
