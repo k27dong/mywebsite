@@ -1,0 +1,7 @@
+steps:
+    - name: "gcr.io/cloud-builders/gke-deploy:stable"
+      args:
+      - run
+      - --filename=deployment.yaml
+      - --location=us-east1-b
+      - --cluster=mywebsite

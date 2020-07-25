@@ -52,7 +52,6 @@ def get_post():
   return jsonify(BLOG_LIST[blog_id]), 200
 
 if __name__ == "__main__":
-  # app.run(host='0.0.0.0', port=5001)
-  WSGIServer(('0.0.0.0', 5000), app).serve_forever()
+  app.run(host='0.0.0.0')
 
 
