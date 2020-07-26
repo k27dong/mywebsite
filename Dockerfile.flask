@@ -6,7 +6,5 @@ RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
 
 COPY ./app/ ./app/
 COPY ./docs/ ./docs/
-COPY ./gunicorn.conf.py ./
 
-# CMD gunicorn -c gunicorn.conf.py app.app:app
 CMD ["python3", "app/app.py"]
