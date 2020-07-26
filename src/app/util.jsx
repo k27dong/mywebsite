@@ -6,6 +6,7 @@ const CONST = {
   SAFYRELABS: "https://www.safyrelabs.com/",
   HOST: "http://localhost:5000/",
   CURRENTYEAR: (new Date).getFullYear(),
+  DEPLOYMENT_HOST: "http://34.75.174.214:3000/"
 }
 
 const ConvertDate = (date, format) => {

@@ -17,7 +17,7 @@ const Post = (props) => {
   useEffect(() => {
     setLoading(true)
     axios
-      .post(CONST.HOST + "api/get_post", {
+      .post(CONST.DEPLOYMENT_HOST + "api/get_post", {
         id: id,
       })
       .then((res) => {

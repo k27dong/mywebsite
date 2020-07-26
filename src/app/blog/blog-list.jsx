@@ -12,7 +12,7 @@ const BlogList = () => {
   useEffect(() => {
     setLoading(true)
     axios
-      .get(CONST.HOST + "api/get_blog_list")
+      .get(CONST.DEPLOYMENT_HOST + "api/get_blog_list")
       .then((res) => {
         // set the returned date to a datetime object
         res.data.forEach((blog) => {
