@@ -28,3 +28,8 @@ yarn-error.log*
 
 # python stuff
 __pycache__/
+
+# deployment
+cloudbuild.yaml
+deployment.yaml
+deploy.sh

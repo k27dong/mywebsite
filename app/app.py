@@ -26,9 +26,13 @@ for filename in os.listdir(CONTENT_DIR):
   else:
     print("Error: found wrong doc")
 
-@app.route('/test')
-def test():
-    return "yes", 200
+@app.route('/health')
+def health():
+  return '', 200
+
+@app.route('/ready')
+def ready():
+  return '', 200
 
 @app.route('/api/get_blog_list', methods=['GET', 'POST'])
 def get_blog_list():
@@ -52,6 +56,7 @@ def get_post():
   return jsonify(BLOG_LIST[blog_id]), 200
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0')
+  WSGIServer(('0.0.0.0', 5000), app).serve_forever()
+  # app.run(host='0.0.0.0')
 
 

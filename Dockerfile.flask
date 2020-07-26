@@ -8,4 +8,5 @@ COPY ./app/ ./app/
 COPY ./docs/ ./docs/
 COPY ./gunicorn.conf.py ./
 
-CMD gunicorn -c gunicorn.conf.py app.app:app
+# CMD gunicorn -c gunicorn.conf.py app.app:app
+CMD ["python3", "app/app.py"]
