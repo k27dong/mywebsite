@@ -1,4 +1,7 @@
 FROM python:3.7
+
+LABEL maintainer = "me@ke-fan.me"
+
 WORKDIR /blog
 
 COPY ./requirements.txt ./
