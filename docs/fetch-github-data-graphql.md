@@ -2,18 +2,14 @@
 title: Fetching Github Stats using GraphQL in React
 abbrlink: 25747
 date: 2019-12-19 13:06:45
-tags:
-- Github
-- GraphQL
-categories:
-- React
 ---
-While I was making my personal website [dongkefan.me](https://www.dongkefan.me/), I wanted to added a section that would display my pinned projects on Github. At first I thought about hardcode all the content in an array and simply render it out, but in that way, I would have to update my code once I made any new project. 
+
+While I was making my personal website [dongkefan.me](https://www.dongkefan.me/), I wanted to added a section that would display my pinned projects on Github. At first I thought about hardcode all the content in an array and simply render it out, but in that way, I would have to update my code once I made any new project.
 I wanted to make sure whenever I added/removed my personal profile, my website get updated automatically. Due to this requirement, the data I render had to be actively fetched from Github, rather than locally stored in the repository.
 
 To reach this goal, I had two options: REST and GraphQL. Both API achieves the same target: I send a request to the Github server asking information, and I would be returned with what I need. After some research work, I decided to use the latter option. Not because one is superior to the other - in the end, I’m only using it for retrieving a tiny amount of data once per load, any efficiency difference is negligible - but because it is simpler to use and easier to set up. In this blog I would share my experiences and code that accomplish my needs.
 
-The first thing I need is a [personal access token](https://github.com/settings/tokens). It is linked to each account that grants the user the access to the server. You can create one from `Settings - Developer settings - Personal access tokens - Generate new token`. For safety purpose, make sure this token only contains the access for reading repos but not writing. 
+The first thing I need is a [personal access token](https://github.com/settings/tokens). It is linked to each account that grants the user the access to the server. You can create one from `Settings - Developer settings - Personal access tokens - Generate new token`. For safety purpose, make sure this token only contains the access for reading repos but not writing.
 
 <img src="/images/github_graphql/setting_up_github_token.png"  title="Creating Github Personal Access Token" />
 
@@ -49,7 +45,7 @@ const PinnedProjects = `
 `
 ```
 
-At this point, there’s only one thing left to do and that’s to use the GitHub token perviously created and authorize the call. The [official documentation](https://developer.github.com/v4/guides/) written by Github tells me to do this: 
+At this point, there’s only one thing left to do and that’s to use the GitHub token perviously created and authorize the call. The [official documentation](https://developer.github.com/v4/guides/) written by Github tells me to do this:
 ```javascript
 const githubGraphRequest = graphql.defaults({
   headers: {
@@ -58,7 +54,7 @@ const githubGraphRequest = graphql.defaults({
 })
 ```
 
-In this code snippet, I stored my token as an environment variable in order for it to remain hidden in my Repo. 
+In this code snippet, I stored my token as an environment variable in order for it to remain hidden in my Repo.
 
 After all the setup work is finished, I just need to use these two pieces and forms my call. Notice that it takes time for the data to be returned, so I used react hooks and async calls with a loading indicator to make sure the data will only be rendered once the fetching is complete. The full code looks like this:
 
@@ -132,6 +128,6 @@ Eventually I was able to implement the feature on my website hehe
 Compared to my Github profile:
 <img src="/images/github_graphql/github_profile.png"  title="Github Profile" />
 
-I'm not a good writer, so I apologize in advance if any explaination is unclear. Thanks for reading! 
+I'm not a good writer, so I apologize in advance if any explaination is unclear. Thanks for reading!
 
 :)

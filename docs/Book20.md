@@ -1,10 +1,5 @@
 ---
 title: Booklist 20
-top: true
-tags:
-  - other
-categories:
-  - other
 abbrlink: 38818
 date: 2020-01-01 10:00:00
 ---

@@ -2,11 +2,6 @@
 title: Booklist 19
 abbrlink: 43663
 date: 2019-01-01 00:00:00
-top: true
-tags:
-- other
-categories:
-- other
 ---
 
 The original title was displayed if no official translation is available

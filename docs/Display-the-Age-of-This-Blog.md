@@ -2,13 +2,7 @@
 title: Display the Age of This Blog
 abbrlink: 63683
 date: 2019-02-13 15:54:02
-tags: 
-- javascript
-- algorithm
-category: 
-- javascript
 ---
-
 
 A little longer than a week ago I realized I need to have a personal website. After some thoughts I decided to make it a blog so that I can keep track of my work and accomplishment.
 
@@ -32,21 +26,21 @@ function calculate_time() {
     whole_hours = Math.floor(gap/1000/60/60 - (whole_days * 24));
 
     whole_mins = Math.floor(gap/1000/60 - (whole_days * 24 * 60) - (whole_hours * 60));
-    
+
     whole_sec = Math.round(gap/1000 - (whole_days * 24 * 60 * 60) - (whole_hours * 60 * 60) - (whole_mins * 60));
 
     if(String(whole_hours).length == 1){
         whole_hours = "0" + whole_hours;
-    } 
+    }
 
     if(String(whole_mins).length == 1) {
         whole_mins = "0" + whole_mins;
     }
-    
+
     if(String(whole_sec).length == 1) {
         whole_sec = "0" + whole_sec;
     }
-    
+
     document.getElementById("time_loading").innerHTML = "Running  " + whole_days + " days ";
     document.getElementById("times").innerHTML = whole_hours + ":" + whole_mins + ":" + whole_sec;
 }
@@ -56,7 +50,7 @@ setInterval("calculate_time()",250);
 
 To display it in the footer, this piece of code is put in `theme/next/layout/_partials/footer.swig`, with some additional code:
 
-```html 
+```html
 <div style="display:inline;">
   <span class="post-meta-divider">|</span>
 

@@ -2,7 +2,6 @@
 title: Detecting C++ Memory Leaks using Valgrind on macOS Catalina
 abbrlink: 40077
 date: 2020-02-16 16:10:04
-tags:
 ---
 
 ## Prologue

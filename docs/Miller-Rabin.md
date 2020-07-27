@@ -2,12 +2,7 @@
 title: Miller-Rabin素性测试和大素数生成
 abbrlink: 52536
 mathjax: true
-tags:
-- Miller-Rabin
-- Math
 date: 2019-02-19 18:55:44
-categories:
-- math
 ---
 
 ## 写在前面
@@ -45,7 +40,7 @@ $$
 \\(a\,\\)为整数，\\(p\,\\)为素数，有
 $$
 a^p \equiv a\;(mod\,p)  \\\\
-a^{p-1} \equiv 1\;(mod\,p) 
+a^{p-1} \equiv 1\;(mod\,p)
 $$
 
 此处需要注意一点，即费马小定理是判断一个数是否为素数的必要条件，但不是充分条件。有一些“伪素数”也可以达成这个条件。比如
@@ -70,8 +65,8 @@ $$
 - 将\\(\,N-1\,\\)化为\\(\,2^sd\,\\)的形式（\\(\,N-1\,\\)为偶数，\\(\,d\,\\)为奇数）
 - 随机选取整数\\(\,a\in(0,\,N)\,\\)
 - 对所有整数\\(\,r \in [0, \,s-1]\,\\)进行运算：
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 判断 \\(\,a^d\neq1  \;(mod \,N) \,\\) 
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 判断 \\(\,a^{2^{r}d}\neq -1 \;(mod \,N)\,\\) 
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 判断 \\(\,a^d\neq1  \;(mod \,N) \,\\)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 判断 \\(\,a^{2^{r}d}\neq -1 \;(mod \,N)\,\\)
 - 若上述两个条件均符合，则称\\(\,N\,\\)通过Miller-Rabin测试。
 
 \\(\,\bullet\,\\)如果\\(\,N\,\\)不通过测试，则\\(\,N\,\\)一定为合数 <br> \\(\,\bullet\,\\)如果\\(\,N\,\\)通过测试，则\\(\,N\,\\)有\\(\,\frac{3}{4}\,\\)的几率为素数（误差率\\(\,\le\frac{1}{4}\,\\)）
@@ -85,14 +80,14 @@ $$
 ```c++
 bool is_probable_prime (int n, int k) {
     assert (n > 3);
-    
+
     int s = 1, d;
     bool status = true;
-    
+
     if (n % 2 == 0) {
         return false;
     }
-   
+
     int m = (n - 1) / 2;
     while (true) {  // N-1 -> (2^s)*d
         if (m % 2 == 0) {
@@ -157,6 +152,6 @@ RSA所基于的大素数生成有两个很关键的条件：素数测试和随�
 
 ## 参考文献
 <a id="bib2" href="#bib2ref"><sup>[1]</sup></a>: Miller, Gary L. (1976), "Riemann's Hypothesis and Tests for Primality", Journal of Computer and System Sciences, 13 (3): 300–317, doi:10.1145/800116.803773
-<a id="bib3" href="#bib3ref"><sup>[2]</sup></a>: Rabin, Michael O. (1980), "Probabilistic algorithm for testing primality", Journal of Number Theory, 12 (1): 128–138, doi:10.1016/0022-314X(80)90084-0 
+<a id="bib3" href="#bib3ref"><sup>[2]</sup></a>: Rabin, Michael O. (1980), "Probabilistic algorithm for testing primality", Journal of Number Theory, 12 (1): 128–138, doi:10.1016/0022-314X(80)90084-0
 <a id="bib4" href="#bib4ref"><sup>[3]</sup></a> Dan Shumow, Niels Ferguson. (2007), "On the Possibility of a Back Door in the NIST SP800-90 Dual Ec Prng". http://rump2007.cr.yp.to/15-shumow.pdf
 <a id="bib5" href="#bib5ref"><sup>[4]</sup></a> Agrawal, Manindra; Kayal, Neeraj; Saxena, Nitin (2004). "PRIMES is in P". Annals of Mathematics. 160 (2): 781–793. doi:10.4007/annals.2004.160.781. JSTOR 3597229
