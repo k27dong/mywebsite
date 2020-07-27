@@ -90,11 +90,15 @@ const BlogList = () => {
 
     return (
       <>
-        {render_year_flag && <h1>{blog.date.getFullYear()}</h1>}
-        <PostBlock key={i}>
-          <Date>{ConvertDate(blog.date, "main")}</Date>
-          <PostText>
-            <Post to={"post/" + blog.abbrlink}>{blog.title}</Post>
+        {render_year_flag && (
+          <h1 key={"yeartag " + i}>{blog.date.getFullYear()}</h1>
+        )}
+        <PostBlock key={"postblock " + i}>
+          <Date key={"date " + i}>{ConvertDate(blog.date, "main")}</Date>
+          <PostText key={"posttext " + i}>
+            <Post key={"post " + i} to={"post/" + blog.abbrlink}>
+              {blog.title}
+            </Post>
           </PostText>
         </PostBlock>
       </>

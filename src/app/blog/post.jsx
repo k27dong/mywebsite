@@ -7,6 +7,7 @@ import styled from "styled-components"
 import BlogPage from "./blog-page"
 import CodeBlock from "./code-block"
 import InlineCodeBlock from "./inline-code-block"
+import BlockQuote from "./block-quote"
 import { CONST, ConvertDate } from "../util"
 
 const Post = (props) => {
@@ -70,7 +71,11 @@ const Post = (props) => {
             <ReactMarkdown
               source={content.body}
               escapeHtml={false}
-              renderers={{ code: CodeBlock, inlineCode: InlineCodeBlock}}
+              renderers={{
+                code: CodeBlock,
+                inlineCode: InlineCodeBlock,
+                blockquote: BlockQuote,
+              }}
             />
           </PostBody>
         </PostContainer>
