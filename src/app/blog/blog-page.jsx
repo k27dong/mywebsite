@@ -27,6 +27,12 @@ const BlogPage = ({children}) => {
   const Background = styled.div`
     width: 75%;
     margin: 7% auto;
+
+    @media only screen
+      and (max-device-width: 480px)
+      and (-webkit-min-device-pixel-ratio: 2) {
+        width: 100%;
+      }
   `
 
   const Container = styled.div`
@@ -36,6 +42,12 @@ const BlogPage = ({children}) => {
 
   const Wrapper = styled.div`
     padding: 50px;
+
+    @media only screen
+      and (max-device-width: 480px)
+      and (-webkit-min-device-pixel-ratio: 2) {
+        padding: 50px 15px;
+      }
   `
 
   return (

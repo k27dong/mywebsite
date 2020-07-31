@@ -57,6 +57,12 @@ const Post = (props) => {
       "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
     font-size: 18px;
     line-height: 1.7;
+
+    @media only screen
+      and (max-device-width: 480px)
+      and (-webkit-min-device-pixel-ratio: 2) {
+        font-size: 16px;
+      }
   `
 
   return (

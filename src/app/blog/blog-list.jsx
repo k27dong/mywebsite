@@ -79,6 +79,13 @@ const BlogList = () => {
       text-align: right;
       width: 100px;
       padding-right: 30px;
+
+      @media only screen
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 2) {
+          width: 68px;
+          padding-right: 14px;
+        }
     `
 
     let render_year_flag = false
