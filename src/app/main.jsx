@@ -50,8 +50,8 @@ const Main = (props) => {
       <Name>Kefan Dong</Name>
       <Intro />
       <LinkButton onClick={() => toPage("github")}>Github</LinkButton>
-      <LinkButton onClick={() => toPage("blog")}>Blog</LinkButton>
       <LinkButton onClick={() => toPage("linkedin")}>LinkedIn</LinkButton>
+      <LinkButton onClick={() => toPage("blog")}>Blog</LinkButton>
     </Container>
   )
 }
