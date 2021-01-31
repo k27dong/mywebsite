@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from frontmatter import Frontmatter
 from gevent.pywsgi import WSGIServer
-from book import get_all_note
+from book import get_all_note, get_book_info_douban
 
 app = Flask(__name__)
 CORS(app)
@@ -84,6 +84,8 @@ def get_salt_list():
   for bookname in os.listdir(SALT_DIR):
     if bookname.endswith('.md'):
       book = Frontmatter.read_file(SALT_DIR + bookname)
+      if bookname == "三体.md":
+        get_book_info_douban(SALT_DIR + bookname)
       booklist.append({
         "title": book['attributes']['title'],
         "author": book['attributes']['author'],
