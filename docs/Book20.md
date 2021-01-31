@@ -4,9 +4,24 @@ abbrlink: 38818
 date: 2020-01-01 10:00:00
 ---
 
-<a href="#zh"><sup>Chinese Version</sup></a>
+## Sep - Nov
+In school.
 
-<span style="font-size: 12px;">The original title was displayed if no official translation is available</span>
+## Aug
+- The Snows Of Kilimanjaro, And Other Stories  (E. Hemingway)
+
+## Jul
+- After Dark (H. Murakami)
+
+## Jun
+- After the Quake (H. Murakami)
+
+## May
+- A Moveable Feast (E. Hemingway)
+
+## Apr
+- Murder on the Orient Express (A. Christie)
+- The Murder of Roger Ackroyd (A. Christie)
 
 ## Mar
 - Mao: A Biography (R. Terrill)
@@ -21,7 +36,24 @@ In school
 
 <br>
 
-<p id="zh"></p>
+## 九月 - 十一月
+上课
+
+## 八月
+- 乞力马扎罗的雪 (海明威)
+
+## 七月
+- 天黑以后 (村上春树)
+
+## 六月
+- 神的孩子全跳舞 (村上春树)
+
+## 五月
+- 流动的飨宴 (海明威)
+
+## 四月
+- 东方快车谋杀案 (阿加莎·克里斯蒂)
+- 罗杰疑案 (阿加莎·克里斯蒂)
 
 ## 三月
 - 毛泽东传 (罗斯·特里尔)
