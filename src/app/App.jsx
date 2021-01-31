@@ -5,6 +5,8 @@ import BlogMain from "./blog/main"
 import history from "./history"
 import NotFound from "./404"
 import Post from "./blog/post"
+import SaltMain from "./salt/main"
+import SaltContent from "./salt/content"
 import ScrollTop from "./scroll-top"
 
 const App = () => {
@@ -20,6 +22,12 @@ const App = () => {
           </Route>
           <Route path="/post/:id" exact>
             <Post />
+          </Route>
+          <Route path="/salt" exact>
+            <SaltMain />
+          </Route>
+          <Route path="/salt/:key" exact>
+            <SaltContent />
           </Route>
           <Route path="/404">
             <NotFound />
