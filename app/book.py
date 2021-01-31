@@ -1,3 +1,4 @@
+import requests
 from frontmatter import Frontmatter
 
 DOUBAN_BOOK_API = "https://api.douban.com/v2/book/"
@@ -19,7 +20,7 @@ def get_all_note(book):
     notelist.append(curr_note)
   return notelist
 
-def get_book_info_douban(bookdir)
+def get_book_info_douban(bookdir):
   book = Frontmatter.read_file(bookdir)
   url = DOUBAN_BOOK_API + "search?q=" + book['attributes']['title'] + "&apikey=" + APIKEY
   raw_info = requests.get(url)
@@ -73,10 +74,15 @@ def get_book_info_douban(bookdir)
     lines = curr_file_r.readlines()
     for i, item in enumerate(lines):
       if item.startswith('tags:'):
-        for j in range(i, len(lines)):
+        to_be_removed = []
+        for j in range(i + 1, len(lines)):
           if lines[j].startswith("- "):
-            lines.remove(j)
-      lines[i] = final_tags_str
+            to_be_removed.append(lines[j])
+          else:
+            break
+        for r in to_be_removed:
+          lines.remove(r)
+        lines[i] = final_tags_str
 
     curr_file_r.close()
     curr_file_w = open(bookdir, 'w')

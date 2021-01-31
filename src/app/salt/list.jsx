@@ -23,6 +23,7 @@ const SaltList = () => {
     axios
       .get(CONST.DEPLOYMENT_HOST + "api/get_total_note_num")
       .then((res) => {
+        console.log(res.data)
         setTotal(res.data)
       })
       .catch((err) => {

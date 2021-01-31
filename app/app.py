@@ -35,6 +35,8 @@ for filename in os.listdir(CONTENT_DIR):
 for bookname in os.listdir(SALT_DIR):
   if bookname.endswith('.md'):
     book = Frontmatter.read_file(SALT_DIR + bookname)
+    print("123")
+    print(book['attributes']['num'])
     curr_note_num = book['attributes']['num']
     BOOK_LIST.update({
       book['attributes']['title'] : {
@@ -84,12 +86,13 @@ def get_salt_list():
   for bookname in os.listdir(SALT_DIR):
     if bookname.endswith('.md'):
       book = Frontmatter.read_file(SALT_DIR + bookname)
-      if bookname == "三体.md":
-        get_book_info_douban(SALT_DIR + bookname)
+      get_book_info_douban(SALT_DIR + bookname)
       booklist.append({
         "title": book['attributes']['title'],
         "author": book['attributes']['author'],
         "notenum": book['attributes']['num'],
+        "rating": book['attributes']['rating'],
+        "tag": book['attributes']['tags'],
         "id": book['attributes']['id']
       })
       booklist.sort(key = lambda r : r["id"], reverse=True)
