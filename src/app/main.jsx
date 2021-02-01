@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Button } from "antd"
 import { CONST } from "./util"
 import { withRouter } from "react-router-dom"
+import GithubCorner from 'react-github-corner';
 import Intro from "./intro"
 import "antd/dist/antd.css"
 
@@ -46,6 +47,8 @@ const Main = (props) => {
   }
 
   return (
+    <>
+    <GithubCorner href="https://github.com/k27dong/mywebsite" />
     <Container>
       <Name>Kefan Dong</Name>
       <Intro />
@@ -53,6 +56,7 @@ const Main = (props) => {
       <LinkButton onClick={() => toPage("linkedin")}>LinkedIn</LinkButton>
       <LinkButton onClick={() => toPage("blog")}>Blog</LinkButton>
     </Container>
+    </>
   )
 }
 

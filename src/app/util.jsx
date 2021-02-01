@@ -4,6 +4,7 @@ const CONST = {
   CIBC: "https://www.cibc.com/",
   UWENG: "https://uwaterloo.ca/engineering/",
   SAFYRELABS: "https://www.safyrelabs.com/",
+  POINTCLICKCARE: "https://pointclickcare.com",
   HOST: "http://localhost:5000/",
   CURRENTYEAR: (new Date).getFullYear(),
   DEPLOYMENT_HOST: "http://kefan.me/"

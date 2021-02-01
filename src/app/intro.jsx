@@ -18,7 +18,9 @@ const Intro = () => {
   return (
     <Container>
       <IntroLink url={CONST.UWENG} text={"University of Waterloo"} />,
-      Previously <IntroLink url={CONST.CIBC} text={"CIBC"} />,{" "}
+      Previously{" "}
+      <IntroLink url={CONST.CIBC} text={"CIBC"} />,{" "}
+      <IntroLink url={CONST.POINTCLICKCARE} text={"PointClickCare"} />,{" "}
       <IntroLink url={CONST.SAFYRELABS} text={"Safyre Labs"} />
     </Container>
   )
