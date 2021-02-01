@@ -17,11 +17,17 @@ const BlogPage = ({children}) => {
     font-size: 25px;
     font-weight: bold;
     line-height: 1.25;
+    padding-right: 25px;
+
 
     &:hover {
       text-decoration: none;
       color: inherit;
     }
+  `
+
+  const SmallLink = styled(TitleText)`
+    font-size: 18px;
   `
 
   const Background = styled.div`
@@ -53,7 +59,9 @@ const BlogPage = ({children}) => {
   return (
     <Background>
       <TitleBlock>
-        <TitleText to="/blog">Blog</TitleText>
+        <TitleText to="">Home</TitleText>
+        <SmallLink to="/blog">Blog</SmallLink>
+        <SmallLink to="/salt">Notes</SmallLink>
       </TitleBlock>
       <Container>
         <Wrapper>
