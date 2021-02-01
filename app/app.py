@@ -35,8 +35,8 @@ for filename in os.listdir(CONTENT_DIR):
 for bookname in os.listdir(SALT_DIR):
   if bookname.endswith('.md'):
     book = Frontmatter.read_file(SALT_DIR + bookname)
-    print("123")
-    print(book['attributes']['num'])
+    if ('rating' not in book['attributes']) or ('tags' not in book['attributes']):
+      get_book_info_douban(SALT_DIR + bookname)
     curr_note_num = book['attributes']['num']
     BOOK_LIST.update({
       book['attributes']['title'] : {
@@ -86,7 +86,6 @@ def get_salt_list():
   for bookname in os.listdir(SALT_DIR):
     if bookname.endswith('.md'):
       book = Frontmatter.read_file(SALT_DIR + bookname)
-      get_book_info_douban(SALT_DIR + bookname)
       booklist.append({
         "title": book['attributes']['title'],
         "author": book['attributes']['author'],

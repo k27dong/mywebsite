@@ -4,8 +4,6 @@ from frontmatter import Frontmatter
 DOUBAN_BOOK_API = "https://api.douban.com/v2/book/"
 APIKEY = "054022eaeae0b00e0fc068c0c0a2102a"
 
-# https://api.douban.com/v2/book/search?q=奇鸟行状录&apikey=054022eaeae0b00e0fc068c0c0a2102a
-
 # book : dict
 def get_all_note(book):
   notelist = []
