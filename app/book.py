@@ -99,12 +99,6 @@ def get_book_info_douban(bookdir):
       curr_file_w.write(l)
     curr_file_w.close()
 
-  # add the two categories if doesn't exist
-
-
-
-
-
 # TODO
 def populate_normal_booklist(book):
   return 1
