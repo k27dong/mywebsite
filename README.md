@@ -5,7 +5,7 @@ This is my personal website, please hire me.
 ### Technology Stack
 ```
 React
-Python
+Flask
 Nginx
 uWSGI
 Docker
