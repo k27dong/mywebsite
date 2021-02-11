@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-const BlogPage = ({children}) => {
+const BlogPage = ({ children }) => {
   document.body.style = "background: #fafafa;"
 
   const TitleBlock = styled.div`
@@ -19,7 +19,6 @@ const BlogPage = ({children}) => {
     line-height: 1.25;
     padding-right: 25px;
 
-
     &:hover {
       text-decoration: none;
       color: inherit;
@@ -34,11 +33,9 @@ const BlogPage = ({children}) => {
     width: 75%;
     margin: 7% auto;
 
-    @media only screen
-      and (max-device-width: 480px)
-      and (-webkit-min-device-pixel-ratio: 2) {
-        width: 100%;
-      }
+    @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+      width: 100%;
+    }
   `
 
   const Container = styled.div`
@@ -49,11 +46,9 @@ const BlogPage = ({children}) => {
   const Wrapper = styled.div`
     padding: 50px;
 
-    @media only screen
-      and (max-device-width: 480px)
-      and (-webkit-min-device-pixel-ratio: 2) {
-        padding: 50px 15px;
-      }
+    @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+      padding: 50px 15px;
+    }
   `
 
   return (
@@ -64,9 +59,7 @@ const BlogPage = ({children}) => {
         <SmallLink to="/salt">Notes</SmallLink>
       </TitleBlock>
       <Container>
-        <Wrapper>
-          {children}
-        </Wrapper>
+        <Wrapper>{children}</Wrapper>
       </Container>
     </Background>
   )

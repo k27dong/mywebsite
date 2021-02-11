@@ -58,11 +58,9 @@ const Post = (props) => {
     font-size: 18px;
     line-height: 1.7;
 
-    @media only screen
-      and (max-device-width: 480px)
-      and (-webkit-min-device-pixel-ratio: 2) {
-        font-size: 16px;
-      }
+    @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+      font-size: 16px;
+    }
   `
 
   return (

@@ -6,8 +6,8 @@ const CONST = {
   SAFYRELABS: "https://www.safyrelabs.com/",
   POINTCLICKCARE: "https://pointclickcare.com",
   HOST: "http://localhost:5000/",
-  CURRENTYEAR: (new Date).getFullYear(),
-  DEPLOYMENT_HOST: "http://kefan.me/"
+  CURRENTYEAR: new Date().getFullYear(),
+  DEPLOYMENT_HOST: "http://kefan.me/",
   // DEPLOYMENT_HOST: "http://localhost:5000/"
 }
 

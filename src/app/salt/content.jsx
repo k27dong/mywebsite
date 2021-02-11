@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom"
 import styled from "styled-components"
 import BlogPage from "../blog/blog-page"
 import { CONST } from "../util"
-import copy from 'clipboard-copy'
+import copy from "clipboard-copy"
 
 const SaltContent = (props) => {
   const key = props.match.params.key
@@ -66,7 +66,7 @@ const SaltContent = (props) => {
 
   const copy_note = (t) => {
     copy(t)
-    message.success('Copied to clipboard!')
+    message.success("Copied to clipboard!")
   }
 
   const single_note = (n, i) => {
