@@ -9,7 +9,7 @@ from book import get_all_note, get_book_info_douban
 app = Flask(__name__)
 CORS(app)
 
-CONTENT_DIR = "docs/"
+CONTENT_DIR = "docs/blog/"
 SALT_DIR = "docs/salt/"
 INFO_LIST = {"title", "date"}
 BLOG_LIST = {}
