@@ -55,8 +55,8 @@ const BlogPage = ({ children }) => {
     <Background>
       <TitleBlock>
         <TitleText to="">Home</TitleText>
-        <SmallLink to="/blog">Blog</SmallLink>
         <SmallLink to="/salt">Notes</SmallLink>
+        <SmallLink to="/blog">Blog</SmallLink>
       </TitleBlock>
       <Container>
         <Wrapper>{children}</Wrapper>
