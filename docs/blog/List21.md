@@ -4,7 +4,25 @@ abbrlink: 51126
 date: 2021-01-01 13:43:10
 ---
 
-<br>
+看起来很美
 
-<p style="text-align:center;">看起来很美<br>悉达多<br>Hamilton<br>三体</p>
+悉达多
+
+Hamilton
+
+三体
+
+Ruben Brandt, Collector
+
+地球上最后的夜晚
+
+The Trial of the Chicago 7
+
+JFK (1991)
+
+The Shawshank Redemption
+
+周恩来传 (D. Wilson)
+
+Promising Young Woman
 
