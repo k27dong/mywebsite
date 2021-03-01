@@ -4,7 +4,7 @@ from datetime import datetime
 from frontmatter import Frontmatter
 
 post_id = []
-CONTENT_DIR = "docs/"
+CONTENT_DIR = "docs/blog/"
 FILENAME = "new.md"
 CONTENT = ""
 
