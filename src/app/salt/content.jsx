@@ -31,7 +31,7 @@ const SaltContent = (props) => {
   }, [key])
 
   const Wrapper = styled.div`
-    font-family: "Noto Serif CJK SC", "Noto Serif CJK", "Source Han Serif SC",
+    font-family: "Noto Serif SC", "Noto Serif", "Source Han Serif SC",
       "Source Han Serif", serif;
   `
 
