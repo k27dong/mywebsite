@@ -8,6 +8,7 @@ import BlogPage from "./blog-page"
 import CodeBlock from "./code-block"
 import InlineCodeBlock from "./inline-code-block"
 import BlockQuote from "./block-quote"
+import Footer from "./footer"
 import { CONST, ConvertDate } from "../util"
 
 const Post = (props) => {
@@ -84,6 +85,7 @@ const Post = (props) => {
               }}
             />
           </PostBody>
+          <Footer />
         </PostContainer>
       )}
     </BlogPage>

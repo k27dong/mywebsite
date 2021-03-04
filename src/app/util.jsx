@@ -7,6 +7,8 @@ const CONST = {
   POINTCLICKCARE: "https://pointclickcare.com",
   HOST: "http://localhost:5000/",
   CURRENTYEAR: new Date().getFullYear(),
+  BUYMECOFFEE: "https://www.buymeacoffee.com/kefan",
+  WHOAMI: "Kefan Dong",
   DEPLOYMENT_HOST: "http://kefan.me/",
   // DEPLOYMENT_HOST: "http://localhost:5000/"
 }
@@ -20,7 +22,7 @@ const ConvertDate = (date, format) => {
     "May",
     "Jun",
     "Jul",
-    "Augu",
+    "Aug",
     "Sep",
     "Oct",
     "Nov",
