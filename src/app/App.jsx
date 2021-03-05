@@ -7,6 +7,7 @@ import NotFound from "./404"
 import Post from "./blog/post"
 import SaltMain from "./salt/main"
 import SaltContent from "./salt/content"
+import Rss from "./rss/rss"
 import ScrollTop from "./scroll-top"
 
 const App = () => {
@@ -28,6 +29,9 @@ const App = () => {
           </Route>
           <Route path="/salt/:key" exact>
             <SaltContent />
+          </Route>
+          <Route path="/feed" exact>
+            <Rss />
           </Route>
           <Route path="/404">
             <NotFound />
