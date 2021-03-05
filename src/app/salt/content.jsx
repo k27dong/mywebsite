@@ -75,7 +75,7 @@ const SaltContent = (props) => {
     ) : (
       <NoteWrapper
         hoverable
-        bodyStyle={{ padding: "0" }}
+        bodyStyle={{ padding: "0", color: "rgba(0, 0, 0, 0.85)" }}
         onClick={() => copy_note(n)}
       >
         <Note>{n}</Note>

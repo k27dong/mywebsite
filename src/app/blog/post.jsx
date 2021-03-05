@@ -56,8 +56,9 @@ const Post = (props) => {
     -webkit-tap-highlight-color: transparent;
     font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial,
       "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
-    /* font-family: "Noto Serif CJK SC", "Noto Serif CJK", "Source Han Serif SC",
-      "Source Han Serif", serif; */
+    /* font-family: "Source Serif Pro", "Source Han Serif SC", "Noto Serif CJK SC",
+      "Noto Serif SC", serif; */
+    /* color: rgba(0, 0, 0, 0.8); */
     font-size: 18px;
     line-height: 1.7;
 
