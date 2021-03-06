@@ -20,11 +20,11 @@ const BlogList = () => {
         })
         setBloglist(res.data)
       })
-      .catch((err) => {
-        message.error("Error ", err)
-      })
       .then(() => {
         setLoading(false)
+      })
+      .catch((err) => {
+        message.error("Error ", err)
       })
   }, [])
 
@@ -94,19 +94,19 @@ const BlogList = () => {
     }
 
     return (
-      <>
+      <React.Fragment key={`blog_list_fragment_${i}`}>
         {render_year_flag && (
-          <h1 key={"yeartag " + i}>{blog.date.getFullYear()}</h1>
+          <h1 key={`yeartag_${i}`}>{blog.date.getFullYear()}</h1>
         )}
-        <PostBlock key={"postblock " + i}>
-          <Date key={"date " + i}>{ConvertDate(blog.date, "main")}</Date>
-          <PostText key={"posttext " + i}>
-            <Post key={"post " + i} to={"post/" + blog.abbrlink}>
+        <PostBlock key={`postblock_${i}`}>
+          <Date key={`date_${i}`}>{ConvertDate(blog.date, "main")}</Date>
+          <PostText key={`posttext_${i}`}>
+            <Post key={`post_${i}`} to={"post/" + blog.abbrlink}>
               {blog.title}
             </Post>
           </PostText>
         </PostBlock>
-      </>
+      </React.Fragment>
     )
   }
 

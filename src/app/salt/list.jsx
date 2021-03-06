@@ -6,6 +6,15 @@ import { Link } from "react-router-dom"
 import { CONST } from "../util"
 import { isMobile } from "react-device-detect"
 
+const TagBlock = styled(Tag)``
+
+const TotalBanner = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 20px;
+`
+
 const SaltList = () => {
   const [loading, setLoading] = useState(true)
   const [saltlist, setSaltList] = useState([])
@@ -14,7 +23,15 @@ const SaltList = () => {
   useEffect(() => {
     setLoading(true)
     axios.get(CONST.DEPLOYMENT_HOST + "api/get_salt_list").then((res) => {
-      setSaltList(res.data)
+      // setSaltList(res.data)
+      setSaltList(
+        res.data.map((note, i) => {
+          return {
+            ...note,
+            key: i,
+          }
+        })
+      )
     })
   }, [])
 
@@ -32,17 +49,14 @@ const SaltList = () => {
       })
   }, [])
 
-  const TagBlock = styled(Tag)``
-
-  const TotalBanner = styled.div`
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    padding-bottom: 20px;
-  `
-
-  const tag_list = (tag, i) => {
-    return i > 3 ? <></> : <TagBlock>{tag}</TagBlock>
+  const tag_list = (tag, i, row_index) => {
+    return (
+      <>
+        {i <= 3 && (
+          <TagBlock key={`tag_block_${row_index.key}_${i}`}>{tag}</TagBlock>
+        )}
+      </>
+    )
   }
 
   const columns = [
@@ -50,22 +64,31 @@ const SaltList = () => {
       title: "书名",
       dataIndex: "title",
       key: "title",
-      render: (text) => <Link to={"salt/" + text}>{text}</Link>,
       width: "25%",
+      render: (text) => <Link to={"salt/" + text}>{text}</Link>,
+      onCell: (record, row_index) => ({
+        key: `title_${row_index}`,
+      }),
     },
     {
       title: "作者",
       dataIndex: "author",
       key: "author",
       width: "20%",
+      onCell: (record, row_index) => ({
+        key: `author_${row_index}`,
+      }),
     },
     {
       title: "笔记数量",
       dataIndex: "notenum",
       key: "notenum",
       width: "12%",
-      sorter: (a, b) => a.notenum - b.notenum,
       align: "center",
+      sorter: (a, b) => a.notenum - b.notenum,
+      onCell: (record, row_index) => ({
+        key: `notenum_${row_index}`,
+      }),
     },
     {
       title: "豆瓣评分",
@@ -74,12 +97,18 @@ const SaltList = () => {
       width: "12%",
       align: "center",
       sorter: (a, b) => a.rating - b.rating,
+      onCell: (record, row_index) => ({
+        key: `rating_${row_index}`,
+      }),
     },
     {
       title: "标签",
       dataIndex: "tag",
       key: "tag",
-      render: (tag) => tag.map((t, i) => tag_list(t, i)),
+      render: (tag, row_index) => tag.map((t, i) => tag_list(t, i, row_index)),
+      onCell: (record, row_index) => ({
+        key: `tag_${row_index}`,
+      }),
     },
   ]
 

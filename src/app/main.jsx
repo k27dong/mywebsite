@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Button } from "antd"
 import { CONST } from "./util"
 import { withRouter } from "react-router-dom"
+import { isBrowser } from "react-device-detect"
 import GithubCorner from "react-github-corner"
 import Intro from "./intro"
 import "antd/dist/antd.css"
@@ -42,7 +43,7 @@ const Main = (props) => {
         window.open(CONST.LINKEDIN, "_blank")
         break
       case "resume":
-        props.history.push("/resume")
+        window.open(CONST.RESUME, "_blank")
         break
       default:
         console.log("error")
@@ -58,7 +59,9 @@ const Main = (props) => {
         <LinkButton onClick={() => toPage("github")}>Github</LinkButton>
         <LinkButton onClick={() => toPage("linkedin")}>LinkedIn</LinkButton>
         <LinkButton onClick={() => toPage("blog")}>Blog</LinkButton>
-        <LinkButton onClick={() => toPage("resume")}>Resume</LinkButton>
+        {isBrowser && (
+          <LinkButton onClick={() => toPage("resume")}>Resume</LinkButton>
+        )}
       </Container>
     </>
   )

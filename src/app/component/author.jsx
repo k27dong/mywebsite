@@ -2,9 +2,9 @@ import React from "react"
 import styled from "styled-components"
 import { CONST } from "../util"
 
-const Author = () => {
-  const AuthorText = styled.div``
+const AuthorText = styled.div``
 
+const Author = () => {
   return <AuthorText>Author: {CONST.WHOAMI}</AuthorText>
 }
 

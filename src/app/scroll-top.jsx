@@ -1,9 +1,9 @@
 import React, { useEffect, Fragment } from "react"
 import { withRouter } from "react-router-dom"
 
-function ScrollTop(props) {
+const ScrollTop = ({ history, children }) => {
   useEffect(() => {
-    const unlisten = props.history.listen(() => {
+    const unlisten = history.listen(() => {
       window.scrollTo(0, 0)
     })
     return () => {
@@ -11,7 +11,7 @@ function ScrollTop(props) {
     }
   }, [])
 
-  return <Fragment>{props.children}</Fragment>
+  return <Fragment>{children}</Fragment>
 }
 
 export default withRouter(ScrollTop)

@@ -11,6 +11,39 @@ import BlockQuote from "./block-quote"
 import Footer from "./footer"
 import { CONST, ConvertDate } from "../util"
 
+const PostContainer = styled.div`
+  font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial,
+    "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
+`
+
+const Title = styled.div`
+  line-height: 1.25;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+`
+
+const Info = styled.div`
+  text-align: center;
+  margin: 6px auto 20px;
+`
+
+const PostBody = styled.div`
+  -webkit-tap-highlight-color: transparent;
+  font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial,
+    "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
+  /* font-family: "Source Serif Pro", "Source Han Serif SC", "Noto Serif CJK SC",
+  "Noto Serif SC", serif; */
+  /* color: rgba(0, 0, 0, 0.8); */
+  font-size: 18px;
+  line-height: 1.7;
+
+  @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+    font-size: 16px;
+  }
+`
+
 const Post = (props) => {
   const id = props.match.params.id
   const [loading, setLoading] = useState(true)
@@ -33,39 +66,6 @@ const Post = (props) => {
         setLoading(false)
       })
   }, [id])
-
-  const PostContainer = styled.div`
-    font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial,
-      "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
-  `
-
-  const Title = styled.div`
-    line-height: 1.25;
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-    display: block;
-  `
-
-  const Info = styled.div`
-    text-align: center;
-    margin: 6px auto 20px;
-  `
-
-  const PostBody = styled.div`
-    -webkit-tap-highlight-color: transparent;
-    font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial,
-      "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
-    /* font-family: "Source Serif Pro", "Source Han Serif SC", "Noto Serif CJK SC",
-      "Noto Serif SC", serif; */
-    /* color: rgba(0, 0, 0, 0.8); */
-    font-size: 18px;
-    line-height: 1.7;
-
-    @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
-      font-size: 16px;
-    }
-  `
 
   return (
     <BlogPage>

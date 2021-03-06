@@ -7,6 +7,40 @@ import BlogPage from "../blog/blog-page"
 import { CONST } from "../util"
 import copy from "clipboard-copy"
 
+const Wrapper = styled.div`
+  font-family: "Noto Serif SC", "Noto Serif", "Source Han Serif SC",
+    "Source Han Serif", serif;
+`
+
+const Title = styled.div`
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+`
+
+const Author = styled.div`
+  text-align: center;
+  font-size: 15px;
+`
+
+const ChapterTitle = styled.div`
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 15px;
+  margin-top: 20px;
+`
+
+const NoteWrapper = styled(Card)`
+  margin-bottom: 15px;
+  background: #f7f7f7;
+`
+
+const Note = styled.p`
+  margin: 0;
+  padding: 10px;
+  font-size: 16px;
+`
+
 const SaltContent = (props) => {
   const key = props.match.params.key
   const [loading, setLoading] = useState(true)
@@ -19,7 +53,6 @@ const SaltContent = (props) => {
         key: key,
       })
       .then((res) => {
-        console.log(res.data)
         setContent(res.data)
       })
       .catch((err) => {
@@ -30,61 +63,34 @@ const SaltContent = (props) => {
       })
   }, [key])
 
-  const Wrapper = styled.div`
-    font-family: "Noto Serif SC", "Noto Serif", "Source Han Serif SC",
-      "Source Han Serif", serif;
-  `
-
-  const Title = styled.div`
-    text-align: center;
-    font-weight: bold;
-    font-size: 40px;
-  `
-
-  const Author = styled.div`
-    text-align: center;
-    font-size: 15px;
-  `
-
-  const ChapterTitle = styled.div`
-    font-weight: bold;
-    font-size: 22px;
-    margin-bottom: 15px;
-    margin-top: 20px;
-  `
-
-  const NoteWrapper = styled(Card)`
-    margin-bottom: 15px;
-    background: #f7f7f7;
-  `
-
-  const Note = styled.p`
-    margin: 0;
-    padding: 10px;
-    font-size: 16px;
-  `
-
   const copy_note = (t) => {
     copy(t)
     message.success("Copied to clipboard!")
   }
 
-  const single_note = (n, i) => {
-    return i === 0 ? (
-      <ChapterTitle>{n}</ChapterTitle>
+  const single_note = (n, note_index, block_index) => {
+    return note_index === 0 ? (
+      <ChapterTitle key={`chapter_title_${block_index}_${note_index}`}>
+        {n}
+      </ChapterTitle>
     ) : (
       <NoteWrapper
         hoverable
         bodyStyle={{ padding: "0", color: "rgba(0, 0, 0, 0.85)" }}
         onClick={() => copy_note(n)}
+        key={`note_wrapper_${block_index}_${note_index}`}
       >
-        <Note>{n}</Note>
+        <Note key={`note_${block_index}_${note_index}`}>{n}</Note>
       </NoteWrapper>
     )
   }
 
-  const note_block = (note, i) => {
-    return <>{note.map((n, i) => single_note(n, i))}</>
+  const note_block = (note, block_index) => {
+    return (
+      <React.Fragment key={`salt_content_fragment_${block_index}`}>
+        {note.map((n, i) => single_note(n, i, block_index))}
+      </React.Fragment>
+    )
   }
 
   return (
