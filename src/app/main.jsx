@@ -25,7 +25,7 @@ const Container = styled.div`
 `
 
 const LinkButton = styled(Button)`
-  margin-right: 10px;
+  margin-right: 12px;
   width: 80px;
 `
 
@@ -41,6 +41,9 @@ const Main = (props) => {
       case "linkedin":
         window.open(CONST.LINKEDIN, "_blank")
         break
+      case "resume":
+        props.history.push("/resume")
+        break
       default:
         console.log("error")
     }
@@ -55,6 +58,7 @@ const Main = (props) => {
         <LinkButton onClick={() => toPage("github")}>Github</LinkButton>
         <LinkButton onClick={() => toPage("linkedin")}>LinkedIn</LinkButton>
         <LinkButton onClick={() => toPage("blog")}>Blog</LinkButton>
+        <LinkButton onClick={() => toPage("resume")}>Resume</LinkButton>
       </Container>
     </>
   )

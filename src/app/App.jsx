@@ -7,7 +7,8 @@ import NotFound from "./404"
 import Post from "./blog/post"
 import SaltMain from "./salt/main"
 import SaltContent from "./salt/content"
-import Rss from "./rss/rss"
+import Rss from "./files/rss"
+import Resume from "./files/resume"
 import ScrollTop from "./scroll-top"
 
 const App = () => {
@@ -32,6 +33,9 @@ const App = () => {
           </Route>
           <Route path="/feed" exact>
             <Rss />
+          </Route>
+          <Route path="/resume" exact>
+            <Resume />
           </Route>
           <Route path="/404">
             <NotFound />
