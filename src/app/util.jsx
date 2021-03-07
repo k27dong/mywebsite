@@ -10,8 +10,8 @@ const CONST = {
   BUYMECOFFEE: "https://www.buymeacoffee.com/kefan",
   WHOAMI: "Kefan Dong",
   RESUME: `${process.env.PUBLIC_URL}/Kefan_Dong_Resume_PDF.pdf`,
-  // DEPLOYMENT_HOST: "http://kefan.me/",
-  DEPLOYMENT_HOST: "http://localhost:5000/"
+  DEPLOYMENT_HOST: "http://kefan.me/",
+  // DEPLOYMENT_HOST: "http://localhost:5000/"
 }
 
 const ConvertDate = (date, format) => {
