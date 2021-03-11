@@ -8,6 +8,7 @@ import BlogPage from "./blog-page"
 import CodeBlock from "./code-block"
 import InlineCodeBlock from "./inline-code-block"
 import BlockQuote from "./block-quote"
+import ImageBlock from "./image-block"
 import Footer from "./footer"
 import { CONST, ConvertDate } from "../util"
 
@@ -83,6 +84,7 @@ const Post = (props) => {
                 code: CodeBlock,
                 inlineCode: InlineCodeBlock,
                 blockquote: BlockQuote,
+                image: ImageBlock,
               }}
             />
           </PostBody>
@@ -94,3 +96,5 @@ const Post = (props) => {
 }
 
 export default withRouter(Post)
+
+export { PostContainer, Title, Info, PostBody }

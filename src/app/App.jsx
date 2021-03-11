@@ -9,6 +9,7 @@ import SaltMain from "./salt/main"
 import SaltContent from "./salt/content"
 import Rss from "./files/rss"
 import Resume from "./files/resume"
+import AboutMain from "./about/about-main"
 import ScrollTop from "./scroll-top"
 
 const App = () => {
@@ -36,6 +37,9 @@ const App = () => {
           </Route>
           <Route path="/resume" exact>
             <Resume />
+          </Route>
+          <Route path="/about" exact>
+            <AboutMain />
           </Route>
           <Route path="/404">
             <NotFound />
