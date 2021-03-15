@@ -57,7 +57,7 @@ const BlogPage = ({ children }) => {
         <TitleText to="">Home</TitleText>
         <SmallLink to="/salt">Notes</SmallLink>
         <SmallLink to="/blog">Blog</SmallLink>
-        {/* <SmallLink to="/about">About</SmallLink> */}
+        <SmallLink to="/about">About</SmallLink>
       </TitleBlock>
       <Container>
         <Wrapper>{children}</Wrapper>

@@ -1,6 +1,7 @@
 const CONST = {
   GITHUB: "https://github.com/k27dong",
   LINKEDIN: "https://www.linkedin.com/in/k27dong/",
+  MAIL: "mailto:me@kefan.me",
   CIBC: "https://www.cibc.com/",
   UWENG: "https://uwaterloo.ca/engineering/",
   SAFYRELABS: "https://www.safyrelabs.com/",
@@ -9,9 +10,10 @@ const CONST = {
   CURRENTYEAR: new Date().getFullYear(),
   BUYMECOFFEE: "https://www.buymeacoffee.com/kefan",
   WHOAMI: "Kefan Dong",
+  ZHIHU: "https://www.zhihu.com/people/csbt34d",
   RESUME: `${process.env.PUBLIC_URL}/Kefan_Dong_Resume_PDF.pdf`,
   DEPLOYMENT_HOST: "http://kefan.me/",
-  // DEPLOYMENT_HOST: "http://localhost:5000/"
+  // DEPLOYMENT_HOST: "http://localhost:5000/",
 }
 
 const ConvertDate = (date, format) => {
@@ -43,4 +45,10 @@ const ConvertDate = (date, format) => {
   }
 }
 
-export { CONST, ConvertDate }
+const MyAge = () => {
+  let age_diff = Date.now() - new Date("April 3, 2000 12:00:00")
+  let age_date = new Date(age_diff)
+  return Math.abs(age_date.getUTCFullYear() - 1970)
+}
+
+export { CONST, ConvertDate, MyAge }
