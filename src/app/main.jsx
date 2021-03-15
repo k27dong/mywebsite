@@ -33,6 +33,9 @@ const LinkButton = styled(Button)`
 const Main = (props) => {
   const toPage = (page) => {
     switch (page) {
+      case "about":
+        props.history.push("/about")
+        break
       case "blog":
         props.history.push("/blog")
         break
@@ -52,16 +55,20 @@ const Main = (props) => {
 
   return (
     <>
-      <GithubCorner href="https://github.com/k27dong/mywebsite" />
+      <GithubCorner
+        target="_blank"
+        href="https://github.com/k27dong/mywebsite"
+      />
       <Container>
         <Name>Kefan Dong</Name>
         <Intro />
-        <LinkButton onClick={() => toPage("github")}>Github</LinkButton>
-        <LinkButton onClick={() => toPage("linkedin")}>LinkedIn</LinkButton>
-        <LinkButton onClick={() => toPage("blog")}>Blog</LinkButton>
+        <LinkButton onClick={() => toPage("about")}>About</LinkButton>
         {isBrowser && (
           <LinkButton onClick={() => toPage("resume")}>Resume</LinkButton>
         )}
+        <LinkButton onClick={() => toPage("github")}>Github</LinkButton>
+        <LinkButton onClick={() => toPage("blog")}>Blog</LinkButton>
+        {/* <LinkButton onClick={() => toPage("linkedin")}>LinkedIn</LinkButton> */}
       </Container>
     </>
   )
