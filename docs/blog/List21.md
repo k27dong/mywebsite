@@ -30,3 +30,7 @@ WandaVision
 
 Alexander Hamilton (R. Chernow)
 
+La La Land
+
+Chernobyl (HBO)
+
