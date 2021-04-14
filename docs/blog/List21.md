@@ -34,3 +34,11 @@ La La Land
 
 Chernobyl (HBO)
 
+萤
+
+死亡诗社
+
+恶时辰
+
+苏菲的世界
+
