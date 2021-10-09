@@ -1,6 +1,6 @@
 import os
 import time
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_from_directory
 from flask_cors import CORS
 from frontmatter import Frontmatter
 from gevent.pywsgi import WSGIServer
@@ -53,7 +53,7 @@ for bookname in os.listdir(SALT_DIR):
 
 @app.route("/")
 def hello():
-    return render_template("index.html")
+    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/health')
 def health():
