@@ -15,9 +15,12 @@ Flask
 Nginx
 uWSGI
 Docker
-Google Cloud Platform
-Kubernetes
+- Google Cloud Platform
+- Kubernetes
++ Heroku
 ```
+
+Update 20201009: Website had been migrated to heroku due to operation costs.
 
 ### Local Development
 (Requires Docker)
