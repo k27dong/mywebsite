@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from frontmatter import Frontmatter
 from gevent.pywsgi import WSGIServer
-from app.book import get_all_note, get_book_info_douban
+from book import get_all_note, get_book_info_douban
 
 app = Flask(__name__, static_folder='../build', static_url_path='', template_folder='../build')
 # app = Flask(__name__)
@@ -53,7 +53,11 @@ for bookname in os.listdir(SALT_DIR):
     print("Error: initial load on booknotes")
 
 @app.route("/")
-def hello():
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.errorhandler(404)
+def not_found(e):
     return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/health')
