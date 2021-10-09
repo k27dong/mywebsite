@@ -6,7 +6,7 @@ from frontmatter import Frontmatter
 from gevent.pywsgi import WSGIServer
 from app.book import get_all_note, get_book_info_douban
 
-app = Flask(__name__, static_folder='../build', static_url_path='', template_folder='../build')
+app = Flask(__name__, static_folder='build', static_url_path='', template_folder='build')
 CORS(app)
 
 CONTENT_DIR = "docs/blog/"
