@@ -6,8 +6,8 @@ from frontmatter import Frontmatter
 from gevent.pywsgi import WSGIServer
 from app.book import get_all_note, get_book_info_douban
 
-# app = Flask(__name__, static_folder='../build', static_url_path='', template_folder='../build')
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../build', static_url_path='', template_folder='../build')
+# app = Flask(__name__)
 CORS(app)
 
 CONTENT_DIR = "docs/blog/"
@@ -52,9 +52,9 @@ for bookname in os.listdir(SALT_DIR):
   else:
     print("Error: initial load on booknotes")
 
-# @app.route("/")
-# def hello():
-#     return send_from_directory(app.static_folder, 'index.html')
+@app.route("/")
+def hello():
+    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/health')
 def health():
