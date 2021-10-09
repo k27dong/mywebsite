@@ -6,7 +6,7 @@ from frontmatter import Frontmatter
 from gevent.pywsgi import WSGIServer
 from book import get_all_note, get_book_info_douban
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='build', static_url_path='')
 CORS(app)
 
 CONTENT_DIR = "docs/blog/"
@@ -109,6 +109,7 @@ def get_total_note_num():
   return jsonify(TOTAL_NOTE_NUM), 200
 
 if __name__ == "__main__":
-  WSGIServer(('0.0.0.0', 5000), app).serve_forever()
+#   WSGIServer(('0.0.0.0', 5000), app).serve_forever()
+    app.run(host='0.0.0.0')
 
 
