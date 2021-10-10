@@ -3,7 +3,6 @@ import time
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from frontmatter import Frontmatter
-from gevent.pywsgi import WSGIServer
 from app.book import get_all_note, get_book_info_douban
 
 app = Flask(__name__, static_folder='../build', static_url_path='', template_folder='../build')

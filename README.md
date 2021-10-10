@@ -26,6 +26,6 @@ Update 20201009: Website had been migrated from GCP to heroku due to operating c
 ### Local Development
 (Requires Docker)
 
-```
+```bash
 $ docker-compose up --build
 ```
