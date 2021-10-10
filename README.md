@@ -21,7 +21,7 @@ Docker
 + Heroku
 ```
 
-Update 20201009: Website had been migrated to heroku due to operating costs.
+Update 20201009: Website had been migrated from GCP to heroku due to operating costs.
 
 ### Local Development
 (Requires Docker)
