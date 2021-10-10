@@ -9,15 +9,19 @@ This is my personal website, please hire me.
 [![](https://badgen.net/badge/icon/rss?icon=rss&label)](http://kefan.me/rss.xml)
 
 ### Technology Stack
-```
+```diff
 React
 Flask
 Nginx
-uWSGI
 Docker
-Google Cloud Platform
-Kubernetes
+- uWSGI
+- Google Cloud Platform
+- Kubernetes
++ Gunicorn
++ Heroku
 ```
+
+Update 20201009: Website had been migrated from GCP to heroku due to operating costs.
 
 ### Local Development
 (Requires Docker)

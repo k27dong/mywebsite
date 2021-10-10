@@ -1,12 +1,13 @@
 import os
-import datetime, time
-from flask import Flask, request, jsonify
+import time
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from frontmatter import Frontmatter
 from gevent.pywsgi import WSGIServer
-from book import get_all_note, get_book_info_douban
+from app.book import get_all_note, get_book_info_douban
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../build', static_url_path='', template_folder='../build')
+# app = Flask(__name__)
 CORS(app)
 
 CONTENT_DIR = "docs/blog/"
@@ -50,6 +51,14 @@ for bookname in os.listdir(SALT_DIR):
     TOTAL_NOTE_NUM += curr_note_num
   else:
     print("Error: initial load on booknotes")
+
+@app.route("/")
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.errorhandler(404)
+def not_found(e):
+    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/health')
 def health():
@@ -109,6 +118,7 @@ def get_total_note_num():
   return jsonify(TOTAL_NOTE_NUM), 200
 
 if __name__ == "__main__":
-  WSGIServer(('0.0.0.0', 5000), app).serve_forever()
+#   WSGIServer(('0.0.0.0', 5000), app).serve_forever()
+    app.run(host='0.0.0.0')
 
 
