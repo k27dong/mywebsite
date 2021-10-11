@@ -1,27 +1,20 @@
 import React from "react"
 import styled from "styled-components"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism"
 
-const Code = styled(SyntaxHighlighter)`
-  font-size: 14px;
-  /* font-family: Monaco, monospace; */
-  line-height: 100%;
-  padding: 0.2em;
+const Code = styled.span`
+  font-size: 0.85em;
+  font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", Courier,
+    monospace;
+  line-height: 1.2em;
   word-break: normal;
+  background: #f2efe6;
+  padding: 0.2em 0.3em;
+  border-radius: 5px;
+  color: #f55151;
 `
 
 const InlineCodeBlock = (props) => {
-  return (
-    <Code
-      language={props.language}
-      style={tomorrow}
-      showLineNumbers={!props.inline}
-      // useInlineStyles={false}
-    >
-      {props.value}
-    </Code>
-  )
+  return <Code>{props.value}</Code>
 }
 
 export default InlineCodeBlock

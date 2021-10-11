@@ -1,21 +1,22 @@
 import React from "react"
 import styled from "styled-components"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism"
+import { ghcolors } from "react-syntax-highlighter/dist/esm/styles/prism"
 
 const Code = styled(SyntaxHighlighter)`
-  font-size: 14px;
+  font-size: 16px;
   /* font-family: Monaco, monospace; */
   line-height: 100%;
   padding: 0.2em;
   word-break: normal;
+  background-color: #f7f4eb !important;
 `
 
 const CodeBlock = (props) => {
   return (
     <Code
       language={props.language}
-      style={tomorrow}
+      style={ghcolors}
       showLineNumbers={!props.inline}
       wrapLines={true}
     >
