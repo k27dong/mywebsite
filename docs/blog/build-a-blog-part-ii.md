@@ -44,7 +44,7 @@ Now the listed git repo is remotely connected to a heroku and any changes we've 
 
 ### Setup Heroku
 
-First we need to create a `Procfile` (no file extension) for the Heroku to successfully deploy our app. Then we need to change the `HOST` in our frontend to fetch api from the right address (in this case it would be `[https://hidden-stream-18515.herokuapp.com](https://hidden-stream-18515.herokuapp.com)` :
+First we need to create a `Procfile` (no file extension) for the Heroku to successfully deploy our app. Then we need to change the `HOST` in our frontend to fetch api from the right address (in this case it would be [https://hidden-stream-18515.herokuapp.com](`https://hidden-stream-18515.herokuapp.com`) :
 
 ```
 # Procfile
@@ -52,7 +52,7 @@ First we need to create a `Procfile` (no file extension) for the Heroku to succe
 web: gunicorn app:app
 ```
 
-Note that the left parameter of `app:app` defines the fine we intended to use, so if your `[app.py](http://app.py)` is located elsewhere, you would need to change it to something like `web: gunicorn src.app:app`
+Note that the left parameter of `app:app` defines the fine we intended to use, so if your `app.py` is located elsewhere, you would need to change it to something like `web: gunicorn src.app:app`
 
 Youl should also check if you have all your required pip packges in your `requirements.txt`, espcially if `gunicorn` is included.
 
