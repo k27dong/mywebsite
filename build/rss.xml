@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"  xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel>
 <title >Kefan's Blog</title>
-<link >http://kefan.me/</link>
+<link >https://kefan.me/</link>
 <description >我的精神家园</description>
 <language >我的精神家园</language>
-<lastBuildDate >Sun, 10 Oct 2021 15:11:15 </lastBuildDate>
+<lastBuildDate >Mon, 11 Oct 2021 20:32:54 </lastBuildDate>
 
 <item>
 <title >我说我不来你非要让我来</title>
@@ -49,6 +49,214 @@
 <p>网络沉入生活，遍布在每个大傻逼和你之间，属于我们的时代来了，滚滚前进的车轮又是什么隐喻。冀中平原上的一头驴死去，被城市中的人们分食，时而佐以辣椒面和盐巴，送到你的嘴边。面食熟肉，香烟啤酒。新世界的预言都完美无缺的在脑海中显现。爷们就喜欢俗的。看到某男星在你的城市嫖娼被抓，顿时神清气爽起来，咀嚼更加用力。又顿时想到前女友上次打来电话，瞬间萎了下去，刚刚的勇气变质。忘记了当初的等待，每个喝醉的夜晚，玉渊潭深处的徘徊。那个时代已经彻底离你远去，炸裂，现在生活怎么样都不知道。每天花超过三个小时琢磨怎么能多日到几个网友。</p>
 <p>吃饱喝足，出门＊＊。进入洗浴中心。十五分钟之内淋浴出来，裹着粗糙的毛巾躺下，把所有的小姐都叫出来但是一个也不选。透过他们的化妆品和丝袜，研究每个人脸上细小的肌肉动作，推测他们的生活，邻居会不会在外面和他们偷摸搞破鞋。片刻之后全都轰走，嘱咐师傅一定要使劲搓。老爷子带上绿色或白色的搓澡巾，先从额头下手，一会提醒你翻面。出门的时候湿漉的耳朵感受到夜晚的风，小卖铺在外放老歌，爱人同志，王靖雯，什么的。我已不再与世界争辩。未来的人们坐时光机来问你CD是什么，爱情又是什么。饱腹与酒精带来的麻醉感涌上来，现代生活彻底胜利了一刚。深更半夜，纯生，驴。</p>
 <p>从家里醒来的时候是凌晨六点，不早也不晚。窗外疑云浓重，气压低沉。在这沉默夜晚的尾声有时候，天空中落下炮弹与暴雨。</p>]]></content:encoded>
+</item>
+<item>
+<title >Build a Web App - Part 1/2</title>
+<link >http://kefan.me/post/73316</link>
+<pubDate >Mon, 11 Oct 2021 02:06:57 </pubDate>
+<guid >73316</guid>
+<description ><![CDATA[73316]]></description>
+<content:encoded ><![CDATA[<p>This article series covers the development the deployment of a web application.</p>
+<p>I've spent a long time building this website and after it's successfully deployed I've decided to summarize the steps I took. I'll try to make things simple and explain the purpose of each of my step.</p>
+<p>Let's first list all the technologies used:</p>
+<p>```</p>
+<h3>Development</h3>
+<h1>Backend</h1>
+<p>Flask (Gunicorn)</p>
+<h1>Frontend</h1>
+<p>React</p>
+<h3>Deployment</h3>
+<h1>Option 1 (recommended, ~$10/month)</h1>
+<p>Heroku Dyno</p>
+<h1>Option 2 (~$50/month)</h1>
+<p>Docker
+Nginx
+Google Cloud Platform
+Kubernetes</p>
+<h3>Domain</h3>
+<p>Google Domain (~$30/year)
+```</p>
+<p>As you can see, to get your web-app live, there are two main objectives: get your app running locally (on localhost), and deploy it to a server (so that any device connected to Wi-Fi could access it). For the deployment part I would only cover the steps to use Heroku, since GCP is much more complicated and costs more, even though it provides better service and richer environment.</p>
+<p>We'll focus on the first part for now, let's get started.</p>
+<h3>Prerequisite</h3>
+<p>The following tools would be needed during the process, you don't need to have them all installed now but they will be required later.</p>
+<p>Also we assume the development would be completed on a unix-based OS with git installed, Windows users could also follow this article but might require some modification to make all commands work.</p>
+<p><code>prerequisite
+├── nodejs
+│   ├── npm
+│   └── npx
+├── python3
+│   ├── pip3
+│   └── virtualenv
+├── heroku
+│   └── heroku cli
+├── nginx
+└── k8s stuff
+    ├── google account
+    ├── gcloud cli tool
+    └── kubectl</code></p>
+<h3>Frontend</h3>
+<p>The frontend provides the appearance of the application. We could easily get it working by using react and the <code>create-react-app</code> script provided by the offical repo. If you're experienced with this part feel free to skip to later chapters, else it can be done by enter the following commands (we use <code>myapp</code> as the folder name &amp; app name):</p>
+<p>```bash
+mkdir myapp
+npx create-react-app myapp --use-npm
+cd myapp
+npm install react-bootstrap@next bootstrap@5.1.1 #for later use
+npm start</p>
+<p>Compiled successfully!</p>
+<p>You can now view myapp in the browser.</p>
+<p>Local:            http://localhost:3000
+  On Your Network:  http://<some ip>:3000</p>
+<p>Note that the development build is not optimized.
+To create a production build, use npm run build.
+```</p>
+<p>Now if we go to <a href="http://localhost:3000/"><code>http://localhost:3000/</code></a> you can see a big rotating blue icon, this means the react frontend is up and running on our local machine. Let's do some simple modification so that it displays something useful (you can modify in any way but here we're just gonna build the simplest app ever):</p>
+<p>```jsx
+/<em> App.js </em>/</p>
+<p>import "./App.css"
+import "bootstrap/dist/css/bootstrap.min.css"
+import { Button, Form } from "react-bootstrap"</p>
+<p>const App = () =&gt; {
+  const get_command = () =&gt; {
+    document.getElementById("textbox").value = "pong!"
+  }</p>
+<p>return (
+    &lt;&gt;
+      <Form>
+        <Form.Group style={{ width: "40%" }}>
+          <Form.Label>From Flask:</Form.Label>
+          <Form.Control id="textbox" />
+        </Form.Group>
+        <Button
+          variant="primary"
+          style={{ marginTop: "15px" }}
+          onClick={() => {
+            get_command()
+          }}
+        &gt;
+          Ping
+        </Button>
+      </Form>
+  <br />
+  )
+}</p>
+<p>export default App
+```</p>
+<p>Now your front end should look like this:</p>
+<p align="center">
+  <img src="/images/73316/1.png" width="70%"/>
+</p>
+
+<p>We expect that once the button is clicked, the value of the textbox should change, now the text is changed to a hard-coded value 'pong!', but after the backend is set it would be changed to something we defined in flask.</p>
+<p>Our frontend is finished for now, let's move on to the backend.</p>
+<h3>Backend</h3>
+<p>In your project folder (/myapp in this case), do the following:</p>
+<p><code>bash
+python3 -m venv venv
+source venv/bin/activate
+pip install flask flask_cors gunicorn
+pip freeze &gt; requirement.txt</code></p>
+<p>These bash commands create a 'virtual enviornment' using <code>virtualenv</code>, similar to the <code>node_module</code> folder which is the dependencies used by react, this creates a folder called 'venv' where all our required python packages are installed.</p>
+<p><code>source venv/bin/activate</code> would enter this virtual enviornment, and <code>deactivate</code> would exit from it. The last command notes everything we've added to a text file named <code>requirement.txt</code> so that anyone could just do <code>pip install -r requirement.txt</code> to install all pip dependencies.</p>
+<p>Now let's create a file named <code>app.py</code>, this is where our backend server is served.</p>
+<p>```python</p>
+<h1>app.py</h1>
+<p>from flask import Flask, send_from_directory
+from flask_cors import CORS</p>
+<p>app = Flask(<strong>name</strong>, static_folder='build', static_url_path='', template_folder='build')
+CORS(app)</p>
+<p>@app.route("/")
+def serve():
+  return send_from_directory(app.static_folder, 'index.html')</p>
+<p>@app.errorhandler(404)
+def not_found(e):
+  return send_from_directory(app.static_folder, 'index.html')</p>
+<p>@app.route("/ready")
+def ready():
+  return "ready", 200</p>
+<p>if <strong>name</strong> == "<strong>main</strong>":
+    app.run(host='0.0.0.0')
+```</p>
+<p>In this python file we have created an app named 'app', serve it using a static folder which we will build later with <code>npm</code>. Except for the root index it now only provides one api call named 'ready', we can test it by executing:</p>
+<p><code>python
+python3 app.py</code></p>
+<p>and go to <a href="http://localhost:5000/ready"><code>http://localhost:5000/ready</code></a>. You should be able to see the text 'ready' on the main page now. We will use flask to handle any api calls from the frontend. Using this blog as an example, once you click on the <code>/blog</code> link, react would request a list articles and flask would respond to the api call with a jsonified list of all articles along with their information.</p>
+<p align="center">
+  <img src="/images/73316/2.png" width="70%"/>
+</p>
+
+<p>You may also notice that the root link <a href="http://localhost:5000/ready"><code>http://localhost:5000/</code></a> would be inaccessible. This is because we haven't setup our static folder, let's do it now and combine react and flask together:</p>
+<p><code>bash
+npm run build
+python3 app.py</code></p>
+<p>By this point, our file structure should looks like this:</p>
+<p><code>myapp
+├── app.py
+├── README.md
+├── build/
+├── venv/
+├── node_modules/
+├── package-lock.json
+├── package.json
+├── requirements.txt
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+└── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    ├── reportWebVitals.js
+    └── setupTests.js</code></p>
+<p>Now if we hit <a href="http://localhost:5000/"><code>http://localhost:5000/</code></a> again, the page we coded in react should shown:</p>
+<p align="center">
+  <img src="/images/73316/3.png" width="70%"/>
+</p>
+
+<p>This is because flask is now using the static files generated by <code>npm</code> as the front end. Thus for any changes made in react to be displayed, we need to run <code>npm run build</code> again and update the <code>build</code> folder. This is definitely slow and frustrating since the building process usually take minutes. It would be much easier if we do all the frontend editing using <code>npm start</code> , as any changes would be updated instantaneously, and only generate the <code>build</code> folder once it's ready to serve.</p>
+<h3>Frontend + Backend (HTTP Requests)</h3>
+<p>By this point, we have built a frontend with react and a backend with flask, and partially connected them together using the static folder. There is one crucial step, however, still remains missing in this process. We would still need to make the connection from frontend to backend as api calls. There are many tools available for this feature, such as fetch, GraphQL, jQuery, etc., each has their own pros and cons. The one we will be using is axios. It is a modern third-party library which stands out among many of the classic built-in methods. <a href="https://www.geeksforgeeks.org/difference-between-fetch-and-axios-js-for-making-http-requests/">This article</a> discussed this topic in detail. Nonetheless, most of the additional features provided would be an overkill for a small app like this (unless you're still browsing using Internet Explorer), so feel free to use any technology you wish.</p>
+<p>We start by installing the node package using <code>npm</code>:</p>
+<p><code>bash
+npm install axios</code></p>
+<p>Once this process is completed, we could go ahead and make our first api call.</p>
+<p>```jsx
+/<em> Api.js </em>/
+/<em> update get_command </em>/</p>
+<p>import axios from "axios"</p>
+<p>const get_command = () =&gt; {
+    const HOST = "localhost:5000"</p>
+<pre><code>axios
+  .get(HOST + "/api/ping")
+  .then((res) =&gt; {
+    document.getElementById("textbox").value = res.data
+  })
+</code></pre>
+<p>}
+```</p>
+<p>```python</p>
+<h1>app.py</h1>
+<h1>add new ping route</h1>
+<p>@app.route("/api/ping", methods=['GET', 'POST'])
+def ping():
+  return "pong from flask!", 200
+```</p>
+<p>After building and starting the server again, we can reload the page and click on the button again, you will notice the text in the input field has changed to:</p>
+<p align="center">
+  <img src="/images/73316/4.png" width="70%"/>
+</p>
+
+<p>In this example we have returned a plain string, however flask also provided a built-in function called <code>jsonify</code> which parses JavaScript object to json, it is widely used when the returned data contains richer content.</p>
+<p>In the <code>Api.js</code> you'll see that the call is made through a variable named <code>HOST</code> , this link is specifically separated out because we will be changing its value when the project is deployed to the Heroku server. Now the frontend is fetching from <a href="localhost:5000ready"><code>http://localhost:5000/</code></a>  which is the port flask runs on, in the later chapters we will change it to our live website domain.</p>
+<p>By this point the development structure is completed, the react side will handle frontend pages, the flask side will handle api calls. Now we can move on the deploy the app to an actual website.</p>
+<p>End of Part 1 (<a href="https://kefan.me/post/28379">go to Part 2</a>)</p>]]></content:encoded>
 </item>
 <item>
 <title >痛苦还是无聊</title>
@@ -171,7 +379,7 @@
 <guid >55604</guid>
 <description ><![CDATA[55604]]></description>
 <content:encoded ><![CDATA[<p>平时喜欢写一些东西但是不把文章写完。</p>
-<p><a href="http://kefan.me/post/72956">另一些片段</a></p>
+<p><a href="https://kefan.me/post/72956">另一些片段</a></p>
 <p>《白日焰火》</p>
 <blockquote>
 <p>突然想到自己已经很久没有真正意义上的出门了。年初大雪，然后是疫情，隔离，不好好学习和差点挂科，找工作，分手，面试，实习。反复体验痛苦与无聊，混吃等死，每天晚上喝酒，回忆过去，思考未来。是不是毕业以后就会进一个不大不小的公司，拼业绩与领工资，从被人指使到指使别人，了此一生。其间或许和一个人结婚买房，几十年间不断地洗碗，做爱，打理后院直至精通厨艺与园艺。每当想到这里就感到一种从未来穿越而来的无力感，感到自己无论如何挣扎可依旧无处可去。中年似的危机与客人般的笨拙正在变得现实，曾经看不清轮廓的物体如今已经变得可以指指点点。</p>
@@ -201,6 +409,100 @@
 <p>在我尚未升入小学的某一年，我从家门口的日托转到了一家可以提供寄宿制的幼儿园。情况开始改变。我不再能每天回家看到我的父母和电视机，也不能每天吃到家里做的晚饭，而是要和一大群我不认识的孩子睡在一个宿舍里。记得转学的第一天中午，我被爸妈送到新的学校。由于胆小或者其他什么很容易想象到的原因，我和他们说第一天想回家睡觉。他们告诉我要回老校区取我的毛巾和牙杯，我想了一下回去也不会很久，就答应了。但是等了好几个小时他们也没有回来，我逐渐意识到他们今天不会回来了，</p>
 </blockquote>
 <p>太烂而写不下去的，太懒又不想写的，就先放这些。</p>]]></content:encoded>
+</item>
+<item>
+<title >Build a Web App - Part 2/2</title>
+<link >http://kefan.me/post/28379</link>
+<pubDate >Mon, 11 Oct 2021 20:28:15 </pubDate>
+<guid >28379</guid>
+<description ><![CDATA[28379]]></description>
+<content:encoded ><![CDATA[<p>In the last article we have successfully setup the app in our local environment, in this article we'll move on and deploy it to Heroku.</p>
+<h3>Heroku Cli</h3>
+<p>We start by register an account on <a href="https://www.heroku.com/">Heroku</a> and install its cli using one of methods listed below:</p>
+<p>```bash</p>
+<h1>macOS</h1>
+<p>brew tap heroku/brew &amp;&amp; brew install heroku</p>
+<h1>Snap</h1>
+<p>sudo snap install --classic heroku</p>
+<h1>Curl</h1>
+<p>curl https://cli-assets.heroku.com/install.sh | sh</p>
+<h1>npm</h1>
+<p>npm install -g heroku
+```</p>
+<p>After that we login using the account credentials:</p>
+<p><code>bash
+heroku --version
+heroku login # a browser window should pop up</code></p>
+<p>After our account is linked, we <code>cd</code> to our app directory and create a Heroku repo inside:</p>
+<p>```bash
+heroku create</p>
+<p>Creating app... done, ⬢ hidden-stream-18515
+https://hidden-stream-18515.herokuapp.com/ | https://git.heroku.com/hidden-stream-18515.git
+```</p>
+<p>Now the listed git repo is remotely connected to a heroku and any changes we've made locally could be updated to cloud. There are a few last modifications we need to do to make everything to live.</p>
+<h3>Setup Heroku</h3>
+<p>First we need to create a <code>Procfile</code> (no file extension) for the Heroku to successfully deploy our app. Then we need to change the <code>HOST</code> in our frontend to fetch api from the right address (in this case it would be <code>[https://hidden-stream-18515.herokuapp.com](https://hidden-stream-18515.herokuapp.com)</code> :</p>
+<p>```</p>
+<h1>Procfile</h1>
+<p>web: gunicorn app:app
+```</p>
+<p>Note that the left parameter of <code>app:app</code> defines the fine we intended to use, so if your <code>[app.py](http://app.py)</code> is located elsewhere, you would need to change it to something like <code>web: gunicorn src.app:app</code></p>
+<p>Youl should also check if you have all your required pip packges in your <code>requirements.txt</code>, espcially if <code>gunicorn</code> is included.</p>
+<p>Then we will need to push all local files to the remote branch heroku had provided us, (remember to comment out <code>build</code> in your <code>.gitignore</code> so that this folder gets commited as well, it is also a good idea to include <code>virtualenv</code> folder in it):</p>
+<p>```bash
+git remote -v
+    # here you can see heroku's remote git repo
+    heroku  https://git.heroku.com/hidden-stream-18515.git (fetch)
+    heroku  https://git.heroku.com/hidden-stream-18515.git (push)
+git add .
+git commit -m "initial commit"
+git push --set-upstream heroku master</p>
+<h1>set upstream is only required on the first push</h1>
+<h1>after that you should use:</h1>
+<h1>git push heroku master</h1>
+<h1>or</h1>
+<h1>git push heroku <branch_name>:master</h1>
+<h1>This line make sure there's at least one dyno running</h1>
+<h1>Without it you may sees a H14 error 'no web processes running'</h1>
+<p>heroku ps:scale web=1
+```</p>
+<p>After all the above is set, our app is finally ready to launch!</p>
+<p>Visit <a href="https://hidden-stream-18515.herokuapp.com/"><code>https://hidden-stream-18515.herokuapp.com/</code></a> and see the result:</p>
+<p align="center">
+  <img src="/images/73316/5.png" width="70%"/>
+</p>
+
+<h3>Link to Custom Domain (Google Domain)</h3>
+<p>Alright, now we have our app and everybody could access it through the internet. If this is a school project it's probably ready for presentation, however if it's for other use maybe it would be much better if we bind it to a custom domain. I've tried a few domain providers but to me google domain works the best, so I will use it as an example in this article.</p>
+<p>The setup is honestly pretty straight forward, there's also a <a href="https://stackoverflow.com/a/56919434">stackoverflow reply</a> that did a good job covering the steps.</p>
+<p>(You'll need to upgrade your dynos to 'hobby' so link it to a custom domain)</p>
+<p>The domain you've purchased will be referred as <code>domain</code></p>
+<ol>
+<li>In the Heroku app dashboard, go to settings - SSL Certificates.</li>
+<li>Configure SSL - Automatic</li>
+<li>Domains - Add domain - in domain name put <code>[www.domain.com](http://www.domain.com)</code> (the <code>www</code> part is essential)</li>
+<li>In the Google Domain dashboard, go to DNS</li>
+<li>Resource records - manage custom records<ol>
+<li>Host name: <code>www.domain.com</code></li>
+<li>Type: <code>CNAME</code></li>
+<li>TTL: <code>600</code></li>
+<li>Data: URL generated by Heroku, ex: <code>behavior-apple-eh2cf372b.herokudns.com</code></li>
+</ol>
+</li>
+<li>In the Google Domain dashboard, go to Website - Website services - edit forwarding<ol>
+<li>Foward from: <code>domain.com</code></li>
+<li>Forward to: <code>https://www.domain.com</code></li>
+<li>Redirect Type: <code>Permanent redirect (301)</code></li>
+<li>Path forwarding: <code>Forward path</code></li>
+<li>Forwarding over SSL: <code>SSL on</code></li>
+</ol>
+</li>
+<li>(Optional) If your domain requires DNSSEC, enable it</li>
+</ol>
+<p>After the above is set, it usually takes ~10 minutes for everything go to action, then you should be able you see your all on the domain you've bought.</p>
+<h3>What Now?</h3>
+<p>So far I've covered most steps for building a web app, on a final note, the development process is almost always implemented in this way, the deployment, however, could be done in many ways. In my previous setup, I've used <code>nginx</code> + <code>k8s</code> + <code>GCP</code> to bring my website to live. It is much more complex and usually costs more since Google Cloud provides much better computing engine. However it is harder to optimize and allows more modification as well. For a simple website like this blog it would certainly be an overkill and I believe Heroku should be sufficient for most persional applications. In the future when I'm more experience with GCP I will write a third part in the series and reproduce that setup, but for now I do believe everything is correctly explained.</p>
+<p>I hope I've made at least one person's life easier. Thanks for reading.</p>]]></content:encoded>
 </item>
 <item>
 <title >再见二十一世纪</title>
