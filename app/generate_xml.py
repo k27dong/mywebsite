@@ -8,7 +8,7 @@ CONTENT_DIR = "docs/blog/"
 XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 RSS_HEADER = "<rss version=\"2.0\" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\"  xmlns:dc=\"http://purl.org/dc/elements/1.1/\">"
 RSS_TITLE = "Kefan's Blog"
-RSS_LINK = "http://kefan.me/"
+RSS_LINK = "https://kefan.me/"
 RSS_DESC = "我的精神家园"
 RSS_LANG = "zh-CN"
 

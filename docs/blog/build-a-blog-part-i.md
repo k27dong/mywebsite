@@ -1,5 +1,5 @@
 ---
-title: Build a Web App - Part I
+title: Build a Web App - Part 1/2
 abbrlink: 73316
 date: 2021-10-11 02:06:57
 ---
@@ -199,6 +199,7 @@ myapp
 ├── node_modules/
 ├── package-lock.json
 ├── package.json
+├── requirements.txt
 ├── public
 │   ├── favicon.ico
 │   ├── index.html
@@ -276,4 +277,4 @@ In the `Api.js` you'll see that the call is made through a variable named `HOST`
 
 By this point the development structure is completed, the react side will handle frontend pages, the flask side will handle api calls. Now we can move on the deploy the app to an actual website.
 
-End of Part I
+End of Part 1 ([go to Part 2](https://kefan.me/post/28379))
