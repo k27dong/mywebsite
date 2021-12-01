@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from frontmatter import Frontmatter
 from app.book import get_all_note, get_book_info_douban
+from app.phrase import get_gphrase
 
 app = Flask(__name__, static_folder='../build', static_url_path='', template_folder='../build')
 # app = Flask(__name__)
@@ -116,8 +117,18 @@ def get_book_note():
 def get_total_note_num():
   return jsonify(TOTAL_NOTE_NUM), 200
 
+@app.route('/api/get_phrase', methods=['GET', 'POST'])
+def get_phrase():
+  temp = request.args.get('temp')
+  d = request.args.get('d')
+  m = request.args.get('m')
+  y = request.args.get('y')
+  days = request.args.get('days')
+
+  return get_gphrase(temp, y, m, d, days), 200
+
 if __name__ == "__main__":
 #   WSGIServer(('0.0.0.0', 5000), app).serve_forever()
-    app.run(host='0.0.0.0')
+  app.run(host='0.0.0.0')
 
 
