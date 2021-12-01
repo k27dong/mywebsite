@@ -17,7 +17,7 @@ def get_gphrase(t, y, m, d, days):
     "type": "service_account",
     "project_id": os.environ['PROJECT_ID'],
     "private_key_id": os.environ['PRIVATE_KEY_ID'],
-    "private_key": os.environ['PRIVATE_KEY'],
+    "private_key": os.environ['PRIVATE_KEY'].replace('\\n', '\n'),
     "client_email": os.environ['CLIENT_EMAIL'],
     "client_id": os.environ['CLIENT_ID'],
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
