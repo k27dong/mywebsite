@@ -41,6 +41,9 @@ def get_gphrase(t, y, m, d, days):
 
   index = int(quantumrandom.randint(0, len(list_of_hashes)))
 
+  if (days % 100 == 0):
+    index = 0
+
   return construct_phrase(list_of_hashes[index])
 
 
