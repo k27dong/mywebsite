@@ -12,7 +12,7 @@ const CONST = {
   WHOAMI: "Kefan Dong",
   ZHIHU: "https://www.zhihu.com/people/csbt34d",
   RESUME: `${process.env.PUBLIC_URL}/Kefan_Dong_Resume_PDF.pdf`,
-  DEPLOYMENT_HOST: "https://thawing-badlands-80440.herokuapp.com/",
+  DEPLOYMENT_HOST: "https://k27dong-website.herokuapp.com/",
   // DEPLOYMENT_HOST: "http://localhost:5000/",
 }
 
