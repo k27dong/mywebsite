@@ -6,7 +6,7 @@ date: 2022-04-08 01:45:26
 
 ## Prologue
 
-While writing code, it is important to maintain file readability by following the correct coding practices, such as naming conventions, tab sizes, bracket placement, etc. Yet everyone has their own habit, I perfer my code to be indented by two spaces, but many people, including most of my professors, use four spaces or a tab (`\\t`). There's no right answers to this problem - the code would always look the same to the compilers, but it is necessary for us to follow a man-made standard for the sake of consistency.
+While writing code, it is important to maintain file readability by following the correct coding practices, such as naming conventions, tab sizes, bracket placement, etc. Yet everyone has their own habit, I perfer my code to be indented by two spaces, but many people, including most of my professors, use four spaces or a tab (`\t`). There's no right answers to this problem - the code would always look the same to the compilers, but it is necessary for us to follow a man-made standard for the sake of consistency.
 
 ## Motivation
 
@@ -42,7 +42,7 @@ It's quite large so downloading and unpacking it might take a while, but luckily
 We can also fix the path by using `alias`, like
 
 ```
-alias cf="./clang+llvm-14.0.0-x86_64-linux-gnu-ubuntu-18.04/bin/clang-format".
+alias cf="./clang+llvm-14.0.0-x86_64-linux-gnu-ubuntu-18.04/bin/clang-format"
 ```
 
 And that's it.
