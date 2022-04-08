@@ -98,7 +98,7 @@ The domain you've purchased will be referred as `domain`
 
 1. In the Heroku app dashboard, go to settings - SSL Certificates.
 2. Configure SSL - Automatic
-3. Domains - Add domain - in domain name put `[www.domain.com](http://www.domain.com)` (the `www` part is essential)
+3. Domains - Add domain - in domain name put [www.domain.com](http://www.domain.com) (the `www` part is essential)
 4. In the Google Domain dashboard, go to DNS
 5. Resource records - manage custom records
     1. Host name: `www.domain.com`
