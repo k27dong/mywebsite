@@ -12,7 +12,7 @@ While writing code, it is important to maintain file readability by following th
 
 It is easy to keep track with the standard for short files, but for large projects it is usually tedious to check every line of code and see if each character is placed correctly. To make formatting easier, some developers came up with formatters, which are more often just cli tools or editor extensions, they check code styles and fix them automatically without breaking the original code. Some of the more famous ones include [Prettier](https://prettier.io/), which covers most of the frontend languages, [Rubocop](https://rubocop.org/), which is used specifically for Ruby, or [black](https://black.readthedocs.io/en/stable/), which is designed for Python (it's suprising that they even need a formatter).
 
-For older languages like C, we don't have many options, the most well-supported tool for now is `clang-format`. It's fast, customizable, and can be ran in a terminal. To install it we could simply do `sudo apt install clang-format`, and that's it:
+For older languages like C, we don't have many options, the most well-supported tool for now is `clang-format`. It's fast, customizable, and can be ran in a terminal. To install it we could simply do `sudo apt install clang-format`:
 
 ```
 $ clang-format --version
