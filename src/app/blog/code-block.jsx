@@ -17,7 +17,8 @@ const CodeBlock = (props) => {
     <Code
       language={props.language}
       style={ghcolors}
-      showLineNumbers={!props.inline}
+      // showLineNumbers={!props.inline}
+      showLineNumbers={false}
       wrapLines={true}
     >
       {props.value}
