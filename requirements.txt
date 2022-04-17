@@ -1,4 +1,4 @@
-Flask==1.1.2
+Flask==2.1.0
 Flask-Cors==3.0.8
 frontmatter==3.0.7
 gevent==20.6.2

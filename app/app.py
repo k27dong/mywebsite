@@ -5,6 +5,7 @@ from flask_cors import CORS
 from frontmatter import Frontmatter
 from app.book import get_all_note, get_book_info_douban
 from app.phrase import get_gphrase
+from app.db import update_command
 
 app = Flask(__name__, static_folder='../build', static_url_path='', template_folder='../build')
 # app = Flask(__name__)
@@ -126,6 +127,12 @@ def get_phrase():
   days = request.args.get('days')
 
   return get_gphrase(temp, y, m, d, days), 200
+
+@app.route('/api/update_command_usage', methods=['POST'])
+def update_command_usage():
+  command_name = request.get_json()['command_name']
+  update_command(command_name)
+  return "Success", 200
 
 if __name__ == "__main__":
 #   WSGIServer(('0.0.0.0', 5000), app).serve_forever()
