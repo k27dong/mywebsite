@@ -5,7 +5,7 @@ from flask_cors import CORS
 from frontmatter import Frontmatter
 from app.book import get_all_note, get_book_info_douban
 from app.phrase import get_gphrase
-from app.db import update_command
+from app.db import update_command, update_server_list
 
 app = Flask(__name__, static_folder='../build', static_url_path='', template_folder='../build')
 # app = Flask(__name__)
@@ -132,6 +132,22 @@ def get_phrase():
 def update_command_usage():
   command_name = request.get_json()['command_name']
   update_command(command_name)
+  return "Success", 200
+
+@app.route('/api/update_server_list', methods=['POST'])
+def update_command_usage():
+  server_name = request.get_json()['name']
+  server_id = request.get_json()['id']
+  server_locale = request.get_json()['locale']
+  server_member_count = request.get_json()['member_count']
+  server_joined_time = request.get_json()['joined_time']
+  update_server_list(
+    server_name,
+    server_id,
+    server_locale,
+    server_member_count,
+    server_joined_time
+  )
   return "Success", 200
 
 if __name__ == "__main__":
