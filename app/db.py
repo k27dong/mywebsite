@@ -36,9 +36,10 @@ def update_command(cmd):
 
   return "done"
 
-def update_server_list(name, id, locale, member_count, joined_time):
+def update_gsheet_server_list(name, server_id, locale, member_count, joined_time):
   creds = ServiceAccountCredentials.from_json_keyfile_dict(secret, scope)
   client = gspread.authorize(creds)
   sheet = client.open("wybot").worksheet("Server")
 
+  sheet.append_row([name, member_count, locale, server_id, joined_time])
   return "done"
