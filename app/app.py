@@ -128,13 +128,13 @@ def get_phrase():
 
   return get_gphrase(temp, y, m, d, days), 200
 
-@app.route('/api/update_command_usage', methods=['POST'])
+@app.route('/api/update_command_usage', methods=['GET', 'POST'])
 def update_command_usage():
   command_name = request.get_json()['command_name']
   update_command(command_name)
   return "Success", 200
 
-@app.route('/api/update_server_list', methods=['POST'])
+@app.route('/api/update_server_list', methods=['GET', 'POST'])
 def update_server_list():
   server_name = request.get_json()['name']
   server_id = request.get_json()['id']
