@@ -128,14 +128,14 @@ def get_phrase():
 
   return get_gphrase(temp, y, m, d, days), 200
 
-@app.route('/api/update_command_usage', methods=['GET', 'POST'])
+@app.route('/api/update_command_usage', methods=['POST'])
 def update_command_usage():
   command_name = request.get_json()['command_name']
   print("update command")
   update_command(command_name)
   return "Success", 200
 
-@app.route('/api/update_server_list', methods=['GET', 'POST'])
+@app.route('/api/update_server_list', methods=['POST'])
 def update_server_list():
   server_name = request.get_json()['name']
   server_id = request.get_json()['id']
@@ -153,6 +153,7 @@ def update_server_list():
 
 if __name__ == "__main__":
 #   WSGIServer(('0.0.0.0', 5000), app).serve_forever()
+  app.config['JSON_AS_ASCII'] = False
   app.run(host='0.0.0.0')
 
 

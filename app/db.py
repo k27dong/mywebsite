@@ -32,7 +32,7 @@ def update_command(cmd):
     sheet.update_cell(cmd_cell.row, cmd_cell.col + 1, int(sheet.cell(cmd_cell.row, cmd_cell.col + 1).value) + 1)
   else:
     # add new row with (cmd, 0)
-    sheet.append_row([cmd, 0])
+    sheet.append_row([cmd, 1])
 
   return "done"
 
