@@ -131,7 +131,6 @@ def get_phrase():
 @app.route('/api/update_command_usage', methods=['POST'])
 def update_command_usage():
   command_name = request.get_json()['command_name']
-  print("update command")
   update_command(command_name)
   return "Success", 200
 
