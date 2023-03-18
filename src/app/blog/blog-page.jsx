@@ -1,11 +1,13 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import { CONST } from "../util"
 
 const TitleBlock = styled.div`
   display: block;
   margin-bottom: 20px;
   margin-left: 20px;
+  color: ${CONST.COLORS.TEXT};
 `
 
 const TitleText = styled(Link)`

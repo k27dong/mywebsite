@@ -6,7 +6,6 @@ import { withRouter } from "react-router-dom"
 import { isBrowser } from "react-device-detect"
 import GithubCorner from "react-github-corner"
 import Intro from "./intro"
-import "antd/dist/antd.css"
 
 const Name = styled.p`
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial,
@@ -15,7 +14,7 @@ const Name = styled.p`
   font-size: 3rem;
   line-height: 1.25;
   letter-spacing: -0.1rem;
-  color: black;
+  color: ${CONST.COLORS.TEXT};
   margin-bottom: 15px;
 `
 
@@ -27,7 +26,6 @@ const Container = styled.div`
 
 const LinkButton = styled(Button)`
   margin-right: 12px;
-  width: 80px;
 `
 
 const Main = (props) => {
@@ -62,13 +60,13 @@ const Main = (props) => {
       <Container>
         <Name>Kefan Dong</Name>
         <Intro />
-        <LinkButton onClick={() => toPage("about")}>About</LinkButton>
-        <LinkButton onClick={() => toPage("github")}>Github</LinkButton>
+        <LinkButton  onClick={() => toPage("about")}>About</LinkButton>
+        <LinkButton  onClick={() => toPage("github")}>Github</LinkButton>
         <LinkButton onClick={() => toPage("linkedin")}>LinkedIn</LinkButton>
         {isBrowser && (
-          <LinkButton onClick={() => toPage("resume")}>Resume</LinkButton>
+          <LinkButton  onClick={() => toPage("resume")}>Resume</LinkButton>
         )}
-        <LinkButton onClick={() => toPage("blog")}>Blog</LinkButton>
+        <LinkButton  onClick={() => toPage("blog")}>Blog</LinkButton>
       </Container>
     </>
   )

@@ -78,9 +78,8 @@ const Post = (props) => {
           <Info>{ConvertDate(content.date, "post")}</Info>
           <PostBody>
             <ReactMarkdown
-              source={content.body}
-              escapeHtml={false}
-              renderers={{
+              children={content.body}
+              components={{
                 code: CodeBlock,
                 inlineCode: InlineCodeBlock,
                 blockquote: BlockQuote,

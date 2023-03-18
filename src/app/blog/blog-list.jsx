@@ -33,15 +33,13 @@ const BlogList = () => {
   const blog_block = (blog, i) => {
     const PostBlock = styled.div`
       margin-top: 0;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
       -webkit-align-items: center;
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
       margin: 13px 0;
+      color : #303030;
     `
 
     const PostText = styled.div`
@@ -86,6 +84,10 @@ const BlogList = () => {
       }
     `
 
+    const Year = styled.h1`
+      color: #303030;
+    `
+
     let render_year_flag = false
 
     if (i === 0 || blog.date.getFullYear() !== curr_year) {
@@ -96,7 +98,7 @@ const BlogList = () => {
     return (
       <React.Fragment key={`blog_list_fragment_${i}`}>
         {render_year_flag && (
-          <h1 key={`yeartag_${i}`}>{blog.date.getFullYear()}</h1>
+          <Year key={`yeartag_${i}`}>{blog.date.getFullYear()}</Year>
         )}
         <PostBlock key={`postblock_${i}`}>
           <Date key={`date_${i}`}>{ConvertDate(blog.date, "main")}</Date>

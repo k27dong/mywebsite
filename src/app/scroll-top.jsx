@@ -9,7 +9,7 @@ const ScrollTop = ({ history, children }) => {
     return () => {
       unlisten()
     }
-  }, [])
+  }, [history])
 
   return <Fragment>{children}</Fragment>
 }

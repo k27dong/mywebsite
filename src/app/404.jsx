@@ -1,6 +1,4 @@
-import React from "react"
 import styled from "styled-components"
-import "antd/dist/antd.css"
 
 const FourOFour = styled.p`
   position: absolute;
