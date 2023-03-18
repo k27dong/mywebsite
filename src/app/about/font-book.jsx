@@ -9,6 +9,7 @@ import {
   RestOutlined,
 } from "@ant-design/icons"
 import { CONST } from "../util"
+import Link from "../component/link"
 
 const AboutTitle = styled.div`
   padding: 20px;
@@ -20,35 +21,30 @@ const AboutContent = styled.div`
   padding: 0 0 10px 20px;
 `
 
-const Contact = styled(`a`).attrs((props) => ({
-  target: "_blank",
-  rel: "noopener noreferrer",
-}))``
-
 const SocialMedia = () => {
   return (
     <>
       <div>
-        <MailOutlined /> | <Contact href={CONST.MAIL}>me@kefan.me</Contact>
+        <MailOutlined /> | <Link href={CONST.MAIL}>me@kefan.me</Link>
       </div>
       <div>
-        <GithubOutlined /> | <Contact href={CONST.GITHUB}>k27dong</Contact>
+        <GithubOutlined /> | <Link href={CONST.GITHUB}>k27dong</Link>
       </div>
       <div>
         <LinkedinOutlined /> |{" "}
-        <Contact href={CONST.LINKEDIN}>Kefan Dong</Contact>
+        <Link href={CONST.LINKEDIN}>Kefan Dong</Link>
       </div>
       <div>
-        <FilePdfOutlined /> | <Contact href={CONST.RESUME}>Resume</Contact>
+        <FilePdfOutlined /> | <Link href={CONST.RESUME}>Resume</Link>
       </div>
       <div>
-        <ZhihuOutlined /> | <Contact href={CONST.ZHIHU}>真朋克喝可乐</Contact>
+        <ZhihuOutlined /> | <Link href={CONST.ZHIHU}>真朋克喝可乐</Link>
       </div>
       <div>
-        <RestOutlined /> | <Contact href={CONST.BUYMECOFFEE}>Support</Contact>
+        <RestOutlined /> | <Link href={CONST.BUYMECOFFEE}>Support</Link>
       </div>
     </>
   )
 }
 
-export { AboutTitle, AboutContent, SocialMedia, Contact }
+export { AboutTitle, AboutContent, SocialMedia }

@@ -1,15 +1,16 @@
 import React from "react"
-import { AboutTitle, AboutContent, SocialMedia, Contact } from "./font-book"
+import { AboutTitle, AboutContent, SocialMedia } from "./font-book"
 import { MyAge } from "../util"
+import Link from "../component/link"
 
 const EnIntro = () => {
   return (
     <>
       <AboutContent>
         I'm a 3rd year{" "}
-        <Contact href="https://uwaterloo.ca/future-students/programs/computer-engineering">
+        <Link href="https://uwaterloo.ca/future-students/programs/computer-engineering">
           Computer Engineer{" "}
-        </Contact>
+        </Link>
         student at the University of Waterloo.
       </AboutContent>
       <AboutContent>

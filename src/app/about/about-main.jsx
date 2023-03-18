@@ -47,7 +47,6 @@ const AboutMain = () => {
         <Title>{ABOUTINFO.name[lang]}</Title>
         <Info>{ABOUTINFO.birthday}</Info>
         <PostBody>{ABOUTINFO.intro[lang]}</PostBody>
-
         </AboutContainer>
       </PostContainer>
     </BlogPage>
