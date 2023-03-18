@@ -11,9 +11,9 @@ const CONST = {
   BUYMECOFFEE: "https://www.buymeacoffee.com/kefan",
   WHOAMI: "Kefan Dong",
   ZHIHU: "https://www.zhihu.com/people/csbt34d",
-  RESUME: `${process.env.PUBLIC_URL}/Kefan_Dong_Resume_PDF.pdf`,
-  DEPLOYMENT_HOST: "https://k27dong-website.herokuapp.com/",
-  // DEPLOYMENT_HOST: "http://localhost:5000/",
+  RESUME_FILE: "Kefan_Dong_Resume.pdf",
+  RESUME: `${process.env.PUBLIC_URL}/${RESUME_FILE}`,
+  DEPLOYMENT_HOST: process.env.REACT_APP_API_URL
 }
 
 const ConvertDate = (date, format) => {
