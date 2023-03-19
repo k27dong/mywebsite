@@ -11,6 +11,7 @@ import BlockQuote from "./block-quote"
 import ImageBlock from "./image-block"
 import Footer from "./footer"
 import { CONST, ConvertDate } from "../util"
+import Link from "../component/link"
 
 const PostContainer = styled.div`
   font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial,
@@ -23,6 +24,7 @@ const Title = styled.div`
   font-weight: bold;
   text-align: center;
   display: block;
+  color: ${CONST.COLORS.TITLE};
 `
 
 const Info = styled.div`
@@ -39,6 +41,7 @@ const PostBody = styled.div`
   /* color: rgba(0, 0, 0, 0.8); */
   font-size: 18px;
   line-height: 1.7;
+  color: ${CONST.COLORS.TEXT};
 
   @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
     font-size: 16px;
@@ -80,10 +83,25 @@ const Post = (props) => {
             <ReactMarkdown
               children={content.body}
               components={{
-                code: CodeBlock,
-                inlineCode: InlineCodeBlock,
-                blockquote: BlockQuote,
-                image: ImageBlock,
+                a: Link,
+                code({ node, inline, className, children, ...props }) {
+                  const match = /language-(\w+)/.exec(className || "")
+                  return match ? (
+                    inline ? (
+                      <InlineCodeBlock value={children} />
+                    ) : (
+                      <CodeBlock
+                        children={String(children).replace(/\n$/, "")}
+                        language={match[1]}
+                        value={children}
+                      />
+                    )
+                  ) : (
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  )
+                },
               }}
             />
           </PostBody>

@@ -18,7 +18,8 @@ const CONST = {
   RESUME: `${import.meta.env.VITE_PUBLIC_URL}/${RESUME_FILE}`,
   DEPLOYMENT_HOST: import.meta.env.VITE_API_URL,
   COLORS: {
-    TEXT: "#262626",
+    TITLE: "#262626",
+    TEXT: "#595959",
     LINK: "#1677ff",
     LINKHOVER: "#003eb3"
   }

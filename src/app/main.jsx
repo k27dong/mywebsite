@@ -14,7 +14,7 @@ const Name = styled.p`
   font-size: 3rem;
   line-height: 1.25;
   letter-spacing: -0.1rem;
-  color: ${CONST.COLORS.TEXT};
+  color: ${CONST.COLORS.TITLE};
   margin-bottom: 15px;
 `
 
