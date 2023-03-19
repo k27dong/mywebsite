@@ -72,9 +72,22 @@ jobs:
         run: pip install black
 
       - name: Run linters
-        uses: wearerequired/lint-action@v2
+        run: |
+          black app/*
+
+      - name: Check if there is any new translations
+        id: verify_diff
+        run: git diff --quiet || echo "formatter_changes_exist=true" >> $GITHUB_OUTPUT
+
+      - name: Commit changes
+        if: steps.verify_diff.outputs.formatter_changes_exist == 'true'
+        run: |
+          timestamp=$(date +'%Y%m%d%H%M%S')
+          git add *.py *.jsx *.js
+          git commit -m "fix code style issues - $timestamp"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
         with:
-          auto_fix: true
-          black: true
-          black_auto_fix: true
-          prettier: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

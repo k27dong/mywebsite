@@ -3,11 +3,9 @@ import time
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from frontmatter import Frontmatter
-from book import get_all_note, get_book_info_douban
-from phrase import get_gphrase
-
-# from db import update_command, update_gsheet_server_list
-
+from app.book import get_all_note, get_book_info_douban
+from app.phrase import get_gphrase
+from app.db import update_command, update_gsheet_server_list
 app = Flask(
     __name__, static_folder="../build", static_url_path="", template_folder="../build"
 )
