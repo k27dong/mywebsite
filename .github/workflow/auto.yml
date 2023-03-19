@@ -1,0 +1,80 @@
+name: Build static, apply formatter, deploy on production
+on: [push]
+
+jobs:
+  build-production:
+    name: Build static
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.15.0
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Rebuild the directory
+        run: npm run build
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "me@kefan.me"
+          git config --global user.name "Kevin Dong"
+
+      - name: Check if there is any new translations
+        id: verify_diff
+        run: git diff --quiet build || echo "new_build_exist=true" >> $GITHUB_OUTPUT
+
+      - name: Commit changes
+        if: steps.verify_diff.outputs.new_build_exist == 'true'
+        run: |
+          timestamp=$(date +'%Y%m%d%H%M%S')
+          git add build
+          git commit -m "update build folder - $timestamp"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+
+  run-linters:
+    name: Format with Prettier and Black
+    needs: build-production
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Pull latest changes
+        run: git pull
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.15.0
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.11.2
+
+      - name: Install Python dependencies
+        run: pip install black
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          auto_fix: true
+          black: true
+          black_auto_fix: true
+          prettier: true
