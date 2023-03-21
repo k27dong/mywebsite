@@ -39,7 +39,7 @@ const BlogList = () => {
       -ms-flex-align: center;
       align-items: center;
       margin: 13px 0;
-      color : ${CONST.COLORS.TITLE};
+      color : ${CONST.COLORS.TEXT};
     `
 
     const PostText = styled.div`
@@ -85,7 +85,7 @@ const BlogList = () => {
     `
 
     const Year = styled.h1`
-      color: #303030;
+      color: ${CONST.COLORS.SUBTITLE};
     `
 
     let render_year_flag = false
