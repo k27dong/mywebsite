@@ -52,6 +52,11 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
+      - name: Configure Git
+        run: |
+          git config --global user.email "me@kefan.me"
+          git config --global user.name "Kevin Dong"
+
       - name: Pull latest changes
         run: git pull
 
