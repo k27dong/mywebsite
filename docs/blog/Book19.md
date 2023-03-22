@@ -43,7 +43,7 @@ In school.
 
 ## Feb
 - The Wandering Earth (Liu Cixin)
-- Life That I Understand （Han Han)
+- Life That I Understand (Han Han)
 - Fortress Besieged (Qian Zhongshu)
 - 可爱的洪水猛兽 (Han Han)
 
@@ -82,7 +82,7 @@ In school.
 
 ## 五月
 - 呐喊 (鲁迅)
-- 邓小平时代 (傅高义)
+- 邓小平时代 (傅高义)
 
 ## 四月
 - 人类群星闪耀时 (茨维格)

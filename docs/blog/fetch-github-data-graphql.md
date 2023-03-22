@@ -13,13 +13,14 @@ The first thing I need is a [personal access token](https://github.com/settings/
 
 <img src="/images/github_graphql/setting_up_github_token.png"  title="Creating Github Personal Access Token" />
 
-Then I’ll need to use this token in my react project. There are many node packages that contains GraphQL, including the official Javascript implementation made by Facebook themselves, but it is not so user-friendly and requires 	I didn’t need all the functionalities. Since I’m only using it for Github, I chose `@octokit/graphql` as my package. It is made my Github and has all the API I want. To install it on your project, simple do `npm I @octokit/graphql —save` (or `yarn add @octokit/graphql` if you’re using yarn)
+Then I’ll need to use this token in my react project. There are many node packages that contains GraphQL, including the official Javascript implementation made by Facebook themselves, but it is not so user-friendly and requires I didn’t need all the functionalities. Since I’m only using it for Github, I chose `@octokit/graphql` as my package. It is made my Github and has all the API I want. To install it on your project, simple do `npm I @octokit/graphql —save` (or `yarn add @octokit/graphql` if you’re using yarn)
 
 On the React side, we then need to write out the schema. For REST, the response would contain all the available information, and I will choose what to use locally, but for GraphQL, I can specify what to fetch in the forms of a query. Thanks to Github, there’s a [live modal](https://developer.github.com/v4/explorer/) that visualizes the data flow, where we can write our code and test it on production data. It even gives us an explorer that has all the available data types. I just needed to check what I wanted and the query forms itself. In this case, I wanted the name, description, url, and the language of the first six pinned repositories on my account. The result looks like this:
 
 <img src="/images/github_graphql/graphql_query.png"  title="Github GraphQL API Explorer " />
 
 After knowing this query works, I then saved in locally in React.
+
 ```javascript
 const PinnedProjects = `
 {
@@ -46,11 +47,12 @@ const PinnedProjects = `
 ```
 
 At this point, there’s only one thing left to do and that’s to use the GitHub token perviously created and authorize the call. The [official documentation](https://developer.github.com/v4/guides/) written by Github tells me to do this:
+
 ```javascript
 const githubGraphRequest = graphql.defaults({
   headers: {
-    authorization: `Bearer ${process.env.REACT_APP_GITHUB_GQL_TOKEN}`
-  }
+    authorization: `Bearer ${process.env.REACT_APP_GITHUB_GQL_TOKEN}`,
+  },
 })
 ```
 

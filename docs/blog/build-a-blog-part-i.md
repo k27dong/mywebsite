@@ -230,7 +230,7 @@ We start by installing the node package using `npm`:
 npm install axios
 ```
 
- Once this process is completed, we could go ahead and make our first api call.
+Once this process is completed, we could go ahead and make our first api call.
 
 ```jsx
 /* Api.js */
@@ -239,13 +239,11 @@ npm install axios
 import axios from "axios"
 
 const get_command = () => {
-    const HOST = "localhost:5000"
+  const HOST = "localhost:5000"
 
-    axios
-      .get(HOST + "/api/ping")
-      .then((res) => {
-        document.getElementById("textbox").value = res.data
-      })
+  axios.get(HOST + "/api/ping").then((res) => {
+    document.getElementById("textbox").value = res.data
+  })
 }
 ```
 
@@ -264,7 +262,7 @@ After building and starting the server again, we can reload the page and click o
 
 In this example we have returned a plain string, however flask also provided a built-in function called `jsonify` which parses JavaScript object to json, it is widely used when the returned data contains richer content.
 
-In the `Api.js` you'll see that the call is made through a variable named `HOST` , this link is specifically separated out because we will be changing its value when the project is deployed to the Heroku server. Now the frontend is fetching from [`http://localhost:5000/`](localhost:5000ready)  which is the port flask runs on, in the later chapters we will change it to our live website domain.
+In the `Api.js` you'll see that the call is made through a variable named `HOST` , this link is specifically separated out because we will be changing its value when the project is deployed to the Heroku server. Now the frontend is fetching from [`http://localhost:5000/`](localhost:5000ready) which is the port flask runs on, in the later chapters we will change it to our live website domain.
 
 By this point the development structure is completed, the react side will handle frontend pages, the flask side will handle api calls. Now we can move on the deploy the app to an actual website.
 

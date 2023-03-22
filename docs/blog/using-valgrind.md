@@ -5,6 +5,7 @@ date: 2020-02-16 16:10:04
 ---
 
 ## Prologue
+
 While I was doing my course on data structures and algorithms, I had a hard time trying to detect memory leaks in C++. Handling pointers are annoying especially when you have thousands lines of code and you’re not sure in which line a piece of memory is allocated but never freed before it goes out of scope.
 
 Valgrind is a tool designed to detect memory leaks, unfortunately, it does not run on macOS Catalina. I thought about running it instead on Waterloo’s linux server, then I realized as a student I do not have the root access. Since it seems like there are no better tools other than this, my final workaround is to run this on Azure, which is a nice service provided by Microsoft.
@@ -14,6 +15,7 @@ I have provided all codes & bash commands used in the process, if Valgrind is so
 Let’s get started.
 
 ## Step 1: Setting up Azure
+
 Since the platform is Mac so first we use `brew` to install `azure-cli`, then creates a vm on our machine.
 
 ```shell
@@ -29,6 +31,7 @@ $ az vm create --resource-group myResources \
 ```
 
 Now the result would look like this :
+
 ```json
 {
   "fqdns": "",
@@ -43,7 +46,7 @@ Now the result would look like this :
 }
 ```
 
-This is the VM created for which  `publicIpAddress` displays the IP address which is used to connect to the VM. So we connect like this:
+This is the VM created for which `publicIpAddress` displays the IP address which is used to connect to the VM. So we connect like this:
 
 ```shell
 $ ssh PUBLIC_IP_ADDRESS
@@ -51,6 +54,7 @@ kevin@myVM:~$
 ```
 
 ## Step 2: Use Valgrind
+
 Now we have successfully connected to the Azure server running Ubuntu from our terminal, the next thing we need to do is to actually use Valgrind. (Note: since many of the fundamental softwares such as `make` or `gcc` are not installed on the server, instead of install each of them manually I simply used `build-essential`, which includes everything we need)
 
 ```shell
@@ -63,6 +67,7 @@ $ vi main.cpp
 ```
 
 Just to simply test Valgrind’s ability, we write something like this:
+
 ```cpp
 // main.cpp
 # include “stdlib.h”
@@ -71,7 +76,8 @@ int main(void) {
   int* x = (int *) malloc(100 * sizeof(int));
 }
 ```
-This piece of close clearly demonstrates a leak of 100 * sizeof(int). If we apply Valgrind to check it, we would need to do this:
+
+This piece of close clearly demonstrates a leak of 100 \* sizeof(int). If we apply Valgrind to check it, we would need to do this:
 
 ```shell
 $ g++ main.cpp -o main
@@ -79,6 +85,7 @@ $ valgrind --tool=memcheck --leak-check=full --show-reachable=yes --log-file=“
 ```
 
 This command runs the `main` executable we just generated and output the result to a file named `result`. If we open this file, we would see this:
+
 ```
 ==114005== Memcheck, a memory error detector
 ==114005== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
@@ -107,6 +114,7 @@ This command runs the `main` executable we just generated and output the result 
 ```
 
 We know an int has the size of 4 bytes, so a lost of 400 bytes makes sense. Now, if we correctly handles the pointer by freeing it at the end before the program terminates:
+
 ```
 ==114735== Command: ./main
 ==114735== Parent PID: 110811

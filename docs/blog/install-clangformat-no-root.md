@@ -70,4 +70,3 @@ And we could use it as `cf -style=file -i test_file.c`. Obviously we could also 
 To visualize the formatting rules used, [this website](https://zed0.co.uk/clang-format-configurator/) generates the configuration file, which saves us from going through the [official documentation](https://clang.llvm.org/docs/ClangFormatStyleOptions.html).
 
 Thanks for reading.
-
