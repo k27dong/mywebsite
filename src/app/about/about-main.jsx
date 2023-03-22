@@ -1,10 +1,11 @@
-import React, { useState } from "react"
+import  { useState } from "react"
 import { Switch } from "antd"
 import styled from "styled-components"
 import BlogPage from "../blog/blog-page"
 import { PostContainer, Title, Info, PostBody } from "../blog/post"
 import CnIntro from "./cn-intro"
 import EnIntro from "./en-intro"
+import { CONST } from "../util"
 
 const LangSwitch = styled(Switch)`
   position: absolute;
@@ -22,6 +23,10 @@ const ABOUTINFO = {
   },
 }
 
+const AboutContainer = styled.div`
+  color: ${CONST.COLORS.TEXT};
+`
+
 const AboutMain = () => {
   const [lang, setLang] = useState("en")
 
@@ -38,9 +43,11 @@ const AboutMain = () => {
           unCheckedChildren="ZH"
           defaultChecked
         />
+        <AboutContainer>
         <Title>{ABOUTINFO.name[lang]}</Title>
         <Info>{ABOUTINFO.birthday}</Info>
         <PostBody>{ABOUTINFO.intro[lang]}</PostBody>
+        </AboutContainer>
       </PostContainer>
     </BlogPage>
   )

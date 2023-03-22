@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from "react"
+import{ useEffect, Fragment } from "react"
 import { withRouter } from "react-router-dom"
 
 const ScrollTop = ({ history, children }) => {
@@ -9,7 +9,7 @@ const ScrollTop = ({ history, children }) => {
     return () => {
       unlisten()
     }
-  }, [])
+  }, [history])
 
   return <Fragment>{children}</Fragment>
 }

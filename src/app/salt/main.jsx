@@ -1,4 +1,3 @@
-import React from "react"
 import BlogPage from "../blog/blog-page"
 import SaltList from "./list"
 

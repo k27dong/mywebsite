@@ -1,11 +1,12 @@
-import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import { CONST } from "../util"
 
 const TitleBlock = styled.div`
   display: block;
   margin-bottom: 20px;
   margin-left: 20px;
+  color: ${CONST.COLORS.TEXT};
 `
 
 const TitleText = styled(Link)`
@@ -55,8 +56,8 @@ const BlogPage = ({ children }) => {
     <Background>
       <TitleBlock>
         <TitleText to="">Home</TitleText>
-        <SmallLink to="/salt">Note</SmallLink>
         <SmallLink to="/blog">Blog</SmallLink>
+        <SmallLink to="/salt">Note</SmallLink>
         <SmallLink to="/about">About</SmallLink>
       </TitleBlock>
       <Container>

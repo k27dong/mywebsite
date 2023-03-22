@@ -1,27 +1,20 @@
-import React from "react"
 import styled from "styled-components"
 import { CONST } from "./util"
+import Link from "./component/link"
 
 const Container = styled.p`
   font-size: 16px;
+  color: ${CONST.COLORS.TEXT};
 `
-
-const IntroLink = (props) => {
-  return (
-    <a href={props.url} target="_blank" rel="noopener noreferrer">
-      {props.text}
-    </a>
-  )
-}
 
 const Intro = () => {
   return (
     <Container>
-      <IntroLink url={CONST.UWENG} text={"University of Waterloo"} />,
-      Previously <IntroLink url={CONST.CIBC} text={"Autodesk"} />,{" "}
-      <IntroLink url={CONST.POINTCLICKCARE} text={"BetterUp"} />
-      , <IntroLink url={CONST.SAFYRELABS} text={"PointClickCare"} />,{" "}
-      <IntroLink url={CONST.SAFYRELABS} text={"Safyre Labs"} />,{" "}
+      <Link href={CONST.UWENG}>University of Waterloo</Link>. Previously{" "}
+      <Link href={CONST.AUTODESK}>Autodesk</Link>,{" "}
+      <Link href={CONST.BETTERUP}>BetterUp</Link>,{" "}
+      <Link href={CONST.POINTCLICKCARE}>PointClickCare</Link>,{" "}
+      <Link href={CONST.SAFYRELABS}>Safyre Labs</Link>.
     </Container>
   )
 }

@@ -1,3 +1,5 @@
+const RESUME_FILE = "Kefan_Dong_Resume.pdf"
+
 const CONST = {
   GITHUB: "https://github.com/k27dong",
   LINKEDIN: "https://www.linkedin.com/in/k27dong/",
@@ -6,14 +8,22 @@ const CONST = {
   UWENG: "https://uwaterloo.ca/engineering/",
   SAFYRELABS: "https://www.safyrelabs.com/",
   POINTCLICKCARE: "https://pointclickcare.com",
+  BETTERUP: "https://www.betterup.com/",
+  AUTODESK: "https://www.autodesk.ca",
   HOST: "http://localhost:5000/",
   CURRENTYEAR: new Date().getFullYear(),
   BUYMECOFFEE: "https://www.buymeacoffee.com/kefan",
   WHOAMI: "Kefan Dong",
   ZHIHU: "https://www.zhihu.com/people/csbt34d",
-  RESUME_FILE: "Kefan_Dong_Resume.pdf",
-  RESUME: `${process.env.PUBLIC_URL}/${RESUME_FILE}`,
-  DEPLOYMENT_HOST: process.env.REACT_APP_API_URL
+  RESUME: `${RESUME_FILE}`,
+  DEPLOYMENT_HOST: import.meta.env.VITE_API_URL,
+  COLORS: {
+    TITLE: "#262626",
+    TEXT: "#595959",
+    LINK: "#1677ff",
+    LINKHOVER: "#003eb3",
+    SUBTITLE: "#434343"
+  }
 }
 
 const ConvertDate = (date, format) => {
