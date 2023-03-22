@@ -7,23 +7,23 @@ from app.book import get_all_note, get_book_info_douban
 from app.phrase import get_gphrase
 from app.db import update_command, update_gsheet_server_list
 
-BUILD_FOLDER = "../dist"
-app = Flask(
-    __name__,
-    static_folder=BUILD_FOLDER,
-    static_url_path="",
-    template_folder=BUILD_FOLDER,
-)
-# app = Flask(__name__)
-CORS(app)
-
+BUILD_DIR = "../dist"
 CONTENT_DIR = "docs/blog/"
 SALT_DIR = "docs/salt/"
 INFO_LIST = {"title", "date"}
 BLOG_LIST = {}
 BOOK_LIST = {}
-
 TOTAL_NOTE_NUM = 0  # will be updated later
+
+app = Flask(
+    __name__,
+    static_folder=BUILD_DIR,
+    static_url_path="",
+    template_folder=BUILD_DIR,
+)
+# app = Flask(__name__)
+CORS(app)
+
 
 # load all docs
 for filename in os.listdir(CONTENT_DIR):
@@ -68,16 +68,13 @@ for bookname in os.listdir(SALT_DIR):
 def serve():
     return send_from_directory(app.static_folder, "index.html")
 
-
 @app.errorhandler(404)
 def not_found(e):
     return send_from_directory(app.static_folder, "index.html")
 
-
 @app.route("/health")
 def health():
     return "", 200
-
 
 @app.route("/ready")
 def ready():
