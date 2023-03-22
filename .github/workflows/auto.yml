@@ -28,14 +28,14 @@ jobs:
 
       - name: Check if there is any new translations
         id: verify_diff
-        run: git diff --quiet build || echo "new_build_exist=true" >> $GITHUB_OUTPUT
+        run: git diff --quiet dist || echo "new_build_exist=true" >> $GITHUB_OUTPUT
 
       - name: Commit changes
         if: steps.verify_diff.outputs.new_build_exist == 'true'
         run: |
           timestamp=$(date +'%Y%m%d%H%M%S')
-          git add build
-          git commit -m "update build folder - $timestamp"
+          git add dist
+          git commit -m "update dist folder - $timestamp"
 
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
