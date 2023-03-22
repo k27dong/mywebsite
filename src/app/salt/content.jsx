@@ -17,6 +17,7 @@ const Title = styled.div`
   font-weight: bold;
   font-size: 40px;
   margin-bottom: 1rem;
+  color: ${CONST.COLORS.TITLE};
 `
 
 const Author = styled.div`
@@ -27,8 +28,9 @@ const Author = styled.div`
 const ChapterTitle = styled.div`
   font-weight: bold;
   font-size: 22px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   margin-top: 20px;
+  color: ${CONST.COLORS.SUBTITLE};
 `
 
 const NoteWrapper = styled(Card)`
@@ -39,7 +41,9 @@ const NoteWrapper = styled(Card)`
 const Note = styled.p`
   margin: 0;
   padding: 10px;
-  font-size: 16px;
+  font-size: 17px;
+  font-family: "Noto Serif SC", "Noto Serif", "Source Han Serif SC",
+    "Source Han Serif", serif;
 `
 
 const SaltContent = (props) => {

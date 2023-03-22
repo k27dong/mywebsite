@@ -23,7 +23,6 @@ const SaltList = () => {
   useEffect(() => {
     setLoading(true)
     axios.get(CONST.DEPLOYMENT_HOST + "api/get_salt_list").then((res) => {
-      // setSaltList(res.data)
       setSaltList(
         res.data.map((note, i) => {
           return {
