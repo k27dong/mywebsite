@@ -13,7 +13,6 @@ const Quote = styled.div`
 `
 
 const BlockQuote = (props) => {
-  console.log(props.children)
   return <Quote>{props.children}</Quote>
 }
 

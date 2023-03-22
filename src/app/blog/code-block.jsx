@@ -7,8 +7,6 @@ const Code = styled(SyntaxHighlighter)`
 `
 
 const CodeBlock = (props) => {
-  console.log(props)
-
   return (
     <Code
       language={props.language}
