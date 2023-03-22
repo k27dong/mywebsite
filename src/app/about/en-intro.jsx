@@ -1,4 +1,3 @@
-import React from "react"
 import { AboutTitle, AboutContent, SocialMedia } from "./font-book"
 import { MyAge } from "../util"
 import Link from "../component/link"

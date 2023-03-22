@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { message } from "antd"
 import axios from "axios"
 import ReactMarkdown from "react-markdown"

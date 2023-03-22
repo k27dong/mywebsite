@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from "react"
+import{ useEffect, Fragment } from "react"
 import { withRouter } from "react-router-dom"
 
 const ScrollTop = ({ history, children }) => {

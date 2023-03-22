@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import  { useState } from "react"
 import { Switch } from "antd"
 import styled from "styled-components"
 import BlogPage from "../blog/blog-page"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { message, Card } from "antd"
 import axios from "axios"
 import { withRouter } from "react-router-dom"
@@ -16,6 +16,7 @@ const Title = styled.div`
   text-align: center;
   font-weight: bold;
   font-size: 40px;
+  margin-bottom: 1rem;
 `
 
 const Author = styled.div`
@@ -87,9 +88,9 @@ const SaltContent = (props) => {
 
   const note_block = (note, block_index) => {
     return (
-      <React.Fragment key={`salt_content_fragment_${block_index}`}>
+      <div key={`salt_content_fragment_${block_index}`}>
         {note.map((n, i) => single_note(n, i, block_index))}
-      </React.Fragment>
+      </div>
     )
   }
 

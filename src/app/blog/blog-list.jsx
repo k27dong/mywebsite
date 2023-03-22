@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios"
 import styled from "styled-components"
 import { message } from "antd"
@@ -96,7 +96,7 @@ const BlogList = () => {
     }
 
     return (
-      <React.Fragment key={`blog_list_fragment_${i}`}>
+      <div key={`blog_list_fragment_${i}`}>
         {render_year_flag && (
           <Year key={`yeartag_${i}`}>{blog.date.getFullYear()}</Year>
         )}
@@ -108,7 +108,7 @@ const BlogList = () => {
             </Post>
           </PostText>
         </PostBlock>
-      </React.Fragment>
+      </div>
     )
   }
 

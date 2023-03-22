@@ -1,4 +1,3 @@
-import React from "react"
 import styled from "styled-components"
 import { CONST } from "./util"
 import Link from "./component/link"

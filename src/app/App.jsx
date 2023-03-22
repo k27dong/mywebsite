@@ -1,4 +1,3 @@
-import React from "react"
 import { Route, BrowserRouter, Redirect, Switch } from "react-router-dom"
 import Main from "./main"
 import BlogMain from "./blog/main"

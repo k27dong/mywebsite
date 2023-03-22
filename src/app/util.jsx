@@ -15,7 +15,7 @@ const CONST = {
   BUYMECOFFEE: "https://www.buymeacoffee.com/kefan",
   WHOAMI: "Kefan Dong",
   ZHIHU: "https://www.zhihu.com/people/csbt34d",
-  RESUME: `${import.meta.env.VITE_PUBLIC_URL}/${RESUME_FILE}`,
+  RESUME: `${RESUME_FILE}`,
   DEPLOYMENT_HOST: import.meta.env.VITE_API_URL,
   COLORS: {
     TITLE: "#262626",

@@ -1,4 +1,3 @@
-import React from "react"
 import styled from "styled-components"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { ghcolors } from "react-syntax-highlighter/dist/esm/styles/prism"
