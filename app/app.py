@@ -68,16 +68,13 @@ for bookname in os.listdir(SALT_DIR):
 def serve():
     return send_from_directory(app.static_folder, "index.html")
 
-
 @app.errorhandler(404)
 def not_found(e):
     return send_from_directory(app.static_folder, "index.html")
 
-
 @app.route("/health")
 def health():
     return "", 200
-
 
 @app.route("/ready")
 def ready():

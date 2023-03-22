@@ -10,6 +10,11 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
+      - name: Configure Git
+        run: |
+          git config --global user.email "me@kefan.me"
+          git config --global user.name "Kevin Dong"
+
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
@@ -20,11 +25,6 @@ jobs:
 
       - name: Rebuild the directory
         run: npm run build
-
-      - name: Configure Git
-        run: |
-          git config --global user.email "me@kefan.me"
-          git config --global user.name "Kevin Dong"
 
       - name: Check if there is any new translations
         id: verify_diff
@@ -38,6 +38,7 @@ jobs:
           git commit -m "update dist folder - $timestamp"
 
       - name: Push changes
+        if: steps.verify_diff.outputs.new_build_exist == 'true'
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -70,12 +71,15 @@ jobs:
         with:
           python-version: 3.11.2
 
-      - name: Install Python dependencies
-        run: pip install black
+      - name: Setup formatters
+        run: |
+          pip install black
+          npm install --no-save prettier
 
       - name: Run linters
         run: |
-          black app/*
+          black app/
+          npx prettier --write src/
 
       - name: Check if there is any new translations
         id: verify_diff
@@ -85,8 +89,8 @@ jobs:
         if: steps.verify_diff.outputs.formatter_changes_exist == 'true'
         run: |
           timestamp=$(date +'%Y%m%d%H%M%S')
-          git add *.py *.jsx *.js
-          git commit -m "fix code style issues - $timestamp"
+          git add app/* src/*
+          git commit -m "Format fix"
 
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
