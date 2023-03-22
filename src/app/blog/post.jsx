@@ -86,6 +86,7 @@ const Post = (props) => {
               components={{
                 a: Link,
                 img: ImageBlock,
+                blockquote: BlockQuote,
                 code({ node, inline, className, children, ...props }) {
                   const match = !!className
                     ? className.replace(lang_regex, "$1")
