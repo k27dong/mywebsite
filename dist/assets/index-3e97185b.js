@@ -612,15 +612,16 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   border-radius: 5px;
   color: #f55151;
 `,q_e=e=>we(W_e,{children:e.value}),Y_e=ht.div`
-  padding: 20px 10px 10px 30px;
   background: #eee;
+  padding: 0px 10px 0px 30px;
   /* margin-bottom: 10px; */
 
   p {
     line-height: 25px;
     margin-bottom: 0px;
+    padding-bottom: 1em;
   }
-`,X_e=e=>(console.log(e.children[1]),we(Y_e,{children:e.children[1]})),Z_e=ht.img`
+`,X_e=e=>(console.log(e.children),we(Y_e,{children:e.children})),Z_e=ht.img`
     max-height: 45rem;
     max-width: 100%;
 `,Q_e=ht.div`
