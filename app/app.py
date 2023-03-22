@@ -7,9 +7,12 @@ from app.book import get_all_note, get_book_info_douban
 from app.phrase import get_gphrase
 from app.db import update_command, update_gsheet_server_list
 
-BUILD_FOLDER="../dist"
+BUILD_FOLDER = "../dist"
 app = Flask(
-    __name__, static_folder=BUILD_FOLDER, static_url_path="", template_folder=BUILD_FOLDER
+    __name__,
+    static_folder=BUILD_FOLDER,
+    static_url_path="",
+    template_folder=BUILD_FOLDER,
 )
 # app = Flask(__name__)
 CORS(app)
