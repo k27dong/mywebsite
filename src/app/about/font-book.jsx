@@ -30,8 +30,7 @@ const SocialMedia = () => {
         <GithubOutlined /> | <Link href={CONST.GITHUB}>k27dong</Link>
       </div>
       <div>
-        <LinkedinOutlined /> |{" "}
-        <Link href={CONST.LINKEDIN}>Kefan Dong</Link>
+        <LinkedinOutlined /> | <Link href={CONST.LINKEDIN}>Kefan Dong</Link>
       </div>
       <div>
         <FilePdfOutlined /> | <Link href={CONST.RESUME}>Resume</Link>

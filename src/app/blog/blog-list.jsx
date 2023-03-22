@@ -39,7 +39,7 @@ const BlogList = () => {
       -ms-flex-align: center;
       align-items: center;
       margin: 13px 0;
-      color : ${CONST.COLORS.TEXT};
+      color: ${CONST.COLORS.TEXT};
     `
 
     const PostText = styled.div`

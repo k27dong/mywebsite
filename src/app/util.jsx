@@ -22,8 +22,8 @@ const CONST = {
     TEXT: "#595959",
     LINK: "#1677ff",
     LINKHOVER: "#003eb3",
-    SUBTITLE: "#434343"
-  }
+    SUBTITLE: "#434343",
+  },
 }
 
 const ConvertDate = (date, format) => {

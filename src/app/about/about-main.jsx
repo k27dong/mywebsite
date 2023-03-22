@@ -1,4 +1,4 @@
-import  { useState } from "react"
+import { useState } from "react"
 import { Switch } from "antd"
 import styled from "styled-components"
 import BlogPage from "../blog/blog-page"
@@ -44,9 +44,9 @@ const AboutMain = () => {
           defaultChecked
         />
         <AboutContainer>
-        <Title>{ABOUTINFO.name[lang]}</Title>
-        <Info>{ABOUTINFO.birthday}</Info>
-        <PostBody>{ABOUTINFO.intro[lang]}</PostBody>
+          <Title>{ABOUTINFO.name[lang]}</Title>
+          <Info>{ABOUTINFO.birthday}</Info>
+          <PostBody>{ABOUTINFO.intro[lang]}</PostBody>
         </AboutContainer>
       </PostContainer>
     </BlogPage>

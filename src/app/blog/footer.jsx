@@ -14,7 +14,7 @@ const FinishText = styled.div`
   font-family: "Liu Jian Mao Cao", cursive;
   font-size: 18px;
   line-height: 1.7;
-    color: ${CONST.COLORS.TEXT};
+  color: ${CONST.COLORS.TEXT};
 
   @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
     font-size: 16px;
@@ -25,8 +25,8 @@ const FooterInfoBlock = styled.div`
   padding-left: 30px;
   font-size: 14px;
   font-variant: tabular-nums;
-    line-height: 1.5715;
-    color: ${CONST.COLORS.TEXT};
+  line-height: 1.5715;
+  color: ${CONST.COLORS.TEXT};
 
   @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
     padding: 0;

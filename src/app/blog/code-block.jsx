@@ -7,7 +7,7 @@ const Code = styled(SyntaxHighlighter)`
 `
 
 const CodeBlock = (props) => {
-    console.log(props)
+  console.log(props)
 
   return (
     <Code

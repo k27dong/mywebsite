@@ -59,13 +59,13 @@ const Main = (props) => {
       <Container>
         <Name>Kefan Dong</Name>
         <Intro />
-        <LinkButton  onClick={() => toPage("about")}>About</LinkButton>
-        <LinkButton  onClick={() => toPage("github")}>Github</LinkButton>
+        <LinkButton onClick={() => toPage("about")}>About</LinkButton>
+        <LinkButton onClick={() => toPage("github")}>Github</LinkButton>
         <LinkButton onClick={() => toPage("linkedin")}>LinkedIn</LinkButton>
         {isBrowser && (
-          <LinkButton  onClick={() => toPage("resume")}>Resume</LinkButton>
+          <LinkButton onClick={() => toPage("resume")}>Resume</LinkButton>
         )}
-        <LinkButton  onClick={() => toPage("blog")}>Blog</LinkButton>
+        <LinkButton onClick={() => toPage("blog")}>Blog</LinkButton>
       </Container>
     </>
   )
