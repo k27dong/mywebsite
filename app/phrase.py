@@ -3,6 +3,8 @@ import quantumrandom
 import os
 from oauth2client.service_account import ServiceAccountCredentials
 
+import random
+
 
 def construct_phrase(entry):
     string = "8FJ20GMV" + entry["content"]
@@ -41,7 +43,8 @@ def get_gphrase(t, y, m, d, days):
     #   if (entry['used'] == 0):
     #     list_of_hashes.remove(entry)
 
-    index = int(quantumrandom.randint(0, len(list_of_hashes)))
+    # index = int(quantumrandom.randint(0, len(list_of_hashes)))
+    index = random.randint(0, len(list_of_hashes))
 
     if int(m) == 2 and int(d) == 14:
         index = 0
