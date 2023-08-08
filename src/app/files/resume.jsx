@@ -1,5 +1,5 @@
 const Resume = () => {
-  window.open(`Kefan_Dong_Resume_PDF.pdf`, "_self")
+  window.open(`Kevin_Dong_Resume.pdf`, "_self")
   return <></>
 }
 

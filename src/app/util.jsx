@@ -1,4 +1,4 @@
-const RESUME_FILE = "Kefan_Dong_Resume.pdf"
+const RESUME_FILE = "Kevin_Dong_Resume.pdf"
 
 const CONST = {
   GITHUB: "https://github.com/k27dong",
