@@ -9,6 +9,7 @@ import {
 } from "@ant-design/icons"
 import { CONST } from "../util"
 import Link from "../component/link"
+import { Divider } from "antd"
 
 const AboutTitle = styled.div`
   padding: 20px;
@@ -19,6 +20,30 @@ const AboutTitle = styled.div`
 const AboutContent = styled.div`
   padding: 0 0 10px 20px;
 `
+
+const SignatureWrapper = styled.div`
+  padding: 0 0 0 20px;
+`
+
+const SignatureBlock = styled.div`
+  font-weight: bold;
+  font-size: 15px;
+  font-family: "Noto Serif SC", "Noto Serif", "Source Han Serif SC",
+    "Source Han Serif", serif;
+`
+
+const raw_signature = `
+  天地反复兮，火欲殂；
+  大厦将崩兮，一木难扶。
+  山谷有贤兮，欲投明主；
+  明主求贤兮，却不知吾。
+`
+
+const generate_signature = () => {
+  return raw_signature.split("\n").map((line, index) => {
+    return <SignatureBlock key={index}>{line}</SignatureBlock>
+  })
+}
 
 const SocialMedia = () => {
   return (
@@ -45,4 +70,13 @@ const SocialMedia = () => {
   )
 }
 
-export { AboutTitle, AboutContent, SocialMedia }
+const Signature = () => {
+  return (
+    <>
+      <Divider plain style={{ margin: "40px 0" }} />
+      <SignatureWrapper>{generate_signature()}</SignatureWrapper>
+    </>
+  )
+}
+
+export { AboutTitle, AboutContent, SocialMedia, Signature }

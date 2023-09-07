@@ -1,4 +1,4 @@
-const RESUME_FILE = "Kevin_Dong_Resume.pdf"
+// const RESUME_FILE = "Kevin_Dong_Resume.pdf"
 
 const CONST = {
   GITHUB: "https://github.com/k27dong",
@@ -15,7 +15,7 @@ const CONST = {
   BUYMECOFFEE: "https://www.buymeacoffee.com/kefan",
   WHOAMI: "Kefan Dong",
   ZHIHU: "https://www.zhihu.com/people/csbt34d",
-  RESUME: `${RESUME_FILE}`,
+  RESUME: `https://www.kefan.me/resume`,
   DEPLOYMENT_HOST: import.meta.env.VITE_API_URL,
   COLORS: {
     TITLE: "#262626",
