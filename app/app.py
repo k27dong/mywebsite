@@ -1,5 +1,4 @@
-import os
-import time
+import os, time, yaml
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from frontmatter import Frontmatter
@@ -10,6 +9,7 @@ from app.db import update_command, update_gsheet_server_list
 BUILD_DIR = "../dist"
 CONTENT_DIR = "docs/blog/"
 SALT_DIR = "docs/salt/"
+PROJECT_DIR = "docs/project/project.yaml"
 INFO_LIST = {"title", "date"}
 BLOG_LIST = {}
 BOOK_LIST = {}
@@ -172,6 +172,11 @@ def update_server_list():
     )
     return "Success", 200
 
+@app.route("/api/get_project_list", methods=["GET"])
+def get_project_list():
+    with open(PROJECT_DIR, "r") as f:
+        projects = yaml.load(f, Loader=yaml.FullLoader)
+    return jsonify(projects), 200
 
 if __name__ == "__main__":
     #   WSGIServer(('0.0.0.0', 5000), app).serve_forever()

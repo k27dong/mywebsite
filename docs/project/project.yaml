@@ -1,0 +1,59 @@
+- name: Bamboo
+  language:
+    - JavaScript
+    - Dockerfile
+  description: A Discord bot for streaming NetEase Cloud Music
+  link: https://github.com/k27dong/bamboo
+
+- name: Personal Website
+  language:
+    - JavaScript
+    - Python
+    - Procfile
+    - Nginx
+    - Dockerfile
+  description: This website you're viewing
+  link: https://github.com/k27dong/mywebsite
+
+- name: kotetsu
+  language:
+    - C
+    - Makefile
+  description: A E-ink Display that displays custom information, driven by a Raspberry Pi and powered by two 18650 rechargable batteries.
+  link: https://github.com/k27dong/kotetsu
+
+- name: reminder
+  language:
+    - Python
+    - Github Action
+  description: A GitHub Actions tool that alerts your phone if no commits are detected for the day.
+  link: https://github.com/k27dong/reminder
+
+- name: fydp
+  language:
+    - JavaScript
+    - Python
+    - HTML
+  description: Facial recognition and emotion detection application, powered by Torch, OpenCV, Flask, and React with Vite.
+  link: https://github.com/k27dong/fydp
+
+- name: Ozy
+  language:
+    - JavaScript
+  description: bot
+  link: https://github.com/k27dong/Ozy
+
+- name: pinyin-parser
+  language:
+    - JavaScript
+    - NPM Config
+  description: A lightweight npm package to parse and process Pinyin text.
+  link: https://github.com/k27dong/pinyin-parser
+
+- name: to_do
+  language:
+    - Ruby
+    - CoffeeScript
+  description: A straightforward to-do list made with RoR.
+  link: https://github.com/k27dong/to_do
+

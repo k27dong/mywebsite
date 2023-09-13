@@ -2,6 +2,7 @@
 
 const CONST = {
   GITHUB: "https://github.com/k27dong",
+  GITHUB_USERNAME: "k27dong",
   LINKEDIN: "https://www.linkedin.com/in/k27dong/",
   MAIL: "mailto:me@kefan.me",
   CIBC: "https://www.cibc.com/",
