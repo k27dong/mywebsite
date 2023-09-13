@@ -29,7 +29,7 @@ const SaltList = () => {
             ...note,
             key: i,
           }
-        })
+        }),
       )
     })
   }, [])

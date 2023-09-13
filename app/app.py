@@ -172,11 +172,13 @@ def update_server_list():
     )
     return "Success", 200
 
+
 @app.route("/api/get_project_list", methods=["GET"])
 def get_project_list():
     with open(PROJECT_DIR, "r") as f:
         projects = yaml.load(f, Loader=yaml.FullLoader)
     return jsonify(projects), 200
+
 
 if __name__ == "__main__":
     #   WSGIServer(('0.0.0.0', 5000), app).serve_forever()

@@ -6,10 +6,11 @@ const EnIntro = () => {
   return (
     <>
       <AboutContent>
-        I'm a graduate of the University of Waterloo in {" "}
+        I'm a graduate of the University of Waterloo in{" "}
         <Link href="https://uwaterloo.ca/future-students/programs/computer-engineering">
           Computer Engineering
-        </Link>.
+        </Link>
+        .
       </AboutContent>
       <AboutContent>
         I'm {MyAge()} years old, currently living in Toronto, Canada.
