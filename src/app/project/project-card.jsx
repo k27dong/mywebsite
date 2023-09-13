@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import CardTitle from "./card-title";
-import CardDescription from "./card-description";
-import CardLanguage from "./card-language";
+import styled from "styled-components"
+import CardTitle from "./card-title"
+import CardDescription from "./card-description"
+import CardLanguage from "./card-language"
 
 const ProjectCardWrapper = styled.div`
   box-sizing: border-box;
@@ -21,7 +21,7 @@ const ProjectCardWrapper = styled.div`
   @media only screen and (min-width: 1600px) {
     width: 25%;
   }
-`;
+`
 
 const ProjectContent = styled.div`
   padding: 16px;
@@ -32,7 +32,7 @@ const ProjectContent = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-`;
+`
 
 const ProjectCard = ({ project }) => (
   <ProjectCardWrapper>
@@ -42,6 +42,6 @@ const ProjectCard = ({ project }) => (
       <CardLanguage languages={project.language} />
     </ProjectContent>
   </ProjectCardWrapper>
-);
+)
 
-export default ProjectCard;
+export default ProjectCard
