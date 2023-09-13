@@ -56,10 +56,10 @@ const BlogPage = ({ children }) => {
     <Background>
       <TitleBlock>
         <TitleText to="">Home</TitleText>
-        <SmallLink to="/about">About</SmallLink>
-        <SmallLink to="/blog">Blog</SmallLink>
-        <SmallLink to="/project">Project</SmallLink>
+        <SmallLink to="/project">Projects</SmallLink>
         <SmallLink to="/salt">Note</SmallLink>
+        <SmallLink to="/blog">Blog</SmallLink>
+        <SmallLink to="/about">About</SmallLink>
       </TitleBlock>
       <Container>
         <Wrapper>{children}</Wrapper>

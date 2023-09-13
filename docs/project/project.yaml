@@ -2,7 +2,7 @@
   language:
     - JavaScript
     - Dockerfile
-  description: A Discord bot for streaming NetEase Cloud Music
+  description: A Discord bot for streaming NetEase Cloud Music.
   link: https://github.com/k27dong/bamboo
 
 - name: Personal Website
@@ -12,7 +12,7 @@
     - Procfile
     - Nginx
     - Dockerfile
-  description: This website you're viewing
+  description: This website you're viewing.
   link: https://github.com/k27dong/mywebsite
 
 - name: kotetsu
@@ -40,7 +40,7 @@
 - name: Ozy
   language:
     - JavaScript
-  description: bot
+  description: (Archived) A Discord bot for streaming NetEase Cloud Music, catering over 1000 servers.
   link: https://github.com/k27dong/Ozy
 
 - name: pinyin-parser

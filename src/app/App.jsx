@@ -1,4 +1,5 @@
 import { Route, BrowserRouter, Redirect, Switch } from "react-router-dom"
+import { ConfigProvider } from "antd"
 import Main from "./main"
 import BlogMain from "./blog/main"
 import history from "./history"
@@ -10,8 +11,7 @@ import Rss from "./files/rss"
 import Resume from "./files/resume"
 import AboutMain from "./about/about-main"
 import ScrollTop from "./scroll-top"
-import ProjectMain from "./project/main"
-import { ConfigProvider } from "antd"
+import ProjectMain from "./project/project-main"
 
 const App = () => {
   return (
