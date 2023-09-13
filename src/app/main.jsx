@@ -36,6 +36,9 @@ const Main = (props) => {
       case "blog":
         props.history.push("/blog")
         break
+      case "project":
+        props.history.push("/project")
+        break
       case "github":
         window.open(CONST.GITHUB, "_blank")
         break
@@ -60,12 +63,12 @@ const Main = (props) => {
         <Name>Kefan Dong</Name>
         <Intro />
         <LinkButton onClick={() => toPage("about")}>About</LinkButton>
+        <LinkButton onClick={() => toPage("project")}>Projects</LinkButton>
         <LinkButton onClick={() => toPage("github")}>Github</LinkButton>
         <LinkButton onClick={() => toPage("linkedin")}>LinkedIn</LinkButton>
         {isBrowser && (
           <LinkButton onClick={() => toPage("resume")}>Resume</LinkButton>
         )}
-        <LinkButton onClick={() => toPage("blog")}>Blog</LinkButton>
       </Container>
     </>
   )
