@@ -30,7 +30,7 @@ const SaltList = () => {
             ...note,
             key: i,
           }
-        })
+        }),
       )
     })
   }, [])
@@ -96,9 +96,11 @@ const SaltList = () => {
       dataIndex: "tag",
       key: "tag",
       render: (tag, row_index) =>
-        tag.slice(0, MAX_TAG_NUM).map((t, i) => (
-          <TagBlock key={`tag_block_${row_index.key}_${i}`}>{t}</TagBlock>
-        )),
+        tag
+          .slice(0, MAX_TAG_NUM)
+          .map((t, i) => (
+            <TagBlock key={`tag_block_${row_index.key}_${i}`}>{t}</TagBlock>
+          )),
       onCell: (_, row_index) => ({
         key: `tag_${row_index}`,
       }),
