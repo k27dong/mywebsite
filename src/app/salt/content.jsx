@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, Fragment } from "react"
 import { message, Card } from "antd"
 import axios from "axios"
 import { withRouter } from "react-router-dom"
@@ -38,12 +38,17 @@ const NoteWrapper = styled(Card)`
   background: #f7f7f7;
 `
 
-const Note = styled.p`
+const Note = styled.div`
   margin: 0;
   padding: 10px;
   font-size: 17px;
   font-family: "Noto Serif SC", "Noto Serif", "Source Han Serif SC",
     "Source Han Serif", serif;
+  /* text-Indent: 2em; */
+`
+
+const Break = styled.div`
+  margin-top: 0.5em;
 `
 
 const SaltContent = (props) => {
@@ -85,7 +90,14 @@ const SaltContent = (props) => {
         onClick={() => copy_note(n)}
         key={`note_wrapper_${block_index}_${note_index}`}
       >
-        <Note key={`note_${block_index}_${note_index}`}>{n}</Note>
+        <Note key={`note_${block_index}_${note_index}`}>
+          {n.split("\n").map((line, i, arr) => (
+            <Fragment key={`line_${block_index}_${note_index}_${i}`}>
+              {line}
+              {i !== arr.length - 1 && <Break />}
+            </Fragment>
+          ))}
+        </Note>
       </NoteWrapper>
     )
   }

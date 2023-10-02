@@ -19,6 +19,7 @@ const SaltList = () => {
   const [loading, setLoading] = useState(true)
   const [saltlist, setSaltList] = useState([])
   const [total, setTotal] = useState(0)
+  const MAX_TAG_NUM = 4
 
   useEffect(() => {
     setLoading(true)
@@ -29,7 +30,7 @@ const SaltList = () => {
             ...note,
             key: i,
           }
-        }),
+        })
       )
     })
   }, [])
@@ -48,16 +49,6 @@ const SaltList = () => {
       })
   }, [])
 
-  const tag_list = (tag, i, row_index) => {
-    return (
-      <>
-        {i <= 3 && (
-          <TagBlock key={`tag_block_${row_index.key}_${i}`}>{tag}</TagBlock>
-        )}
-      </>
-    )
-  }
-
   const columns = [
     {
       title: "书名",
@@ -65,7 +56,7 @@ const SaltList = () => {
       key: "title",
       width: "25%",
       render: (text) => <Link to={"salt/" + text}>{text}</Link>,
-      onCell: (record, row_index) => ({
+      onCell: (_, row_index) => ({
         key: `title_${row_index}`,
       }),
     },
@@ -74,7 +65,7 @@ const SaltList = () => {
       dataIndex: "author",
       key: "author",
       width: "20%",
-      onCell: (record, row_index) => ({
+      onCell: (_, row_index) => ({
         key: `author_${row_index}`,
       }),
     },
@@ -85,7 +76,7 @@ const SaltList = () => {
       width: "12%",
       align: "center",
       sorter: (a, b) => a.notenum - b.notenum,
-      onCell: (record, row_index) => ({
+      onCell: (_, row_index) => ({
         key: `notenum_${row_index}`,
       }),
     },
@@ -96,7 +87,7 @@ const SaltList = () => {
       width: "12%",
       align: "center",
       sorter: (a, b) => a.rating - b.rating,
-      onCell: (record, row_index) => ({
+      onCell: (_, row_index) => ({
         key: `rating_${row_index}`,
       }),
     },
@@ -104,8 +95,11 @@ const SaltList = () => {
       title: "标签",
       dataIndex: "tag",
       key: "tag",
-      render: (tag, row_index) => tag.map((t, i) => tag_list(t, i, row_index)),
-      onCell: (record, row_index) => ({
+      render: (tag, row_index) =>
+        tag.slice(0, MAX_TAG_NUM).map((t, i) => (
+          <TagBlock key={`tag_block_${row_index.key}_${i}`}>{t}</TagBlock>
+        )),
+      onCell: (_, row_index) => ({
         key: `tag_${row_index}`,
       }),
     },
@@ -123,7 +117,12 @@ const SaltList = () => {
       ) : (
         <>
           <TotalBanner>{`${total} 个笔记`}</TotalBanner>
-          <Table pagination={false} columns={columns} dataSource={saltlist} />
+          <Table
+            pagination={false}
+            columns={columns}
+            dataSource={saltlist}
+            rowKey="key"
+          />
         </>
       )}
     </>

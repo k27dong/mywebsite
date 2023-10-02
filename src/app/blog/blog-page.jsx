@@ -15,7 +15,11 @@ const TitleText = styled(Link)`
   font-size: 25px;
   font-weight: bold;
   line-height: 1.25;
-  padding-right: 25px;
+  padding-right: 20px;
+
+  @media only screen and (min-width: 768px) {
+    padding-right: 30px;
+  }
 
   &:hover {
     text-decoration: none;
