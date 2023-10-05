@@ -14,8 +14,19 @@ const FourOFour = styled.p`
   margin-bottom: 15px;
 `
 
+const FourOFourText = styled.div`
+  position: absolute;
+  top: 38%;
+  margin-left: 5%;
+`
+
 const NotFound = () => {
-  return <FourOFour>404</FourOFour>
+  return (
+    <>
+      <FourOFour>404</FourOFour>
+      <FourOFourText>生活总归带点荒谬🤔</FourOFourText>
+    </>
+  )
 }
 
 export default NotFound
