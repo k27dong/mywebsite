@@ -12,6 +12,7 @@ import ImageBlock from "./image-block"
 import Footer from "./footer"
 import { CONST, ConvertDate } from "../util"
 import Link from "../component/link"
+import MusicPlayer from "../component/music-player"
 import rehypeRaw from "rehype-raw"
 
 const PostContainer = styled.div`
@@ -87,6 +88,7 @@ const Post = (props) => {
                 a: Link,
                 img: ImageBlock,
                 blockquote: BlockQuote,
+                music: () => <MusicPlayer id={id} />,
                 code({ node, inline, className, children, ...props }) {
                   const match = !!className
                     ? className.replace(lang_regex, "$1")

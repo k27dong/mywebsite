@@ -2,18 +2,22 @@ import os, time, yaml
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from frontmatter import Frontmatter
-from app.book import get_all_note, get_book_info_douban
-from app.phrase import get_gphrase
-from app.db import update_command, update_gsheet_server_list
+from book import get_all_note, get_book_info_douban
+# from app.phrase import get_gphrase
+# from app.db import update_command, update_gsheet_server_list
 
 BUILD_DIR = "../dist"
 CONTENT_DIR = "docs/blog/"
 SALT_DIR = "docs/salt/"
 PROJECT_DIR = "docs/project/project.yaml"
+POST_STATIC_DIR = "public/images/"
+
 INFO_LIST = {"title", "date"}
 BLOG_LIST = {}
 BOOK_LIST = {}
+
 TOTAL_NOTE_NUM = 0  # will be updated later
+DEFAULT_PLAYLIST = "/playlist.yaml"
 
 app = Flask(
     __name__,
@@ -29,6 +33,9 @@ CORS(app)
 for filename in os.listdir(CONTENT_DIR):
     if filename.endswith(".md"):
         post = Frontmatter.read_file(CONTENT_DIR + filename)
+        if filename == "test.md":
+            print(post)
+
         BLOG_LIST.update(
             {
                 post["attributes"]["abbrlink"]: {
@@ -179,6 +186,12 @@ def get_project_list():
         projects = yaml.load(f, Loader=yaml.FullLoader)
     return jsonify(projects), 200
 
+@app.route("/api/get_playlist_data", methods=["GET", "POST"])
+def get_playlist_data():
+    post_id = request.get_json()["id"]
+    with open(POST_STATIC_DIR + post_id + DEFAULT_PLAYLIST, "r", encoding='utf-8') as f:
+        playlist = yaml.load(f, Loader=yaml.FullLoader)
+    return jsonify(playlist), 200
 
 if __name__ == "__main__":
     #   WSGIServer(('0.0.0.0', 5000), app).serve_forever()
