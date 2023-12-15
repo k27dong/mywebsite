@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from frontmatter import Frontmatter
 from book import get_all_note, get_book_info_douban
+
 # from app.phrase import get_gphrase
 # from app.db import update_command, update_gsheet_server_list
 
@@ -186,12 +187,14 @@ def get_project_list():
         projects = yaml.load(f, Loader=yaml.FullLoader)
     return jsonify(projects), 200
 
+
 @app.route("/api/get_playlist_data", methods=["GET", "POST"])
 def get_playlist_data():
     post_id = request.get_json()["id"]
-    with open(POST_STATIC_DIR + post_id + DEFAULT_PLAYLIST, "r", encoding='utf-8') as f:
+    with open(POST_STATIC_DIR + post_id + DEFAULT_PLAYLIST, "r", encoding="utf-8") as f:
         playlist = yaml.load(f, Loader=yaml.FullLoader)
     return jsonify(playlist), 200
+
 
 if __name__ == "__main__":
     #   WSGIServer(('0.0.0.0', 5000), app).serve_forever()

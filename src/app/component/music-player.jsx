@@ -321,7 +321,7 @@ const MusicPlayer = ({ id }) => {
               audio: `/images/${id}/${item.audio}.${item.format}`,
               cover: `/images/${id}/${item.cover}.jpg`,
             }
-          })
+          }),
         )
         updatePlayer()
         console.log(musicList)
@@ -416,7 +416,7 @@ const MusicPlayer = ({ id }) => {
 
   const prevSong = () => {
     setIndex(
-      (prevIndex) => (prevIndex + musicList.length - 1) % musicList.length
+      (prevIndex) => (prevIndex + musicList.length - 1) % musicList.length,
     )
     updatePlayer()
     if (pause) {
