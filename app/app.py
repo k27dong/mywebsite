@@ -74,41 +74,6 @@ def not_found(e):
     return send_from_directory(app.static_folder, "index.html")
 
 
-@app.route("/health")
-def health():
-    return "", 200
-
-
-@app.route("/ready")
-def ready():
-    return "", 200
-
-
-@app.route("/api/get_blog_list", methods=["GET", "POST"])
-def get_blog_list():
-    filelist = []
-    for filename in os.listdir(CONTENT_DIR):
-        if filename.endswith(".md"):
-            post = Frontmatter.read_file(CONTENT_DIR + filename)
-            filelist.append(
-                {
-                    "abbrlink": post["attributes"]["abbrlink"],
-                    "title": post["attributes"]["title"],
-                    "date": time.mktime(post["attributes"]["date"].timetuple()) * 1000,
-                }
-            )
-            filelist.sort(key=lambda r: r["date"], reverse=True)
-        else:
-            print("Error: get_blog_list")
-    return jsonify(filelist), 200
-
-
-@app.route("/api/get_post", methods=["GET", "POST"])
-def get_post():
-    blog_id = int(request.get_json()["id"])
-    return jsonify(BLOG_LIST[blog_id]), 200
-
-
 @app.route("/api/get_salt_list", methods=["GET", "POST"])
 def get_salt_list():
     booklist = []
@@ -171,13 +136,6 @@ def update_server_list():
         server_name, server_id, server_locale, server_member_count, server_joined_time
     )
     return "Success", 200
-
-
-@app.route("/api/get_project_list", methods=["GET"])
-def get_project_list():
-    with open(PROJECT_DIR, "r") as f:
-        projects = yaml.load(f, Loader=yaml.FullLoader)
-    return jsonify(projects), 200
 
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@
 - name: Personal Website
   language:
     - JavaScript
-    - Python
+    - Rust
     - Procfile
     - Nginx
     - Dockerfile

@@ -34,3 +34,8 @@ cloudbuild.yaml
 deployment.yaml
 deploy.sh
 update_docs_rss.sh
+
+
+# Added by cargo
+
+/target
