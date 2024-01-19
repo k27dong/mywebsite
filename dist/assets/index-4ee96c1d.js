@@ -695,7 +695,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
     font-size: 16px;
   }
-`,qIe=e=>{const t=e.match.params.id,[n,r]=d.useState(!0),[a,i]=d.useState({});d.useEffect(()=>{r(!0),_u.post(yt.DEPLOYMENT_HOST+"api/get_post",{id:t}).then(s=>{s.data.date=new Date(s.data.date),i(s.data)}).catch(s=>{Dd.error("Error ",s)}).then(()=>{r(!1)})},[t]);const o=/^language-(.*)$/;return pe(Uu,{children:n?pe(vr,{}):At(mR,{children:[pe(gR,{children:a.title}),pe(dj,{children:jB(a.date,"post")}),pe(hR,{children:pe(QU,{children:a.body,components:{a:Mr,img:r_e,blockquote:e_e,code({node:s,inline:l,className:u,children:c,...f}){const p=u?u.replace(o,"$1"):"";return l?pe(QAe,{value:c}):pe(XAe,{children:String(c).replace(/\n$/,""),language:p,value:c})}},rehypePlugins:[WIe]})}),pe(m_e,{})]})})},YIe=Wm(qIe),XIe=Ye(Hde)``,ZIe=Ye.div`
+`,qIe=e=>{const t=e.match.params.id,[n,r]=d.useState(!0),[a,i]=d.useState({});d.useEffect(()=>{r(!0),_u.get(yt.DEPLOYMENT_HOST+`api/get_post/${t}`).then(s=>{console.log(s),s.data.date=new Date(s.data.date),i(s.data)}).catch(s=>{Dd.error("Error ",s)}).then(()=>{r(!1)})},[t]);const o=/^language-(.*)$/;return pe(Uu,{children:n?pe(vr,{}):At(mR,{children:[pe(gR,{children:a.title}),pe(dj,{children:jB(a.date,"post")}),pe(hR,{children:pe(QU,{children:a.body,components:{a:Mr,img:r_e,blockquote:e_e,code({node:s,inline:l,className:u,children:c,...f}){const p=u?u.replace(o,"$1"):"";return l?pe(QAe,{value:c}):pe(XAe,{children:String(c).replace(/\n$/,""),language:p,value:c})}},rehypePlugins:[WIe]})}),pe(m_e,{})]})})},YIe=Wm(qIe),XIe=Ye(Hde)``,ZIe=Ye.div`
   font-size: 20px;
   font-weight: bold;
   text-align: center;
