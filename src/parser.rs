@@ -63,9 +63,58 @@ impl BookNoteContentParser for WereadParser {
 
 impl BookNoteContentParser for Weread2Parser {
     fn parse(&self, content: &str) -> BookNoteContent {
-        // TODO: Implement
+        let lines = content.split("\r\n").collect::<Vec<_>>();
+        let mut chapters: Vec<Chapter> = Vec::new();
+        let mut empty_line_counter = 2;
 
-        BookNoteContent { chapters: vec![] }
+        let mut current_chapter = Chapter {
+            name: String::new(),
+            notes: Vec::new(),
+        };
+
+        for line in lines {
+            let trimmed_line = line.trim();
+
+            if trimmed_line.is_empty() {
+                empty_line_counter += 1;
+                continue;
+            }
+
+            if !trimmed_line.starts_with('◆') {
+                // if there are two empty lines in a row, we know the current line is the new chapter name
+                // else, we know the current line is the continuation of the previous note
+                if empty_line_counter >= 2 {
+                    if !current_chapter.is_empty() {
+                        chapters.push(current_chapter);
+                        current_chapter = Chapter {
+                            name: String::new(),
+                            notes: Vec::new(),
+                        };
+                    }
+                    current_chapter.name = trimmed_line.to_string();
+                } else {
+                    if let Some(last_note) = current_chapter.notes.last_mut() {
+                        last_note.push_str("\n");
+                        last_note.push_str(trimmed_line);
+                    } else {
+                        current_chapter.notes.push(trimmed_line.to_string());
+                    }
+                }
+            } else {
+                // new note starts with '◆'
+                current_chapter
+                    .notes
+                    .push(trimmed_line.trim_start_matches("◆").trim().to_string());
+            }
+
+            empty_line_counter = 0;
+        }
+
+        if !current_chapter.is_empty() {
+            chapters.push(current_chapter);
+        }
+
+        BookNoteContent { chapters }
     }
 }
 
