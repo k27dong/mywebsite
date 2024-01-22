@@ -59,10 +59,9 @@ const SaltContent = (props) => {
   useEffect(() => {
     setLoading(true)
     axios
-      .post(CONST.DEPLOYMENT_HOST + "api/get_book_note", {
-        key: key,
-      })
+      .get(CONST.DEPLOYMENT_HOST + `api/get_book_note/${key}`)
       .then((res) => {
+        console.log(res.data)
         setContent(res.data)
       })
       .catch((err) => {
@@ -78,35 +77,35 @@ const SaltContent = (props) => {
     message.success("Copied to clipboard!")
   }
 
-  const single_note = (n, note_index, block_index) => {
-    return note_index === 0 ? (
-      <ChapterTitle key={`chapter_title_${block_index}_${note_index}`}>
-        {n}
-      </ChapterTitle>
-    ) : (
-      <NoteWrapper
-        hoverable
-        bodyStyle={{ padding: "0", color: "rgba(0, 0, 0, 0.85)" }}
-        onClick={() => copy_note(n)}
-        key={`note_wrapper_${block_index}_${note_index}`}
-      >
-        <Note key={`note_${block_index}_${note_index}`}>
-          {n.split("\n").map((line, i, arr) => (
-            <Fragment key={`line_${block_index}_${note_index}_${i}`}>
-              {line}
-              {i !== arr.length - 1 && <Break />}
-            </Fragment>
-          ))}
-        </Note>
-      </NoteWrapper>
-    )
-  }
+  const chapter_block = (note, block_index) => {
+    note.notes.map((n, i) => console.log(n))
 
-  const note_block = (note, block_index) => {
     return (
-      <div key={`salt_content_fragment_${block_index}`}>
-        {note.map((n, i) => single_note(n, i, block_index))}
-      </div>
+      <>
+        <ChapterTitle key={`chapter_title_${block_index}`}>
+          {note.name}
+        </ChapterTitle>
+
+        {note.notes.map((n, i) => {
+          return (
+            <NoteWrapper
+              hoverable
+              bodyStyle={{ padding: "0", color: "rgba(0, 0, 0, 0.85)" }}
+              onClick={() => copy_note(n)}
+              key={`note_wrapper_${block_index}_${i}`}
+            >
+              <Note key={`note_${block_index}_${i}`}>
+                {n.split("\n").map((line, i, arr) => (
+                  <Fragment key={`line_${block_index}_${i}`}>
+                    {line}
+                    {i !== arr.length - 1 && <Break />}
+                  </Fragment>
+                ))}
+              </Note>
+            </NoteWrapper>
+          )
+        })}
+      </>
     )
   }
 
@@ -118,7 +117,7 @@ const SaltContent = (props) => {
         <Wrapper>
           <Title>{content.title}</Title>
           <Author>{content.author}</Author>
-          {content.note.map((note, i) => note_block(note, i))}
+          {content.notes.chapters.map((note, i) => chapter_block(note, i))}
         </Wrapper>
       )}
     </BlogPage>
