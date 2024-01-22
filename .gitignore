@@ -36,6 +36,8 @@ deploy.sh
 update_docs_rss.sh
 
 
-# Added by cargo
-
+# cargo
 /target
+
+# default output
+new.md
