@@ -15,7 +15,7 @@ pub trait BookNoteContentParser {
 
 impl BookNoteContentParser for WereadParser {
     fn parse(&self, content: &str) -> BookNoteContent {
-        let lines = content.split("\r\n").collect::<Vec<_>>();
+        let lines = content.split("\n").collect::<Vec<_>>();
         let mut chapters: Vec<Chapter> = Vec::new();
 
         let mut current_chapter = Chapter {
@@ -63,7 +63,7 @@ impl BookNoteContentParser for WereadParser {
 
 impl BookNoteContentParser for Weread2Parser {
     fn parse(&self, content: &str) -> BookNoteContent {
-        let lines = content.split("\r\n").collect::<Vec<_>>();
+        let lines = content.split("\n").collect::<Vec<_>>();
         let mut chapters: Vec<Chapter> = Vec::new();
         let mut empty_line_counter = 2;
 

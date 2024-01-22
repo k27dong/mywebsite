@@ -140,7 +140,7 @@ async fn get_project_list(data: web::Data<AppState>) -> impl Responder {
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         let cors = Cors::default()
-            .allowed_origin("http://0.0.0.0:5173")
+            .allowed_origin("http://localhost:5173")
             .allowed_origin("https://kefan.me")
             .allowed_methods(vec!["GET", "POST"])
             .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT])
