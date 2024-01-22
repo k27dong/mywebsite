@@ -1,6 +1,7 @@
-use crate::frontmatter::parse_frontmatter;
 use serde::{Deserialize, Serialize};
 use std::{collections::HashMap, fmt, fs};
+
+use crate::parser;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogPostFrontmatter {
@@ -39,8 +40,9 @@ pub fn load_blog_post() -> HashMap<u32, BlogPost> {
         match entry {
             Ok(path) => {
                 let blog_doc = fs::read_to_string(path).expect("Failed to read file");
-                let (frontmatter, content) = parse_frontmatter::<BlogPostFrontmatter>(&blog_doc)
-                    .expect("Failed to parse frontmatter");
+                let (frontmatter, content) =
+                    parser::parse_frontmatter::<BlogPostFrontmatter>(&blog_doc)
+                        .expect("Failed to parse frontmatter");
 
                 posts.insert(
                     frontmatter.abbrlink,
