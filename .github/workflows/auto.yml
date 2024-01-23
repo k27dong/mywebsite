@@ -34,7 +34,12 @@ jobs:
           mv ./target/release/mywebsite ./app/app
           mv ./dist ./app/dist
           mv ./docs ./app/docs
-          mv Procfile ./app/Procfile
+
+      - name: upload assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: app
 
   deploy:
     name: Deploy to Heroku
@@ -42,11 +47,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Git repository
-        uses: actions/checkout@v3
+      # - name: Checkout Git repository
+      #   uses: actions/checkout@v3
+
+      - name: download assets
+        uses: actions/download-artifact@v4
+        with:
+          name: app
 
       - name: testing step
-        run: ls
+        run: ls -R
 
       - uses: akhileshns/heroku-deploy@v3.13.15
         with:
@@ -54,4 +64,5 @@ jobs:
           heroku_app_name: "k27dong-website"
           heroku_email: "me@kefan.me"
           appdir: "./app"
+          procfile: "./app"
           buildpack: "https://github.com/ph3nx/heroku-binary-buildpack.git"
