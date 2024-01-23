@@ -23,6 +23,13 @@ const Container = styled.div`
   margin-left: 5%;
 `
 
+const BuildTag = styled.div`
+  position: absolute;
+  bottom: 0;
+  font-size: small;
+  right: 0;
+`
+
 const LinkButton = styled(Button)`
   margin-right: 12px;
 `
@@ -59,6 +66,7 @@ const Main = (props) => {
         target="_blank"
         href="https://github.com/k27dong/mywebsite"
       />
+      <BuildTag>Build: Rust v1.0.0</BuildTag>
       <Container>
         <Name>Kefan Dong</Name>
         <Intro />
