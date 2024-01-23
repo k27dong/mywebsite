@@ -74,39 +74,6 @@ def not_found(e):
     return send_from_directory(app.static_folder, "index.html")
 
 
-@app.route("/api/get_salt_list", methods=["GET", "POST"])
-def get_salt_list():
-    booklist = []
-    for bookname in os.listdir(SALT_DIR):
-        if bookname.endswith(".md"):
-            book = Frontmatter.read_file(SALT_DIR + bookname)
-            booklist.append(
-                {
-                    "title": book["attributes"]["title"],
-                    "author": book["attributes"]["author"],
-                    "notenum": book["attributes"]["num"],
-                    "rating": book["attributes"]["rating"],
-                    "tag": book["attributes"]["tags"],
-                    "id": book["attributes"]["id"],
-                }
-            )
-            booklist.sort(key=lambda r: r["id"], reverse=True)
-        else:
-            print("Error: get_salt_list")
-    return jsonify(booklist), 200
-
-
-@app.route("/api/get_book_note", methods=["GET", "POST"])
-def get_book_note():
-    book_name = request.get_json()["key"]
-    return jsonify(BOOK_LIST[book_name]), 200
-
-
-@app.route("/api/get_total_note_num", methods=["GET", "POST"])
-def get_total_note_num():
-    return jsonify(TOTAL_NOTE_NUM), 200
-
-
 @app.route("/api/get_phrase", methods=["GET", "POST"])
 def get_phrase():
     temp = request.args.get("temp")
