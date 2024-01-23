@@ -61,7 +61,6 @@ const SaltContent = (props) => {
     axios
       .get(CONST.DEPLOYMENT_HOST + `api/get_book_note/${key}`)
       .then((res) => {
-        console.log(res.data)
         setContent(res.data)
       })
       .catch((err) => {
@@ -78,8 +77,6 @@ const SaltContent = (props) => {
   }
 
   const chapter_block = (note, block_index) => {
-    note.notes.map((n, i) => console.log(n))
-
     return (
       <>
         <ChapterTitle key={`chapter_title_${block_index}`}>

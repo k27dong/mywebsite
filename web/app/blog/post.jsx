@@ -57,7 +57,6 @@ const Post = (props) => {
     axios
       .get(CONST.DEPLOYMENT_HOST + `api/get_post/${id}`)
       .then((res) => {
-        console.log(res)
         res.data.date = new Date(res.data.date)
         setContent(res.data)
       })
