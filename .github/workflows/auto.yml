@@ -34,6 +34,7 @@ jobs:
           mv ./target/release/mywebsite ./app/app
           mv ./dist ./app/dist
           mv ./docs ./app/docs
+          mv Procfile ./app/Procfile
 
   deploy:
     name: Deploy to Heroku
@@ -50,4 +51,3 @@ jobs:
           heroku_app_name: "k27dong-website"
           heroku_email: "me@kefan.me"
           appdir: "./app"
-          procfile: "web: ./app"
