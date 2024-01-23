@@ -29,7 +29,11 @@ jobs:
         run: cargo build --release
 
       - name: Prepare deployment assets
-        run: mkdir app && mv ./target/release/mywebsite ./app/app
+        run: |
+          mkdir app
+          mv ./target/release/mywebsite ./app/app
+          mv ./dist ./app/dist
+          mv ./docs ./app/docs
 
   deploy:
     name: Deploy to Heroku
