@@ -139,6 +139,8 @@ async fn get_project_list(data: web::Data<AppState>) -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    let port = std::env::var("PORT").unwrap_or(String::from("5000"));
+
     HttpServer::new(|| {
         let cors = Cors::default()
             .allowed_origin("http://localhost:5173")
@@ -171,7 +173,7 @@ async fn main() -> std::io::Result<()> {
                     ),
             )
     })
-    .bind(("0.0.0.0", 5000))?
+    .bind(("0.0.0.0", port.parse::<u16>().unwrap()))?
     .run()
     .await
 }
