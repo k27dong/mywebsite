@@ -1,4 +1,5 @@
 use actix_cors::Cors;
+use actix_files as fs;
 use actix_web::{get, http, post, web, App, HttpResponse, HttpServer, Responder};
 use blogpost::BlogPost;
 use booknote::BookNote;
@@ -162,6 +163,13 @@ async fn main() -> std::io::Result<()> {
             .service(get_salt_list)
             .service(get_total_note_num)
             .service(get_book_note)
+            .service(
+                fs::Files::new("/", "./dist")
+                    .index_file("index.html")
+                    .default_handler(
+                        web::get().to(|| async { fs::NamedFile::open("./dist/index.html") }),
+                    ),
+            )
     })
     .bind(("0.0.0.0", 5000))?
     .run()
