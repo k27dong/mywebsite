@@ -11,14 +11,15 @@ This is my personal website, please hire me.
 ### Technology Stack
 ```diff
 React
-Flask
-Nginx
+- Flask
+- Nginx
 Docker
 - uWSGI
 - Google Cloud Platform
 - Kubernetes
-+ Gunicorn
+- Gunicorn
 + Heroku
++ Rust
 ```
 
 Update 20201009: Website had been migrated from GCP to heroku due to operating costs.

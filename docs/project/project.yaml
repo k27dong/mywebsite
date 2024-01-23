@@ -7,10 +7,8 @@
 
 - name: Personal Website
   language:
-    - JavaScript
-    - Python
-    - Procfile
-    - Nginx
+    - React
+    - Rust
     - Dockerfile
   description: This website you're viewing.
   link: https://github.com/k27dong/mywebsite

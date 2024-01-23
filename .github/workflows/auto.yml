@@ -1,99 +1,46 @@
-name: Build static, apply formatter, deploy on production
-on: [push]
+name: Build & Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  CARGO_TERM_COLOR: always
 
 jobs:
-  build-production:
-    name: Build static
+  build:
+    name: Build release binary
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
-
-      - name: Configure Git
-        run: |
-          git config --global user.email "me@kefan.me"
-          git config --global user.name "Kevin Dong"
+      - name: Checkout Git repository
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 18.15.0
 
-      - name: Install Node.js dependencies
-        run: npm ci
+      - name: Install dependencies and build frontend
+        run: npm ci && npm run build
 
-      - name: Rebuild the directory
-        run: npm run build
+      - name: Build backend
+        run: cargo build --release
 
-      - name: Check if there is any new translations
-        id: verify_diff
-        run: git diff --quiet dist || echo "new_build_exist=true" >> $GITHUB_OUTPUT
+      - name: Prepare deployment assets
+        run: mkdir app && mv ./target/release/mywebsite ./app/app
 
-      - name: Commit changes
-        if: steps.verify_diff.outputs.new_build_exist == 'true'
-        run: |
-          timestamp=$(date +'%Y%m%d%H%M%S')
-          git add dist
-          git commit -m "update dist folder - $timestamp"
-
-      - name: Push changes
-        if: steps.verify_diff.outputs.new_build_exist == 'true'
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-
-  run-linters:
-    name: Format with Prettier and Black
-    needs: build-production
+  deploy:
+    name: Deploy to Heroku
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
-
-      - name: Configure Git
-        run: |
-          git config --global user.email "me@kefan.me"
-          git config --global user.name "Kevin Dong"
-
-      - name: Pull latest changes
-        run: git pull
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: akhileshns/heroku-deploy@v3.13.15
         with:
-          node-version: 18.15.0
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Setup formatters
-        run: |
-          pip install black
-          npm install --no-save prettier
-
-      - name: Run linters
-        run: |
-          black app/
-          npx prettier --write src/
-
-      - name: Check if there is any new translations
-        id: verify_diff
-        run: git diff --quiet || echo "formatter_changes_exist=true" >> $GITHUB_OUTPUT
-
-      - name: Commit changes
-        if: steps.verify_diff.outputs.formatter_changes_exist == 'true'
-        run: |
-          timestamp=$(date +'%Y%m%d%H%M%S')
-          git add app/* src/*
-          git commit -m "Format fix"
-
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "k27dong-website"
+          heroku_email: "me@kefan.me"
+          appdir: "./app"
+          procfile: "web: ./app"
