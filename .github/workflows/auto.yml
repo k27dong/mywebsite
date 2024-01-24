@@ -41,30 +41,30 @@ jobs:
           name: app
           path: app
 
-  deploy:
-    name: Deploy to Heroku
-    needs: build
-    runs-on: ubuntu-latest
+  # deploy:
+  #   name: Deploy to Heroku
+  #   needs: build
+  #   runs-on: ubuntu-latest
 
-    steps:
-      # - name: Checkout Git repository
-      #   uses: actions/checkout@v3
+  #   steps:
+  #     # - name: Checkout Git repository
+  #     #   uses: actions/checkout@v3
 
-      - name: download assets
-        uses: actions/download-artifact@v4
-        with:
-          name: app
+  #     - name: download assets
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: app
 
-      - name: testing step
-        run: ls -R
+  #     - name: testing step
+  #       run: ls -R
 
-      - run: git init
-      - run: ls -R
+  #     - run: git init
+  #     - run: ls -R
       - uses: akhileshns/heroku-deploy@v3.13.15
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "k27dong-website"
           heroku_email: "me@kefan.me"
-          appdir: "."
+          appdir: "./app"
           procfile: "web: ./app"
           buildpack: "https://github.com/ph3nx/heroku-binary-buildpack.git"
