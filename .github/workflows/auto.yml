@@ -67,6 +67,5 @@ jobs:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
-          heroku login --api-key $HEROKU_API_KEY
           heroku git:remote -a k27dong-website
           git push heroku master --force
