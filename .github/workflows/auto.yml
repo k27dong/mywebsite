@@ -65,6 +65,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "k27dong-website"
           heroku_email: "me@kefan.me"
-          appdir: "./app"
+          appdir: "."
           procfile: "web: ./app"
           buildpack: "https://github.com/ph3nx/heroku-binary-buildpack.git"
