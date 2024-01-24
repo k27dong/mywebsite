@@ -62,10 +62,18 @@ jobs:
           git add -A
           git commit -m "Deploy"
 
-      - name: Heroku Deploy
+      - name: Set up Heroku
         env:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+          HEROKU_SSH_PRIVATE_KEY: ${{secrets.HEROKU_SSH_PRIVATE_KEY}}
         run: |
+          mkdir -p ~/.ssh
+          echo "$HEROKU_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
           curl https://cli-assets.heroku.com/install.sh | sh
-          heroku git:remote -a k27dong-website
+
+      - name: Remote and Push to Heroku
+        run: |
+          git remote add heroku git@heroku.com:k27dong-website.git
           git push heroku master --force
