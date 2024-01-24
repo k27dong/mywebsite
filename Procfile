@@ -1,1 +1,1 @@
-web: ./app
+web: target/release/mywebsite

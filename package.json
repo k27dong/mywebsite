@@ -22,7 +22,9 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "vite build",
+    "build": "npm run build-frontend && npm run build-backend",
+    "build-frontend": "vite build",
+    "build-backend": "cargo build --release",
     "host": "vite --host"
   },
   "browserslist": {

@@ -17,72 +17,29 @@ jobs:
       - name: Checkout Git repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18.15.0
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: 18.15.0
 
-      - name: Install dependencies and build frontend
-        run: npm ci && npm run build
+      # - name: Install dependencies and build frontend
+      #   run: npm ci && npm run build
 
-      - name: Build backend
-        run: cargo build --release
+      # - name: Build backend
+      #   run: cargo build --release
 
-      - name: Prepare deployment assets
-        run: |
-          mkdir app
-          mv ./target/release/mywebsite ./app/app
-          mv ./dist ./app/dist
-          mv ./docs ./app/docs
+      # - name: Prepare deployment assets
+      #   run: |
+      #     mkdir app
+      #     mv ./target/release/mywebsite ./app/app
+      #     mv ./dist ./app/dist
+      #     mv ./docs ./app/docs
 
       - uses: akhileshns/heroku-deploy@v3.13.15
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "k27dong-website"
           heroku_email: "me@kefan.me"
-          appdir: "./app"
-          procfile: "web: ./app"
+          # appdir: "./app"
+          # procfile: "web: ./app"
           buildpack: "https://github.com/ph3nx/heroku-binary-buildpack.git"
-
-
-  #     - name: upload assets
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: app
-  #         path: app
-
-  # deploy:
-  #   name: Deploy to Heroku
-  #   needs: build
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: download assets
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: app
-
-  #     - name: Set up Git
-  #       run: |
-  #         ls -R
-  #         git config --global user.name "k27dong"
-  #         git config --global user.email "me@kefan.me"
-  #         git init
-  #         git add -A
-  #         git commit -m "Deploy"
-
-  #     - name: Set up Heroku
-  #       env:
-  #         HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
-  #         HEROKU_SSH_PRIVATE_KEY: ${{secrets.HEROKU_SSH_PRIVATE_KEY}}
-  #       run: |
-  #         mkdir -p ~/.ssh
-  #         echo "$HEROKU_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-  #         chmod 600 ~/.ssh/id_rsa
-  #         ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
-  #         curl https://cli-assets.heroku.com/install.sh | sh
-
-  #     - name: Remote and Push to Heroku
-  #       run: |
-  #         git remote add heroku git@heroku.com:k27dong-website.git
-  #         git push heroku master --force
