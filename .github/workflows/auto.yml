@@ -58,6 +58,7 @@ jobs:
       - name: testing step
         run: ls -R
 
+      - uses: actions/checkout@v4
       - uses: akhileshns/heroku-deploy@v3.13.15
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
