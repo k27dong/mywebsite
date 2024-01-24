@@ -34,6 +34,7 @@ jobs:
           mv ./target/release/mywebsite ./app/app
           mv ./dist ./app/dist
           mv ./docs ./app/docs
+          mv Procfile ./app/Procfile
 
       - name: upload assets
         uses: actions/upload-artifact@v4
@@ -54,6 +55,7 @@ jobs:
 
       - name: Set up Git
         run: |
+          ls -R
           git config --global user.name "k27dong"
           git config --global user.email "me@kefan.me"
           git init
@@ -65,5 +67,6 @@ jobs:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
+          heroku login --api-key $HEROKU_API_KEY
           heroku git:remote -a k27dong-website
-          git push heroku `git subtree split --prefix app master`:master --force
+          git push heroku master --force
