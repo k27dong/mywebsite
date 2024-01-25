@@ -11,22 +11,36 @@ This is my personal website, please hire me.
 ### Technology Stack
 ```diff
 React
++ Actix Web
++ Heroku
+Docker
 - Flask
 - Nginx
-Docker
 - uWSGI
 - Google Cloud Platform
 - Kubernetes
 - Gunicorn
-+ Heroku
-+ Rust
 ```
 
 Update 20201009: Website had been migrated from GCP to heroku due to operating costs.
 
+Update 20240125: Migration from Flask to Actix Web.
+
 ### Local Development
-(Requires Docker)
 
 ```bash
-$ docker-compose up --build
+# Build Frontend
+$ npm i && npm run build
+
+# Build Backend
+$ cargo build --release
+
+# Run
+$ ./target/release/mywebsite
+```
+
+Alternatively:
+
+```bash
+$ docker-compose up
 ```
