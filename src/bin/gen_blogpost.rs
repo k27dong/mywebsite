@@ -9,7 +9,7 @@ use std::{
 };
 
 fn main() -> std::io::Result<()> {
-    const NEW_BLOGPOST_PATH: &str = "docs/salt/new.md";
+    const NEW_BLOGPOST_PATH: &str = "docs/blog/new.md";
 
     let paths = glob::glob("docs/blog/*.md").expect("Failed to read glob pattern");
     let mut rng = rand::thread_rng();
