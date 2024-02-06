@@ -13,6 +13,7 @@ import Footer from "./footer"
 import { CONST, ConvertDate } from "../util"
 import Link from "../component/link"
 import rehypeRaw from "rehype-raw"
+import MusicPlayer from "../component/music-player"
 
 const PostContainer = styled.div`
   font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial,
@@ -85,6 +86,7 @@ const Post = (props) => {
                 a: Link,
                 img: ImageBlock,
                 blockquote: BlockQuote,
+                music: () => <MusicPlayer id={id} />,
                 code({ node, inline, className, children, ...props }) {
                   const match = !!className
                     ? className.replace(lang_regex, "$1")
