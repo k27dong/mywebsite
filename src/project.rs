@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 use serde_yaml;
-use std::{fmt, fs};
+use std::fs;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Project {
@@ -8,19 +8,6 @@ pub struct Project {
     pub language: Vec<String>,
     pub description: String,
     pub link: String,
-}
-
-impl fmt::Display for Project {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Name: {}\n# of Language: {}\nDescription: {}\nLink: {}\n",
-            self.name,
-            self.language.len(),
-            self.description,
-            self.link
-        )
-    }
 }
 
 pub fn load_projects() -> Vec<Project> {

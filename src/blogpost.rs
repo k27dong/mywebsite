@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use std::{collections::HashMap, fmt, fs};
+use std::{collections::HashMap, fs};
 
 use crate::parser;
 
@@ -16,23 +16,7 @@ pub struct BlogPost {
     pub content: String,
 }
 
-impl fmt::Display for BlogPostFrontmatter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Title: {}\nDate: {}\nAbbrlink: {}\n",
-            self.title, self.date, self.abbrlink
-        )
-    }
-}
-
-impl fmt::Display for BlogPost {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}\n{}", self.frontmatter, self.content)
-    }
-}
-
-pub fn load_blog_post() -> HashMap<u32, BlogPost> {
+pub fn load_blogpost() -> HashMap<u32, BlogPost> {
     let mut posts = HashMap::new();
     let paths = glob::glob("docs/blog/*.md").expect("Failed to read glob pattern");
 
