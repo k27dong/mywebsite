@@ -1,5 +1,7 @@
+import { useState, useEffect } from "react"
 import styled from "styled-components"
 import { CONST } from "../util"
+import axios from "axios"
 
 const MusicPlayerContainer = styled.div`
   display: flex;
@@ -63,15 +65,15 @@ const PlaylistAlbum = styled.img`
 `
 
 const PlaylistSongTitle = styled.div`
-  font-size: 20px;
+  font-size: 18px;
 `
 
 const PlaylistSongArtist = styled.div`
-  font-size: 14px;
+  font-size: 12px;
 `
 
 const PlaylistSummary = styled.div`
-  padding-left: 0.8rem;
+  padding: 1rem 0 0.5rem 1rem;
   font-size: 15px;
   color: ${CONST.COLORS.TEXT};
 `
@@ -80,114 +82,72 @@ const PlaylistIndex = styled.div`
   place-self: center;
   margin: 0 0.3rem;
   font-weight: bold;
+  font-size: 16px;
 `
 
 const MusicPlayer = ({ id }) => {
-  const songs = [
-    {
-      title: "Don't Be So Serious",
-      artist: "Low Roar",
-      duration: "4:15",
-      cover_img: "url_to_cover_img_1",
-      album: "Once in a Long, Long While...",
-      lyrics: "Lyrics for Eternal Dawn",
-      audio_file: "path_to_audio_file_1",
-    },
-    {
-      title: "Whispering Wind",
-      artist: "Melodic Breeze",
-      duration: "3:52",
-      cover_img: "url_to_cover_img_2",
-      album: "Nature's Melody",
-      lyrics: "Lyrics for Whispering Wind",
-      audio_file: "path_to_audio_file_2",
-    },
-    {
-      title: "Rhythmic Journey",
-      artist: "Beats Explorer",
-      duration: "4:30",
-      cover_img: "url_to_cover_img_3",
-      album: "Urban Beats",
-      lyrics: "Lyrics for Rhythmic Journey",
-      audio_file: "path_to_audio_file_3",
-    },
-    {
-      title: "Harbor Lights",
-      artist: "Seaside Orchestra",
-      duration: "5:03",
-      cover_img: "url_to_cover_img_4",
-      album: "Ocean's Serenade",
-      lyrics: "Lyrics for Harbor Lights",
-      audio_file: "path_to_audio_file_4",
-    },
-    {
-      title: "Desert Mirage",
-      artist: "Sandy Echoes",
-      duration: "4:47",
-      cover_img: "url_to_cover_img_5",
-      album: "Arid Dreams",
-      lyrics: "Lyrics for Desert Mirage",
-      audio_file: "path_to_audio_file_5",
-    },
-    {
-      title: "Starry Nights",
-      artist: "Galactic Harmony",
-      duration: "3:35",
-      cover_img: "url_to_cover_img_6",
-      album: "Cosmic Tunes",
-      lyrics: "Lyrics for Starry Nights",
-      audio_file: "path_to_audio_file_6",
-    },
-    {
-      title: "Rainforest Whisper",
-      artist: "Jungle Melody",
-      duration: "4:22",
-      cover_img: "url_to_cover_img_7",
-      album: "Wild Sounds",
-      lyrics: "Lyrics for Rainforest Whisper",
-      audio_file: "path_to_audio_file_7",
-    },
-    {
-      title: "Urban Echo",
-      artist: "City Vibes",
-      duration: "3:40",
-      cover_img: "url_to_cover_img_8",
-      album: "Street Rhythms",
-      lyrics: "Lyrics for Urban Echo",
-      audio_file: "path_to_audio_file_8",
-    },
-    {
-      title: "Winter's Tale",
-      artist: "Frosty Notes",
-      duration: "5:15",
-      cover_img: "url_to_cover_img_9",
-      album: "Cold Melodies",
-      lyrics: "Lyrics for Winter's Tale",
-      audio_file: "path_to_audio_file_9",
-    },
-    {
-      title: "Sunny Afternoon",
-      artist: "Summer Breeze",
-      duration: "3:58",
-      cover_img: "url_to_cover_img_10",
-      album: "Warm Vibes",
-      lyrics: "Lyrics for Sunny Afternoon",
-      audio_file: "path_to_audio_file_10",
-    },
-  ]
+  const [loading, setLoading] = useState(true)
+  const [songs, setSongs] = useState([])
+
+  useEffect(() => {
+    setLoading(true)
+    axios
+      .get(CONST.DEPLOYMENT_HOST + `api/get_playlist/${id}`)
+      .then((res) => {
+        console.log(res.data)
+        setSongs(res.data)
+      })
+      .then(() => {
+        setLoading(false)
+      })
+      .catch((err) => {
+        message.error("Error ", err)
+      })
+  }, [])
+
+  const calculate_playlist_duration = (songs) => {
+    const parse_duration = (duration) => {
+      const [minutes, seconds] = duration.split(":").map(Number)
+      return minutes + seconds / 60
+    }
+
+    const total_duration = songs.reduce(
+      (sum, song) => sum + parse_duration(song.duration),
+      0
+    )
+
+    const hours = Math.floor(total_duration / 60)
+    const minutes = Math.round(total_duration % 60)
+
+    const hour_text = hours === 1 ? "hour" : "hours"
+    const minute_text = minutes === 1 ? "minute" : "minutes"
+    const song_text = songs.length === 1 ? "song" : "songs"
+
+    let message = `${songs.length} ${song_text}, `
+    if (hours > 0) {
+      message += `${hours} ${hour_text}`
+      if (minutes > 0) {
+        message += ` and ${minutes} ${minute_text}`
+      }
+    } else if (minutes > 0) {
+      message += `${minutes} ${minute_text}`
+    } else {
+      message += "0 minutes"
+    }
+
+    return message
+  }
 
   const Playlist = ({ songs }) => {
     return (
       <PlaylistContainer>
-        <PlaylistSummary>{`10 songs, 1 hour 12 minutes`}</PlaylistSummary>
+        <PlaylistSummary>{calculate_playlist_duration(songs)}</PlaylistSummary>
         {songs.map((song, index) => (
           <PlaylistItemContainer key={index}>
             <PlaylistItem>
               <PlaylistItemAlbum>
                 <PlaylistAlbum
-                  src={
-                    "https://www.udiscovermusic.com/wp-content/uploads/2017/08/Pink-Floyd-Dark-Side-Of-The-Moon.jpg"
-                  }
+                  src={`/audios/${id}/${song.id}/${song.cover}`}
                   alt={song.title}
                 />
               </PlaylistItemAlbum>
