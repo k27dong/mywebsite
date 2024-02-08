@@ -3,6 +3,8 @@ import styled from "styled-components"
 import { CONST } from "../util"
 import axios from "axios"
 
+import { LyricPlayer, BackgroundRender } from "@applemusic-like-lyrics/react"
+
 const MusicPlayerContainer = styled.div`
   display: flex;
   width: 85%;
@@ -24,6 +26,9 @@ const PlaylistContainer = styled.div`
 
 const PlayerControlContainer = styled.div`
   width: 50%;
+
+  display: flex;
+  flex-direction: column;
 `
 
 const PlaylistItemContainer = styled.div`
@@ -85,6 +90,44 @@ const PlaylistIndex = styled.div`
   font-size: 16px;
 `
 
+const PlayerLyricContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Establishes a positioning context for children */
+  height: 25em;
+`
+
+const PlayerBackground = styled(BackgroundRender)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  border-radius: 0 6px 0 0;
+  overflow: hidden;
+`
+
+const PlayerLyric = styled(LyricPlayer)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+`
+
+const PlayerControlGroups = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const PlayerTitle = styled.div``
+
+const PlayerArtist = styled.div``
+
+const PlayerProgressBar = styled.div``
+
 const MusicPlayer = ({ id }) => {
   const [loading, setLoading] = useState(true)
   const [songs, setSongs] = useState([])
@@ -137,6 +180,59 @@ const MusicPlayer = ({ id }) => {
     return message
   }
 
+  const parse_lrc_to_ttml = (lrc) => {
+    const pattern = /\[(\d+):(\d+\.\d+)\]\s*(.+)/
+    const lines = lrc.split("\n")
+    let result = []
+    let previousEndTime = 0
+
+    for (let i = 0; i < lines.length; i++) {
+      const match = pattern.exec(lines[i])
+      if (match) {
+        const minutes = parseInt(match[1], 10)
+        const seconds = parseFloat(match[2])
+        const word = match[3]
+        const startTime = previousEndTime
+        const endTime = minutes * 60 * 1000 + seconds * 1000 // Convert to milliseconds
+
+        result.push({
+          words: [
+            {
+              startTime: startTime,
+              endTime: endTime,
+              word: word,
+            },
+          ],
+          translatedLyric: "",
+          romanLyric: "",
+          startTime: startTime,
+          endTime: endTime,
+          isBG: false,
+          isDuet: false,
+        })
+
+        previousEndTime = endTime // Update previous end time for the next iteration
+      }
+    }
+
+    return result
+  }
+
+  const fetch_and_parse_lyric = async (location) => {
+    console.log(location)
+
+    try {
+      const response = await fetch(`${location}`)
+      if (!response.ok) {
+        throw new Error(`Failed to fetch file: ${response.statusText}`)
+      }
+      const lrc = await response.text()
+      return parse_lrc_to_ttml(lrc)
+    } catch (error) {
+      console.error("Error fetching or parsing LRC file:", error)
+    }
+  }
+
   const Playlist = ({ songs }) => {
     return (
       <PlaylistContainer>
@@ -167,6 +263,24 @@ const MusicPlayer = ({ id }) => {
     const [currentSong, setCurrentSong] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
 
+    const [currentLyric, setCurrentLyric] = useState([
+      {
+        words: [
+          {
+            startTime: 0,
+            endTime: 0,
+            word: "Loading...",
+          },
+        ],
+        translatedLyric: "",
+        romanLyric: "",
+        startTime: 0,
+        endTime: 0,
+        isBG: false,
+        isDuet: false,
+      },
+    ])
+
     const play = () => {
       audio.current.play()
       setIsPlaying(true)
@@ -191,18 +305,43 @@ const MusicPlayer = ({ id }) => {
       if (isPlaying) {
         play()
       }
+
+      fetch_and_parse_lyric(
+        `/audios/${id}/${songs[currentSong].id}/${songs[currentSong].lyrics}`
+      ).then((result) => {
+        console.log(result)
+        setCurrentLyric(result)
+      })
     }, [currentSong])
 
     return (
-      <div>
+      <PlayerControlContainer>
         <audio ref={audio} onEnded={next} hidden />
-        <div>{`${songs[currentSong].title}`}</div>
-        <button onClick={previous}>Previous</button>
-        <button onClick={isPlaying ? pause : play}>
-          {isPlaying ? "Pause" : "Play"}
-        </button>
-        <button onClick={next}>Next</button>
-      </div>
+
+        <PlayerLyricContainer>
+          <PlayerBackground
+            albumImageUrl={`/audios/${id}/${songs[currentSong].id}/${songs[currentSong].cover}`}
+          />
+          <PlayerLyric
+            lyricLines={currentLyric}
+            currentTime={15000} // FIXME: This is a placeholder
+            // onLyricLineClick={(evt) => {
+            //   console.log(evt)
+            // }}
+          />
+        </PlayerLyricContainer>
+
+        <PlayerTitle>{`${songs[currentSong].title}`}</PlayerTitle>
+        <PlayerArtist>{`${songs[currentSong].artist}`}</PlayerArtist>
+
+        <PlayerControlGroups>
+          <button onClick={previous}>Previous</button>
+          <button onClick={isPlaying ? pause : play}>
+            {isPlaying ? "Pause" : "Play"}
+          </button>
+          <button onClick={next}>Next</button>
+        </PlayerControlGroups>
+      </PlayerControlContainer>
     )
   }
 
