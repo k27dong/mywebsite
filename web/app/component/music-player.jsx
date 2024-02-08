@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
 import { CONST } from "../util"
 import axios from "axios"
@@ -94,7 +94,6 @@ const MusicPlayer = ({ id }) => {
     axios
       .get(CONST.DEPLOYMENT_HOST + `api/get_playlist/${id}`)
       .then((res) => {
-        console.log(res.data)
         setSongs(res.data)
       })
       .then(() => {
@@ -163,14 +162,58 @@ const MusicPlayer = ({ id }) => {
     )
   }
 
-  const PlayerControls = () => {
-    return <PlayerControlContainer>hello</PlayerControlContainer>
+  const PlayerControls = ({ songs, id }) => {
+    const audio = useRef(new Audio())
+    const [currentSong, setCurrentSong] = useState(0)
+    const [isPlaying, setIsPlaying] = useState(false)
+
+    const play = () => {
+      audio.current.play()
+      setIsPlaying(true)
+    }
+
+    const pause = () => {
+      audio.current.pause()
+      setIsPlaying(false)
+    }
+
+    const next = () => {
+      setCurrentSong(currentSong < songs.length - 1 ? currentSong + 1 : 0)
+    }
+
+    const previous = () => {
+      setCurrentSong(currentSong > 0 ? currentSong - 1 : songs.length - 1)
+    }
+
+    useEffect(() => {
+      const song = songs[currentSong]
+      audio.current.src = `/audios/${id}/${song.id}/${song.audio}`
+      if (isPlaying) {
+        play()
+      }
+    }, [currentSong])
+
+    return (
+      <div>
+        <audio ref={audio} onEnded={next} hidden />
+        <div>{`${songs[currentSong].title}`}</div>
+        <button onClick={previous}>Previous</button>
+        <button onClick={isPlaying ? pause : play}>
+          {isPlaying ? "Pause" : "Play"}
+        </button>
+        <button onClick={next}>Next</button>
+      </div>
+    )
   }
 
   return (
     <MusicPlayerContainer>
-      <Playlist songs={songs} />
-      <PlayerControls />
+      {!loading && (
+        <>
+          <Playlist songs={songs} />
+          <PlayerControls songs={songs} id={id} />
+        </>
+      )}
     </MusicPlayerContainer>
   )
 }
