@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
-import { CONST } from "../util"
 import axios from "axios"
-
 import { LyricPlayer, BackgroundRender } from "@applemusic-like-lyrics/react"
+import { CONST } from "../util"
 
 const MusicPlayerContainer = styled.div`
   display: flex;
@@ -93,7 +92,7 @@ const PlaylistIndex = styled.div`
 const PlayerLyricContainer = styled.div`
   display: flex;
   flex-direction: column;
-  position: relative; /* Establishes a positioning context for children */
+  position: relative;
   height: 25em;
 `
 
@@ -148,86 +147,159 @@ const MusicPlayer = ({ id }) => {
   }, [])
 
   const calculate_playlist_duration = (songs) => {
-    const parse_duration = (duration) => {
-      const [minutes, seconds] = duration.split(":").map(Number)
-      return minutes + seconds / 60
-    }
-
-    const total_duration = songs.reduce(
-      (sum, song) => sum + parse_duration(song.duration),
+    const total_duration_seconds = songs.reduce(
+      (sum, song) => sum + parseInt(song.duration, 10),
       0
     )
 
-    const hours = Math.floor(total_duration / 60)
-    const minutes = Math.round(total_duration % 60)
+    const hours = Math.floor(total_duration_seconds / 3600)
+    const minutes = Math.floor((total_duration_seconds % 3600) / 60)
 
     const hour_text = hours === 1 ? "hour" : "hours"
     const minute_text = minutes === 1 ? "minute" : "minutes"
     const song_text = songs.length === 1 ? "song" : "songs"
 
     let message = `${songs.length} ${song_text}, `
+
     if (hours > 0) {
       message += `${hours} ${hour_text}`
-      if (minutes > 0) {
-        message += ` and ${minutes} ${minute_text}`
+    }
+
+    if (minutes > 0) {
+      if (hours > 0) {
+        message += ` and `
       }
-    } else if (minutes > 0) {
       message += `${minutes} ${minute_text}`
-    } else {
-      message += "0 minutes"
+    }
+
+    if (hours === 0 && minutes === 0) {
+      message = "Empty playlist. Add some songs!"
     }
 
     return message
   }
 
-  const parse_lrc_to_ttml = (lrc) => {
-    const pattern = /\[(\d+):(\d+\.\d+)\]\s*(.+)/
+  const parse_lrc_to_ttml = (lrc, duration) => {
+    const lrc_pattern = /\[(\d{2}):(\d{2})\.?(\d{1,3})?\]\s*(.*)/
     const lines = lrc.split("\n")
+    const total_duration = duration * 1000 // duration is in s, convert to ms
     let result = []
-    let previousEndTime = 0
 
-    for (let i = 0; i < lines.length; i++) {
-      const match = pattern.exec(lines[i])
-      if (match) {
-        const minutes = parseInt(match[1], 10)
-        const seconds = parseFloat(match[2])
-        const word = match[3]
-        const startTime = previousEndTime
-        const endTime = minutes * 60 * 1000 + seconds * 1000 // Convert to milliseconds
+    const parse_to_ms = (m, s, ms) => {
+      return m * 60 * 1000 + s * 1000 + ms
+    }
 
-        result.push({
-          words: [
-            {
-              startTime: startTime,
-              endTime: endTime,
-              word: word,
-            },
-          ],
-          translatedLyric: "",
-          romanLyric: "",
-          startTime: startTime,
-          endTime: endTime,
-          isBG: false,
-          isDuet: false,
-        })
+    let intro = {
+      words: [
+        {
+          startTime: 0,
+          endTime: 0,
+          word: "",
+        },
+      ],
+      translatedLyric: "",
+      romanLyric: "",
+      startTime: 0,
+      endTime: 0,
+      isBG: true,
+      isDuet: false,
+    }
 
-        previousEndTime = endTime // Update previous end time for the next iteration
+    let outro = {
+      words: [
+        {
+          startTime: 0,
+          endTime: total_duration,
+          word: "",
+        },
+      ],
+      translatedLyric: "",
+      romanLyric: "",
+      startTime: 0,
+      endTime: total_duration,
+      isBG: true,
+      isDuet: false,
+    }
+
+    let prev_line = null
+
+    for (let line of lines) {
+      const match = lrc_pattern.exec(line)
+
+      if (!match) continue
+
+      let m = parseInt(match[1], 10)
+      let s = parseInt(match[2], 10)
+      let ms = parseInt(match[3], 10) || 0
+      let word = match[4]
+
+      let curr_start = parse_to_ms(m, s, ms)
+
+      // handle intro
+      if (result.length === 0 && curr_start > 0 && prev_line === null) {
+        intro.endTime = curr_start - 1
+        intro.words[0].endTime = intro.endTime
+        result.push(intro)
+      }
+
+      // handle previous line
+      if (prev_line) {
+        prev_line.endTime = curr_start - 1
+        prev_line.words[0].endTime = prev_line.endTime
+        result.push(prev_line)
+      }
+
+      // record current line
+      prev_line = {
+        words: [
+          {
+            startTime: curr_start,
+            endTime: 0,
+            word: word,
+          },
+        ],
+        translatedLyric: "",
+        romanLyric: "",
+        startTime: curr_start,
+        endTime: 0,
+        isBG: false,
+        isDuet: false,
+      }
+    }
+
+    // handle the last line:
+    // when we hit the last line, if there're >= 20 seconds left,
+    // we assume the last line take 5 seconds and insert outro with the rest
+    // if there're < 20 seconds left, we assume the last line take the rest
+    if (prev_line) {
+      if (total_duration - prev_line.startTime > 20000) {
+        // remaining = prev_line(5) + outro(remaining)
+        const outro_start = prev_line.startTime + 5001
+        prev_line.endTime = prev_line.startTime + 5000
+        prev_line.words[0].endTime = prev_line.endTime
+        result.push(prev_line)
+        outro.startTime = outro_start
+        outro.words[0].startTime = outro.startTime
+        result.push(outro)
+      } else {
+        // remaining = prev_line(remaining)
+        prev_line.endTime = total_duration
+        prev_line.words[0].endTime = prev_line.endTime
+        result.push(prev_line)
       }
     }
 
     return result
   }
 
-  const fetch_and_parse_lyric = async (location) => {
-    console.log(location)
-
+  const fetch_and_parse_lyric = async (location, duration) => {
     try {
       const response = await fetch(`${location}`)
       if (!response.ok) {
         throw new Error(`Failed to fetch file: ${response.statusText}`)
       }
       const lrc = await response.text()
-      return parse_lrc_to_ttml(lrc)
+      return parse_lrc_to_ttml(lrc, duration)
     } catch (error) {
       console.error("Error fetching or parsing LRC file:", error)
     }
@@ -262,7 +334,7 @@ const MusicPlayer = ({ id }) => {
     const audio = useRef(new Audio())
     const [currentSong, setCurrentSong] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
-
+    const [currentTime, setCurrentTime] = useState(0)
     const [currentLyric, setCurrentLyric] = useState([
       {
         words: [
@@ -307,12 +379,24 @@ const MusicPlayer = ({ id }) => {
       }
 
       fetch_and_parse_lyric(
-        `/audios/${id}/${songs[currentSong].id}/${songs[currentSong].lyrics}`
+        `/audios/${id}/${songs[currentSong].id}/${songs[currentSong].lyrics}`,
+        songs[currentSong].duration
       ).then((result) => {
-        console.log(result)
         setCurrentLyric(result)
       })
     }, [currentSong])
+
+    useEffect(() => {
+      const handleTimeUpdate = () => {
+        setCurrentTime(Math.floor(audio.current.currentTime * 1000)) // Convert to milliseconds
+      }
+
+      audio.current.addEventListener("timeupdate", handleTimeUpdate)
+
+      return () => {
+        audio.current.removeEventListener("timeupdate", handleTimeUpdate)
+      }
+    }, [isPlaying, currentSong])
 
     return (
       <PlayerControlContainer>
@@ -324,9 +408,9 @@ const MusicPlayer = ({ id }) => {
           />
           <PlayerLyric
             lyricLines={currentLyric}
-            currentTime={15000} // FIXME: This is a placeholder
+            currentTime={currentTime}
             // onLyricLineClick={(evt) => {
-            //   console.log(evt)
+            //   this should jump to the time of the clicked lyric
             // }}
           />
         </PlayerLyricContainer>
