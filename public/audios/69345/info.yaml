@@ -39,7 +39,7 @@
   audio: 44286d313d8caf6ee2b05e1699378336.mp3
   lyrics: lyrics.txt
 - id: 0aec41b692c55191ede4bb688213b276
-  title: White Rabbit (Stereo Version)
+  title: White Rabbit
   artist: Jefferson Airplane
   album: Surrealistic Pillow
   duration: 152
@@ -47,9 +47,9 @@
   audio: 0aec41b692c55191ede4bb688213b276.mp3
   lyrics: lyrics.txt
 - id: 0954e7808c0c47e2aae22c1e888d3dc1
-  title: Tomorrow Never Knows (Remastered)
+  title: Tomorrow Never Knows
   artist: The Beatles
-  album: Revolver (Remastered)
+  album: Revolver
   duration: 177
   cover: 109951163192719512.jpg
   audio: 0954e7808c0c47e2aae22c1e888d3dc1.mp3
