@@ -3,14 +3,11 @@ import styled from "styled-components"
 import axios from "axios"
 import { LyricPlayer, BackgroundRender } from "@applemusic-like-lyrics/react"
 import { CONST } from "../util"
+import { Progress, Spin } from "antd"
 
 /**
  * TODO
- * 1. add click event listener to lyric lines
- * 2. add progress bar
  * 3. format player control group buttons
- * 4. add playlist effect for playing item
- * 5. add playlist item as button to play the song
  */
 
 const MUSIC_PLAYER_HEIGHT = "33em"
@@ -162,16 +159,27 @@ const PlayerArtist = styled.div`
 `
 
 const PlayerProgressBar = styled.div`
-  padding: 0.5em 0;
+  /* padding: 0.5em 0; */
+  margin-top: 4px;
+  opacity: 0.9;
 `
 
 const PlayerRemainingTime = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: -4px;
 `
 
 const RemainingTime = styled.div`
   font-size: 14px;
+`
+
+const LoadingContainer = styled.div`
+  height: ${MUSIC_PLAYER_HEIGHT};
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  margin: auto;
 `
 
 const MusicPlayer = ({ id }) => {
@@ -271,6 +279,7 @@ const MusicPlayer = ({ id }) => {
     let prev_line = null
 
     for (let line of lines) {
+      line = line.trim().replace(/\u00a0/g, " ")
       const match = lrc_pattern.exec(line)
 
       if (!match) continue
@@ -469,14 +478,25 @@ const MusicPlayer = ({ id }) => {
             lyricLines={currentLyric}
             currentTime={currentTime}
             onLyricLineClick={(evt) => {
-              // console.log(evt)
+              const updated_time = evt.line.lyricLine.startTime
+
+              audio.current.currentTime = updated_time / 1000
+              setCurrentTime(updated_time)
             }}
           />
 
           <PlayerControlGroups>
             <PlayerTitle>{`${songs[currentSong].title}`}</PlayerTitle>
             <PlayerArtist>{`${songs[currentSong].artist}`}</PlayerArtist>
-            <PlayerProgressBar>{`some progress bar here`}</PlayerProgressBar>
+            <PlayerProgressBar>
+              <Progress
+                percent={
+                  (currentTime / (songs[currentSong].duration * 1000)) * 100
+                }
+                showInfo={false}
+                strokeColor={"white"}
+              />
+            </PlayerProgressBar>
             <PlayerRemainingTime>
               <RemainingTime>{`${format_time(currentTime)}`}</RemainingTime>
               <RemainingTime>{`-${get_remaining_time(
@@ -499,11 +519,15 @@ const MusicPlayer = ({ id }) => {
 
   return (
     <MusicPlayerContainer>
-      {!loading && (
+      {!loading ? (
         <>
           <Playlist songs={songs} />
           <PlayerControls songs={songs} id={id} />
         </>
+      ) : (
+        <LoadingContainer>
+          <Spin style={{ alignSelf: "center" }} />
+        </LoadingContainer>
       )}
     </MusicPlayerContainer>
   )
