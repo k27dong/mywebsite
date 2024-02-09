@@ -4,6 +4,15 @@ import axios from "axios"
 import { LyricPlayer, BackgroundRender } from "@applemusic-like-lyrics/react"
 import { CONST } from "../util"
 
+/**
+ * TODO
+ * 1. add click event listener to lyric lines
+ * 2. add progress bar
+ * 3. format player control group buttons
+ * 4. add playlist effect for playing item
+ * 5. add playlist item as button to play the song
+ */
+
 const MUSIC_PLAYER_HEIGHT = "33em"
 const LRYIC_CONTROl_RADIO = 0.75 // 80%: lyric, 20%: control
 
@@ -124,6 +133,8 @@ const PlayerLyric = styled(LyricPlayer)`
 const PlayerButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: auto;
+  padding-bottom: 0.5em;
 `
 
 const PlayerControlGroups = styled.div`
@@ -136,6 +147,8 @@ const PlayerControlGroups = styled.div`
   width: 100%;
   padding-right: 5%;
   line-height: 1;
+  display: flex;
+  flex-direction: column;
 `
 
 const PlayerTitle = styled.div`
@@ -148,9 +161,18 @@ const PlayerArtist = styled.div`
   font-size: 14px;
 `
 
-const PlayerProgressBar = styled.div``
+const PlayerProgressBar = styled.div`
+  padding: 0.5em 0;
+`
 
-const PlayerRemainingTime = styled.div``
+const PlayerRemainingTime = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const RemainingTime = styled.div`
+  font-size: 14px;
+`
 
 const MusicPlayer = ({ id }) => {
   const [loading, setLoading] = useState(true)
@@ -330,6 +352,18 @@ const MusicPlayer = ({ id }) => {
     }
   }
 
+  const format_time = (ms) => {
+    const minutes = Math.floor(ms / 60000)
+    const seconds = ((ms % 60000) / 1000).toFixed(0)
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds
+    return `${formattedMinutes}:${formattedSeconds}`
+  }
+
+  const get_remaining_time = (ms, duration) => {
+    return format_time(duration * 1000 - ms)
+  }
+
   const Playlist = ({ songs }) => {
     return (
       <PlaylistContainer>
@@ -442,8 +476,14 @@ const MusicPlayer = ({ id }) => {
           <PlayerControlGroups>
             <PlayerTitle>{`${songs[currentSong].title}`}</PlayerTitle>
             <PlayerArtist>{`${songs[currentSong].artist}`}</PlayerArtist>
-            <PlayerProgressBar>{`${currentTime}`}</PlayerProgressBar>
-            <PlayerRemainingTime>{`${songs[currentSong].duration}`}</PlayerRemainingTime>
+            <PlayerProgressBar>{`some progress bar here`}</PlayerProgressBar>
+            <PlayerRemainingTime>
+              <RemainingTime>{`${format_time(currentTime)}`}</RemainingTime>
+              <RemainingTime>{`-${get_remaining_time(
+                currentTime,
+                songs[currentSong].duration
+              )}`}</RemainingTime>
+            </PlayerRemainingTime>
             <PlayerButtonContainer>
               <button onClick={previous}>Previous</button>
               <button onClick={isPlaying ? pause : play}>
