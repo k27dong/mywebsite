@@ -113,7 +113,6 @@ const PlayerLyric = styled(LyricPlayer)`
   position: absolute;
   top: 0;
   left: 0;
-  margin: 1em 0 0.2em 0;
   right: 0;
   bottom: 0;
   overflow: hidden;
@@ -435,9 +434,9 @@ const MusicPlayer = ({ id }) => {
           <PlayerLyric
             lyricLines={currentLyric}
             currentTime={currentTime}
-            // onLyricLineClick={(evt) => {
-            //   this should jump to the time of the clicked lyric
-            // }}
+            onLyricLineClick={(evt) => {
+              // console.log(evt)
+            }}
           />
 
           <PlayerControlGroups>
