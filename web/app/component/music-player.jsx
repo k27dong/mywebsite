@@ -4,9 +4,12 @@ import axios from "axios"
 import { LyricPlayer, BackgroundRender } from "@applemusic-like-lyrics/react"
 import { CONST } from "../util"
 
+const MUSIC_PLAYER_HEIGHT = "33em"
+const LRYIC_CONTROl_RADIO = 0.75 // 80%: lyric, 20%: control
+
 const MusicPlayerContainer = styled.div`
   display: flex;
-  width: 85%;
+  width: 100%;
   margin: 2em auto;
 
   /* Border & shadow */
@@ -17,15 +20,14 @@ const MusicPlayerContainer = styled.div`
 `
 
 const PlaylistContainer = styled.div`
-  width: 50%;
+  width: 45%;
   overflow-y: scroll;
-  max-height: 30em;
+  max-height: ${MUSIC_PLAYER_HEIGHT};
   scrollbar-width: none;
 `
 
 const PlayerControlContainer = styled.div`
-  width: 50%;
-
+  width: 55%;
   display: flex;
   flex-direction: column;
 `
@@ -93,7 +95,7 @@ const PlayerLyricContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 25em;
+  height: ${MUSIC_PLAYER_HEIGHT};
 `
 
 const PlayerBackground = styled(BackgroundRender)`
@@ -103,7 +105,7 @@ const PlayerBackground = styled(BackgroundRender)`
   right: 0;
   bottom: 0;
 
-  border-radius: 0 6px 0 0;
+  border-radius: 0 6px 6px 0;
   overflow: hidden;
 `
 
@@ -111,21 +113,45 @@ const PlayerLyric = styled(LyricPlayer)`
   position: absolute;
   top: 0;
   left: 0;
+  margin: 1em 0 0.2em 0;
   right: 0;
   bottom: 0;
   overflow: hidden;
+  height: ${LRYIC_CONTROl_RADIO * 100}%;
+  line-height: 1.15;
+  font-weight: 500;
 `
 
-const PlayerControlGroups = styled.div`
+const PlayerButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `
 
-const PlayerTitle = styled.div``
+const PlayerControlGroups = styled.div`
+  z-index: 1;
+  color: white;
+  position: absolute;
+  top: ${LRYIC_CONTROl_RADIO * 100}%;
+  height: ${(1 - LRYIC_CONTROl_RADIO) * 100}%;
+  padding-left: 5%;
+  width: 100%;
+  padding-right: 5%;
+  line-height: 1;
+`
 
-const PlayerArtist = styled.div``
+const PlayerTitle = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+  margin: 1em 0 0.2em 0;
+`
+
+const PlayerArtist = styled.div`
+  font-size: 14px;
+`
 
 const PlayerProgressBar = styled.div``
+
+const PlayerRemainingTime = styled.div``
 
 const MusicPlayer = ({ id }) => {
   const [loading, setLoading] = useState(true)
@@ -394,7 +420,7 @@ const MusicPlayer = ({ id }) => {
       audio.current.addEventListener("timeupdate", handleTimeUpdate)
 
       return () => {
-        audio.current.removeEventListener("timeupdate", handleTimeUpdate)
+        audio?.current?.removeEventListener("timeupdate", handleTimeUpdate)
       }
     }, [isPlaying, currentSong])
 
@@ -413,18 +439,21 @@ const MusicPlayer = ({ id }) => {
             //   this should jump to the time of the clicked lyric
             // }}
           />
+
+          <PlayerControlGroups>
+            <PlayerTitle>{`${songs[currentSong].title}`}</PlayerTitle>
+            <PlayerArtist>{`${songs[currentSong].artist}`}</PlayerArtist>
+            <PlayerProgressBar>{`${currentTime}`}</PlayerProgressBar>
+            <PlayerRemainingTime>{`${songs[currentSong].duration}`}</PlayerRemainingTime>
+            <PlayerButtonContainer>
+              <button onClick={previous}>Previous</button>
+              <button onClick={isPlaying ? pause : play}>
+                {isPlaying ? "Pause" : "Play"}
+              </button>
+              <button onClick={next}>Next</button>
+            </PlayerButtonContainer>
+          </PlayerControlGroups>
         </PlayerLyricContainer>
-
-        <PlayerTitle>{`${songs[currentSong].title}`}</PlayerTitle>
-        <PlayerArtist>{`${songs[currentSong].artist}`}</PlayerArtist>
-
-        <PlayerControlGroups>
-          <button onClick={previous}>Previous</button>
-          <button onClick={isPlaying ? pause : play}>
-            {isPlaying ? "Pause" : "Play"}
-          </button>
-          <button onClick={next}>Next</button>
-        </PlayerControlGroups>
       </PlayerControlContainer>
     )
   }
