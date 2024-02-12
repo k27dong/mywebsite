@@ -14,6 +14,21 @@ import ScrollTop from "./scroll-top"
 import ProjectMain from "./project/project-main"
 
 const App = () => {
+  console.log(
+    "\n Built with:\n\n" +
+      " %c Frontend " +
+      " %c React " +
+      "%c \n\n" +
+      " %c Backend  " +
+      " %c Rust  " +
+      "\n",
+    "color: #fff; background: #030307; padding:5px 0;",
+    "color: #000; background: #61dafb; padding:5px 0;",
+    "color: #fff; background: #fff; padding:5px 0;",
+    "color: #fff; background: #030307; padding:5px 0;",
+    "color: #000; background: #dea584; padding:5px 0;"
+  )
+
   return (
     <ConfigProvider
       theme={{
