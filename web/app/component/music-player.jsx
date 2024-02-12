@@ -4,14 +4,15 @@ import axios from "axios"
 import { LyricPlayer, BackgroundRender } from "@applemusic-like-lyrics/react"
 import { CONST } from "../util"
 import { Progress, Spin } from "antd"
-
-/**
- * TODO
- * 3. format player control group buttons
- */
+import {
+  ForwardOutlined,
+  BackwardOutlined,
+  PauseOutlined,
+  CaretRightOutlined,
+} from "@ant-design/icons"
 
 const MUSIC_PLAYER_HEIGHT = "33em"
-const LRYIC_CONTROl_RADIO = 0.75 // 80%: lyric, 20%: control
+const LRYIC_CONTROl_RADIO = 0.75 // 75%: lyric, 25%: control
 
 const MusicPlayerContainer = styled.div`
   display: flex;
@@ -70,7 +71,7 @@ const PlaylistAlbum = styled.img`
   border: none;
   width: 3rem;
   height: 3rem;
-  cursor: pointer;
+  /* cursor: pointer; */
   position: relative;
   transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
   box-shadow: 0 2px 10px rgba(20, 0, 208, 0.29);
@@ -130,8 +131,9 @@ const PlayerLyric = styled(LyricPlayer)`
 const PlayerButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: auto;
-  padding-bottom: 0.5em;
+  width: 60%;
+  margin: auto;
+  margin-top: -4px;
 `
 
 const PlayerControlGroups = styled.div`
@@ -180,6 +182,32 @@ const LoadingContainer = styled.div`
   display: flex;
   justify-content: center;
   margin: auto;
+`
+
+const PlayerControlButton = styled.button`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 3em;
+  height: 3em;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(0.95);
+  }
+
+  span {
+    font-size: 2.5em;
+  }
 `
 
 const MusicPlayer = ({ id }) => {
@@ -386,7 +414,7 @@ const MusicPlayer = ({ id }) => {
                   alt={song.title}
                 />
               </PlaylistItemAlbum>
-              <PlaylistIndex>{index}</PlaylistIndex>
+              <PlaylistIndex>{index + 1}</PlaylistIndex>
               <PlaylistItemInfo>
                 <PlaylistSongTitle>{song.title}</PlaylistSongTitle>
                 <PlaylistSongArtist>{`${song.artist} • ${song.album}`}</PlaylistSongArtist>
@@ -505,11 +533,19 @@ const MusicPlayer = ({ id }) => {
               )}`}</RemainingTime>
             </PlayerRemainingTime>
             <PlayerButtonContainer>
-              <button onClick={previous}>Previous</button>
-              <button onClick={isPlaying ? pause : play}>
-                {isPlaying ? "Pause" : "Play"}
-              </button>
-              <button onClick={next}>Next</button>
+              <PlayerControlButton onClick={previous}>
+                <BackwardOutlined />
+              </PlayerControlButton>
+              <PlayerControlButton onClick={isPlaying ? pause : play}>
+                {isPlaying ? (
+                  <PauseOutlined style={{ fontSize: "2em" }} />
+                ) : (
+                  <CaretRightOutlined />
+                )}
+              </PlayerControlButton>
+              <PlayerControlButton onClick={next}>
+                <ForwardOutlined />
+              </PlayerControlButton>
             </PlayerButtonContainer>
           </PlayerControlGroups>
         </PlayerLyricContainer>
