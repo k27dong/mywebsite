@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use std::{collections::HashMap, fmt, fs};
+use std::{collections::HashMap, fs};
 
 use crate::parser;
 
@@ -37,17 +37,7 @@ impl Chapter {
     }
 }
 
-impl fmt::Display for BookNoteFrontmatter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Title: {}\nAuthor: {}\nFormat: {}\nID: {}\nNum: {}\nRating: {}\nTags: {:?}\n",
-            self.title, self.author, self.format, self.id, self.num, self.rating, self.tags
-        )
-    }
-}
-
-pub fn load_book_note() -> HashMap<String, BookNote> {
+pub fn load_booknote() -> HashMap<String, BookNote> {
     let mut posts = HashMap::new();
     let paths = glob::glob("docs/salt/*.md").expect("Failed to read glob pattern");
 

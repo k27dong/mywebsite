@@ -3,6 +3,7 @@ use actix_files as fs;
 use actix_web::{get, http, post, web, App, HttpResponse, HttpServer, Responder};
 use blogpost::BlogPost;
 use booknote::BookNote;
+use playlist::Playlist;
 use project::Project;
 use serde_json::json;
 use std::collections::HashMap;
@@ -12,12 +13,14 @@ use crate::parser::parse_date;
 mod blogpost;
 mod booknote;
 mod parser;
+mod playlist;
 mod project;
 
 struct AppState {
     posts: HashMap<u32, BlogPost>,
     notes: HashMap<String, BookNote>,
     projects: Vec<Project>,
+    playlists: HashMap<u32, Playlist>,
 }
 
 #[get("/health")]
@@ -137,6 +140,18 @@ async fn get_project_list(data: web::Data<AppState>) -> impl Responder {
     HttpResponse::Ok().json(projects)
 }
 
+#[get("/api/get_playlist/{id}")]
+async fn get_playlist(data: web::Data<AppState>, path: web::Path<u32>) -> impl Responder {
+    let playlists = &data.playlists;
+    let id = path.into_inner();
+
+    if let Some(playlist) = playlists.get(&id) {
+        HttpResponse::Ok().json(playlist)
+    } else {
+        HttpResponse::NotFound().body("Playlist not found")
+    }
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let port = std::env::var("PORT").unwrap_or(String::from("5000"));
@@ -144,6 +159,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         let cors = Cors::default()
             .allowed_origin("http://localhost:5173")
+            .allowed_origin("http://127.0.0.1:5173")
             .allowed_origin("https://kefan.me")
             .allowed_origin("https://www.kefan.me")
             .allowed_methods(vec!["GET"])
@@ -154,9 +170,10 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(cors)
             .app_data(web::Data::new(AppState {
-                posts: blogpost::load_blog_post(),
-                notes: booknote::load_book_note(),
+                posts: blogpost::load_blogpost(),
+                notes: booknote::load_booknote(),
                 projects: project::load_projects(),
+                playlists: playlist::load_playlist(),
             }))
             .service(health)
             .service(ready)
@@ -166,6 +183,7 @@ async fn main() -> std::io::Result<()> {
             .service(get_salt_list)
             .service(get_total_note_num)
             .service(get_book_note)
+            .service(get_playlist)
             .service(
                 fs::Files::new("/", "./dist")
                     .index_file("index.html")
