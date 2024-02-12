@@ -3,6 +3,7 @@ import styled from "styled-components"
 import axios from "axios"
 import { LyricPlayer, BackgroundRender } from "@applemusic-like-lyrics/react"
 import { CONST } from "../util"
+import { isMobile } from "react-device-detect"
 import { Progress, Spin } from "antd"
 import {
   ForwardOutlined,
@@ -13,6 +14,8 @@ import {
 
 const MUSIC_PLAYER_HEIGHT = "33em"
 const LRYIC_CONTROl_RADIO = 0.75 // 75%: lyric, 25%: control
+const MOBILE_PLAYLIST_HEIGHT = "24em"
+const MOBILE_LYRIC_CONTROL_RATIO = 0.7
 
 const MusicPlayerContainer = styled.div`
   display: flex;
@@ -24,6 +27,11 @@ const MusicPlayerContainer = styled.div`
   background: #fff;
   box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.3),
     0 0 25px -15px rgba(0, 0, 0, 0.2);
+
+  @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+    flex-direction: column;
+    width: 90%;
+  }
 `
 
 const PlaylistContainer = styled.div`
@@ -31,12 +39,22 @@ const PlaylistContainer = styled.div`
   overflow-y: scroll;
   max-height: ${MUSIC_PLAYER_HEIGHT};
   scrollbar-width: none;
+
+  @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+    width: 100%;
+    max-height: ${MOBILE_PLAYLIST_HEIGHT};
+    border-radius: 0 0 10px 10px;
+  }
 `
 
 const PlayerControlContainer = styled.div`
   width: 55%;
   display: flex;
   flex-direction: column;
+
+  @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+    width: 100%;
+  }
 `
 
 const PlaylistItemContainer = styled.div`
@@ -47,6 +65,10 @@ const PlaylistItemContainer = styled.div`
   background: #ffffff;
   padding: 0.2rem;
   border-bottom: 1px solid #eee;
+
+  &:last-child {
+    border-bottom: none;
+  }
 `
 const PlaylistItem = styled.div`
   display: flex;
@@ -114,6 +136,10 @@ const PlayerBackground = styled(BackgroundRender)`
 
   border-radius: 0 6px 6px 0;
   overflow: hidden;
+
+  @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+    border-radius: 10px 10px 0 0;
+  }
 `
 
 const PlayerLyric = styled(LyricPlayer)`
@@ -126,6 +152,10 @@ const PlayerLyric = styled(LyricPlayer)`
   height: ${LRYIC_CONTROl_RADIO * 100}%;
   line-height: 1.15;
   font-weight: 500;
+
+  @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+    height: ${MOBILE_LYRIC_CONTROL_RATIO * 100}%;
+  }
 `
 
 const PlayerButtonContainer = styled.div`
@@ -148,6 +178,11 @@ const PlayerControlGroups = styled.div`
   line-height: 1;
   display: flex;
   flex-direction: column;
+
+  @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+    top: ${MOBILE_LYRIC_CONTROL_RATIO * 100}%;
+    height: ${(1 - MOBILE_LYRIC_CONTROL_RATIO) * 100}%;
+  }
 `
 
 const PlayerTitle = styled.div`
@@ -556,10 +591,17 @@ const MusicPlayer = ({ id }) => {
   return (
     <MusicPlayerContainer>
       {!loading ? (
-        <>
-          <Playlist songs={songs} />
-          <PlayerControls songs={songs} id={id} />
-        </>
+        isMobile ? (
+          <>
+            <PlayerControls songs={songs} id={id} />
+            <Playlist songs={songs} />
+          </>
+        ) : (
+          <>
+            <Playlist songs={songs} />
+            <PlayerControls songs={songs} id={id} />
+          </>
+        )
       ) : (
         <LoadingContainer>
           <Spin style={{ alignSelf: "center" }} />

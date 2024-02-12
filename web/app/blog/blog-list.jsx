@@ -79,8 +79,8 @@ const BlogList = () => {
       padding-right: 30px;
 
       @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
-        width: 68px;
-        padding-right: 14px;
+        width: 70px;
+        padding-right: 13px;
       }
     `
 
