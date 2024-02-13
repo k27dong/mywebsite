@@ -1,5 +1,3 @@
-// const RESUME_FILE = "Kevin_Dong_Resume.pdf"
-
 const CONST = {
   GITHUB: "https://github.com/k27dong",
   GITHUB_USERNAME: "k27dong",
@@ -7,10 +5,11 @@ const CONST = {
   MAIL: "mailto:me@kefan.me",
   CIBC: "https://www.cibc.com/",
   UWENG: "https://uwaterloo.ca/engineering/",
+  UWCE: "https://uwaterloo.ca/electrical-computer-engineering/",
   SAFYRELABS: "https://www.safyrelabs.com/",
-  POINTCLICKCARE: "https://pointclickcare.com",
+  POINTCLICKCARE: "https://pointclickcare.com/",
   BETTERUP: "https://www.betterup.com/",
-  AUTODESK: "https://www.autodesk.ca",
+  AUTODESK: "https://www.autodesk.com/",
   HOST: "http://localhost:5000/",
   CURRENTYEAR: new Date().getFullYear(),
   BUYMECOFFEE: "https://www.buymeacoffee.com/kefan",

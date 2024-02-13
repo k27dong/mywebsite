@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { CONST } from "./util"
 import Link from "./component/link"
+import { isMobile } from "react-device-detect"
 
 const Container = styled.p`
   font-size: 16px;
@@ -10,11 +11,15 @@ const Container = styled.p`
 const Intro = () => {
   return (
     <Container>
-      <Link href={CONST.UWENG}>University of Waterloo</Link>. Previously{" "}
-      <Link href={CONST.AUTODESK}>Autodesk</Link>,{" "}
-      <Link href={CONST.BETTERUP}>BetterUp</Link>,{" "}
-      <Link href={CONST.POINTCLICKCARE}>PointClickCare</Link>,{" "}
-      <Link href={CONST.SAFYRELABS}>Safyre Labs</Link>.
+      Software Engineer at <Link href={CONST.AUTODESK}>Autodesk</Link>.{" "}
+      {isMobile && (
+        <>
+          <br />
+          <br />
+        </>
+      )}
+      University of Waterloo <Link href={CONST.UWCE}>Computer Engineering</Link>{" "}
+      alumnus, Class of 2023.
     </Container>
   )
 }
