@@ -57,7 +57,7 @@ impl BookNoteContentParser for WereadParser {
             chapters.push(current_chapter);
         }
 
-        BookNoteContent { chapters }
+        chapters
     }
 }
 
@@ -114,7 +114,7 @@ impl BookNoteContentParser for Weread2Parser {
             chapters.push(current_chapter);
         }
 
-        BookNoteContent { chapters }
+        chapters
     }
 }
 

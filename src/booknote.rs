@@ -26,10 +26,7 @@ pub struct Chapter {
     pub notes: Vec<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
-pub struct BookNoteContent {
-    pub chapters: Vec<Chapter>,
-}
+pub type BookNoteContent = Vec<Chapter>;
 
 impl Chapter {
     pub fn is_empty(&self) -> bool {
