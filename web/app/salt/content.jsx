@@ -78,7 +78,7 @@ const SaltContent = (props) => {
 
   const chapter_block = (note, block_index) => {
     return (
-      <>
+      <Fragment key={`chapter_block_${block_index}`}>
         <ChapterTitle key={`chapter_title_${block_index}`}>
           {note.name}
         </ChapterTitle>
@@ -102,7 +102,7 @@ const SaltContent = (props) => {
             </NoteWrapper>
           )
         })}
-      </>
+      </Fragment>
     )
   }
 
@@ -114,7 +114,7 @@ const SaltContent = (props) => {
         <Wrapper>
           <Title>{content.title}</Title>
           <Author>{content.author}</Author>
-          {content.notes.chapters.map((note, i) => chapter_block(note, i))}
+          {content.notes.map((note, i) => chapter_block(note, i))}
         </Wrapper>
       )}
     </BlogPage>
