@@ -115,7 +115,7 @@ fn main() -> io::Result<()> {
                 }
 
                 // fix is done, now write back to file
-                let fixed_part = fixed_content.join("\n");
+                let fixed_part = fixed_content.join("\n") + "\n";
                 let reconstructed_doc = format!("{}---{}---{}", parts[0], parts[1], fixed_part);
 
                 match fs::write(path, reconstructed_doc) {
