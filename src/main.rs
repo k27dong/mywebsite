@@ -3,6 +3,7 @@ use actix_files as fs;
 use actix_web::{get, http, post, web, App, HttpResponse, HttpServer, Responder};
 use blogpost::BlogPost;
 use booknote::BookNote;
+use gphrasehandler::PhraseParams;
 use playlist::Playlist;
 use project::Project;
 use serde_json::json;
@@ -12,6 +13,7 @@ use crate::parser::parse_date;
 
 mod blogpost;
 mod booknote;
+mod gphrasehandler;
 mod parser;
 mod playlist;
 mod project;
@@ -21,6 +23,7 @@ struct AppState {
     notes: HashMap<String, BookNote>,
     projects: Vec<Project>,
     playlists: HashMap<u32, Playlist>,
+    gsheet_config: gphrasehandler::Config,
 }
 
 #[get("/health")]
@@ -152,6 +155,21 @@ async fn get_playlist(data: web::Data<AppState>, path: web::Path<u32>) -> impl R
     }
 }
 
+#[get("/api/get_phrase")]
+async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) -> impl Responder {
+    let phrase = gphrasehandler::get_gphrase(
+        query.temp,
+        query.y,
+        query.m,
+        query.d,
+        query.days,
+        &data.gsheet_config,
+    )
+    .await;
+
+    HttpResponse::Ok().content_type("text/plain").body(phrase)
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let port = std::env::var("PORT").unwrap_or(String::from("5000"));
@@ -174,6 +192,7 @@ async fn main() -> std::io::Result<()> {
                 notes: booknote::load_booknote(),
                 projects: project::load_projects(),
                 playlists: playlist::load_playlist(),
+                gsheet_config: gphrasehandler::load_gsheet_config(),
             }))
             .service(health)
             .service(ready)
@@ -184,6 +203,7 @@ async fn main() -> std::io::Result<()> {
             .service(get_total_note_num)
             .service(get_book_note)
             .service(get_playlist)
+            .service(get_phrase)
             .service(
                 fs::Files::new("/", "./dist")
                     .index_file("index.html")

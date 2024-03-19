@@ -35,3 +35,6 @@ update_docs_rss.sh
 
 # default output
 new.md
+
+# Google Sheet credentials
+gsheet_creds.json
