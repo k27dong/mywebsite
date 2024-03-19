@@ -42,6 +42,8 @@ pub async fn get_gphrase(
     )
     .expect("Parsing failed");
 
+    println!("Secret: {:?}", secret);
+
     let client = hyper::Client::builder().build::<_, hyper::Body>(
         hyper_rustls::HttpsConnectorBuilder::new()
             .with_native_roots()
