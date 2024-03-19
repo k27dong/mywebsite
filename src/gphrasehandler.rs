@@ -1,7 +1,8 @@
-use std::env;
-
 use google_sheets4::{hyper, hyper_rustls, oauth2, Sheets};
+use rand::seq::SliceRandom;
 use serde::{Deserialize, Serialize};
+use std::env;
+use std::fs;
 
 #[derive(Deserialize)]
 pub struct PhraseParams {
@@ -25,35 +26,21 @@ pub struct Config {
     pub token_uri: String,
     pub auth_provider_x509_cert_url: String,
     pub client_x509_cert_url: String,
+    pub spreadsheet_id: String,
 }
 
-impl Config {
-    pub fn new() -> Config {
-        Config {
-            key_type: String::from("service_account"),
-            project_id: get_env_var("PROJECT_ID"),
-            private_key_id: get_env_var("PRIVATE_KEY_ID"),
-            private_key: get_env_var("PRIVATE_KEY"),
-            client_email: get_env_var("CLIENT_EMAIL"),
-            client_id: get_env_var("CLIENT_ID"),
-            auth_uri: String::from("https://accounts.google.com/o/oauth2/auth"),
-            token_uri: String::from("https://oauth2.googleapis.com/token"),
-            auth_provider_x509_cert_url: String::from("https://www.googleapis.com/oauth2/v1/certs"),
-            client_x509_cert_url: get_env_var("CERT_URL"),
-        }
-    }
-}
-
-pub async fn get_gphrase(temperature: i32, year: i32, month: i32, day: i32, since: i32) -> String {
-    let secret = if let Ok(_) = env::var("PORT") {
-        let config = Config::new();
-        let json_string = serde_json::to_string(&config).expect("Serialization failed");
-        oauth2::parse_service_account_key(&json_string).expect("Parsing failed")
-    } else {
-        oauth2::read_service_account_key("gsheet_creds.json")
-            .await
-            .expect("Reading failed")
-    };
+pub async fn get_gphrase(
+    _temperature: i32,
+    _year: i32,
+    _month: i32,
+    _day: i32,
+    _since: i32,
+    config: &Config,
+) -> String {
+    let secret = oauth2::parse_service_account_key(
+        &serde_json::to_string(config).expect("Serialization failed"),
+    )
+    .expect("Parsing failed");
 
     let client = hyper::Client::builder().build::<_, hyper::Body>(
         hyper_rustls::HttpsConnectorBuilder::new()
@@ -71,25 +58,67 @@ pub async fn get_gphrase(temperature: i32, year: i32, month: i32, day: i32, sinc
 
     let hub = Sheets::new(client.clone(), auth);
 
-    // TODO retrieve data from the spreadsheet strategically
-    let sheet = hub
+    // for now, we just retrieve any cell from the B column
+    // this strategy may change in the future to include specific dates
+    let result = hub
         .spreadsheets()
-        .values_get(get_env_var("SPREADSHEET_ID").as_str(), "B3")
+        .values_get(config.spreadsheet_id.as_str(), "B:B")
         .doit()
         .await;
 
-    match sheet {
-        Ok(res) => {
-            println!("Response: {:?}", res);
+    match result {
+        Ok((_, value_range)) => {
+            // Assuming each cell in column B contains a string
+            let values = value_range
+                .values
+                .unwrap_or_else(Vec::new)
+                .iter()
+                .skip(1)
+                .map(|row| row[0].to_string())
+                .collect::<Vec<String>>();
+
+            let mut rng = rand::thread_rng();
+
+            values.choose(&mut rng).unwrap().to_string()
         }
-        Err(e) => {
-            println!("Error: {}", e);
+        Err(error) => {
+            println!("Error: {}", error);
+            "some code is broken".to_string()
         }
     }
-
-    "phrase".to_string()
 }
 
 fn get_env_var(name: &str) -> String {
-    env::var(name).unwrap_or_else(|_| panic!("{} is not found", name))
+    env::var(name).expect(&format!("{} environment variable not set", name))
+}
+
+pub fn load_gsheet_config() -> Config {
+    if let Ok(_) = env::var("PORT") {
+        Config {
+            key_type: String::from("service_account"),
+            project_id: get_env_var("PROJECT_ID"),
+            private_key_id: get_env_var("PRIVATE_KEY_ID"),
+            private_key: get_env_var("PRIVATE_KEY"),
+            client_email: get_env_var("CLIENT_EMAIL"),
+            client_id: get_env_var("CLIENT_ID"),
+            auth_uri: String::from("https://accounts.google.com/o/oauth2/auth"),
+            token_uri: String::from("https://oauth2.googleapis.com/token"),
+            auth_provider_x509_cert_url: String::from("https://www.googleapis.com/oauth2/v1/certs"),
+            client_x509_cert_url: get_env_var("CERT_URL"),
+            spreadsheet_id: get_env_var("SPREADSHEET_ID"),
+        }
+    } else {
+        serde_json::from_reader(
+            fs::File::open("gsheet_creds.json").expect("Failed to open gsheet_creds.json"),
+        )
+        .expect("Failed to parse gsheet_creds.json")
+    }
+}
+
+pub fn _format_gphrase(phrase: String) -> Vec<u8> {
+    let string = format!("8FJ20GMV{}", phrase);
+
+    // it is possible that C requires GB2312 encoding
+
+    string.into_bytes()
 }

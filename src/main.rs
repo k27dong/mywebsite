@@ -23,6 +23,7 @@ struct AppState {
     notes: HashMap<String, BookNote>,
     projects: Vec<Project>,
     playlists: HashMap<u32, Playlist>,
+    gsheet_config: gphrasehandler::Config,
 }
 
 #[get("/health")]
@@ -155,11 +156,16 @@ async fn get_playlist(data: web::Data<AppState>, path: web::Path<u32>) -> impl R
 }
 
 #[get("/api/get_phrase")]
-async fn get_phrase(query: web::Query<PhraseParams>) -> impl Responder {
-    let phrase =
-        gphrasehandler::get_gphrase(query.temp, query.y, query.m, query.d, query.days).await;
-
-    println!("phrase: {}", phrase);
+async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) -> impl Responder {
+    let phrase = gphrasehandler::get_gphrase(
+        query.temp,
+        query.y,
+        query.m,
+        query.d,
+        query.days,
+        &data.gsheet_config,
+    )
+    .await;
 
     HttpResponse::Ok().content_type("text/plain").body(phrase)
 }
@@ -186,6 +192,7 @@ async fn main() -> std::io::Result<()> {
                 notes: booknote::load_booknote(),
                 projects: project::load_projects(),
                 playlists: playlist::load_playlist(),
+                gsheet_config: gphrasehandler::load_gsheet_config(),
             }))
             .service(health)
             .service(ready)
