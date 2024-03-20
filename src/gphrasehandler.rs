@@ -78,8 +78,7 @@ pub async fn get_gphrase(
 
             let mut rng = rand::thread_rng();
 
-            // values.choose(&mut rng).unwrap().to_string()
-            values[2].to_string()
+            values.choose(&mut rng).unwrap().to_string()
         }
         Err(error) => {
             println!("Error: {}", error);
@@ -116,7 +115,7 @@ pub fn load_gsheet_config() -> Config {
 }
 
 pub fn format_gphrase(phrase: String) -> Vec<u8> {
-    let prefix_phrase = format!("8FJ20GMV{}", phrase);
+    let prefix_phrase = format!("8FJ20GMV{}", phrase.trim_matches('\"').replace("\\n", "\n"));
 
     let (cow, _, _) = GB18030.encode(&prefix_phrase);
 
