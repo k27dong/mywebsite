@@ -1,3 +1,4 @@
+use encoding_rs::GB18030;
 use google_sheets4::{hyper, hyper_rustls, oauth2, Sheets};
 use rand::seq::SliceRandom;
 use serde::{Deserialize, Serialize};
@@ -77,7 +78,8 @@ pub async fn get_gphrase(
 
             let mut rng = rand::thread_rng();
 
-            values.choose(&mut rng).unwrap().to_string()
+            // values.choose(&mut rng).unwrap().to_string()
+            values[2].to_string()
         }
         Err(error) => {
             println!("Error: {}", error);
@@ -113,10 +115,10 @@ pub fn load_gsheet_config() -> Config {
     }
 }
 
-pub fn _format_gphrase(phrase: String) -> Vec<u8> {
-    let string = format!("8FJ20GMV{}", phrase);
+pub fn format_gphrase(phrase: String) -> Vec<u8> {
+    let prefix_phrase = format!("8FJ20GMV{}", phrase);
 
-    // it is possible that C requires GB2312 encoding
+    let (cow, _, _) = GB18030.encode(&prefix_phrase);
 
-    string.into_bytes()
+    cow.into_owned()
 }

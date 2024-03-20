@@ -1219,6 +1219,7 @@ dependencies = [
  "chrono-tz",
  "colored",
  "difference",
+ "encoding_rs",
  "glob",
  "google-sheets4",
  "inquire",

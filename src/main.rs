@@ -167,6 +167,8 @@ async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) 
     )
     .await;
 
+    let phrase = gphrasehandler::format_gphrase(phrase);
+
     HttpResponse::Ok().content_type("text/plain").body(phrase)
 }
 
