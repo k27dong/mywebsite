@@ -67,7 +67,6 @@ pub async fn get_gphrase(
 
     match result {
         Ok((_, value_range)) => {
-            // Assuming each cell in column B contains a string
             let values = value_range
                 .values
                 .unwrap_or_else(Vec::new)
@@ -97,7 +96,7 @@ pub fn load_gsheet_config() -> Config {
             key_type: String::from("service_account"),
             project_id: get_env_var("PROJECT_ID"),
             private_key_id: get_env_var("PRIVATE_KEY_ID"),
-            private_key: get_env_var("PRIVATE_KEY"),
+            private_key: get_env_var("PRIVATE_KEY").replace("\\n", "\n"),
             client_email: get_env_var("CLIENT_EMAIL"),
             client_id: get_env_var("CLIENT_ID"),
             auth_uri: String::from("https://accounts.google.com/o/oauth2/auth"),
