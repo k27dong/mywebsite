@@ -59,7 +59,7 @@ pub async fn get_gphrase(
     let hub = Sheets::new(client.clone(), auth);
 
     // for now, we just retrieve any cell from the B column
-    // this strategy may change in the future to include specific dates
+    // this strategy may change in the future to include specific dates & events
     let result = hub
         .spreadsheets()
         .values_get(config.spreadsheet_id.as_str(), "B:B")
