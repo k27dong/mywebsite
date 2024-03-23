@@ -24,8 +24,7 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "build-frontend": "vite build",
-    "build-backend": "cargo build --release",
+    "build:dev": "vite build --mode development",
     "host": "vite --host"
   },
   "browserslist": {
