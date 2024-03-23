@@ -152,3 +152,69 @@ pub fn parse_booknote(frontmatter: &BookNoteFrontmatter, content_str: &str) -> B
 
     parser.parse(content_str)
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::blogpost::BlogPostFrontmatter;
+
+    use super::*;
+
+    #[test]
+    fn test_parse_date_success() {
+        let date = "2021-01-01 00:00:00";
+        let expected = 1609459200000;
+        let actual = parse_date(date);
+
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    #[should_panic(expected = "Failed to parse date")]
+    fn test_parse_date_panic() {
+        let date = "invalid date format";
+        parse_date(date);
+    }
+
+    #[test]
+    fn test_parse_blogpost_frontmatter_success() {
+        let blog_raw_input =
+            "\n---\ntitle: BlogTitle\nabbrlink: 12345\ndate: 2021-01-01 00:00:00\n---\nContent";
+        let (frontmatter, content) =
+            parse_frontmatter::<BlogPostFrontmatter>(blog_raw_input).unwrap();
+
+        assert_eq!(frontmatter.title, "BlogTitle");
+        assert_eq!(frontmatter.date, "2021-01-01 00:00:00");
+        assert_eq!(frontmatter.abbrlink, 12345);
+        assert_eq!(content, "Content");
+    }
+
+    #[test]
+    fn test_parse_booknote_frontmatter_success() {
+        let booknote_raw_input = "\n---\ntitle: BookTitle\nauthor: Author\nformat: weread2\nid: 54\nnum: 10\nrating: 9.2\ntags:\n- Tag1\n- Tag2\n- Tag3\n---\nContent";
+        let (frontmatter, content) =
+            parse_frontmatter::<BookNoteFrontmatter>(booknote_raw_input).unwrap();
+
+        assert_eq!(frontmatter.title, "BookTitle");
+        assert_eq!(frontmatter.author, "Author");
+        assert_eq!(frontmatter.format, "weread2");
+        assert_eq!(frontmatter.id, 54);
+        assert_eq!(frontmatter.num, 10);
+        assert_eq!(frontmatter.rating, "9.2");
+        assert_eq!(frontmatter.tags, vec!["Tag1", "Tag2", "Tag3"]);
+        assert_eq!(content, "Content");
+    }
+
+    #[test]
+    #[should_panic(expected = "No frontmatter found")]
+    fn test_parse_frontmatter_panic_no_frontmatter() {
+        let raw_input = "No frontmatter present";
+        parse_frontmatter::<BlogPostFrontmatter>(raw_input).unwrap();
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_parse_frontmatter_panic_invalid_type() {
+        let raw_input = "---\ntitle: \"BlogTitle123\"\nabbrlink: \"12345\"\ndate: \"2021-01-01 00:00:00\"\n---\nContent";
+        parse_frontmatter::<BlogPostFrontmatter>(raw_input).unwrap();
+    }
+}
