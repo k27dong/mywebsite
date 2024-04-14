@@ -10,7 +10,7 @@ import { CONST } from "./util"
 const Main = (props) => {
   const MainContainer = styled.div`
     margin: auto;
-    height: 100vh;
+    height: 95vh;
     justify-content: center;
     align-items: center;
     display: flex;
