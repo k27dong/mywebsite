@@ -65,7 +65,12 @@ const Main = (props) => {
           </MainLink>
           <MainLink onClick={() => props.history.push("/blog")}>BLOG</MainLink>
           <MainLink onClick={() => props.history.push("/salt")}>NOTE</MainLink>
-          <MainLink onClick={() => props.history.push("/todo")}>CV</MainLink>
+          {/* <MainLink onClick={() => props.history.push("/cv")}>CV</MainLink> */}
+          <MainLink
+            onClick={() => window.open(`Kevin_Dong_Resume.pdf`, "_blank")}
+          >
+            CV
+          </MainLink>
         </MainNavGroup>
 
         <MainLinkGroup>
