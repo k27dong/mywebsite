@@ -12,6 +12,7 @@ import Resume from "./files/resume"
 import AboutMain from "./about/about-main"
 import ScrollTop from "./scroll-top"
 import ProjectMain from "./project/project-main"
+import CV from "./cv"
 
 const App = () => {
   console.log(
@@ -72,6 +73,9 @@ const App = () => {
             <Route path="/project" exact>
               <ProjectMain />
             </Route>
+            {/* <Route path="/cv" exact>
+              <CV />
+            </Route> */}
             <Route path="/404">
               <NotFound />
             </Route>

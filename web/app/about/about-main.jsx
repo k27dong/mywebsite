@@ -9,6 +9,7 @@ import { CONST } from "../util"
 
 const LangSwitch = styled(Switch)`
   position: absolute;
+  right: 15%;
 `
 
 const ABOUTINFO = {

@@ -1,75 +1,89 @@
 import styled from "styled-components"
-import { Button } from "antd"
-import { CONST } from "./util"
 import { withRouter } from "react-router-dom"
-import { isBrowser } from "react-device-detect"
-import GithubCorner from "react-github-corner"
-import Intro from "./intro"
-
-const Name = styled.p`
-  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
-  font-weight: bold;
-  font-size: 3rem;
-  line-height: 1.25;
-  letter-spacing: -0.1rem;
-  color: ${CONST.COLORS.TITLE};
-  margin-bottom: 15px;
-`
-
-const Container = styled.div`
-  position: absolute;
-  top: 30%;
-  margin-left: 5%;
-`
-
-const LinkButton = styled(Button)`
-  margin-right: 12px;
-`
+import {
+  GithubOutlined,
+  FilePdfFilled,
+  LinkedinFilled,
+} from "@ant-design/icons"
+import { CONST } from "./util"
 
 const Main = (props) => {
-  const toPage = (page) => {
-    switch (page) {
-      case "about":
-        props.history.push("/about")
-        break
-      case "blog":
-        props.history.push("/blog")
-        break
-      case "project":
-        props.history.push("/project")
-        break
-      case "github":
-        window.open(CONST.GITHUB, "_blank")
-        break
-      case "linkedin":
-        window.open(CONST.LINKEDIN, "_blank")
-        break
-      case "resume":
-        window.open(CONST.RESUME, "_blank")
-        break
-      default:
-        console.log("error")
+  const MainContainer = styled.div`
+    margin: auto;
+    height: 95vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-family: "Georgia", "Cambria", "Times New Roman", "Times", serif;
+  `
+
+  const Name = styled.div`
+    margin: 1rem 0;
+    font-weight: 700;
+    font-size: 1.85rem;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
     }
-  }
+  `
+
+  const MainNavGroup = styled.div``
+
+  const MainLink = styled.div`
+    text-align: center;
+    display: block;
+    background-color: transparent;
+    line-height: 1.625;
+    font-size: 1.1rem;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  `
+
+  const MainLinkGroup = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    flex-direction: row;
+    font-size: 1.1rem;
+    gap: 1rem;
+  `
 
   return (
     <>
-      <GithubCorner
-        target="_blank"
-        href="https://github.com/k27dong/mywebsite"
-      />
-      <Container>
-        <Name>Kefan Dong</Name>
-        <Intro />
-        <LinkButton onClick={() => toPage("about")}>About</LinkButton>
-        <LinkButton onClick={() => toPage("project")}>Projects</LinkButton>
-        <LinkButton onClick={() => toPage("github")}>Github</LinkButton>
-        <LinkButton onClick={() => toPage("linkedin")}>LinkedIn</LinkButton>
-        {isBrowser && (
-          <LinkButton onClick={() => toPage("resume")}>Resume</LinkButton>
-        )}
-      </Container>
+      <MainContainer>
+        <Name onClick={() => props.history.push("/about")}>Kefan Dong</Name>
+        <MainNavGroup>
+          <MainLink onClick={() => props.history.push("/project")}>
+            PROJECT
+          </MainLink>
+          <MainLink onClick={() => props.history.push("/blog")}>BLOG</MainLink>
+          <MainLink onClick={() => props.history.push("/salt")}>NOTE</MainLink>
+          {/* <MainLink onClick={() => props.history.push("/cv")}>CV</MainLink> */}
+          <MainLink
+            onClick={() => window.open(`Kevin_Dong_Resume.pdf`, "_blank")}
+          >
+            CV
+          </MainLink>
+        </MainNavGroup>
+
+        <MainLinkGroup>
+          <GithubOutlined onClick={() => window.open(CONST.GITHUB, "_blank")} />
+          <LinkedinFilled
+            onClick={() => window.open(CONST.LINKEDIN, "_blank")}
+          />
+          {/* <MailFilled /> */}
+          <FilePdfFilled
+            onClick={() => window.open(`Kevin_Dong_Resume.pdf`, "_blank")}
+          />
+        </MainLinkGroup>
+      </MainContainer>
     </>
   )
 }

@@ -1,17 +1,20 @@
 import { AboutTitle, AboutContent, SocialMedia } from "./font-book"
-import { MyAge } from "../util"
+import { MyAge, CONST } from "../util"
 import Link from "../component/link"
 
 const EnIntro = () => {
   return (
     <>
       <AboutContent>
-        I'm a graduate of the University of Waterloo in{" "}
-        <Link href="https://uwaterloo.ca/future-students/programs/computer-engineering">
-          Computer Engineering
-        </Link>
-        .
+        Software Engineer at <Link href={CONST.AUTODESK}>Autodesk</Link>.
       </AboutContent>
+
+      <AboutContent>
+        University of Waterloo{" "}
+        <Link href={CONST.UWCE}>Computer Engineering</Link> alumnus, Class of
+        2023.
+      </AboutContent>
+
       <AboutContent>
         I'm {MyAge()} years old, currently living in Toronto, Canada.
       </AboutContent>
