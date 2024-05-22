@@ -42,8 +42,8 @@ const Note = styled.div`
   margin: 0;
   padding: 10px;
   font-size: 17px;
-  font-family: "Noto Serif SC", "Noto Serif", "Source Han Serif SC",
-    "Source Han Serif", serif;
+  font-family: "Source Han Serif SC", "Source Han Serif", "Noto Serif SC",
+    "Noto Serif", serif;
   /* text-Indent: 2em; */
 `
 
