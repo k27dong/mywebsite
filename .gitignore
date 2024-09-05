@@ -38,3 +38,6 @@ new.md
 
 # Google Sheet credentials
 gsheet_creds.json
+
+# Astro
+/.astro

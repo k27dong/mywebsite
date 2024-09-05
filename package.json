@@ -1,42 +1,18 @@
 {
-  "name": "newblog",
-  "version": "2.0.0",
-  "private": true,
+  "name": "website",
   "type": "module",
-  "dependencies": {
-    "@applemusic-like-lyrics/react": "^0.0.15",
-    "@vitejs/plugin-react": "^3.1.0",
-    "antd": "^5.3.1",
-    "axios": "^1.3.4",
-    "clipboard-copy": "^4.0.1",
-    "history": "^5.3.0",
-    "react": "^18.2.0",
-    "react-device-detect": "^2.2.3",
-    "react-dom": "^18.2.0",
-    "react-github-corner": "^2.5.0",
-    "react-markdown": "^8.0.5",
-    "react-router-dom": "^5.2.0",
-    "react-syntax-highlighter": "^15.5.0",
-    "rehype-raw": "^6.1.1",
-    "styled-components": "^5.3.9",
-    "vite": "^4.2.0"
-  },
+  "version": "0.0.1",
   "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
-    "host": "vite --host"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@astrojs/mdx": "^3.1.5",
+    "@astrojs/rss": "^4.0.7",
+    "@astrojs/sitemap": "^3.1.6",
+    "astro": "^4.15.3"
   }
 }
