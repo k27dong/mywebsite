@@ -1,15 +1,25 @@
 ---
 import HeaderLink from "./HeaderLink.astro"
+import Nav from "./Nav.astro"
 import { SITE_TITLE } from "../consts"
 ---
 
-<header>
-  <nav>
-    <h2><a href="/">{SITE_TITLE}</a></h2>
-    <div class="internal-links">
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
-      <HeaderLink href="/about">About</HeaderLink>
+<header class="py-8 xl:py-12 text-black">
+  <div class="container mx-auto flex justify-between items-center">
+    <a href="/">
+      <h1 class="text-4xl font-semibold">
+        {SITE_TITLE}<span class="text-accent">.</span>
+      </h1>
+    </a>
+
+    {/* desktop nav */}
+    <div class="hidden xl:flex items-center gap-8">
+      <Nav />
     </div>
-  </nav>
+
+    {/* mobile nav */}
+    <div class="xl:hidden">
+      <Nav />
+    </div>
+  </div>
 </header>

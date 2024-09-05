@@ -1,23 +1,7 @@
 ---
-import BaseHead from "../components/BaseHead.astro"
-import Header from "../components/Header.astro"
-import { SITE_TITLE, SITE_DESCRIPTION, SITE_PREVIEW_IMAGE } from "../consts"
+import MainLayout from "../layouts/MainLayout.astro"
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead
-      title={SITE_TITLE}
-      description={SITE_DESCRIPTION}
-      image={SITE_PREVIEW_IMAGE}
-    />
-  </head>
-  <body>
-    <Header />
-    <main>
-      <h1>Hello World</h1>
-      <p class="text-3xl font-bold text-blue-500">test</p>
-    </main>
-  </body>
-</html>
+<MainLayout>
+  <h1 class="text-5xl font-bold mt-16">Kefan Dong</h1>
+</MainLayout>

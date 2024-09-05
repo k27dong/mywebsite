@@ -1,13 +1,8 @@
 ---
-import Layout from "../layouts/BlogPost.astro"
+import MainLayout from "../layouts/MainLayout.astro"
 ---
 
-<Layout
-  title="About Me"
-  abbrlink={123}
-  date={new Date("April 03 2000")}
-  disabled={false}
->
+<MainLayout>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo
@@ -19,4 +14,4 @@ import Layout from "../layouts/BlogPost.astro"
     Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed
     vulputate mi. Dictumst quisque sagittis purus sit amet.
   </p>
-</Layout>
+</MainLayout>
