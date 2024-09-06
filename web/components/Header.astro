@@ -1,25 +1,23 @@
 ---
-import HeaderLink from "./HeaderLink.astro"
 import Nav from "./Nav.astro"
-import { SITE_TITLE } from "../consts"
 ---
 
-<header class="py-8 xl:py-12 text-black">
-  <div class="container mx-auto flex justify-between items-center">
+<header class="p-6 w-screen top-0 fixed bg-navbar z-50">
+  <div class="flex flex-row justify-between lg:justify-around text-light">
     <a href="/">
-      <h1 class="text-4xl font-semibold">
-        {SITE_TITLE}<span class="text-accent">.</span>
+      <h1 class="text-3xl font-semibold">
+        kefan<span class="text-highlight">.</span>me
       </h1>
     </a>
 
     {/* desktop nav */}
-    <div class="hidden xl:flex items-center gap-8">
+    <div class="flex items-center text-xl">
       <Nav />
     </div>
 
-    {/* mobile nav */}
-    <div class="xl:hidden">
+    {/* mobile nav: todo */}
+    <!-- <div class="xl:hidden">
       <Nav />
-    </div>
+    </div> -->
   </div>
 </header>

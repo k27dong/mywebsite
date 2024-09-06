@@ -1,7 +1,51 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro"
+import { Icon } from "astro-icon/components"
+import { GITHUB_LINK, LINKEDIN_LINK, RESUME_FILE } from "../consts"
 ---
 
 <MainLayout>
-  <h1 class="text-5xl font-bold mt-16">Kefan Dong</h1>
+  <div class="flex flex-col justify-center items-center gap-8 pt-44">
+    <h1 class="text-5xl lg:text-6xl font-bold tracking-tight">Kefan Dong</h1>
+
+    <p class="text-center">
+      Software Engineer @
+      <a class="underline underline-offset-4" href="https://www.autodesk.com/">
+        Autodesk
+      </a>
+      <br />
+      <span class="mt-2 block"></span>
+      Alumni @
+      <a class="underline underline-offset-4" href="https://uwaterloo.ca/">
+        University of Waterloo
+      </a>
+    </p>
+
+    <div class="relative flex justify-center space-x-8">
+      <a
+        href={GITHUB_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-highlight transition-colors duration-200"
+      >
+        <Icon name="github" class="text-2xl" />
+      </a>
+      <a
+        href={LINKEDIN_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-highlight transition-colors duration-200"
+      >
+        <Icon name="linkedin-line" class="text-2xl" />
+      </a>
+      <a
+        href={RESUME_FILE}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-highlight transition-colors duration-200"
+      >
+        <Icon name="file-text" class="text-2xl" />
+      </a>
+    </div>
+  </div>
 </MainLayout>

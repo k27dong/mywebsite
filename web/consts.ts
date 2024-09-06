@@ -1,3 +1,6 @@
 export const SITE_TITLE = "kefan.me"
 export const SITE_DESCRIPTION = "Kefan Dong's personal website"
 export const SITE_PREVIEW_IMAGE = "/favicon.png"
+export const GITHUB_LINK = "https://github.com/k27dong"
+export const LINKEDIN_LINK = "https://www.linkedin.com/in/k27dong/"
+export const RESUME_FILE = "/Kevin Dong - Resume.pdf"

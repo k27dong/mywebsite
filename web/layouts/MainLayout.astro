@@ -19,16 +19,12 @@ const {
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead
-      title={title}
-      description={description}
-      image={image}
-    />
+    <BaseHead title={title} description={description} image={image} />
   </head>
 
-  <body class="font-jbmono">
+  <body class="font-jbmono bg-light">
     <Header />
-    <main>
+    <main class="p-10 pt-[100px] lg:pt-[134px] min-h-screen text-dark">
       <slot />
     </main>
   </body>

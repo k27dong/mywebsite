@@ -2,10 +2,10 @@
 import HeaderLink from "./HeaderLink.astro"
 
 const links = [
-  // { name: "CV", path: "/cv" },
-  // { name: "Gigs", path: "/gigs" },
+  { name: "CV", path: "/cv" },
+  { name: "Gigs", path: "/gigs" },
   { name: "Blog", path: "/blog" },
-  // { name: "Book", path: "/book" },
+  { name: "Book", path: "/book" },
   { name: "Contact", path: "/contact" },
 ]
 
@@ -14,12 +14,14 @@ const currentPath = Astro.url.pathname
 
 <nav class="flex gap-8">
   {
-    links.map((link, index) => (
+    links.map((link, _) => (
       <HeaderLink
         href={link.path}
         class={`${
-          link.path === currentPath ? "text-red border-b-2 border-accent" : ""
-        } capitalize font-medium hover:text-accent transition-all`}
+          currentPath.startsWith(link.path)
+            ? "text-highlight border-b-2 border-highlight"
+            : "border-b-2 border-transparent"
+        } capitalize font-medium hover:text-highlight hover:border-highlight transition-colors duration-200`}
       >
         {link.name}
       </HeaderLink>
