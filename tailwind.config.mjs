@@ -5,14 +5,15 @@ export default {
     extend: {
       fontFamily: {
         jbmono: ["JetBrains Mono", "sans-serif"],
+        sourcehan: ["Source Han Serif", "serif"],
       },
-			colors: {
+      colors: {
         navbar: "#1e1e1e",
         highlight: "#0ae604",
         light: "#f0f0f2",
         dark: "#1e1e1e",
         mainbg: "#e5e5e5",
-        maintxt: "#2f2f2f"
+        maintxt: "#2f2f2f",
       },
     },
   },

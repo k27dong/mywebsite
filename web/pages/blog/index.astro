@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content"
-import FormattedDate from "../../components/FormattedDate.astro"
+import Date from "../../components/ShortDate.astro"
 import MainLayout from "../../layouts/MainLayout.astro"
 
 const posts = (await getCollection("blog")).sort(
@@ -9,15 +9,16 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <MainLayout>
-  <section>
+  <div>@k27dong :</div>
+  <section class="font-sourcehan">
     <ul>
       {
         posts.map((post) => (
           <li>
             <a href={`/blog/${post.slug}/`}>
-              <h4 class="title">{post.data.title}</h4>
-              <p class="date">
-                <FormattedDate date={post.data.date} />
+              <h4>{post.data.title}</h4>
+              <p class="font-jbmono">
+                <Date date={post.data.date} />
               </p>
             </a>
           </li>
