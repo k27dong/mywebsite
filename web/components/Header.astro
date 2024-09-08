@@ -5,14 +5,20 @@ interface Props {
 }
 
 const { title, callout } = Astro.props
+
+const get_scale = (text: string) => {
+  const length = text.length
+  return length <= 2 ? 1 : length >= 6 ? 0.4 : 1 - (length - 2) * 0.2
+}
 ---
 
 <header class="grid">
   <h1
-    class="px-[var(--body-padding)] py-8 grid place-content-center border-b border-black font-semibold leading-[.8] uppercase text-center overflow-hidden"
+    class="px-[1.2rem] sm:px-[2rem] py-8 grid place-content-center border-b border-black font-semibold leading-[0.8] uppercase text-center overflow-hidden"
   >
     <span
-      class="inline-block font-serif transform scale-x-[0.4] max-w-full text-[clamp(2rem,20vw,10rem)]"
+      class="tracking-[-0.02em] inline-block font-serif whitespace-nowrap transform max-w-full text-[clamp(2rem,20vw,10rem)]"
+      style={`transform: scaleX(${get_scale(title)});`}
     >
       {title}
     </span>
