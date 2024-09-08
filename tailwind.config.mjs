@@ -7,10 +7,9 @@ export default {
         jbmono: ["JetBrains Mono", "sans-serif"],
         sourcehan: ["Source Han Serif", "serif"],
         pagetitle: [
-          "ui-serif",
           "Georgia",
           "Cambria",
-          '"Times New Roman"',
+          "Times New Roman",
           "Times",
           "Noto Serif SC ExtraBold",
           "serif",
