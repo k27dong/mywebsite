@@ -6,7 +6,15 @@ export default {
       fontFamily: {
         jbmono: ["JetBrains Mono", "sans-serif"],
         sourcehan: ["Source Han Serif", "serif"],
-        timesnewroman: ["Times New Roman", "serif"],
+        pagetitle: [
+          "ui-serif",
+          "Georgia",
+          "Cambria",
+          '"Times New Roman"',
+          "Times",
+          "Noto Serif SC ExtraBold",
+          "serif",
+        ],
       },
       colors: {
         highlight: "#0ae604",

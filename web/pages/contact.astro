@@ -1,17 +1,64 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro"
+import { Icon } from "astro-icon/components"
+import { GITHUB_LINK, LINKEDIN_LINK, RESUME_FILE } from "../consts"
+
+interface ContactEntry {
+  name: string
+  display: string
+  icon: string
+  link?: string
+}
+
+const contact: ContactEntry[] = [
+  {
+    name: "Github",
+    display: "k27dong",
+    icon: "github",
+    link: GITHUB_LINK,
+  },
+  {
+    name: "LinkedIn",
+    display: "Kevin Dong",
+    icon: "linkedin-line",
+    link: LINKEDIN_LINK,
+  },
+  {
+    name: "Resume",
+    display: "Resume",
+    icon: "file-text",
+    link: RESUME_FILE,
+  },
+  {
+    name: "Email",
+    display: "me@kefan.me",
+    icon: "mailbox",
+  },
+]
 ---
 
-<MainLayout title="Contacts">
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo
-    integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis
-    egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In
-    hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat.
-    Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu
-    non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim.
-    Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed
-    vulputate mi. Dictumst quisque sagittis purus sit amet.
-  </p>
+<MainLayout>
+  <ul class="flex flex-col gap-16 m-auto pt-[20vh]">
+    {
+      contact.map((entry) => (
+        <li class="flex items-center gap-2">
+          {entry.link ? (
+            <a
+              href={entry.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block text-gray-800 hover:text-blue-500 transition duration-200"
+            >
+              <Icon name={entry.icon} class="text-2xl" />
+            </a>
+          ) : (
+            <span class="text-gray-800">
+              <Icon name={entry.icon} class="text-2xl" />
+            </span>
+          )}
+          <span class="ml-2">{entry.display}</span>
+        </li>
+      ))
+    }
+  </ul>
 </MainLayout>

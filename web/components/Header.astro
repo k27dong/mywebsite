@@ -14,10 +14,10 @@ const get_scale = (text: string) => {
 
 <header class="grid">
   <h1
-    class="px-[1.2rem] sm:px-[2rem] py-8 grid place-content-center border-b border-black font-semibold leading-[0.8] uppercase text-center overflow-hidden"
+    class="bold px-[1.2rem] sm:px-[2rem] py-8 grid place-content-center border-b border-black font-semibold leading-[0.8] uppercase text-center overflow-hidden"
   >
     <span
-      class="tracking-[-0.02em] inline-block font-serif whitespace-nowrap transform max-w-full text-[clamp(2rem,20vw,10rem)]"
+      class="tracking-[-0.02em] inline-block font-pagetitle whitespace-nowrap transform max-w-full text-[clamp(2rem,20vw,10rem)]"
       style={`transform: scaleX(${get_scale(title)});`}
     >
       {title}
