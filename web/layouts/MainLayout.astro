@@ -2,29 +2,37 @@
 import Base from "../components/Base.astro"
 import Header from "../components/Header.astro"
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_PREVIEW_IMAGE } from "../consts"
+import Navigation from "../components/Navigation.astro"
 
 interface Props {
+  tab_title?: string
+  tab_description?: string
+  tab_icon?: string
   title?: string
+  callout?: string
   description?: string
-  image?: string
 }
 
 const {
-  title = SITE_TITLE,
-  description = SITE_DESCRIPTION,
-  image = SITE_PREVIEW_IMAGE,
+  tab_title = SITE_TITLE,
+  tab_description = SITE_DESCRIPTION,
+  tab_icon = SITE_PREVIEW_IMAGE,
+  title,
+  callout,
+  description,
 } = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <Base title={title} description={description} image={image} />
+    <Base title={tab_title} description={tab_description} image={tab_icon} />
   </head>
 
   <body class="font-jbmono bg-light">
-    <Header />
-    <main class="p-10 pt-[100px] lg:pt-[134px] min-h-screen text-dark">
+    <Navigation />
+    {title && <Header title={title} callout={callout} />}
+    <main>
       <slot />
     </main>
   </body>

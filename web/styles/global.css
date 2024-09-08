@@ -21,7 +21,22 @@
 @font-face {
   font-family: "Source Han Serif";
   src: local("Source Han Serif CN"), local("Source Han Serif SC"),
-    url("/fonts/SourceHanSerifCNwoff2") format("woff2");
+    url("/fonts/SourceHanSerifCN.woff2") format("woff2");
   font-style: normal;
   font-display: swap;
+}
+
+:root {
+  --nav-height: 50px;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  padding-top: var(--nav-height);
+  font-weight: 300;
+  line-height: 1.5;
+  min-height: 100%;
+  display: grid;
+  align-items: start;
 }

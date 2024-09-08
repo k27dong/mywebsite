@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content"
 import MainLayout from "../../layouts/MainLayout.astro"
-import Date from "../../components/ShortDate.astro"
+import Date from "../../components/FullDate.astro"
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog")
@@ -16,18 +16,17 @@ const { title, abbrlink, date, disabled, Content } = {
   ...Astro.props.data,
   ...(await Astro.props.render()),
 }
+
+const full_date = date.toLocaleDateString("en-US", {
+  year: "numeric",  // Full year, e.g., 2024
+  month: "long",    // Full month name, e.g., August
+  day: "numeric",   // Day of the month, e.g., 3
+})
 ---
 
-<MainLayout title={title} description="post">
+<MainLayout title={title} callout={full_date}>
   <article>
-    <div class="font-sourcehan leading-7 font-medium">
-      <div>
-        <h1>{title}</h1>
-        <div>
-          <Date date={date} />
-        </div>
-        <br />
-      </div>
+    <div class="font-sourcehan leading-7 font-normal">
       <Content />
     </div>
   </article>

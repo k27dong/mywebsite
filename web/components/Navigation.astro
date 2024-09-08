@@ -1,0 +1,38 @@
+---
+import BtnToggle from "./BtnToggle.astro"
+
+const home = { full_name: "kefan.me", short_name: "KD", path: "/" }
+
+const links = [
+  { name: "CV", path: "/cv" },
+  { name: "Projects", path: "/gigs" },
+  { name: "Articles", path: "/blog" },
+  { name: "Book", path: "/book" },
+  { name: "Contact", path: "/contact" },
+]
+---
+
+<nav
+  class="w-full pr-[0.7em] min-h-[var(--nav-height)] flex items-center fixed left-0 top-0 z-[100] bg-[#f0f0f2] border-b border-black main-nav gap-3.5 sm:gap-4 md:gap-6"
+>
+  <a
+    class="h-[var(--nav-height)] aspect-[1/1] sm:aspect-[2.618/1] grid place-content-center bg-black font-extrabold text-white no-underline leading-[1] text-[1rem] sm:text-[1.1rem] px-[1.2rem] sm:px-[2rem]"
+    href={home.path}
+  >
+    <span class="sm:hidden">{home.short_name}</span>
+    <span class="hidden sm:inline">{home.full_name}</span>
+  </a>
+
+  {
+    links.map((link) => (
+      <a
+        class="no-underline text-[0.9rem] sm:text-[0.9rem] font-medium leading-[1] uppercase text-[var(--text-color)] [text-underline-offset:2px] hover:underline"
+        href={link.path}
+      >
+        {link.name}
+      </a>
+    ))
+  }
+
+  <BtnToggle />
+</nav>
