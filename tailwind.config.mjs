@@ -14,12 +14,28 @@ export default {
           "Noto Serif SC ExtraBold",
           "serif",
         ],
+        article: [
+          "Georgia",
+          "Cambria",
+          "Times New Roman",
+          "Times",
+          "Source Han Serif",
+          "serif",
+        ]
       },
       colors: {
         highlight: "#0ae604",
         light: "#f0f0f2",
         background: "#f0f0f2",
         textblack: "#0c0c0c",
+      },
+      typography: {
+        quoteless: {
+          css: {
+            'blockquote p:first-of-type::before': { content: 'none' },
+            'blockquote p:first-of-type::after': { content: 'none' },
+          },
+        },
       },
     },
   },

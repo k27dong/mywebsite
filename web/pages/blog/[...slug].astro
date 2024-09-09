@@ -24,9 +24,9 @@ const full_date = date.toLocaleDateString("en-US", {
 })
 ---
 
-<MainLayout title={title} callout={full_date}>
+<MainLayout title={title} callout={full_date} tab_title={title}>
   <article class="px-[1.2rem] sm:px-[6rem] pb-[2.4rem]">
-    <div class="font-sourcehan leading-7 font-normal">
+    <div class="font-article leading-7 font-normal">
       <Prose>
         <Content />
       </Prose>
