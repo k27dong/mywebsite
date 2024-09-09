@@ -10,4 +10,20 @@ const blog = defineCollection({
   }),
 })
 
-export const collections = { blog }
+const booknotes = defineCollection({
+  type: "data",
+  schema: z.object({
+    title: z.string(),
+    author: z.string(),
+    id: z.number(),
+    notenum: z.number(),
+    rating: z.coerce.number(),
+    tags: z.array(z.string()),
+    content: z.array(z.object({
+      name: z.string(),
+      notes: z.array(z.string()),
+    })),
+  }),
+})
+
+export const collections = { blog, booknotes }

@@ -7,7 +7,7 @@ use gphrasehandler::PhraseParams;
 use playlist::Playlist;
 use project::Project;
 use serde_json::json;
-use std::collections::HashMap;
+use std::{collections::HashMap, io::Write, fs::create_dir_all, fs::File};
 
 use crate::parser::parse_date;
 
@@ -172,9 +172,35 @@ async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) 
     HttpResponse::Ok().content_type("text/plain").body(phrase)
 }
 
+async fn process_and_save_notes(notes: &HashMap<String, booknote::BookNote>) {
+    let content_path = "./web/content/booknotes";
+    create_dir_all(content_path).unwrap();
+
+    for (title, note) in notes {
+        let file_name = format!("{}/{}.json", content_path, title.replace(" ", "_"));
+        let mut file = File::create(&file_name).unwrap();
+
+        let note_data = json!({
+            "title": note.frontmatter.title,
+            "author": note.frontmatter.author,
+            "id": note.frontmatter.id,
+            "notenum": note.frontmatter.num,
+            "rating": note.frontmatter.rating,
+            "tags": note.frontmatter.tags,
+            "content": note.content,
+        });
+
+        let json_content = serde_json::to_string_pretty(&note_data).unwrap();
+        file.write_all(json_content.as_bytes()).unwrap();
+    }
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let port = std::env::var("PORT").unwrap_or(String::from("5000"));
+
+    process_and_save_notes(&booknote::load_booknote()).await;
+    println!("Processed and saved all notes");
 
     HttpServer::new(|| {
         let cors = Cors::default()

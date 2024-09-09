@@ -1,0 +1,26 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content"
+import MainLayout from "../../layouts/MainLayout.astro"
+
+export async function getStaticPaths() {
+  const booknotes = await getCollection("booknotes")
+  return booknotes.map((book) => ({
+    params: { slug: book.data.title },
+    props: book,
+  }))
+}
+type Props = CollectionEntry<"booknotes">
+
+const { title, author, content } = {
+  ...Astro.props.data
+}
+
+---
+
+<MainLayout title={title} callout={author} tab_title={title}>
+  <article class="px-[1.2rem] sm:px-[6rem] pb-[2.4rem]">
+    <div class="font-article leading-7 font-normal">
+      here
+    </div>
+  </article>
+</MainLayout>

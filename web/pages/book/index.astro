@@ -1,15 +1,20 @@
 ---
-// import { getCollection } from "astro:content"
-// import FormattedDate from "../../components/FormattedDate.astro"
+import { getCollection } from "astro:content"
 import MainLayout from "../../layouts/MainLayout.astro"
 
-// const posts = (await getCollection("blog")).sort(
-//   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-// )
+const booknotes = (await getCollection("booknotes")).sort(
+  (a, b) => b.data.id - a.data.id
+)
+
+console.log(booknotes[0])
 ---
 
-<MainLayout title="Booknotes">
+<MainLayout title="Booknotes" callout="sometimes i read">
   <section>
-    Booknote here
+    {
+      booknotes.map((book) => (
+        <a href={`/book/${book.data.title}/`}>{book.data.title}</a>
+      ))
+    }
   </section>
 </MainLayout>
