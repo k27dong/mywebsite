@@ -33,7 +33,7 @@
   font-display: swap;
 }
 
-@supports (-webkit-overflow-scrolling: touch) {
+@media (hover: none) and (pointer: coarse) {
   .ios-will-change {
     will-change: transform;
   }
@@ -71,5 +71,3 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-button {
   display: none;
 }
-
-

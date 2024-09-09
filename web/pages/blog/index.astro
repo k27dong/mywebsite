@@ -6,23 +6,47 @@ import MainLayout from "../../layouts/MainLayout.astro"
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 )
+
+let prev: number
 ---
 
+<!-- TODO first col size (should have a maximum) -->
+<!-- TODO whole section width (70vw is not a very clever number) -->
+<!-- TODO need to somehow make sure the title is always near the center -->
 <MainLayout title="Articles" callout="I know a bit of Chinese">
-  <section class="px-[1.2rem] sm:px-[18rem] pb-[2.4rem]">
-    <ul>
-      {
-        posts.map((post) => (
-          <li>
-            <a href={`/blog/${post.slug}/`}>
-              <h4>{post.data.title}</h4>
-              <p class="font-jbmono">
-                <Date date={post.data.date} />
-              </p>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+  <section
+    class="w-[70vw] max-w-[1200px] mx-auto pb-[5vw] grid grid-cols-[minmax(auto,15vw)_1rem_auto_1rem_1fr]"
+  >
+    {
+      posts.map((post, index) => {
+        const curr = post.data.date.getFullYear()
+        const render = curr !== prev
+        prev = curr
+
+        return (
+          <>
+            <div class="contents">
+              {render && (
+                <span class="col-start-1 flex items-center gap-4">
+                  {curr}
+                  <span class="flex-1 border-t-[1px] border-black" />
+                </span>
+              )}
+              <Date
+                class="col-start-3 text-sm content-center"
+                date={post.data.date}
+              />
+              <a
+                href={`/blog/${post.slug}/`}
+                class="font-sourcehan text-xl col-start-5 font-medium leading-tight text-black underline decoration-1 underline-offset-2 hover:decoration-2"
+              >
+                {post.data.title}
+              </a>
+            </div>
+            {index < posts.length - 1 && <div class="col-span-full h-5" />}
+          </>
+        )
+      })
+    }
   </section>
 </MainLayout>
