@@ -10,12 +10,9 @@ const posts = (await getCollection("blog")).sort(
 let prev: number
 ---
 
-<!-- TODO first col size (should have a maximum) -->
-<!-- TODO whole section width (70vw is not a very clever number) -->
-<!-- TODO need to somehow make sure the title is always near the center -->
 <MainLayout title="Articles" callout="I know a bit of Chinese">
   <section
-    class="w-[70vw] max-w-[1200px] mx-auto pb-[5vw] grid grid-cols-[minmax(auto,15vw)_1rem_auto_1rem_1fr]"
+    class="w-full max-w-[1024px] mx-auto pb-[5vw] px-[4vw] sm:px-[6vw] md:px-[14vw] lg:px-[18vw] xl:px-[14vw] 2xl:px-[10vw] grid grid-cols-[minmax(auto,6rem)_1rem_auto_1rem_1fr] sm:grid-cols-[minmax(auto,12rem)_1rem_auto_1rem_1fr]"
   >
     {
       posts.map((post, index) => {
@@ -29,7 +26,7 @@ let prev: number
               {render && (
                 <span class="col-start-1 flex items-center gap-4">
                   {curr}
-                  <span class="flex-1 border-t-[1px] border-black" />
+                  <span class="hidden sm:flex-1 sm:block sm:border-t-[1px] sm:border-black" />
                 </span>
               )}
               <Date
