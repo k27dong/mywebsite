@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content"
 import MainLayout from "../../layouts/MainLayout.astro"
-import Date from "../../components/FullDate.astro"
+import Prose from "../../components/Prose.astro"
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog")
@@ -27,7 +27,9 @@ const full_date = date.toLocaleDateString("en-US", {
 <MainLayout title={title} callout={full_date}>
   <article class="px-[1.2rem] sm:px-[6rem] pb-[2.4rem]">
     <div class="font-sourcehan leading-7 font-normal">
-      <Content />
+      <Prose>
+        <Content />
+      </Prose>
     </div>
   </article>
 </MainLayout>
