@@ -21,7 +21,7 @@ export default {
           "Times",
           "Source Han Serif",
           "serif",
-        ]
+        ],
       },
       colors: {
         highlight: "#0ae604",
@@ -32,14 +32,12 @@ export default {
       typography: {
         quoteless: {
           css: {
-            'blockquote p:first-of-type::before': { content: 'none' },
-            'blockquote p:first-of-type::after': { content: 'none' },
+            "blockquote p:first-of-type::before": { content: "none" },
+            "blockquote p:first-of-type::after": { content: "none" },
           },
         },
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require("@tailwindcss/typography")],
 }
