@@ -14,10 +14,14 @@ const get_scale = (text: string) => {
 
 <header class="grid">
   <h1
-    class="bold px-[1.2rem] sm:px-[2rem] py-8 grid place-content-center border-b border-black font-semibold leading-[0.8] uppercase text-center overflow-hidden"
+    class="bold grid place-content-center overflow-hidden border-b border-black
+      px-[1.2rem] py-8 text-center font-semibold uppercase leading-[0.8]
+      sm:px-[2rem]"
   >
     <span
-      class="antialiased tracking-[-0.02em] inline-block font-pagetitle whitespace-nowrap transform max-w-full text-[clamp(2rem,20vw,10rem)] ios-will-change"
+      class="ios-will-change inline-block max-w-full transform whitespace-nowrap
+        font-pagetitle text-[clamp(2rem,20vw,10rem)] tracking-[-0.02em]
+        antialiased"
       style={`transform: scaleX(${get_scale(title)});`}
     >
       {title}
@@ -25,8 +29,8 @@ const get_scale = (text: string) => {
   </h1>
   {
     callout && (
-      <div class="justify-self-center flex">
-        <small class="text-sm px-4 py-2 flex justify-center items-center gap-[.25em] border border-black border-t-0">
+      <div class="flex justify-self-center">
+        <small class="flex items-center justify-center gap-[.25em] border border-t-0 border-black px-4 py-2 text-sm">
           {callout}
         </small>
       </div>

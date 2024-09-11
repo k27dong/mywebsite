@@ -13,10 +13,14 @@ const links = [
 ---
 
 <nav
-  class="w-full pr-[0.7em] min-h-[var(--nav-height)] flex items-center fixed left-0 top-0 z-[100] bg-[#f0f0f2] border-b border-black main-nav gap-3.5 sm:gap-4 md:gap-6"
+  class="main-nav fixed left-0 top-0 z-[100] flex min-h-[var(--nav-height)]
+    w-full items-center gap-3.5 border-b border-black bg-[#f0f0f2] pr-[0.7em]
+    sm:gap-4 md:gap-6"
 >
   <a
-    class="h-[var(--nav-height)] aspect-[1/1] sm:aspect-[2.618/1] grid place-content-center bg-black font-extrabold text-white no-underline leading-[1] text-[1rem] sm:text-[1.1rem] px-[1.2rem] sm:px-[2rem]"
+    class="grid aspect-[1/1] h-[var(--nav-height)] place-content-center bg-black
+      px-[1.2rem] text-[1rem] font-extrabold leading-[1] text-white no-underline
+      sm:aspect-[2.618/1] sm:px-[2rem] sm:text-[1.1rem]"
     href={home.path}
   >
     <span class="sm:hidden">{home.short_name}</span>
@@ -26,7 +30,7 @@ const links = [
   {
     links.map((link) => (
       <a
-        class="no-underline text-[0.9rem] sm:text-[0.9rem] font-medium leading-[1] uppercase text-[var(--text-color)] [text-underline-offset:2px] hover:underline"
+        class="text-[0.9rem] font-medium uppercase leading-[1] text-[var(--text-color)] no-underline [text-underline-offset:2px] hover:underline sm:text-[0.9rem]"
         href={link.path}
       >
         {link.name}

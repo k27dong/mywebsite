@@ -11,9 +11,10 @@ const links = [
 ---
 
 <MainLayout>
-  <div class="flex flex-col justify-center items-center gap-8 pt-44">
+  <div class="flex flex-col items-center justify-center gap-8 pt-44">
     <h1
-      class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-10xl font-bold tracking-tighter"
+      class="2xl:text-10xl text-5xl font-bold tracking-tighter sm:text-6xl
+        md:text-7xl lg:text-8xl xl:text-9xl"
     >
       Kefan Dong
     </h1>
@@ -45,7 +46,7 @@ const links = [
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            class="hover:text-highlight transition-colors duration-200"
+            class="transition-colors duration-200 hover:text-highlight"
           >
             <Icon name={link.icon} class="text-2xl" />
           </a>

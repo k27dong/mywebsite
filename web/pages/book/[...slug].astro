@@ -16,15 +16,15 @@ const { title, author, content } = { ...Astro.props.data }
 ---
 
 <MainLayout title={title} callout={author} tab_title={title}>
-  <article class="px-[1.2rem] sm:px-[6rem] pb-[2.4rem]">
-    <div class="font-article leading-7 font-normal">
+  <article class="px-[1.2rem] pb-[2.4rem] sm:px-[6rem]">
+    <div class="font-article font-normal leading-7">
       {
         content.map((section) => (
           <div class="mb-10">
-            <h1 class="font-semibold text-2xl mb-2">{section.name}</h1>
+            <h1 class="mb-2 text-2xl font-semibold">{section.name}</h1>
             {section.notes.map((note, index) => (
               <div
-                class={`p-4 border-t border-l border-r border-gray-300 ${index === section.notes.length - 1 ? "border-b" : ""} bg-gray-100`}
+                class={`border-l border-r border-t border-gray-300 p-4 ${index === section.notes.length - 1 ? "border-b" : ""} bg-gray-100`}
               >
                 {note.split("\n").map((line, lineIndex, arr) => (
                   <p class={lineIndex < arr.length - 1 ? "mb-2" : ""}>{line}</p>

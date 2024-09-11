@@ -38,7 +38,7 @@ const contact: ContactEntry[] = [
 ---
 
 <MainLayout>
-  <ul class="flex flex-col gap-16 m-auto pt-[20vh]">
+  <ul class="m-auto flex flex-col gap-16 pt-[20vh]">
     {
       contact.map((entry) => (
         <li class="flex items-center gap-2">
@@ -47,7 +47,7 @@ const contact: ContactEntry[] = [
               href={entry.link}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-block text-gray-800 hover:text-highlight transition duration-200"
+              class="inline-block text-gray-800 transition duration-200 hover:text-highlight"
             >
               <Icon name={entry.icon} class="text-2xl" />
             </a>

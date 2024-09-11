@@ -3,23 +3,23 @@ import { getCollection } from "astro:content"
 import MainLayout from "../../layouts/MainLayout.astro"
 
 const booknotes = (await getCollection("booknotes")).sort(
-  (a, b) => b.data.id - a.data.id
+  (a, b) => b.data.id - a.data.id,
 )
 
 const total_notes = booknotes.reduce((acc, book) => acc + book.data.notenum, 0)
 ---
 
 <MainLayout title="Booknotes" callout={`Total: ${total_notes} entries`}>
-  <section class="w-full px-8 md:px-10 lg:px-24 max-w-screen-xl mx-auto">
-    <div class="max-w-5xl mx-auto">
-      <table class="table-auto w-full border-collapse">
+  <section class="mx-auto w-full max-w-screen-xl px-8 md:px-10 lg:px-24">
+    <div class="mx-auto max-w-5xl">
+      <table class="w-full table-auto border-collapse">
         <thead>
           <tr>
             <th class="px-4 py-2 text-left">Title</th>
             <th class="px-4 py-2 text-left">Author</th>
-            <th class="px-4 py-2 text-center whitespace-nowrap">Count</th>
-            <th class="px-4 py-2 text-center hidden md:table-cell">Rating</th>
-            <th class="px-4 py-2 text-left hidden md:table-cell max-w-[30vw]"
+            <th class="whitespace-nowrap px-4 py-2 text-center">Count</th>
+            <th class="hidden px-4 py-2 text-center md:table-cell">Rating</th>
+            <th class="hidden max-w-[30vw] px-4 py-2 text-left md:table-cell"
               >Tags</th
             >
           </tr>
@@ -30,27 +30,27 @@ const total_notes = booknotes.reduce((acc, book) => acc + book.data.notenum, 0)
               <tr
                 class={`${index === 0 ? "border-black" : "border-gray-500"} border-t`}
               >
-                <td class="px-4 py-2 overflow-hidden overflow-ellipsis text-base">
+                <td class="overflow-hidden overflow-ellipsis px-4 py-2 text-base">
                   <a
                     href={`/book/${book.data.title}/`}
-                    class="underline decoration-1 underline-offset-2 hover:decoration-2 font-medium"
+                    class="font-medium underline decoration-1 underline-offset-2 hover:decoration-2"
                   >
                     {book.data.title}
                   </a>
                 </td>
-                <td class="px-4 py-2 overflow-hidden overflow-ellipsis">
+                <td class="overflow-hidden overflow-ellipsis px-4 py-2">
                   {book.data.author}
                 </td>
-                <td class="px-4 py-2 text-center whitespace-nowrap font-jbmono">
+                <td class="whitespace-nowrap px-4 py-2 text-center font-jbmono">
                   {book.data.notenum}
                 </td>
-                <td class="px-4 py-2 text-center hidden md:table-cell font-jbmono">
+                <td class="hidden px-4 py-2 text-center font-jbmono md:table-cell">
                   {book.data.rating.toFixed(1)}
                 </td>
-                <td class="px-4 py-2 hidden md:table-cell max-w-[30vw]">
+                <td class="hidden max-w-[30vw] px-4 py-2 md:table-cell">
                   <div class="flex flex-wrap gap-2 overflow-hidden">
                     {book.data.tags.map((tag) => (
-                      <span class="inline-block bg-gray-200 text-gray-700 px-2 py-1 rounded-sm text-sm">
+                      <span class="inline-block rounded-sm bg-gray-200 px-2 py-1 text-sm text-gray-700">
                         {tag}
                       </span>
                     ))}
