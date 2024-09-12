@@ -1,0 +1,11 @@
+name: DevOps & CI/CD
+id: 3
+items:
+  - Docker
+  - Kubernetes
+  - Jenkins
+  - GitHub Actions
+  - Spinnaker
+  - Splunk
+  - Kibana
+  - Grafana

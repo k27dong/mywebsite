@@ -24,7 +24,7 @@ const { title, author, content } = { ...Astro.props.data }
             <h1 class="mb-2 text-2xl font-semibold">{section.name}</h1>
             {section.notes.map((note, index) => (
               <div
-                class={`border-l border-r border-t border-gray-300 p-4 ${index === section.notes.length - 1 ? "border-b" : ""} bg-gray-100`}
+                class={`border-l border-r border-t border-gray-300 bg-gray-100 p-4 text-[17px] ${index === section.notes.length - 1 ? "border-b" : ""}`}
               >
                 {note.split("\n").map((line, lineIndex, arr) => (
                   <p class={lineIndex < arr.length - 1 ? "mb-2" : ""}>{line}</p>

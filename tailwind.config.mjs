@@ -24,7 +24,7 @@ export default {
         ],
       },
       colors: {
-        highlight: "#0ae604",
+        highlight: "#4a6c8c",
         light: "#f0f0f2",
         background: "#f0f0f2",
         textblack: "#0c0c0c",
@@ -34,6 +34,11 @@ export default {
           css: {
             "blockquote p:first-of-type::before": { content: "none" },
             "blockquote p:first-of-type::after": { content: "none" },
+          },
+        },
+        quotemargin: {
+          css: {
+            "blockquote p": { margin: "0.25rem 0" },
           },
         },
       },

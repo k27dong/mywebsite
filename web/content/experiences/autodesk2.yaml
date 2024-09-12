@@ -1,0 +1,10 @@
+company: "Autodesk"
+id: 7
+role: "Software Engineer"
+date: "2023 - Present"
+location: "Toronto, Canada"
+description: "This is yet to be written"
+points:
+  - "Point 1"
+  - "Point 2"
+is_internship: false

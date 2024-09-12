@@ -4,13 +4,13 @@ import MainLayout from "../../layouts/MainLayout.astro"
 import Prose from "../../components/Prose.astro"
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog")
+  const posts = await getCollection("posts")
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: post,
   }))
 }
-type Props = CollectionEntry<"blog">
+type Props = CollectionEntry<"posts">
 
 const { title, abbrlink, date, disabled, Content } = {
   ...Astro.props.data,
@@ -25,7 +25,7 @@ const full_date = date.toLocaleDateString("en-US", {
 ---
 
 <MainLayout title={title} callout={full_date} tab_title={title}>
-  <article class="px-[1.2rem] pb-[2.4rem] sm:px-[6rem]">
+  <article class="px-[1.2rem] pb-24 sm:px-[6rem]">
     <div class="font-article font-normal leading-7">
       <Prose>
         <Content />
