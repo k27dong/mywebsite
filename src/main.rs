@@ -1,29 +1,22 @@
 use actix_cors::Cors;
 use actix_files as fs;
 use actix_web::{get, http, post, web, App, HttpResponse, HttpServer, Responder};
-use blogpost::BlogPost;
-use booknote::BookNote;
-use gphrasehandler::PhraseParams;
-use playlist::Playlist;
-use project::Project;
 use serde_json::json;
-use std::{collections::HashMap, io::Write, fs::create_dir_all, fs::File};
+use std::collections::HashMap;
 
-use crate::parser::parse_date;
-
-mod blogpost;
-mod booknote;
-mod gphrasehandler;
-mod parser;
-mod playlist;
-mod project;
+use sitecore::blogpost::BlogPost;
+use sitecore::booknote::BookNote;
+use sitecore::gphrasehandler::{GSheetConfig, PhraseParams};
+use sitecore::parser::parse_date;
+use sitecore::playlist::Playlist;
+use sitecore::project::Project;
 
 struct AppState {
     posts: HashMap<u32, BlogPost>,
     notes: HashMap<String, BookNote>,
     projects: Vec<Project>,
     playlists: HashMap<u32, Playlist>,
-    gsheet_config: gphrasehandler::Config,
+    gsheet_config: GSheetConfig,
 }
 
 #[get("/health")]
@@ -157,7 +150,7 @@ async fn get_playlist(data: web::Data<AppState>, path: web::Path<u32>) -> impl R
 
 #[get("/api/get_phrase")]
 async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) -> impl Responder {
-    let phrase = gphrasehandler::get_gphrase(
+    let phrase = sitecore::gphrasehandler::get_gphrase(
         query.temp,
         query.y,
         query.m,
@@ -167,40 +160,14 @@ async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) 
     )
     .await;
 
-    let phrase = gphrasehandler::format_gphrase(phrase);
+    let phrase = sitecore::gphrasehandler::format_gphrase(phrase);
 
     HttpResponse::Ok().content_type("text/plain").body(phrase)
-}
-
-async fn process_and_save_notes(notes: &HashMap<String, booknote::BookNote>) {
-    let content_path = "./web/content/booknotes";
-    create_dir_all(content_path).unwrap();
-
-    for (title, note) in notes {
-        let file_name = format!("{}/{}.json", content_path, title.replace(" ", "_"));
-        let mut file = File::create(&file_name).unwrap();
-
-        let note_data = json!({
-            "title": note.frontmatter.title,
-            "author": note.frontmatter.author,
-            "id": note.frontmatter.id,
-            "notenum": note.frontmatter.num,
-            "rating": note.frontmatter.rating,
-            "tags": note.frontmatter.tags,
-            "content": note.content,
-        });
-
-        let json_content = serde_json::to_string_pretty(&note_data).unwrap();
-        file.write_all(json_content.as_bytes()).unwrap();
-    }
 }
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let port = std::env::var("PORT").unwrap_or(String::from("5000"));
-
-    process_and_save_notes(&booknote::load_booknote()).await;
-    println!("Processed and saved all notes");
 
     HttpServer::new(|| {
         let cors = Cors::default()
@@ -216,11 +183,11 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(cors)
             .app_data(web::Data::new(AppState {
-                posts: blogpost::load_blogpost(),
-                notes: booknote::load_booknote(),
-                projects: project::load_projects(),
-                playlists: playlist::load_playlist(),
-                gsheet_config: gphrasehandler::load_gsheet_config(),
+                posts: sitecore::blogpost::load_blogpost(),
+                notes: sitecore::booknote::load_booknote(),
+                projects: sitecore::project::load_projects(),
+                playlists: sitecore::playlist::load_playlist(),
+                gsheet_config: sitecore::gphrasehandler::load_gsheet_config(),
             }))
             .service(health)
             .service(ready)

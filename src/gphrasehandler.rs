@@ -15,7 +15,7 @@ pub struct PhraseParams {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct Config {
+pub struct GSheetConfig {
     #[serde(rename = "type")]
     pub key_type: String,
     pub project_id: String,
@@ -36,7 +36,7 @@ pub async fn get_gphrase(
     _month: i32,
     _day: i32,
     _since: i32,
-    config: &Config,
+    config: &GSheetConfig,
 ) -> String {
     let secret = oauth2::parse_service_account_key(
         &serde_json::to_string(config).expect("Serialization failed"),
@@ -92,9 +92,9 @@ fn get_env_var(name: &str) -> String {
     env::var(name).expect(&format!("{} environment variable not set", name))
 }
 
-pub fn load_gsheet_config() -> Config {
+pub fn load_gsheet_config() -> GSheetConfig {
     if let Ok(_) = env::var("PORT") {
-        Config {
+        GSheetConfig {
             key_type: String::from("service_account"),
             project_id: get_env_var("PROJECT_ID"),
             private_key_id: get_env_var("PRIVATE_KEY_ID"),

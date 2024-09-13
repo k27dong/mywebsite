@@ -1241,28 +1241,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "mywebsite"
-version = "1.0.0"
-dependencies = [
- "actix-cors",
- "actix-files",
- "actix-web",
- "chrono",
- "chrono-tz",
- "colored",
- "difference",
- "encoding_rs",
- "glob",
- "google-sheets4",
- "inquire",
- "rand",
- "regex",
- "serde",
- "serde_json",
- "serde_yaml",
-]
-
-[[package]]
 name = "newline-converter"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2171,6 +2149,28 @@ name = "wasm-bindgen-shared"
 version = "0.2.92"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "af190c94f2773fdb3729c55b007a722abb5384da03bc0986df4c289bf5567e96"
+
+[[package]]
+name = "website"
+version = "3.0.0"
+dependencies = [
+ "actix-cors",
+ "actix-files",
+ "actix-web",
+ "chrono",
+ "chrono-tz",
+ "colored",
+ "difference",
+ "encoding_rs",
+ "glob",
+ "google-sheets4",
+ "inquire",
+ "rand",
+ "regex",
+ "serde",
+ "serde_json",
+ "serde_yaml",
+]
 
 [[package]]
 name = "winapi"
