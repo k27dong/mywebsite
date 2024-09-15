@@ -1,5 +1,6 @@
 ---
 title: Build a Web App - Part 1/2
+displaytitle: Build a Web App\nPart 1/2
 abbrlink: 73316
 date: 2021-10-11 02:06:57
 ---

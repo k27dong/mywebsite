@@ -1,5 +1,6 @@
 ---
 title: is_Odd();
+displaytitle: is_odd
 abbrlink: 60052
 date: 2019-05-28 20:35:15
 ---

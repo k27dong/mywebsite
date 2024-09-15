@@ -1,5 +1,6 @@
 ---
-title: Install Clang-Format No Root
+title: Install Clang-Format Without Root Privileges
+displaytitle: Install Clang-Format\nWithout Root Privileges
 abbrlink: 36417
 date: 2022-04-08 01:45:26
 ---
