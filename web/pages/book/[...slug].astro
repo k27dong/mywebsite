@@ -2,17 +2,17 @@
 import { type CollectionEntry, getCollection } from "astro:content"
 import MainLayout from "../../layouts/MainLayout.astro"
 
+type Props = CollectionEntry<"booknotes">
+
 export async function getStaticPaths() {
   const booknotes = await getCollection("booknotes")
-  return booknotes.map((book) => ({
+  return booknotes.map((book: Props) => ({
     params: { slug: book.data.title },
     props: book,
   }))
 }
 
-type Props = CollectionEntry<"booknotes">
-
-const { title, author, content } = { ...Astro.props.data }
+const { title, author, content } = Astro.props.data as Props["data"];
 ---
 
 <MainLayout title={title} callout={author} tab_title={title}>
@@ -26,8 +26,8 @@ const { title, author, content } = { ...Astro.props.data }
               <div
                 class={`border-l border-r border-t border-gray-300 bg-gray-100 p-4 text-[17px] ${index === section.notes.length - 1 ? "border-b" : ""}`}
               >
-                {note.split("\n").map((line, lineIndex, arr) => (
-                  <p class={lineIndex < arr.length - 1 ? "mb-2" : ""}>{line}</p>
+                {note.split("\n").map((line, index, arr) => (
+                  <p class={index < arr.length - 1 ? "mb-2" : ""}>{line}</p>
                 ))}
               </div>
             ))}

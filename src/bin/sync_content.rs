@@ -19,6 +19,10 @@ async fn main() -> std::io::Result<()> {
 }
 
 pub async fn sync_blogposts() {
+    if Path::new(BLOGPOST_DIR).exists() {
+        fs::remove_dir_all(BLOGPOST_DIR).unwrap();
+    }
+
     create_dir_all(BLOGPOST_DIR).unwrap();
 
     let paths = glob::glob("docs/blog/*.md").expect("Failed to read glob pattern");
@@ -39,6 +43,10 @@ pub async fn sync_blogposts() {
 }
 
 pub async fn sync_booknotes() {
+    if Path::new(BOOKNOTES_DIR).exists() {
+        fs::remove_dir_all(BOOKNOTES_DIR).unwrap();
+    }
+
     create_dir_all(BOOKNOTES_DIR).unwrap();
 
     let notes = booknote::load_booknote();

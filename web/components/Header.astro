@@ -7,9 +7,21 @@ interface Props {
 const { title, callout } = Astro.props
 
 const get_scale = (text: string) => {
-  const length = text.length
-  return length <= 2 ? 1 : length >= 6 ? 0.4 : 1 - (length - 2) * 0.2
+  const len = text.length
+
+  if (len > 20) return 0.3
+  if (len > 14) return 0.32
+  if (len > 12) return 0.35
+  if (len >= 6) return 0.4
+  if (len <= 2) return 1
+
+  return 1 - (len - 2) * 0.2
+  // return 0.2 + 0.6 * Math.exp(-0.1 * len);
 }
+
+const compress_rate = Math.min(
+  ...title.split("\\n").map((line) => get_scale(line)),
+)
 ---
 
 <header class="grid">
@@ -18,14 +30,16 @@ const get_scale = (text: string) => {
       px-[1.2rem] py-8 text-center font-semibold uppercase leading-[0.8]
       sm:px-[2rem]"
   >
-    <span
-      class="ios-will-change inline-block max-w-full transform whitespace-nowrap
-        font-pagetitle text-[clamp(2rem,20vw,10rem)] tracking-[-0.02em]
-        antialiased"
-      style={`transform: scaleX(${get_scale(title)});`}
-    >
-      {title}
-    </span>
+    {
+      title.split("\\n").map((line) => (
+        <span
+          class="ios-will-change inline-block max-w-full transform whitespace-nowrap font-pagetitle text-[clamp(2rem,20vw,10rem)] tracking-[-0.02em] antialiased"
+          style={`transform: scaleX(${compress_rate});`}
+        >
+          {line}
+        </span>
+      ))
+    }
   </h1>
   {
     callout && (

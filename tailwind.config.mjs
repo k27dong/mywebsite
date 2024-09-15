@@ -38,7 +38,7 @@ export default {
         },
         quotemargin: {
           css: {
-            "blockquote p": { margin: "0.25rem 0" },
+            "blockquote p": { margin: "0.5rem 0", lineHeight: "1.6rem" },
           },
         },
       },
