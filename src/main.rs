@@ -1,7 +1,10 @@
 use actix_cors::Cors;
 use actix_files as fs;
-use actix_web::{get, http, post, web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{
+    get, http, post, web, web::ServiceConfig, App, HttpResponse, HttpServer, Responder,
+};
 use serde_json::json;
+use shuttle_actix_web::ShuttleActixWeb;
 use std::collections::HashMap;
 
 use sitecore::blogpost::BlogPost;
@@ -165,6 +168,7 @@ async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) 
     HttpResponse::Ok().content_type("text/plain").body(phrase)
 }
 
+#[cfg(not(feature = "shuttle"))]
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let port = std::env::var("PORT").unwrap_or(String::from("5000"));
@@ -210,4 +214,37 @@ async fn main() -> std::io::Result<()> {
     .bind(("0.0.0.0", port.parse::<u16>().unwrap()))?
     .run()
     .await
+}
+
+#[cfg(feature = "shuttle")]
+#[shuttle_runtime::main]
+async fn actix_web() -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
+    let config = move |cfg: &mut ServiceConfig| {
+        cfg.app_data(web::Data::new(AppState {
+            posts: sitecore::blogpost::load_blogpost(),
+            notes: sitecore::booknote::load_booknote(),
+            projects: sitecore::project::load_projects(),
+            playlists: sitecore::playlist::load_playlist(),
+            gsheet_config: sitecore::gphrasehandler::load_gsheet_config(),
+        }));
+        cfg.service(health);
+        cfg.service(ready);
+        cfg.service(get_blog_list);
+        cfg.service(get_post);
+        cfg.service(get_project_list);
+        cfg.service(get_salt_list);
+        cfg.service(get_total_note_num);
+        cfg.service(get_book_note);
+        cfg.service(get_playlist);
+        cfg.service(get_phrase);
+        cfg.service(
+            fs::Files::new("/", "./dist")
+                .index_file("index.html")
+                .default_handler(
+                    web::get().to(|| async { fs::NamedFile::open("./dist/index.html") }),
+                ),
+        );
+    };
+
+    Ok(config.into())
 }
