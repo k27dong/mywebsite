@@ -1,25 +1,51 @@
-name: Build & Deploy
+name: Shuttle Deploy
 
 on:
   push:
     branches:
-      - master
-
-env:
-  CARGO_TERM_COLOR: always
+      - astrojs
 
 jobs:
   build:
-    name: Build & Deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Git repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - uses: akhileshns/heroku-deploy@v3.13.15
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "k27dong-website"
-          heroku_email: "me@kefan.me"
-          buildpack: "https://github.com/ph3nx/heroku-binary-buildpack.git"
+          node-version: '18.x'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies and build Astro.js
+        run: |
+          pnpm install
+          pnpm build
+
+      - name: Upload `dist` folder as artifact (optional)
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist-folder
+          path: dist/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Download `dist` folder
+        uses: actions/download-artifact@v2
+        with:
+          name: dist-folder
+
+      - uses: shuttle-hq/deploy-action@main
+        with:
+          deploy-key: ${{ secrets.SHUTTLE_API_KEY }}
+          allow-dirty: "true"

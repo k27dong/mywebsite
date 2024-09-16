@@ -19,7 +19,7 @@ struct AppState {
     notes: HashMap<String, BookNote>,
     projects: Vec<Project>,
     playlists: HashMap<u32, Playlist>,
-    gsheet_config: GSheetConfig,
+    // gsheet_config: GSheetConfig,
 }
 
 #[get("/health")]
@@ -151,22 +151,22 @@ async fn get_playlist(data: web::Data<AppState>, path: web::Path<u32>) -> impl R
     }
 }
 
-#[get("/api/get_phrase")]
-async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) -> impl Responder {
-    let phrase = sitecore::gphrasehandler::get_gphrase(
-        query.temp,
-        query.y,
-        query.m,
-        query.d,
-        query.days,
-        &data.gsheet_config,
-    )
-    .await;
+// #[get("/api/get_phrase")]
+// async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) -> impl Responder {
+//     let phrase = sitecore::gphrasehandler::get_gphrase(
+//         query.temp,
+//         query.y,
+//         query.m,
+//         query.d,
+//         query.days,
+//         &data.gsheet_config,
+//     )
+//     .await;
 
-    let phrase = sitecore::gphrasehandler::format_gphrase(phrase);
+//     let phrase = sitecore::gphrasehandler::format_gphrase(phrase);
 
-    HttpResponse::Ok().content_type("text/plain").body(phrase)
-}
+//     HttpResponse::Ok().content_type("text/plain").body(phrase)
+// }
 
 #[cfg(not(feature = "shuttle"))]
 #[actix_web::main]
@@ -191,7 +191,7 @@ async fn main() -> std::io::Result<()> {
                 notes: sitecore::booknote::load_booknote(),
                 projects: sitecore::project::load_projects(),
                 playlists: sitecore::playlist::load_playlist(),
-                gsheet_config: sitecore::gphrasehandler::load_gsheet_config(),
+                // gsheet_config: sitecore::gphrasehandler::load_gsheet_config(),
             }))
             .service(health)
             .service(ready)
@@ -202,7 +202,7 @@ async fn main() -> std::io::Result<()> {
             .service(get_total_note_num)
             .service(get_book_note)
             .service(get_playlist)
-            .service(get_phrase)
+            // .service(get_phrase)
             .service(
                 fs::Files::new("/", "./dist")
                     .index_file("index.html")
@@ -225,7 +225,7 @@ async fn actix_web() -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send +
             notes: sitecore::booknote::load_booknote(),
             projects: sitecore::project::load_projects(),
             playlists: sitecore::playlist::load_playlist(),
-            gsheet_config: sitecore::gphrasehandler::load_gsheet_config(),
+            // gsheet_config: sitecore::gphrasehandler::load_gsheet_config(),
         }));
         cfg.service(health);
         cfg.service(ready);
@@ -236,7 +236,7 @@ async fn actix_web() -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send +
         cfg.service(get_total_note_num);
         cfg.service(get_book_note);
         cfg.service(get_playlist);
-        cfg.service(get_phrase);
+        // cfg.service(get_phrase);
         cfg.service(
             fs::Files::new("/", "./dist")
                 .index_file("index.html")
