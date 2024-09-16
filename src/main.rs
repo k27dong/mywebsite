@@ -171,6 +171,7 @@ async fn get_playlist(data: web::Data<AppState>, path: web::Path<u32>) -> impl R
 #[cfg(not(feature = "shuttle"))]
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    println!("Starting actix-web server locally");
     let port = std::env::var("PORT").unwrap_or(String::from("5000"));
 
     HttpServer::new(|| {
