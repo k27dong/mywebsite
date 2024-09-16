@@ -13,6 +13,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Run `sync_content` binary
+        run: cargo run --bin sync_content
+
+      - name: Upload `web/content` folder as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-folder
+          path: web/content/
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -26,7 +40,7 @@ jobs:
           pnpm install
           pnpm build
 
-      - name: Upload `dist` folder as artifact (optional)
+      - name: Upload `dist` folder as artifact
         uses: actions/upload-artifact@v4
         with:
           name: dist-folder
@@ -39,6 +53,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Download `web/content` folder
+        uses: actions/download-artifact@v4
+        with:
+          name: content-folder
+          path: web/content/
 
       - name: Download `dist` folder
         uses: actions/download-artifact@v4
