@@ -50,7 +50,7 @@ jobs:
         run: |
           cp deploy.gitignore .gitignore
 
-      - name: First deploy attempt
+      - name: Deploy (attempt 1)
         uses: shuttle-hq/deploy-action@main
         id: deploy_attempt_1
         with:
@@ -58,8 +58,8 @@ jobs:
           allow-dirty: "true"
         continue-on-error: true
 
-      - name: Second deploy attempt (if first fails)
-        if: failure()
+      - name: Deploy (attempt 2)
+        if: steps.deploy_attempt_1.outcome == 'failure'
         uses: shuttle-hq/deploy-action@main
         id: deploy_attempt_2
         with:
@@ -67,8 +67,8 @@ jobs:
           allow-dirty: "true"
         continue-on-error: true
 
-      - name: Third deploy attempt (if second fails)
-        if: failure()
+      - name: Deploy (attempt 3)
+        if: steps.deploy_attempt_2.outcome == 'failure'
         uses: shuttle-hq/deploy-action@main
         id: deploy_attempt_3
         with:
