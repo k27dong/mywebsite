@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -38,7 +38,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download `dist` folder
         uses: actions/download-artifact@v4
@@ -46,14 +46,12 @@ jobs:
           name: dist-folder
           path: dist/
 
-      - name: Check total project size before deploy
-        run: ls -R
-
-      - name: Remove dist from .gitignore
+      - name: Replace .gitignore
         run: |
-          sed -i '/dist/d' .gitignore
+          cp deploy.gitignore .gitignore
 
       - uses: shuttle-hq/deploy-action@main
+        id: shutter_deploy
         with:
           deploy-key: ${{ secrets.SHUTTLE_API_KEY }}
           allow-dirty: "true"

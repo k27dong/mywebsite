@@ -1,0 +1,20 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# build
+/target
+/public
+
+# vscode
+.vscode/
+
+# Google Sheet credentials
+gsheet_creds.json
+
+# Astro
+/.astro
