@@ -46,7 +46,9 @@ jobs:
           name: dist-folder
 
       - name: Check total project size before deploy
-        run: du -sh .
+        run: |
+          echo "Total project size: $(du -sh .)"
+          echo "ls"
 
       - uses: shuttle-hq/deploy-action@main
         with:
