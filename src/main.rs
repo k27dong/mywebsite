@@ -221,6 +221,22 @@ async fn main() -> std::io::Result<()> {
 #[shuttle_runtime::main]
 async fn actix_web() -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
     println!("Starting actix-web server with shuttle runtime");
+
+    let current_dir = std::env::current_dir().expect("Failed to get current directory");
+    println!("Current working directory: {:?}", current_dir);
+
+    // List all files and directories in the current directory
+    match std::fs::read_dir(&current_dir) {
+        Ok(entries) => {
+            println!("Listing files and directories in the current directory:");
+            for entry in entries {
+                let entry = entry.expect("Failed to read directory entry");
+                println!("File or directory: {:?}", entry.path());
+            }
+        }
+        Err(e) => println!("Error reading directory: {}", e),
+    }
+
     let config = move |cfg: &mut ServiceConfig| {
         cfg.app_data(web::Data::new(AppState {
             posts: sitecore::blogpost::load_blogpost(),
