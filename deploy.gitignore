@@ -15,6 +15,7 @@
 
 # Google Sheet credentials
 gsheet_creds.json
+Secrets*.toml
 
 # Astro
 /.astro

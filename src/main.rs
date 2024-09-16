@@ -1,10 +1,6 @@
-use actix_cors::Cors;
 use actix_files as fs;
-use actix_web::{
-    get, http, post, web, web::ServiceConfig, App, HttpResponse, HttpServer, Responder,
-};
+use actix_web::{get, post, web, HttpResponse, Responder};
 use serde_json::json;
-use shuttle_actix_web::ShuttleActixWeb;
 use std::collections::HashMap;
 
 use sitecore::blogpost::BlogPost;
@@ -14,12 +10,24 @@ use sitecore::parser::parse_date;
 use sitecore::playlist::Playlist;
 use sitecore::project::Project;
 
+cfg_if::cfg_if! {
+    if #[cfg(feature = "shuttle")] {
+        use actix_web::web::ServiceConfig;
+        use shuttle_actix_web::ShuttleActixWeb;
+        use shuttle_runtime::SecretStore;
+    }
+    else {
+        use actix_cors::Cors;
+        use actix_web::{http, App, HttpServer};
+    }
+}
+
 struct AppState {
     posts: HashMap<u32, BlogPost>,
     notes: HashMap<String, BookNote>,
     projects: Vec<Project>,
     playlists: HashMap<u32, Playlist>,
-    // gsheet_config: GSheetConfig,
+    gsheet_config: GSheetConfig,
 }
 
 #[get("/health")]
@@ -151,27 +159,27 @@ async fn get_playlist(data: web::Data<AppState>, path: web::Path<u32>) -> impl R
     }
 }
 
-// #[get("/api/get_phrase")]
-// async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) -> impl Responder {
-//     let phrase = sitecore::gphrasehandler::get_gphrase(
-//         query.temp,
-//         query.y,
-//         query.m,
-//         query.d,
-//         query.days,
-//         &data.gsheet_config,
-//     )
-//     .await;
+#[get("/api/get_phrase")]
+async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) -> impl Responder {
+    let phrase = sitecore::gphrasehandler::get_gphrase(
+        query.temp,
+        query.y,
+        query.m,
+        query.d,
+        query.days,
+        &data.gsheet_config,
+    )
+    .await;
 
-//     let phrase = sitecore::gphrasehandler::format_gphrase(phrase);
+    let phrase = sitecore::gphrasehandler::format_gphrase(phrase);
 
-//     HttpResponse::Ok().content_type("text/plain").body(phrase)
-// }
+    HttpResponse::Ok().content_type("text/plain").body(phrase)
+}
 
 #[cfg(not(feature = "shuttle"))]
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    println!("Starting actix-web server locally");
+    println!("Starting actix server locally");
     let port = std::env::var("PORT").unwrap_or(String::from("5000"));
 
     HttpServer::new(|| {
@@ -192,7 +200,7 @@ async fn main() -> std::io::Result<()> {
                 notes: sitecore::booknote::load_booknote(),
                 projects: sitecore::project::load_projects(),
                 playlists: sitecore::playlist::load_playlist(),
-                // gsheet_config: sitecore::gphrasehandler::load_gsheet_config(),
+                gsheet_config: sitecore::gphrasehandler::load_gsheet_config(),
             }))
             .service(health)
             .service(ready)
@@ -203,7 +211,7 @@ async fn main() -> std::io::Result<()> {
             .service(get_total_note_num)
             .service(get_book_note)
             .service(get_playlist)
-            // .service(get_phrase)
+            .service(get_phrase)
             .service(
                 fs::Files::new("/", "./dist")
                     .index_file("index.html")
@@ -219,31 +227,19 @@ async fn main() -> std::io::Result<()> {
 
 #[cfg(feature = "shuttle")]
 #[shuttle_runtime::main]
-async fn actix_web() -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
-    println!("Starting actix-web server with shuttle runtime");
+async fn actix_web(
+    #[shuttle_runtime::Secrets] secret_store: SecretStore,
+) -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
+    println!("Starting actix server with shuttle runtime");
 
-    let current_dir = std::env::current_dir().expect("Failed to get current directory");
-    println!("Current working directory: {:?}", current_dir);
-
-    // List all files and directories in the current directory
-    match std::fs::read_dir(&current_dir) {
-        Ok(entries) => {
-            println!("Listing files and directories in the current directory:");
-            for entry in entries {
-                let entry = entry.expect("Failed to read directory entry");
-                println!("File or directory: {:?}", entry.path());
-            }
-        }
-        Err(e) => println!("Error reading directory: {}", e),
-    }
-
+    let gsheet_config = sitecore::gphrasehandler::load_gsheet_config(&secret_store).await;
     let config = move |cfg: &mut ServiceConfig| {
         cfg.app_data(web::Data::new(AppState {
             posts: sitecore::blogpost::load_blogpost(),
             notes: sitecore::booknote::load_booknote(),
             projects: sitecore::project::load_projects(),
             playlists: sitecore::playlist::load_playlist(),
-            // gsheet_config: sitecore::gphrasehandler::load_gsheet_config(),
+            gsheet_config,
         }));
         cfg.service(health);
         cfg.service(ready);
@@ -254,7 +250,7 @@ async fn actix_web() -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send +
         cfg.service(get_total_note_num);
         cfg.service(get_book_note);
         cfg.service(get_playlist);
-        // cfg.service(get_phrase);
+        cfg.service(get_phrase);
         cfg.service(
             fs::Files::new("/", "./dist")
                 .index_file("index.html")
@@ -263,5 +259,6 @@ async fn actix_web() -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send +
                 ),
         );
     };
+
     Ok(config.into())
 }

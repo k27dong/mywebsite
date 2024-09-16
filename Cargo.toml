@@ -17,6 +17,7 @@ shuttle = []
 actix-cors = "0.7.0"
 actix-files = "0.6.5"
 actix-web = "4"
+cfg-if = "1.0.0"
 chrono = "0.4.31"
 chrono-tz = "0.8.5"
 colored = "2.1.0"
