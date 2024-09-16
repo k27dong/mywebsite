@@ -219,6 +219,7 @@ async fn main() -> std::io::Result<()> {
 #[cfg(feature = "shuttle")]
 #[shuttle_runtime::main]
 async fn actix_web() -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
+    println!("Starting actix-web server with shuttle runtime");
     let config = move |cfg: &mut ServiceConfig| {
         cfg.app_data(web::Data::new(AppState {
             posts: sitecore::blogpost::load_blogpost(),
@@ -245,6 +246,5 @@ async fn actix_web() -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send +
                 ),
         );
     };
-
     Ok(config.into())
 }
