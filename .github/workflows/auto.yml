@@ -45,6 +45,9 @@ jobs:
         with:
           name: dist-folder
 
+      - name: Check total project size before deploy
+        run: du -sh .
+
       - uses: shuttle-hq/deploy-action@main
         with:
           deploy-key: ${{ secrets.SHUTTLE_API_KEY }}
