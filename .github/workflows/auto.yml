@@ -48,7 +48,7 @@ jobs:
       - name: Check total project size before deploy
         run: |
           echo "Total project size: $(du -sh .)"
-          echo "ls"
+          ls
 
       - uses: shuttle-hq/deploy-action@main
         with:
