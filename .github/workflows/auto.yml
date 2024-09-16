@@ -46,6 +46,9 @@ jobs:
           name: dist-folder
           path: dist/
 
+      - name: Move dist folder to project root
+        run: mv dist/ ./dist
+
       - name: Check total project size before deploy
         run: |
           echo "Total project size: $(du -sh .)"
