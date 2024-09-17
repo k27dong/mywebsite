@@ -8,6 +8,13 @@ import icon from "astro-icon"
 export default defineConfig({
   site: "http://10.0.0.114:4321/",
   srcDir: "./web",
+  markdown: {
+    shikiConfig: {
+      theme: "dark-plus",
+      defaultColor: false,
+      wrap: true,
+    },
+  },
   integrations: [
     mdx(),
     sitemap(),

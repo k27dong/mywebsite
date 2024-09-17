@@ -41,6 +41,13 @@ export default {
             "blockquote p": { margin: "0.5rem 0", lineHeight: "1.6rem" },
           },
         },
+        codeblockwidth: {
+          css: {
+            pre: {
+              wordBreak: "break-word",
+            },
+          },
+        },
       },
     },
   },

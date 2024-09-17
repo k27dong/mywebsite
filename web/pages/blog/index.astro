@@ -1,13 +1,15 @@
 ---
-import { getCollection } from "astro:content"
+import { type CollectionEntry, getCollection } from "astro:content"
 import Date from "../../components/ShortDate.astro"
 import MainLayout from "../../layouts/MainLayout.astro"
 
-const posts = (
+type Post = CollectionEntry<"posts">
+
+const posts: Post[] = (
   await getCollection("posts", ({ data }) => {
     return !data.disabled
   })
-).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+).sort((a: Post, b: Post) => b.data.date.valueOf() - a.data.date.valueOf())
 
 let prev: number
 ---

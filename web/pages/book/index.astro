@@ -1,9 +1,11 @@
 ---
-import { getCollection } from "astro:content"
+import { getCollection, type CollectionEntry } from "astro:content"
 import MainLayout from "../../layouts/MainLayout.astro"
 
-const booknotes = (await getCollection("booknotes")).sort(
-  (a, b) => b.data.id - a.data.id,
+type Booknote = CollectionEntry<"booknotes">
+
+const booknotes: Booknote[] = (await getCollection("booknotes")).sort(
+  (a: Booknote, b: Booknote) => b.data.id - a.data.id,
 )
 
 const total_notes = booknotes.reduce((acc, book) => acc + book.data.notenum, 0)

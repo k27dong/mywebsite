@@ -11,6 +11,7 @@ interface Props {
   title?: string
   callout?: string
   description?: string
+  callout_style?: string
 }
 
 const {
@@ -19,7 +20,7 @@ const {
   tab_icon = SITE_PREVIEW_IMAGE,
   title,
   callout,
-  description,
+  callout_style,
 } = Astro.props
 ---
 
@@ -31,7 +32,11 @@ const {
 
   <body class="bg-light font-jbmono">
     <Navigation />
-    {title && <Header title={title} callout={callout} />}
+    {
+      title && (
+        <Header title={title} callout={callout} callout_style={callout_style} />
+      )
+    }
     <main class="grid pt-[2.4rem] sm:pt-[4rem]">
       <slot />
     </main>

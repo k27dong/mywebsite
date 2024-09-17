@@ -1,13 +1,16 @@
 ---
-import { getCollection } from "astro:content"
+import { getCollection, type CollectionEntry } from "astro:content"
 import MainLayout from "../layouts/MainLayout.astro"
 
-const experiences = (await getCollection("experiences")).sort(
-  (a, b) => b.data.id - a.data.id,
+type Experience = CollectionEntry<"experiences">
+type Skill = CollectionEntry<"skills">
+
+const experiences: Experience[] = (await getCollection("experiences")).sort(
+  (a: Experience, b: Experience) => b.data.id - a.data.id,
 )
 
-const skills = (await getCollection("skills")).sort(
-  (a, b) => a.data.id - b.data.id,
+const skills: Skill[] = (await getCollection("skills")).sort(
+  (a: Skill, b: Skill) => a.data.id - b.data.id,
 )
 ---
 

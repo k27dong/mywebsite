@@ -2,30 +2,33 @@
 import { type CollectionEntry, getCollection } from "astro:content"
 import MainLayout from "../../layouts/MainLayout.astro"
 
-type Props = CollectionEntry<"booknotes">
+type Booknote = CollectionEntry<"booknotes">
 
 export async function getStaticPaths() {
-  const booknotes = await getCollection("booknotes")
-  return booknotes.map((book: Props) => ({
+  const booknotes: Booknote[] = await getCollection("booknotes")
+  return booknotes.map((book: Booknote) => ({
     params: { slug: book.data.title },
     props: book,
   }))
 }
 
-const { title, author, content } = Astro.props.data as Props["data"];
+const { title, author, content } = Astro.props.data as Booknote["data"]
 ---
 
-<MainLayout title={title} callout={author} tab_title={title}>
+<MainLayout
+  title={title}
+  callout={author}
+  tab_title={title}
+  callout_style="font-article text-base"
+>
   <article class="px-[1.2rem] pb-[2.4rem] sm:px-[6rem]">
     <div class="font-article font-normal leading-7">
       {
         content.map((section) => (
           <div class="mb-10">
             <h1 class="mb-2 text-2xl font-semibold">{section.name}</h1>
-            {section.notes.map((note, index) => (
-              <div
-                class={`border-l border-r border-t border-gray-300 bg-gray-100 p-4 text-[17px] ${index === section.notes.length - 1 ? "border-b" : ""}`}
-              >
+            {section.notes.map((note) => (
+              <div class="mb-4 border border-gray-300 bg-gray-100 p-4 text-base">
                 {note.split("\n").map((line, index, arr) => (
                   <p class={index < arr.length - 1 ? "mb-2" : ""}>{line}</p>
                 ))}
