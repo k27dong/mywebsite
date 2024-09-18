@@ -1,6 +1,9 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content"
 import MainLayout from "../layouts/MainLayout.astro"
+import Callout from "../components/Callout.astro"
+import { Icon } from "astro-icon/components"
+import { RESUME_FILE } from "../consts"
 
 type Experience = CollectionEntry<"experiences">
 type Skill = CollectionEntry<"skills">
@@ -15,24 +18,32 @@ const skills: Skill[] = (await getCollection("skills")).sort(
 ---
 
 <MainLayout title="Curriculum Vitae">
+  <Callout
+    as="a"
+    slot="callout"
+    class="flex items-center space-x-2 underline decoration-1 \
+      underline-offset-4 hover:font-bold"
+    href={RESUME_FILE}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Icon name="arrow-down-to-line" />
+    <span>Download Resume</span>
+  </Callout>
+
   <div class="mt-[-2rem] flex flex-col sm:mt-[-4rem] md:flex-row">
-    <!-- Skills Section -->
-    <div class="w-full p-4 font-jbmono md:w-1/2">
+    <div class="w-full p-4 md:w-1/2">
       <ul>
         {
-          skills.map((skill) => (
+          skills.map((skill: Skill) => (
             <li class="mb-6">
-              <div class="relative grid pb-1 sm:grid-cols-8 sm:gap-8 md:gap-4">
-                <header class="text-md mb-2 mt-1 font-semibold text-black underline underline-offset-4 sm:col-span-8">
-                  {skill.data.name}
-                </header>
-                <div class="flex flex-wrap gap-x-4 gap-y-2 font-medium text-black sm:col-span-8">
-                  {skill.data.items.map((item) => (
-                    <span class="text-sm leading-5 tracking-tight text-black">
-                      {item}
-                    </span>
-                  ))}
-                </div>
+              <header class="mb-4 mt-1 text-lg font-semibold underline underline-offset-4">
+                {skill.data.name}
+              </header>
+              <div class="flex flex-wrap gap-x-4 font-medium">
+                {skill.data.items.map((item) => (
+                  <span class="text-sm tracking-tight">{item}</span>
+                ))}
               </div>
             </li>
           ))
@@ -40,47 +51,12 @@ const skills: Skill[] = (await getCollection("skills")).sort(
       </ul>
     </div>
 
-    <!-- Divider using border-l -->
+    <div class="my-4 block border-t border-black sm:hidden"></div>
     <div class="mx-4 hidden sm:block md:border-l md:border-black"></div>
 
-    <!-- Experience Section -->
     <div class="w-full p-4 md:w-1/2">
       <ul>
-        {
-          experiences.map((exp) => (
-            <li class="mb-12">
-              <div class="relative grid pb-1 transition-all hover:bg-[#d1c6bf] hover:text-teal-500 sm:grid-cols-8 sm:gap-8 md:gap-4">
-                <header class="mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-black sm:col-span-2">
-                  {exp.data.date}
-                </header>
-                <div class="sm:col-span-6">
-                  <h3 class="font-medium leading-snug">
-                    <a
-                      class="inline-flex items-baseline text-base font-medium leading-tight"
-                      href="#"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      <span>{`${exp.data.role} · ${exp.data.company}`}</span>
-                    </a>
-                  </h3>
-                  <p class="mt-2 text-sm leading-normal text-gray-600">
-                    {exp.data.description}
-                  </p>
-                  <ul class="mt-2 flex flex-wrap" aria-label="Points">
-                    {exp.data.points.map((point) => (
-                      <li class="mr-1.5 mt-2">
-                        <div class="inline-block rounded-sm bg-gray-200 px-2 py-1 text-sm text-gray-700">
-                          {point}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </li>
-          ))
-        }
+        {experiences.map((exp) => <li class="mb-12" />)}
       </ul>
     </div>
   </div>

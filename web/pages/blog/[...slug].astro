@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content"
 import MainLayout from "../../layouts/MainLayout.astro"
+import Callout from "../../components/Callout.astro"
 import Prose from "../../components/Prose.astro"
 
 type Post = CollectionEntry<"posts">
@@ -25,7 +26,11 @@ const full_date = date.toLocaleDateString("en-US", {
 })
 ---
 
-<MainLayout title={displaytitle || title} callout={full_date} tab_title={title}>
+<MainLayout title={displaytitle || title} tab_title={title}>
+  <Callout slot="callout">
+    {full_date}
+  </Callout>
+
   <article class="px-[1.2rem] pb-24 sm:px-[6rem]">
     <div class="font-article font-normal leading-7">
       <Prose>

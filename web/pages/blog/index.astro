@@ -2,9 +2,9 @@
 import { type CollectionEntry, getCollection } from "astro:content"
 import Date from "../../components/ShortDate.astro"
 import MainLayout from "../../layouts/MainLayout.astro"
+import Callout from "../../components/Callout.astro"
 
 type Post = CollectionEntry<"posts">
-
 const posts: Post[] = (
   await getCollection("posts", ({ data }) => {
     return !data.disabled
@@ -14,7 +14,9 @@ const posts: Post[] = (
 let prev: number
 ---
 
-<MainLayout title="Articles" callout="I know a bit of Chinese">
+<MainLayout title="Articles">
+  <Callout slot="callout"> I know some Chinese</Callout>
+
   <section
     class="mx-auto grid w-full max-w-[1024px]
       grid-cols-[minmax(auto,3.5rem)_1rem_auto_1rem_1fr] px-[4vw] pb-[5vw]

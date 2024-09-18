@@ -1,11 +1,10 @@
 ---
 interface Props {
   title: string
-  callout?: string
-  callout_style?: string
+  callout: boolean
 }
 
-const { title, callout, callout_style } = Astro.props
+const { title, callout } = Astro.props
 
 const get_scale = (text: string) => {
   const len = text.length
@@ -42,13 +41,12 @@ const compress_rate = Math.min(
       ))
     }
   </h1>
+
   {
     callout && (
       <div class="flex justify-self-center">
-        <small
-          class={`flex items-center justify-center gap-[.25em] border border-t-0 border-black px-4 py-2 ${callout_style ?? "text-sm"}`}
-        >
-          {callout}
+        <small class={`border border-t-0 border-black px-4 py-2 text-sm`}>
+          <slot name="callout" />
         </small>
       </div>
     )

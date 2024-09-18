@@ -1,0 +1,12 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+type Props = HTMLAttributes<any> & { as?: keyof HTMLElementTagNameMap }
+
+const { as = "span", class: class_name, ...props } = Astro.props as Props
+const Element = as
+---
+
+<Element class:list={[class_name]} {...props}>
+  <slot />
+</Element>

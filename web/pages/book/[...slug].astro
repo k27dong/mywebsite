@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content"
 import MainLayout from "../../layouts/MainLayout.astro"
+import Callout from "../../components/Callout.astro"
 
 type Booknote = CollectionEntry<"booknotes">
 
@@ -15,12 +16,11 @@ export async function getStaticPaths() {
 const { title, author, content } = Astro.props.data as Booknote["data"]
 ---
 
-<MainLayout
-  title={title}
-  callout={author}
-  tab_title={title}
-  callout_style="font-article text-base"
->
+<MainLayout title={title} tab_title={title}>
+  <Callout slot="callout" class="font-article text-base">
+    {author}
+  </Callout>
+
   <article class="px-[1.2rem] pb-[2.4rem] sm:px-[6rem]">
     <div class="font-article font-normal leading-7">
       {

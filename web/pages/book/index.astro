@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content"
 import MainLayout from "../../layouts/MainLayout.astro"
+import Callout from "../../components/Callout.astro"
 
 type Booknote = CollectionEntry<"booknotes">
 
@@ -11,7 +12,9 @@ const booknotes: Booknote[] = (await getCollection("booknotes")).sort(
 const total_notes = booknotes.reduce((acc, book) => acc + book.data.notenum, 0)
 ---
 
-<MainLayout title="Booknotes" callout={`Total: ${total_notes} entries`}>
+<MainLayout title="Booknotes">
+  <Callout slot="callout">{`Total: ${total_notes} entries`} </Callout>
+
   <section class="mx-auto w-full max-w-screen-xl px-8 md:px-10 lg:px-24">
     <div class="mx-auto max-w-5xl">
       <table class="w-full table-auto border-collapse">
