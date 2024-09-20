@@ -2,8 +2,9 @@ company: "PointClickCare"
 id: 4
 role: "Software Engineer"
 date: "Jan - Apr 2021"
-location: "Toronto, Canada"
-description: "This is yet to be written"
+location: "Toronto"
+description:
+- "This is yet to be written"
 points:
   - "Point 1"
   - "Point 2"

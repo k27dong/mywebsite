@@ -1,9 +1,10 @@
-company: "big river technologies inc."
+company: "big river technologies"
 id: 1
 role: "Software Developer"
 date: "Jan - Apr 2019"
-location: "Gananoque, Canada"
-description: "This is yet to be written"
+location: "Kingston"
+description:
+- "This is yet to be written"
 points:
   - "Point 1"
   - "Point 2"

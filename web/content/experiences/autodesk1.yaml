@@ -2,8 +2,12 @@ company: "Autodesk"
 id: 6
 role: "Software Engineer"
 date: "Sep - Dec 2022"
-location: "Toronto, Canada"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
+location: "Toronto"
+description:
+  - Developed a Python-based tool to streamline load testing for Autodesk Fusion services, which is essential for real-time monitoring on Health Dashboards post-release. Implemented Jenkins support for ECS container accessibility
+  - Worked on legacy API migration in Java Spring Boot, optimized performance through new caching mechanisms and Elasticsearch integration, reducing backend response times.
+  - Introduced Codacy to improve code quality, resolving more than 75,000 code style issues with refined Gradle build processes.
+  - Performed backend tests using Mockito with JUnit, enhanced data visualization and reporting with Splunk and Kibana.
 points:
   - "Point 1"
   - "Point 2"

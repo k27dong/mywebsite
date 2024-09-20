@@ -1,0 +1,7 @@
+name: pinyin-parser
+id: 5
+language:
+  - JavaScript
+  - NPM Config
+description: A lightweight npm package to parse and process Pinyin text.
+link: https://github.com/k27dong/pinyin-parser

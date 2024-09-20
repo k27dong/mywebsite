@@ -1,6 +1,5 @@
 ---
-title: is_Odd();
-displaytitle: is_odd
+title: Odd Ways to Find Odd Numbers
 abbrlink: 60052
 date: 2019-05-28 20:35:15
 ---

@@ -1,0 +1,7 @@
+name: kotetsu
+id: 3
+language:
+  - C
+  - Makefile
+description: A E-ink Display that displays custom information, driven by a Raspberry Pi and powered by two 18650 rechargable batteries.
+link: https://github.com/k27dong/kotetsu

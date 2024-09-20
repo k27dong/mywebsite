@@ -1,0 +1,7 @@
+name: to_do
+id: 8
+language:
+  - Ruby
+  - CoffeeScript
+description: A straightforward to-do list made with RoR.
+link: https://github.com/k27dong/to_do

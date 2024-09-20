@@ -2,8 +2,9 @@ company: "CIBC"
 id: 3
 role: "Software Developer"
 date: "May - Aug 2020"
-location: "Waterloo, Canada"
-description: "This is yet to be written"
+location: "Waterloo"
+description:
+- "This is yet to be written"
 points:
   - "Point 1"
   - "Point 2"

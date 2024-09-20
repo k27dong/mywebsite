@@ -1,0 +1,8 @@
+name: fydp
+id: 6
+language:
+  - JavaScript
+  - Python
+  - HTML
+description: Facial recognition and emotion detection application, powered by Torch, OpenCV, Flask, and React with Vite.
+link: https://github.com/k27dong/fydp

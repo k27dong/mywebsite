@@ -1,0 +1,60 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content"
+import Callout from "../components/Callout.astro"
+import MainLayout from "../layouts/MainLayout.astro"
+import { GITHUB_LINK } from "../consts"
+
+type Project = CollectionEntry<"projects">
+
+const projects: Project[] = (await getCollection("projects")).sort(
+  (a: Project, b: Project) => a.data.id - b.data.id,
+)
+
+const callout_desktop = `find ~ -name .git \\\n\t| awk -F'/' '{print$(NF-1)}' \\\n\t| nl `
+const callout_mobile = `ls ~/projects/ | nl`
+---
+
+<MainLayout title="Projects">
+  <Callout slot="callout">
+    <span class="hidden whitespace-pre-wrap sm:block">
+      {callout_desktop}
+    </span>
+
+    <span class="block whitespace-pre-wrap sm:hidden">
+      {callout_mobile}
+    </span>
+  </Callout>
+
+  <div class="pb-10 sm:mt-[-2rem]">
+    <div
+      class="mx-auto mb-8 w-full max-w-lg px-4 pb-2 tracking-tighter sm:px-0"
+    >
+      <p class="text-left">
+        A collection of all kinds of project I've worked on during my free time.
+        Sometimes they solve real problems, other times they're just fun
+        experiments. Check out my
+        <a
+          href={GITHUB_LINK}
+          class="underline underline-offset-2"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub</a
+        > for more :)
+      </p>
+    </div>
+
+    <section
+      class="grid w-full grid-cols-2 border-t border-black md:grid-cols-3
+        lg:grid-cols-4"
+    >
+      {
+        projects.map((project) => (
+          <div class="flex h-48 items-center justify-center border-b border-r border-black">
+            <h3>{project.data.name}</h3>
+          </div>
+        ))
+      }
+    </section>
+  </div>
+</MainLayout>

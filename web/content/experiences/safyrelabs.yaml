@@ -3,7 +3,8 @@ id: 2
 role: "Full Stack Developer"
 date: "Sep - Dec 2019"
 location: "Toronto, Canada"
-description: "This is yet to be written"
+description:
+- "This is yet to be written"
 points:
   - "Point 1"
   - "Point 2"

@@ -2,8 +2,9 @@ company: "BetterUp"
 id: 5
 role: "Software Engineer"
 date: "Jan - Apr 2022"
-location: "San Francisco, US"
-description: "This is yet to be written"
+location: "San Francisco"
+description:
+- "This is yet to be written"
 points:
   - "Point 1"
   - "Point 2"

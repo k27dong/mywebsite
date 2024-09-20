@@ -1,0 +1,7 @@
+name: reminder
+id: 4
+language:
+  - Python
+  - Github Action
+description: A GitHub Actions tool that alerts your phone if no commits are detected for the day.
+link: https://github.com/k27dong/reminder

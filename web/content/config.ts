@@ -35,9 +35,9 @@ const experiences = defineCollection({
     role: z.string(),
     date: z.string(),
     location: z.string(),
-    description: z.string(),
-    points: z.array(z.string()),
-    is_internship: z.boolean(),
+    description: z.array(z.string()).optional(),
+    points: z.array(z.string()).optional(),
+    is_internship: z.boolean().optional().default(false),
   }),
 })
 
@@ -50,4 +50,15 @@ const skills = defineCollection({
   }),
 })
 
-export const collections = { posts, booknotes, experiences, skills }
+const projects = defineCollection({
+  type: "data",
+  schema: z.object({
+    name: z.string(),
+    id: z.number(),
+    language: z.array(z.string()),
+    description: z.string(),
+    link: z.string().optional(),
+  }),
+})
+
+export const collections = { posts, booknotes, experiences, skills, projects }
