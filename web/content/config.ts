@@ -37,6 +37,7 @@ const experiences = defineCollection({
     description: z.array(z.string()).optional(),
     points: z.array(z.string()).optional(),
     is_internship: z.boolean().optional().default(false),
+    link: z.string().optional(),
   }),
 })
 

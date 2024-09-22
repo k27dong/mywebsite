@@ -5,6 +5,7 @@ location: "Toronto"
 description:
 - "This is yet to be written"
 points:
-  - "Point 1"
-  - "Point 2"
+  - Java Spring Boot
+  - Selenium
 is_internship: true
+link: https://pointclickcare.com/

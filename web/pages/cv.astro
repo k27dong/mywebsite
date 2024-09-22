@@ -1,8 +1,8 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content"
+import { Icon } from "astro-icon/components"
 import MainLayout from "../layouts/MainLayout.astro"
 import Callout from "../components/Callout.astro"
-import { Icon } from "astro-icon/components"
 import { RESUME_FILE, EDUCATION } from "../consts"
 
 type Experience = CollectionEntry<"experiences">
@@ -15,8 +15,14 @@ const experiences: Experience[] = (await getCollection("experiences")).sort(
       return new Date(`${month} 1, ${year}`)
     }
 
-    const [a_start_str, a_end_str]: [string, string] = a.data.date.split(" - ")
-    const [b_start_str, b_end_str]: [string, string] = b.data.date.split(" - ")
+    const [a_start_str, a_end_str] = a.data.date.split(" - ") as [
+      string,
+      string,
+    ]
+    const [b_start_str, b_end_str] = b.data.date.split(" - ") as [
+      string,
+      string,
+    ]
 
     const a_start: Date = !parse_time(a_start_str)
       ? parse_time(a_start_str)
@@ -80,66 +86,48 @@ const callout_style = `
     <div class="flex flex-col border-l border-black md:col-span-1">
       <div class="border-b border-black p-4">
         <ul>
-          {
-            (
-              <li class="mb-6">
-                <header class="mb-4 text-lg font-semibold underline underline-offset-4">
-                  {EDUCATION.school}
-                </header>
-                <div class="text-sm font-medium text-gray-600">
-                  {EDUCATION.degree}
-                </div>
-                <div class="text-sm tracking-tight">{EDUCATION.info}</div>
-              </li>
-            )
-          }
+          <li class="mb-4">
+            <header class="mb-4 text-center text-lg font-bold">
+              {EDUCATION.school}
+            </header>
+
+            <div class="flex flex-col items-center text-center">
+              <div class="w-full text-center text-sm font-medium">
+                {EDUCATION.degree}
+              </div>
+              <div class="w-full text-center text-sm tracking-tight">
+                {EDUCATION.info}
+              </div>
+              <div class="w-full pt-4 text-center text-xs tracking-tight">
+                {EDUCATION.time}
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
 
-      <div class="p-4">
-        <div>
+      <!-- Current Job section -->
+      <div class="flex flex-1 items-center justify-center p-4">
+        <div class="text-center">
           <header class="mb-4">
-            <div class="mb-1 flex items-center justify-between">
-              <div class="text-xl font-bold tracking-tight">
-                {current_job.data.company}
-              </div>
-              <div class="text-lg font-bold text-gray-700">
-                {current_job.data.role}
-              </div>
+            <div class="mb-1 text-2xl font-bold tracking-tight">
+              {current_job.data.company}
             </div>
-
-            <div
-              class="flex items-center justify-between text-sm font-medium
-                text-gray-600"
-            >
-              <div>{current_job.data.date}</div>
-              <div>{current_job.data.location}</div>
+            <div class="text-lg font-bold text-gray-700">
+              {current_job.data.role}
             </div>
-
-            {
-              current_job.data.is_internship && (
-                <div class="text-xs text-gray-500">(Internship)</div>
-              )
-            }
           </header>
+
+          <div class="mb-6 text-sm font-medium text-gray-600">
+            <div>{current_job.data.date}</div>
+            <div>{current_job.data.location}</div>
+          </div>
 
           {
             current_job.data.description && (
               <div class="mb-4">
                 {current_job.data.description.map((desc) => (
-                  <p class="mb-2 text-sm tracking-tighter">{`- ${desc}`}</p>
-                ))}
-              </div>
-            )
-          }
-
-          {
-            current_job.data.points && (
-              <div class="flex flex-wrap gap-2">
-                {current_job.data.points.map((point) => (
-                  <span class="inline-block rounded-sm bg-gray-200 px-2 py-1 text-sm text-gray-700">
-                    {point}
-                  </span>
+                  <p class="mb-2 text-sm tracking-tighter">{desc}</p>
                 ))}
               </div>
             )

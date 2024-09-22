@@ -8,6 +8,8 @@ description:
   - Introduced Codacy to improve code quality, resolving more than 75,000 code style issues with refined Gradle build processes.
   - Performed backend tests using Mockito with JUnit, enhanced data visualization and reporting with Splunk and Kibana.
 points:
-  - "Point 1"
-  - "Point 2"
+  - Java
+  - Spring Boot
+  - JUnit
 is_internship: true
+link: https://www.autodesk.com/ca-en

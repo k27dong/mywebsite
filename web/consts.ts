@@ -8,5 +8,6 @@ export const LOCATION = "Toronto, Canada"
 export const EDUCATION = {
   school: "University of Waterloo",
   degree: "Bachelor of Applied Science",
-  info: "Computer Engineering 2018 - 2023",
+  info: "Computer Engineering",
+  time: "2018 - 2023",
 }
