@@ -2,6 +2,6 @@ name: kotetsu
 id: 3
 language:
   - C
-  - Makefile
-description: A E-ink Display that displays custom information, driven by a Raspberry Pi and powered by two 18650 rechargable batteries.
+  - Raspberry Pi
+description: An IoT device that fetches data from Google Sheets and displays it on an E-ink screen, powered by two 18650 rechargeable batteries.
 link: https://github.com/k27dong/kotetsu

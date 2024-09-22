@@ -3,5 +3,5 @@ id: 4
 language:
   - Python
   - Github Action
-description: A GitHub Actions tool that alerts your phone if no commits are detected for the day.
+description: A GitHub Actions workflow that triggers mobile notifications if no commits are made that day.
 link: https://github.com/k27dong/reminder

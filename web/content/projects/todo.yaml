@@ -1,7 +1,7 @@
 name: to_do
 id: 8
 language:
-  - Ruby
+  - Ruby on Rails
   - CoffeeScript
-description: A straightforward to-do list made with RoR.
+description: A simple and straightforward to-do list app.
 link: https://github.com/k27dong/to_do
