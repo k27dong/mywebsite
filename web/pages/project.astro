@@ -93,13 +93,13 @@ const callout_mobile = `ls ~/projects/ | nl`
 
             <div class="mt-2">
               <ul class="hidden flex-wrap gap-2 text-xs text-gray-600 sm:flex">
-                {project.data.language.map((lang) => (
+                {project.data.language.map((lang: string) => (
                   <li class="rounded bg-gray-200 px-2 py-1">{lang}</li>
                 ))}
               </ul>
 
               <ul class="flex flex-wrap gap-2 text-xs text-gray-600 sm:hidden">
-                {project.data.mobile_tags.map((lang) => (
+                {project.data.mobile_tags.map((lang: string) => (
                   <li class="rounded bg-gray-200 px-2 py-1 tracking-tighter">
                     {lang}
                   </li>

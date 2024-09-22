@@ -1,8 +1,6 @@
 company: "Autodesk"
-id: 7
 role: "Software Engineer"
 date: "Dec 2023 - Present"
 location: "Toronto"
 description:
 - Fusion Team Backend
-is_internship: false
