@@ -1,4 +1,11 @@
-name: Tests
+name: Testing
 id: 4
 items:
+  - Selenium
+  - JUnit
+  - Mokito
+  - PowerMock
+  - Cucumber
   - Mocha
+  - Chai
+  - Playwright
