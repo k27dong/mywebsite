@@ -63,8 +63,8 @@ const callout_style = `
     <span>Download Resume</span>
   </Callout>
 
-  <div class="grid grid-cols-1 gap-0 md:mt-[-4rem] md:grid-cols-2">
-    <div class="border-black p-4 md:col-span-1">
+  <div class="mt-[-1.4rem] grid grid-cols-1 gap-0 md:mt-[-4rem] md:grid-cols-2">
+    <div class="hidden border-black p-4 md:col-span-1 md:block">
       <ul>
         {
           skills.map((skill: Skill) => (
@@ -83,11 +83,19 @@ const callout_style = `
       </ul>
     </div>
 
-    <div class="flex flex-col border-l border-black md:col-span-1">
-      <div class="border-b border-black p-4">
+    <div class="flex flex-col border-black md:col-span-1 md:border-l">
+      <a
+        href="LINK_TO_EDUCATION"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group block border-b border-black p-4"
+      >
         <ul>
           <li class="mb-4">
-            <header class="mb-4 text-center text-lg font-bold">
+            <header
+              class="mb-4 text-center text-lg font-bold group-hover:underline
+                group-hover:underline-offset-4"
+            >
               {EDUCATION.school}
             </header>
 
@@ -104,13 +112,21 @@ const callout_style = `
             </div>
           </li>
         </ul>
-      </div>
+      </a>
 
-      <!-- Current Job section -->
-      <div class="flex flex-1 items-center justify-center p-4">
+      <a
+        href="LINK_TO_CURRENT_JOB"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group flex flex-1 items-center justify-center border-b
+          border-black pb-2 pt-6 md:border-b-0 md:p-4"
+      >
         <div class="text-center">
           <header class="mb-4">
-            <div class="mb-1 text-2xl font-bold tracking-tight">
+            <div
+              class="mb-1 text-2xl font-bold tracking-tight
+                group-hover:underline group-hover:underline-offset-4"
+            >
               {current_job.data.company}
             </div>
             <div class="text-lg font-bold text-gray-700">
@@ -133,10 +149,29 @@ const callout_style = `
             )
           }
         </div>
-      </div>
+      </a>
     </div>
 
-    <div class="border-t border-black p-4 md:col-span-2 md:px-24">
+    <div class="border-black p-4 md:hidden">
+      <ul>
+        {
+          skills.map((skill: Skill) => (
+            <li class="mb-6">
+              <header class="mb-4 mt-1 text-lg font-semibold underline underline-offset-4">
+                {skill.data.name}
+              </header>
+              <div class="flex flex-wrap gap-x-4 gap-y-1 font-medium">
+                {skill.data.items.map((item) => (
+                  <span class="text-sm tracking-tight">{item}</span>
+                ))}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="border-t border-black p-8 md:col-span-2 md:px-40">
       <ul>
         {
           past_experiences.map((exp: Experience, index) => (
