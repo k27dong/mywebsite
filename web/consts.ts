@@ -10,4 +10,5 @@ export const EDUCATION = {
   degree: "Bachelor of Applied Science",
   info: "Computer Engineering",
   time: "2018 - 2023",
+  link: "https://uwaterloo.ca/electrical-computer-engineering/"
 }

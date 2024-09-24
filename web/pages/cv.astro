@@ -85,7 +85,7 @@ const callout_style = `
 
     <div class="flex flex-col border-black md:col-span-1 md:border-l">
       <a
-        href="LINK_TO_EDUCATION"
+        href={EDUCATION.link}
         target="_blank"
         rel="noopener noreferrer"
         class="group block border-b border-black p-4"
@@ -115,7 +115,7 @@ const callout_style = `
       </a>
 
       <a
-        href="LINK_TO_CURRENT_JOB"
+        href={current_job.data.link}
         target="_blank"
         rel="noopener noreferrer"
         class="group flex flex-1 items-center justify-center border-b
@@ -129,7 +129,7 @@ const callout_style = `
             >
               {current_job.data.company}
             </div>
-            <div class="text-lg font-bold text-gray-700">
+            <div class="text-lg font-bold">
               {current_job.data.role}
             </div>
           </header>
@@ -171,54 +171,58 @@ const callout_style = `
       </ul>
     </div>
 
-    <div class="border-t border-black p-8 md:col-span-2 md:px-40">
-      <ul>
-        {
-          past_experiences.map((exp: Experience, index) => (
-            <li
-              class={`mb-6 ${index > 0 ? "border-t border-gray-300 pt-6" : ""}`}
-            >
-              <header class="mb-4">
-                <div class="mb-1 flex items-center justify-between">
-                  <div class="text-xl font-bold tracking-tight">
-                    {exp.data.company}
-                  </div>
-                  <div class="text-lg font-bold text-gray-700">
-                    {exp.data.role}
-                  </div>
-                </div>
+    <div class="border-t border-black md:col-span-2">
+      <div class="py-8 md:mx-auto md:max-w-[60vw]">
+        <ul>
+          {
+            past_experiences.map((exp: Experience, index) => (
+              <li
+                class={`mb-6 ${index > 0 ? "border-t border-gray-300 pt-6" : ""}`}
+              >
+                <div class="px-8 md:p-0">
+                  <header class="mb-4">
+                    <div class="mb-1 flex items-center justify-between">
+                      <div class="text-lg font-bold md:text-xl">
+                        {exp.data.company}
+                      </div>
+                      <div class="text-right text-base font-bold tracking-tight text-gray-700 md:text-lg">
+                        {exp.data.role}
+                      </div>
+                    </div>
 
-                <div class="flex items-center justify-between text-sm font-medium text-gray-600">
-                  <div>{exp.data.date}</div>
-                  <div>{exp.data.location}</div>
-                </div>
+                    <div class="flex items-center justify-between text-sm font-medium text-gray-600">
+                      <div>{exp.data.date}</div>
+                      <div>{exp.data.location}</div>
+                    </div>
 
-                {exp.data.is_internship && (
-                  <div class="text-xs text-gray-500">(Internship)</div>
-                )}
-              </header>
+                    {exp.data.is_internship && (
+                      <div class="text-xs text-gray-500">(Internship)</div>
+                    )}
+                  </header>
 
-              {exp.data.description && (
-                <div class="mb-4">
-                  {exp.data.description.map((desc) => (
-                    <p class="mb-2 text-sm tracking-tighter">{`- ${desc}`}</p>
-                  ))}
-                </div>
-              )}
+                  {exp.data.description && (
+                    <div class="mb-4">
+                      {exp.data.description.map((desc) => (
+                        <p class="mb-2 font-sans text-sm font-normal">{`• ${desc}`}</p>
+                      ))}
+                    </div>
+                  )}
 
-              {exp.data.points && (
-                <div class="flex flex-wrap gap-2">
-                  {exp.data.points.map((point) => (
-                    <span class="inline-block rounded-sm bg-gray-200 px-2 py-1 text-sm text-gray-700">
-                      {point}
-                    </span>
-                  ))}
+                  {exp.data.points && (
+                    <div class="flex flex-wrap gap-2">
+                      {exp.data.points.map((point) => (
+                        <span class="inline-block rounded-sm bg-gray-200 px-2 py-1 text-xs text-gray-700">
+                          {point}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              )}
-            </li>
-          ))
-        }
-      </ul>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
   </div>
 </MainLayout>
