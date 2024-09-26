@@ -14,24 +14,24 @@ Let's first list all the technologies used:
 ```
 ### Development ###
 # Backend
-Flask (Gunicorn)
+  Flask (Gunicorn)
 # Frontend
-React
+  React
 
 ### Deployment ###
 # Option 1 (recommended, ~$10/month)
-Heroku Dyno
+  Heroku Dyno
 # Option 2 (~$50/month)
-Docker
-Nginx
-Google Cloud Platform
-Kubernetes
+  Docker
+  Nginx
+  Google Cloud Platform
+  Kubernetes
 
 ### Domain ###
-Google Domain (~$30/year)
+  Google Domain (~$30/year)
 ```
 
-As you can see, to get your web-app live, there are two main objectives: get your app running locally (on localhost), and deploy it to a server (so that any device connected to Wi-Fi could access it). For the deployment part I would only cover the steps to use Heroku, since GCP is much more complicated and costs more, even though it provides better service and richer environment.
+As you can see, to get your web-app live, there are two main objectives: get your app running locally (on `localhost`), and deploy it to a server (so that any device connected to Wi-Fi could access it). For the deployment part I would only cover the steps to use Heroku, since GCP is much more complicated and costs more, even though it provides better service and richer environment.
 
 We'll focus on the first part for now, let's get started.
 
@@ -80,7 +80,7 @@ Note that the development build is not optimized.
 To create a production build, use npm run build.
 ```
 
-Now if we go to [`http://localhost:3000/`](http://localhost:3000/) you can see a big rotating blue icon, this means the react frontend is up and running on our local machine. Let's do some simple modification so that it displays something useful (you can modify in any way but here we're just gonna build the simplest app ever):
+Now if we go to [http://localhost:3000/](http://localhost:3000/) you can see a big rotating blue icon, this means the react frontend is up and running on our local machine. Let's do some simple modification so that it displays something useful (you can modify in any way but here we're just gonna build the simplest app ever):
 
 ```jsx
 /* App.js */
@@ -120,7 +120,7 @@ export default App
 
 Now your front end should look like this:
 
-<img src="/images/73316/1.png" width="70%"/>
+<img class="mx-auto" src="/images/73316/1.png" width="70%"/>
 
 We expect that once the button is clicked, the value of the textbox should change, now the text is changed to a hard-coded value 'pong!', but after the backend is set it would be changed to something we defined in flask.
 
@@ -170,13 +170,13 @@ if __name__ == "__main__":
 
 In this python file we have created an app named 'app', serve it using a static folder which we will build later with `npm`. Except for the root index it now only provides one api call named 'ready', we can test it by executing:
 
-```python
+```shell
 python3 app.py
 ```
 
 and go to [`http://localhost:5000/ready`](http://localhost:5000/ready). You should be able to see the text 'ready' on the main page now. We will use flask to handle any api calls from the frontend. Using this blog as an example, once you click on the `/blog` link, react would request a list articles and flask would respond to the api call with a jsonified list of all articles along with their information.
 
-<img src="/images/73316/2.png" width="70%"/>
+<img class="mx-auto" src="/images/73316/2.png" width="70%"/>
 
 You may also notice that the root link [`http://localhost:5000/`](http://localhost:5000/ready) would be inaccessible. This is because we haven't setup our static folder, let's do it now and combine react and flask together:
 
@@ -259,7 +259,7 @@ def ping():
 
 After building and starting the server again, we can reload the page and click on the button again, you will notice the text in the input field has changed to:
 
-<img src="/images/73316/4.png" width="70%"/>
+<img class="mx-auto" src="/images/73316/4.png" width="70%"/>
 
 In this example we have returned a plain string, however flask also provided a built-in function called `jsonify` which parses JavaScript object to json, it is widely used when the returned data contains richer content.
 

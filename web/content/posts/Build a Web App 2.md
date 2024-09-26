@@ -45,7 +45,7 @@ Now the listed git repo is remotely connected to a heroku and any changes we've 
 
 ### Setup Heroku
 
-First we need to create a `Procfile` (no file extension) for the Heroku to successfully deploy our app. Then we need to change the `HOST` in our frontend to fetch api from the right address (in this case it would be [https://hidden-stream-18515.herokuapp.com](`https://hidden-stream-18515.herokuapp.com`) :
+First we need to create a `Procfile` (no file extension) for the Heroku to successfully deploy our app. Then we need to change the `HOST` in our frontend to fetch api from the right address (in this case it would be [https://hidden-stream-18515.herokuapp.com](`https://hidden-stream-18515.herokuapp.com`)):
 
 ```
 # Procfile
@@ -83,9 +83,7 @@ After all the above is set, our app is finally ready to launch!
 
 Visit [`https://hidden-stream-18515.herokuapp.com/`](https://hidden-stream-18515.herokuapp.com/) and see the result:
 
-<p align="center">
-  <img src="/images/73316/5.png" width="70%"/>
-</p>
+<img class="mx-auto" src="/images/73316/5.png" width="70%"/>
 
 ### Link to Custom Domain (Google Domain)
 

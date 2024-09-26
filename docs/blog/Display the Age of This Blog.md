@@ -22,18 +22,16 @@ function calculate_time() {
   gap = now - running
 
   whole_days = Math.floor(gap / 1000 / 60 / 60 / 24)
-
   whole_hours = Math.floor(gap / 1000 / 60 / 60 - whole_days * 24)
-
   whole_mins = Math.floor(
-    gap / 1000 / 60 - whole_days * 24 * 60 - whole_hours * 60
+    gap / 1000 / 60 - whole_days * 24 * 60 - whole_hours * 60,
   )
 
   whole_sec = Math.round(
     gap / 1000 -
       whole_days * 24 * 60 * 60 -
       whole_hours * 60 * 60 -
-      whole_mins * 60
+      whole_mins * 60,
   )
 
   if (String(whole_hours).length == 1) {

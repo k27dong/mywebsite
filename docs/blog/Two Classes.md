@@ -8,7 +8,7 @@ date: 2024-06-28 11:52:53
 >
 > Presidential scandals, everybody move
 
-记录一次面试失败。技不如人，甘拜下风。现在重写一次，伏惟尚飨。
+记录一次面试失败。技不如人。现在重写一次，伏惟尚飨。
 
 ### Class 1
 ```js

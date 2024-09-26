@@ -3,8 +3,8 @@ import { defineCollection, z } from "astro:content"
 const posts = defineCollection({
   type: "content",
   schema: z.object({
-    title: z.string(),
-    displaytitle: z.string().optional(),
+    title: z.coerce.string(),
+    displaytitle: z.coerce.string().optional(),
     abbrlink: z.coerce.number(),
     date: z.coerce.date(),
     disabled: z.boolean().optional().default(false),
@@ -14,7 +14,7 @@ const posts = defineCollection({
 const booknotes = defineCollection({
   type: "data",
   schema: z.object({
-    title: z.string(),
+    title: z.coerce.string(),
     author: z.string(),
     id: z.number(),
     notenum: z.number(),
