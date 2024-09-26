@@ -20,7 +20,7 @@ const links = [
   <a
     class="grid aspect-[1/1] h-[var(--nav-height)] place-content-center bg-black
       px-[1.2rem] text-[1rem] font-extrabold leading-[1] text-white no-underline
-      sm:aspect-[2.618/1] sm:px-[2rem] sm:text-[1.1rem]"
+      active:translate-y-[1px] sm:aspect-[2.618/1] sm:px-[2rem] sm:text-[1.1rem]"
     href={home.path}
   >
     <span class="sm:hidden">{home.short_name}</span>
@@ -30,7 +30,7 @@ const links = [
   {
     links.map((link) => (
       <a
-        class="text-[0.9rem] font-medium uppercase leading-[1] tracking-tight text-[var(--text-color)] no-underline [text-underline-offset:2px] hover:underline sm:text-[0.9rem] sm:tracking-normal"
+        class="text-[0.9rem] font-medium uppercase leading-[1] tracking-tight text-[var(--text-color)] no-underline [text-underline-offset:2px] hover:underline active:translate-y-[1px] sm:text-[0.9rem] sm:tracking-normal"
         href={link.path}
       >
         {link.name}
