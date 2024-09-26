@@ -1,4 +1,5 @@
 ---
+import  SpeedInsights  from "@vercel/speed-insights/astro"
 import Base from "../components/Base.astro"
 import Header from "../components/Header.astro"
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_PREVIEW_IMAGE } from "../consts"
@@ -27,6 +28,7 @@ const {
   </head>
 
   <body class="bg-light font-jbmono">
+    <SpeedInsights />
     <Navigation />
     {
       title && (

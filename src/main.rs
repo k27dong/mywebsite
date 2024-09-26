@@ -1,4 +1,3 @@
-use actix_files as fs;
 use actix_web::{get, post, web, HttpResponse, Responder};
 use serde_json::json;
 use std::collections::HashMap;
@@ -19,6 +18,7 @@ cfg_if::cfg_if! {
     else {
         use actix_cors::Cors;
         use actix_web::{http, App, HttpServer};
+        use actix_files as fs;
     }
 }
 
@@ -251,13 +251,6 @@ async fn actix_web(
         cfg.service(get_book_note);
         cfg.service(get_playlist);
         cfg.service(get_phrase);
-        cfg.service(
-            fs::Files::new("/", "./dist")
-                .index_file("index.html")
-                .default_handler(
-                    web::get().to(|| async { fs::NamedFile::open("./dist/index.html") }),
-                ),
-        );
     };
 
     Ok(config.into())
