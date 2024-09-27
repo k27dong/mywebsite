@@ -6,7 +6,7 @@ import tailwind from "@astrojs/tailwind"
 import icon from "astro-icon"
 
 export default defineConfig({
-  site: "http://10.0.0.114:4321/",
+  site: "https://www.kefan.me/",
   srcDir: "./web",
   markdown: {
     shikiConfig: {

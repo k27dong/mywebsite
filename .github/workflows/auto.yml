@@ -3,7 +3,7 @@ name: Shuttle Deploy
 on:
   push:
     branches:
-      - astrojs
+      - master
 
 jobs:
   build:
