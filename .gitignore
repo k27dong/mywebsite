@@ -45,3 +45,6 @@ Secrets*.toml
 
 # Fontbook (generated)
 /.glyphhanger
+
+# Vercel
+.vercel

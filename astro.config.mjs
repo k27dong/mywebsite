@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config"
-import vercel from "@astrojs/vercel/serverless"
+import vercel from "@astrojs/vercel/static"
 
 import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
@@ -16,7 +16,7 @@ export default defineConfig({
       wrap: true,
     },
   },
-  output: "server",
+  output: "static",
   adapter: vercel({
     webAnalytics: { enabled: true },
   }),
