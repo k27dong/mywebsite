@@ -29,12 +29,8 @@ Update 20240125: Migrated from Flask to Actix Web.
 ### Local Development
 
 ```bash
-# Build Frontend
-$ npm i && npm run build:dev
+pnpm install && pnpm build
+cargo build --release
 
-# Build Backend
-$ cargo build --release
-
-# Run
-$ ./target/release/mywebsite
+./target/release/mywebsite
 ```
