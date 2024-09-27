@@ -1,9 +1,9 @@
-company: "Bigriver Tech"
-role: "Software Developer"
-date: "Jan - Apr 2019"
-location: "Kingston"
+company: Bigriver Tech
+role: Software Developer
+date: Jan - Apr 2019
+location: Kingston
 description:
-- "This is yet to be written"
+  - Participated in debugging Laravel-based applications and creating documentations for customers.
 points:
   - Laravel
 is_internship: true

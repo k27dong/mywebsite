@@ -3,7 +3,7 @@ role: Software Engineer
 date: Jan - Apr 2022
 location: San Francisco
 description:
-  - Independently designed and implemented data pipelines for users' profile pages with Ruby on Rails and Ember.js.
+  - Implemented data pipelines for users' profile pages with Ruby on Rails and Ember.js.
   - Revamped the onboarding process for user appointment management with Memcached and PostgreSQL.
   - Modernized the infrastructure by transitioning from legacy JSP and jQuery to RESTful APIs and GraphQL.
   - Expanded unit test converge to 80% with RSpec and SemaphoreCI.

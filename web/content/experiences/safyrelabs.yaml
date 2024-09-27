@@ -1,9 +1,10 @@
 company: "Safyre Labs"
 role: "Fullstack Developer"
 date: "Sep - Dec 2019"
-location: "Toronto, Canada"
+location: Toronto
 description:
-- "This is yet to be written"
+  - Launched the company's new e-commerce website, Lee Fiori, using Ruby on Rails and React.
+  - Contributed to the development and maintenance of the main platform, Jewlr.com.
 points:
   - Ruby on Rails
   - React

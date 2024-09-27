@@ -1,7 +1,7 @@
-company: "Autodesk"
-role: "Software Engineer"
-date: "Dec 2023 - Present"
-location: "Toronto"
+company: Autodesk
+role: Software Engineer
+date: Dec 2023 - Present
+location: Toronto
 description:
-- Fusion Team Backend
+  - Fusion Team Backend
 link: https://www.autodesk.com/products/fusion-360/overview

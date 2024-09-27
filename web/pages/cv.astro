@@ -172,7 +172,10 @@ const callout_style = `
     </div>
 
     <div class="border-t border-black md:col-span-2">
-      <div class="py-8 md:mx-auto md:max-w-[60vw]">
+      <div
+        class="py-8 sm:border-l sm:border-r sm:border-black sm:px-10 md:mx-auto
+          md:max-w-[65vw]"
+      >
         <ul>
           {
             past_experiences.map((exp: Experience, index) => (
@@ -182,9 +185,14 @@ const callout_style = `
                 <div class="px-8 md:p-0">
                   <header class="mb-4">
                     <div class="mb-1 flex items-center justify-between">
-                      <div class="text-lg font-bold md:text-xl">
+                      <a
+                        href={exp.data.link}
+                        class="text-lg font-bold underline-offset-2 hover:underline md:text-xl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         {exp.data.company}
-                      </div>
+                      </a>
                       <div class="text-right text-base font-bold tracking-tight text-gray-700 md:text-lg">
                         {exp.data.role}
                       </div>
@@ -202,7 +210,7 @@ const callout_style = `
 
                   {exp.data.description && (
                     <div class="mb-4">
-                      {exp.data.description.map((desc) => (
+                      {exp.data.description.map((desc: string) => (
                         <p class="mb-2 font-sans text-sm font-normal">{`• ${desc}`}</p>
                       ))}
                     </div>
@@ -210,7 +218,7 @@ const callout_style = `
 
                   {exp.data.points && (
                     <div class="flex flex-wrap gap-2">
-                      {exp.data.points.map((point) => (
+                      {exp.data.points.map((point: string) => (
                         <span class="inline-block rounded-sm bg-gray-200 px-2 py-1 text-xs text-gray-700">
                           {point}
                         </span>

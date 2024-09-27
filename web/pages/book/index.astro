@@ -15,7 +15,9 @@ const total_notes = booknotes.reduce((acc, book) => acc + book.data.notenum, 0)
 <MainLayout title="Booknotes">
   <Callout slot="callout">{`Total: ${total_notes} entries`} </Callout>
 
-  <section class="mx-auto w-full max-w-screen-xl px-8 md:px-10 lg:px-24">
+  <section
+    class="mx-auto w-full max-w-screen-xl px-8 pb-12 md:px-10 md:pb-24 lg:px-24"
+  >
     <div class="mx-auto max-w-5xl">
       <table class="w-full table-auto border-collapse">
         <thead>
@@ -33,7 +35,7 @@ const total_notes = booknotes.reduce((acc, book) => acc + book.data.notenum, 0)
             >
           </tr>
         </thead>
-        <tbody class="font-article">
+        <tbody class="border-b border-gray-500 font-article">
           {
             booknotes.map((book, index) => (
               <tr
@@ -58,7 +60,7 @@ const total_notes = booknotes.reduce((acc, book) => acc + book.data.notenum, 0)
                 </td>
                 <td class="hidden max-w-[30vw] px-4 py-2 md:table-cell">
                   <div class="flex flex-wrap gap-2 overflow-hidden">
-                    {book.data.tags.map((tag) => (
+                    {book.data.tags.map((tag: string) => (
                       <span class="inline-block rounded-sm bg-gray-200 px-2 py-1 text-sm text-gray-700">
                         {tag}
                       </span>

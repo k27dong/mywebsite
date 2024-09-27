@@ -1,7 +1,7 @@
-company: "Autodesk"
-role: "Software Engineer"
-date: "Sep - Dec 2022"
-location: "Toronto"
+company: Autodesk
+role: Software Engineer
+date: Sep - Dec 2022
+location: Toronto
 description:
   - Developed a Python-based tool to streamline load testing for Autodesk Fusion services, which is essential for real-time monitoring on Health Dashboards post-release. Implemented Jenkins support for ECS container accessibility
   - Worked on legacy API migration in Java Spring Boot, optimized performance through new caching mechanisms and Elasticsearch integration, reducing backend response times.
