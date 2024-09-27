@@ -15,7 +15,7 @@ I have provided all codes & bash commands used in the process, if Valgrind is so
 
 Let’s get started.
 
-## Step 1: Setting up Azure
+## Setting up Azure
 
 Since the platform is Mac so first we use `brew` to install `azure-cli`, then creates a vm on our machine.
 
@@ -54,7 +54,7 @@ $ ssh PUBLIC_IP_ADDRESS
 kevin@myVM:~$
 ```
 
-## Step 2: Use Valgrind
+## Use Valgrind
 
 Now we have successfully connected to the Azure server running Ubuntu from our terminal, the next thing we need to do is to actually use Valgrind. (Note: since many of the fundamental softwares such as `make` or `gcc` are not installed on the server, instead of install each of them manually I simply used `build-essential`, which includes everything we need)
 
