@@ -1,29 +1,33 @@
-use actix_cors::Cors;
-use actix_files as fs;
-use actix_web::{get, http, post, web, App, HttpResponse, HttpServer, Responder};
-use blogpost::BlogPost;
-use booknote::BookNote;
-use gphrasehandler::PhraseParams;
-use playlist::Playlist;
-use project::Project;
+use actix_web::{get, post, web, HttpResponse, Responder};
 use serde_json::json;
 use std::collections::HashMap;
 
-use crate::parser::parse_date;
+use sitecore::blogpost::BlogPost;
+use sitecore::booknote::BookNote;
+use sitecore::gphrasehandler::{GSheetConfig, PhraseParams};
+use sitecore::parser::parse_date;
+use sitecore::playlist::Playlist;
+use sitecore::project::Project;
 
-mod blogpost;
-mod booknote;
-mod gphrasehandler;
-mod parser;
-mod playlist;
-mod project;
+cfg_if::cfg_if! {
+    if #[cfg(feature = "shuttle")] {
+        use actix_web::web::ServiceConfig;
+        use shuttle_actix_web::ShuttleActixWeb;
+        use shuttle_runtime::SecretStore;
+    }
+    else {
+        use actix_cors::Cors;
+        use actix_web::{http, App, HttpServer};
+        use actix_files as fs;
+    }
+}
 
 struct AppState {
     posts: HashMap<u32, BlogPost>,
     notes: HashMap<String, BookNote>,
     projects: Vec<Project>,
     playlists: HashMap<u32, Playlist>,
-    gsheet_config: gphrasehandler::Config,
+    gsheet_config: GSheetConfig,
 }
 
 #[get("/health")]
@@ -157,7 +161,7 @@ async fn get_playlist(data: web::Data<AppState>, path: web::Path<u32>) -> impl R
 
 #[get("/api/get_phrase")]
 async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) -> impl Responder {
-    let phrase = gphrasehandler::get_gphrase(
+    let phrase = sitecore::gphrasehandler::get_gphrase(
         query.temp,
         query.y,
         query.m,
@@ -167,13 +171,15 @@ async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) 
     )
     .await;
 
-    let phrase = gphrasehandler::format_gphrase(phrase);
+    let phrase = sitecore::gphrasehandler::format_gphrase(phrase);
 
     HttpResponse::Ok().content_type("text/plain").body(phrase)
 }
 
+#[cfg(not(feature = "shuttle"))]
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    println!("Starting actix server locally");
     let port = std::env::var("PORT").unwrap_or(String::from("5000"));
 
     HttpServer::new(|| {
@@ -190,11 +196,11 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(cors)
             .app_data(web::Data::new(AppState {
-                posts: blogpost::load_blogpost(),
-                notes: booknote::load_booknote(),
-                projects: project::load_projects(),
-                playlists: playlist::load_playlist(),
-                gsheet_config: gphrasehandler::load_gsheet_config(),
+                posts: sitecore::blogpost::load_blogpost(),
+                notes: sitecore::booknote::load_booknote(),
+                projects: sitecore::project::load_projects(),
+                playlists: sitecore::playlist::load_playlist(),
+                gsheet_config: sitecore::gphrasehandler::load_gsheet_config(),
             }))
             .service(health)
             .service(ready)
@@ -217,4 +223,35 @@ async fn main() -> std::io::Result<()> {
     .bind(("0.0.0.0", port.parse::<u16>().unwrap()))?
     .run()
     .await
+}
+
+#[cfg(feature = "shuttle")]
+#[shuttle_runtime::main]
+async fn actix_web(
+    #[shuttle_runtime::Secrets] secret_store: SecretStore,
+) -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
+    println!("Starting actix server with shuttle runtime");
+
+    let gsheet_config = sitecore::gphrasehandler::load_gsheet_config(&secret_store).await;
+    let config = move |cfg: &mut ServiceConfig| {
+        cfg.app_data(web::Data::new(AppState {
+            posts: sitecore::blogpost::load_blogpost(),
+            notes: sitecore::booknote::load_booknote(),
+            projects: sitecore::project::load_projects(),
+            playlists: sitecore::playlist::load_playlist(),
+            gsheet_config,
+        }));
+        cfg.service(health);
+        cfg.service(ready);
+        cfg.service(get_blog_list);
+        cfg.service(get_post);
+        cfg.service(get_project_list);
+        cfg.service(get_salt_list);
+        cfg.service(get_total_note_num);
+        cfg.service(get_book_note);
+        cfg.service(get_playlist);
+        cfg.service(get_phrase);
+    };
+
+    Ok(config.into())
 }

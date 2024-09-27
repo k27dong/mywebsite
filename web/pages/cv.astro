@@ -1,0 +1,236 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content"
+import { Icon } from "astro-icon/components"
+import MainLayout from "../layouts/MainLayout.astro"
+import Callout from "../components/Callout.astro"
+import { RESUME_FILE, EDUCATION } from "../consts"
+
+type Experience = CollectionEntry<"experiences">
+type Skill = CollectionEntry<"skills">
+
+const experiences: Experience[] = (await getCollection("experiences")).sort(
+  (a: Experience, b: Experience) => {
+    const parse_time = (time: string): Date => {
+      const [month, year] = time.split(" ")
+      return new Date(`${month} 1, ${year}`)
+    }
+
+    const [a_start_str, a_end_str] = a.data.date.split(" - ") as [
+      string,
+      string,
+    ]
+    const [b_start_str, b_end_str] = b.data.date.split(" - ") as [
+      string,
+      string,
+    ]
+
+    const a_start: Date = !parse_time(a_start_str)
+      ? parse_time(a_start_str)
+      : new Date(`${a_start_str} 1 ${parse_time(a_end_str).getFullYear()}`)
+
+    const b_start: Date = !parse_time(b_start_str)
+      ? parse_time(b_start_str)
+      : new Date(`${b_start_str} 1 ${parse_time(b_end_str).getFullYear()}`)
+
+    return b_start.getTime() - a_start.getTime()
+  },
+)
+
+const skills: Skill[] = (await getCollection("skills")).sort(
+  (a: Skill, b: Skill) => a.data.id - b.data.id,
+)
+
+const current_job = experiences[0]
+const past_experiences = experiences.slice(1)
+
+// this is here because astro can't handle linebreaks properly
+const callout_style = `
+  flex items-center space-x-2 underline decoration-1
+  underline-offset-4 hover:font-bold
+`
+---
+
+<MainLayout title="Curriculum Vitae">
+  <Callout
+    as="a"
+    slot="callout"
+    class={callout_style}
+    href={RESUME_FILE}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Icon name="arrow-down-to-line" />
+    <span>Download Resume</span>
+  </Callout>
+
+  <div class="mt-[-1.4rem] grid grid-cols-1 gap-0 md:mt-[-4rem] md:grid-cols-2">
+    <div class="hidden border-black p-4 md:col-span-1 md:block">
+      <ul>
+        {
+          skills.map((skill: Skill) => (
+            <li class="mb-6">
+              <header class="mb-4 mt-1 text-lg font-semibold underline underline-offset-4">
+                {skill.data.name}
+              </header>
+              <div class="flex flex-wrap gap-x-4 gap-y-1 font-medium">
+                {skill.data.items.map((item) => (
+                  <span class="text-sm tracking-tight">{item}</span>
+                ))}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="flex flex-col border-black md:col-span-1 md:border-l">
+      <a
+        href={EDUCATION.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group block border-b border-black p-4"
+      >
+        <ul>
+          <li class="mb-4">
+            <header
+              class="mb-4 text-center text-lg font-bold group-hover:underline
+                group-hover:underline-offset-4"
+            >
+              {EDUCATION.school}
+            </header>
+
+            <div class="flex flex-col items-center text-center">
+              <div class="w-full text-center text-sm font-medium">
+                {EDUCATION.degree}
+              </div>
+              <div class="w-full text-center text-sm tracking-tight">
+                {EDUCATION.info}
+              </div>
+              <div class="w-full pt-4 text-center text-xs tracking-tight">
+                {EDUCATION.time}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </a>
+
+      <a
+        href={current_job.data.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group flex flex-1 items-center justify-center border-b
+          border-black pb-2 pt-6 md:border-b-0 md:p-4"
+      >
+        <div class="text-center">
+          <header class="mb-4">
+            <div
+              class="mb-1 text-2xl font-bold tracking-tight
+                group-hover:underline group-hover:underline-offset-4"
+            >
+              {current_job.data.company}
+            </div>
+            <div class="text-lg font-bold">
+              {current_job.data.role}
+            </div>
+          </header>
+
+          <div class="mb-6 text-sm font-medium text-gray-600">
+            <div>{current_job.data.date}</div>
+            <div>{current_job.data.location}</div>
+          </div>
+
+          {
+            current_job.data.description && (
+              <div class="mb-4">
+                {current_job.data.description.map((desc) => (
+                  <p class="mb-2 text-sm tracking-tighter">{desc}</p>
+                ))}
+              </div>
+            )
+          }
+        </div>
+      </a>
+    </div>
+
+    <div class="border-black p-4 md:hidden">
+      <ul>
+        {
+          skills.map((skill: Skill) => (
+            <li class="mb-6">
+              <header class="mb-4 mt-1 text-lg font-semibold underline underline-offset-4">
+                {skill.data.name}
+              </header>
+              <div class="flex flex-wrap gap-x-4 gap-y-1 font-medium">
+                {skill.data.items.map((item) => (
+                  <span class="text-sm tracking-tight">{item}</span>
+                ))}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="border-t border-black md:col-span-2">
+      <div
+        class="py-8 sm:border-l sm:border-r sm:border-black sm:px-10 md:mx-auto
+          md:max-w-[65vw]"
+      >
+        <ul>
+          {
+            past_experiences.map((exp: Experience, index) => (
+              <li
+                class={`mb-6 ${index > 0 ? "border-t border-gray-300 pt-6" : ""}`}
+              >
+                <div class="px-8 md:p-0">
+                  <header class="mb-4">
+                    <div class="mb-1 flex items-center justify-between">
+                      <a
+                        href={exp.data.link}
+                        class="text-lg font-bold underline-offset-2 hover:underline md:text-xl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {exp.data.company}
+                      </a>
+                      <div class="text-right text-base font-bold tracking-tight text-gray-700 md:text-lg">
+                        {exp.data.role}
+                      </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-sm font-medium text-gray-600">
+                      <div>{exp.data.date}</div>
+                      <div>{exp.data.location}</div>
+                    </div>
+
+                    {exp.data.is_internship && (
+                      <div class="text-xs text-gray-500">(Internship)</div>
+                    )}
+                  </header>
+
+                  {exp.data.description && (
+                    <div class="mb-4">
+                      {exp.data.description.map((desc: string) => (
+                        <p class="mb-2 font-sans text-sm font-normal lg:text-base">{`• ${desc}`}</p>
+                      ))}
+                    </div>
+                  )}
+
+                  {exp.data.points && (
+                    <div class="flex flex-wrap gap-2">
+                      {exp.data.points.map((point: string) => (
+                        <span class="inline-block rounded-sm bg-gray-200 px-2 py-1 text-xs text-gray-700">
+                          {point}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</MainLayout>

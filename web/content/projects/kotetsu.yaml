@@ -1,0 +1,7 @@
+name: kotetsu
+id: 3
+language:
+  - C
+  - Raspberry Pi
+description: An IoT device that fetches data from Google Sheets and displays it on an E-ink screen, powered by two 18650 rechargeable batteries.
+link: https://github.com/k27dong/kotetsu

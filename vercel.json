@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://kdwebsite.shuttleapp.rs/api/$1"
+    }
+  ]
+}

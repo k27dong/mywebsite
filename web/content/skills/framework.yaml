@@ -1,0 +1,9 @@
+name: Frameworks
+id: 2
+items:
+  - React
+  - Astro
+  - Actix
+  - Spring
+  - Flask
+  - Rails

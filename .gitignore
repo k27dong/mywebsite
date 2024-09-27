@@ -38,3 +38,10 @@ new.md
 
 # Google Sheet credentials
 gsheet_creds.json
+Secrets*.toml
+
+# Astro
+/.astro
+
+# Fontbook (generated)
+/.glyphhanger

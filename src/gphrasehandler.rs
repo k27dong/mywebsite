@@ -2,8 +2,16 @@ use encoding_rs::GB18030;
 use google_sheets4::{hyper, hyper_rustls, oauth2, Sheets};
 use rand::seq::SliceRandom;
 use serde::{Deserialize, Serialize};
-use std::env;
-use std::fs;
+
+cfg_if::cfg_if! {
+    if #[cfg(feature = "shuttle")] {
+        use shuttle_runtime::SecretStore;
+    }
+    else {
+        use std::env;
+        use std::fs;
+    }
+}
 
 #[derive(Deserialize)]
 pub struct PhraseParams {
@@ -14,8 +22,8 @@ pub struct PhraseParams {
     pub days: i32,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
-pub struct Config {
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct GSheetConfig {
     #[serde(rename = "type")]
     pub key_type: String,
     pub project_id: String,
@@ -36,7 +44,7 @@ pub async fn get_gphrase(
     _month: i32,
     _day: i32,
     _since: i32,
-    config: &Config,
+    config: &GSheetConfig,
 ) -> String {
     let secret = oauth2::parse_service_account_key(
         &serde_json::to_string(config).expect("Serialization failed"),
@@ -88,13 +96,10 @@ pub async fn get_gphrase(
     }
 }
 
-fn get_env_var(name: &str) -> String {
-    env::var(name).expect(&format!("{} environment variable not set", name))
-}
-
-pub fn load_gsheet_config() -> Config {
+#[cfg(not(feature = "shuttle"))]
+pub fn load_gsheet_config() -> GSheetConfig {
     if let Ok(_) = env::var("PORT") {
-        Config {
+        GSheetConfig {
             key_type: String::from("service_account"),
             project_id: get_env_var("PROJECT_ID"),
             private_key_id: get_env_var("PRIVATE_KEY_ID"),
@@ -113,6 +118,37 @@ pub fn load_gsheet_config() -> Config {
         )
         .expect("Failed to parse gsheet_creds.json")
     }
+}
+
+#[cfg(not(feature = "shuttle"))]
+fn get_env_var(name: &str) -> String {
+    env::var(name).expect(&format!("{} environment variable not set", name))
+}
+
+#[cfg(feature = "shuttle")]
+pub async fn load_gsheet_config(secret_store: &SecretStore) -> GSheetConfig {
+    GSheetConfig {
+        key_type: "service_account".to_string(),
+        project_id: get_secret(secret_store, "PROJECT_ID").await,
+        private_key_id: get_secret(secret_store, "PRIVATE_KEY_ID").await,
+        private_key: get_secret(secret_store, "PRIVATE_KEY")
+            .await
+            .replace("\\n", "\n"),
+        client_email: get_secret(secret_store, "CLIENT_EMAIL").await,
+        client_id: get_secret(secret_store, "CLIENT_ID").await,
+        auth_uri: "https://accounts.google.com/o/oauth2/auth".to_string(),
+        token_uri: "https://oauth2.googleapis.com/token".to_string(),
+        auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs".to_string(),
+        client_x509_cert_url: get_secret(secret_store, "CLIENT_X509_CERT_URL").await,
+        spreadsheet_id: get_secret(secret_store, "SPREADSHEET_ID").await,
+    }
+}
+
+#[cfg(feature = "shuttle")]
+async fn get_secret(secret_store: &SecretStore, key: &str) -> String {
+    secret_store
+        .get(key)
+        .expect(&format!("Secret {} was not found", key))
 }
 
 pub fn format_gphrase(phrase: String) -> Vec<u8> {

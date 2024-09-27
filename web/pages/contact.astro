@@ -1,0 +1,64 @@
+---
+import MainLayout from "../layouts/MainLayout.astro"
+import { Icon } from "astro-icon/components"
+import { GITHUB_LINK, LINKEDIN_LINK, RESUME_FILE } from "../consts"
+
+interface ContactEntry {
+  name: string
+  display: string
+  icon: string
+  link?: string
+}
+
+const contact: ContactEntry[] = [
+  {
+    name: "Github",
+    display: "k27dong",
+    icon: "github",
+    link: GITHUB_LINK,
+  },
+  {
+    name: "LinkedIn",
+    display: "Kevin Dong",
+    icon: "linkedin-line",
+    link: LINKEDIN_LINK,
+  },
+  {
+    name: "Resume",
+    display: "Resume",
+    icon: "file-text",
+    link: RESUME_FILE,
+  },
+  {
+    name: "Email",
+    display: "me@kefan.me",
+    icon: "mailbox",
+  },
+]
+---
+
+<MainLayout>
+  <ul class="m-auto flex flex-col gap-16 pt-[20vh]">
+    {
+      contact.map((entry) => (
+        <li class="flex items-center gap-2">
+          {entry.link ? (
+            <a
+              href={entry.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block text-gray-800 transition duration-200 hover:text-highlight"
+            >
+              <Icon name={entry.icon} class="text-2xl" />
+            </a>
+          ) : (
+            <span class="text-gray-800">
+              <Icon name={entry.icon} class="text-2xl" />
+            </span>
+          )}
+          <span class="ml-2">{entry.display}</span>
+        </li>
+      ))
+    }
+  </ul>
+</MainLayout>

@@ -1,0 +1,13 @@
+company: CIBC
+role: Software Developer
+date: May - Aug 2020
+location: Waterloo
+description:
+  - Constructed and deployed a full-stack web application using Flask and React, containerized with Docker for streamlined deployment on AWS.
+  - Designed a multi-threaded media pipeline with CUDA, enabling GPU acceleration for H264 video encoding and conversion, which led to a significant reduction in CPU usage by 30%.
+points:
+  - Flask
+  - React
+  - Docker
+is_internship: true
+link: https://www.cibc.com/

@@ -1,0 +1,12 @@
+company: PointClickCare
+role: Software Engineer
+date: Jan - Apr 2021
+location: Toronto
+description:
+  - Wrote and maintained scalable Spring Boot services in MVC pattern to efficiently handle data entry for over 10,000 users. Conducted through testing using Selenium with Jenkins.
+points:
+  - Java
+  - Spring Boot
+  - Selenium
+is_internship: true
+link: https://pointclickcare.com/

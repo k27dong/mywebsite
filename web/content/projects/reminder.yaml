@@ -1,0 +1,7 @@
+name: reminder
+id: 4
+language:
+  - Python
+  - Github Action
+description: A GitHub Actions workflow that triggers mobile notifications if no commits are made that day.
+link: https://github.com/k27dong/reminder

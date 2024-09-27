@@ -1,0 +1,42 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content"
+import MainLayout from "../../layouts/MainLayout.astro"
+import Callout from "../../components/Callout.astro"
+
+type Booknote = CollectionEntry<"booknotes">
+
+export async function getStaticPaths() {
+  const booknotes: Booknote[] = await getCollection("booknotes")
+  return booknotes.map((book: Booknote) => ({
+    params: { slug: book.data.title },
+    props: book,
+  }))
+}
+
+const { title, author, content } = Astro.props.data as Booknote["data"]
+---
+
+<MainLayout title={title} tab_title={title}>
+  <Callout slot="callout" class="font-article text-base">
+    {author}
+  </Callout>
+
+  <article class="px-[1.2rem] pb-[2.4rem] sm:px-[6rem]">
+    <div class="font-article font-normal leading-7">
+      {
+        content.map((section) => (
+          <div class="mb-10">
+            <h1 class="mb-2 text-2xl font-semibold">{section.name}</h1>
+            {section.notes.map((note) => (
+              <div class="mb-4 border border-gray-300 bg-gray-100 p-4 text-base">
+                {note.split("\n").map((line, index, arr) => (
+                  <p class={index < arr.length - 1 ? "mb-2" : ""}>{line}</p>
+                ))}
+              </div>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </article>
+</MainLayout>

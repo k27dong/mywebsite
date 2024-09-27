@@ -1,0 +1,44 @@
+---
+import  SpeedInsights  from "@vercel/speed-insights/astro"
+import Base from "../components/Base.astro"
+import Header from "../components/Header.astro"
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_PREVIEW_IMAGE } from "../consts"
+import Navigation from "../components/Navigation.astro"
+
+interface Props {
+  tab_title?: string
+  tab_description?: string
+  tab_icon?: string
+  title?: string
+  description?: string
+}
+
+const {
+  tab_title = SITE_TITLE,
+  tab_description = SITE_DESCRIPTION,
+  tab_icon = SITE_PREVIEW_IMAGE,
+  title,
+} = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <Base title={tab_title} description={tab_description} image={tab_icon} />
+  </head>
+
+  <body class="bg-light font-jbmono">
+    <SpeedInsights />
+    <Navigation />
+    {
+      title && (
+        <Header title={title} callout={!!Astro.slots.callout}>
+          <slot name="callout" slot="callout" />
+        </Header>
+      )
+    }
+    <main class="grid pt-[2.4rem] sm:pt-[4rem]">
+      <slot />
+    </main>
+  </body>
+</html>

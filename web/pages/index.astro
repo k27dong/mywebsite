@@ -1,0 +1,57 @@
+---
+import { Icon } from "astro-icon/components"
+import { GITHUB_LINK, LINKEDIN_LINK, RESUME_FILE } from "../consts"
+import MainLayout from "../layouts/MainLayout.astro"
+
+const links = [
+  { href: GITHUB_LINK, icon: "github" },
+  { href: LINKEDIN_LINK, icon: "linkedin-line" },
+  { href: RESUME_FILE, icon: "file-text" },
+]
+---
+
+<MainLayout>
+  <div class="flex flex-col items-center justify-center gap-8 pt-44">
+    <h1
+      class="2xl:text-10xl text-5xl font-bold tracking-tighter sm:text-6xl
+        md:text-7xl"
+    >
+      Kefan Dong
+    </h1>
+    <p class="text-center">
+      Software Engineer @
+      <a
+        class="underline underline-offset-4"
+        href="https://www.autodesk.com/"
+        target="_blank"
+      >
+        Autodesk
+      </a>
+      <br />
+      <span class="mt-2 block"></span>
+      Alumni @
+      <a
+        class="underline underline-offset-4"
+        href="https://uwaterloo.ca/"
+        target="_blank"
+      >
+        University of Waterloo
+      </a>
+    </p>
+
+    <div class="relative flex justify-center space-x-8">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition-colors duration-200 hover:text-highlight"
+          >
+            <Icon name={link.icon} class="text-2xl" />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</MainLayout>

@@ -1,0 +1,114 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content"
+import Callout from "../components/Callout.astro"
+import MainLayout from "../layouts/MainLayout.astro"
+import { GITHUB_LINK } from "../consts"
+
+const get_mobile_tags = (languages: string[], limit = 16) => {
+  let total = 0
+  return languages.filter((lang) => {
+    total += lang.length
+    return total <= limit
+  })
+}
+
+type Project = Omit<CollectionEntry<"projects">, "data"> & {
+  data: CollectionEntry<"projects">["data"] & { mobile_tags: string[] }
+}
+
+const projects: Project[] = (await getCollection("projects"))
+  .sort((a: Project, b: Project) => a.data.id - b.data.id)
+  .map((project) => {
+    return {
+      ...project,
+      data: {
+        ...project.data,
+        mobile_tags: get_mobile_tags(project.data.language),
+      },
+    }
+  })
+
+const callout_desktop = `find ~ -name .git \\\n\t| awk -F'/' '{print$(NF-1)}' \\\n\t| nl `
+const callout_mobile = `ls ~/projects/ | nl`
+---
+
+<MainLayout title="Projects">
+  <Callout slot="callout">
+    <span class="hidden whitespace-pre-wrap sm:block">
+      {callout_desktop}
+    </span>
+
+    <span class="block whitespace-pre-wrap sm:hidden">
+      {callout_mobile}
+    </span>
+  </Callout>
+
+  <div class="pb-10 sm:mt-[-2rem]">
+    <div
+      class="mx-auto mb-12 w-full max-w-lg px-4 pb-2 tracking-tighter sm:px-0"
+    >
+      <p class="text-left">
+        A collection of all kinds of project I've worked on during my free time.
+        Sometimes they solve real problems, other times they're just fun
+        experiments. Check out my
+        <a
+          href={GITHUB_LINK}
+          class="underline underline-offset-2"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub</a
+        > for more :)
+      </p>
+    </div>
+
+    <section
+      class="grid w-full grid-cols-2 border-t border-black md:grid-cols-3
+        xl:grid-cols-4"
+    >
+      {
+        projects.map((project, index) => (
+          <a
+            href={project.data.link || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`group relative flex h-48 flex-col justify-between border-b border-black p-4 pb-2 sm:p-4 ${
+              (index + 1) % 2 !== 0 ? "border-r" : ""
+            } ${(index + 1) % 3 !== 0 ? "md:border-r" : "md:border-r-0"} ${
+              (index + 1) % 4 !== 0 ? "xl:border-r" : "xl:border-r-0"
+            } transition-all duration-300 hover:bg-gray-100 hover:shadow-lg`}
+          >
+            <div class="flex items-baseline">
+              <h3 class="text-base font-bold underline-offset-4 group-hover:underline sm:text-lg">
+                {project.data.name}
+              </h3>
+              <span class="ml-2 transform self-end leading-6 transition-transform duration-200 group-hover:-translate-y-1 group-hover:translate-x-1">
+                ↗
+              </span>
+            </div>
+
+            <p class="mt-2 flex-grow overflow-hidden text-xs tracking-tighter text-gray-700 sm:mt-4 sm:text-sm sm:tracking-normal">
+              {project.data.description}
+            </p>
+
+            <div class="mt-2">
+              <ul class="hidden flex-wrap gap-2 text-xs text-gray-600 sm:flex">
+                {project.data.language.map((lang: string) => (
+                  <li class="rounded bg-gray-200 px-2 py-1">{lang}</li>
+                ))}
+              </ul>
+
+              <ul class="flex flex-wrap gap-2 text-xs text-gray-600 sm:hidden">
+                {project.data.mobile_tags.map((lang: string) => (
+                  <li class="rounded bg-gray-200 px-2 py-1 tracking-tighter">
+                    {lang}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </a>
+        ))
+      }
+    </section>
+  </div>
+</MainLayout>

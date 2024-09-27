@@ -1,0 +1,24 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# build
+/target
+/public
+
+# vscode
+.vscode/
+
+# Google Sheet credentials
+gsheet_creds.json
+Secrets*.toml
+
+# Astro
+/.astro
+
+# Unused large font files
+/web/assets/*

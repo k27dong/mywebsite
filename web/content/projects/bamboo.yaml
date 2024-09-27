@@ -1,0 +1,8 @@
+name: bamboo
+id: 2
+language:
+  - JavaScript
+  - Docker
+  - discord.js
+description: A Discord bot for streaming NetEase Cloud Music.
+link: https://github.com/k27dong/bamboo

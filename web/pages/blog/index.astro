@@ -1,0 +1,58 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content"
+import Date from "../../components/ShortDate.astro"
+import MainLayout from "../../layouts/MainLayout.astro"
+import Callout from "../../components/Callout.astro"
+
+type Post = CollectionEntry<"posts">
+const posts: Post[] = (
+  await getCollection("posts", ({ data }) => {
+    return !data.disabled
+  })
+).sort((a: Post, b: Post) => b.data.date.valueOf() - a.data.date.valueOf())
+
+let prev: number
+---
+
+<MainLayout title="Articles">
+  <Callout slot="callout"> I know some Chinese</Callout>
+
+  <section
+    class="mx-auto grid w-full max-w-[1024px]
+      grid-cols-[minmax(auto,3.5rem)_1rem_auto_1rem_1fr] px-[4vw] pb-[5vw]
+      sm:grid-cols-[minmax(auto,12rem)_1rem_auto_1rem_1fr] sm:px-[6vw]
+      md:px-[14vw] lg:px-[18vw] xl:px-[14vw] 2xl:px-[10vw]"
+  >
+    {
+      posts.map((post, index) => {
+        const curr = post.data.date.getFullYear()
+        const render = curr !== prev
+        prev = curr
+
+        return (
+          <>
+            <div class="contents">
+              {render && (
+                <span class="col-start-1 flex items-center gap-4">
+                  {curr}
+                  <span class="hidden sm:block sm:flex-1 sm:border-t-[1px] sm:border-black" />
+                </span>
+              )}
+              <Date
+                class="col-start-3 content-center text-sm"
+                date={post.data.date}
+              />
+              <a
+                href={`/blog/${post.slug}/`}
+                class="col-start-5 font-sourcehan text-xl font-medium leading-tight text-black underline decoration-1 underline-offset-2 hover:decoration-2"
+              >
+                {post.data.title}
+              </a>
+            </div>
+            {index < posts.length - 1 && <div class="col-span-full h-5" />}
+          </>
+        )
+      })
+    }
+  </section>
+</MainLayout>
