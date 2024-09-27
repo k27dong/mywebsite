@@ -19,3 +19,6 @@ Secrets*.toml
 
 # Astro
 /.astro
+
+# Unused large font files
+/web/assets/*
