@@ -2,11 +2,9 @@ use chrono::Utc;
 use chrono_tz::America::Toronto;
 use rand::Rng;
 use regex::Regex;
-use std::{
-    collections::HashSet,
-    fs::{self, File},
-    io::Write,
-};
+use std::collections::HashSet;
+use std::fs;
+use std::io::Write;
 
 fn main() -> std::io::Result<()> {
     const NEW_BLOGPOST_PATH: &str = "docs/blog/new.md";
@@ -53,7 +51,7 @@ fn main() -> std::io::Result<()> {
     }
 
     // write to new file
-    let mut file = File::create(NEW_BLOGPOST_PATH)?;
+    let mut file = fs::File::create(NEW_BLOGPOST_PATH)?;
 
     writeln!(file, "---")?;
     writeln!(file, "title: ")?;

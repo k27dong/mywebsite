@@ -1,9 +1,10 @@
-use std::{fs, io, fmt::Write};
-use regex::Regex;
+use colored::Colorize;
+use difference::{Changeset, Difference};
 use glob::glob;
 use inquire::{InquireError, Select};
-use difference::{Changeset, Difference};
-use colored::*;
+use regex::Regex;
+use std::fmt::Write;
+use std::fs;
 
 fn is_title(line: &str) -> bool {
     !line.starts_with("◆")
@@ -27,7 +28,7 @@ fn fix_unnecessary_tag(line: &str) -> String {
     re.replace_all(line, "").to_string()
 }
 
-fn main() -> io::Result<()> {
+fn main() -> std::io::Result<()> {
     let paths = glob("docs/salt/*.md").expect("Failed to read glob pattern");
 
     for entry in paths {

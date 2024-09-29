@@ -48,6 +48,13 @@ export default {
             },
           },
         },
+        nonitalic: {
+          css: {
+            blockquote: {
+              fontStyle: 'normal'
+            },
+          },
+        },
       },
     },
   },

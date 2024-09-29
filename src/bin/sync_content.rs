@@ -1,29 +1,28 @@
 use serde_json::json;
 use sitecore::booknote;
-use std::fs::{self, create_dir_all, File};
+use std::fs;
 use std::io::Write;
 use std::path::Path;
 
 const BLOGPOST_DIR: &str = "web/content/posts";
 const BOOKNOTES_DIR: &str = "web/content/booknotes";
 
-#[actix_web::main]
-async fn main() -> std::io::Result<()> {
+fn main() -> std::io::Result<()> {
     println!("Starting synchronization...");
 
-    sync_blogposts().await;
-    sync_booknotes().await;
+    sync_blogposts();
+    sync_booknotes();
 
     println!("Synchronization complete.");
     Ok(())
 }
 
-pub async fn sync_blogposts() {
+pub fn sync_blogposts() {
     if Path::new(BLOGPOST_DIR).exists() {
         fs::remove_dir_all(BLOGPOST_DIR).unwrap();
     }
 
-    create_dir_all(BLOGPOST_DIR).unwrap();
+    fs::create_dir_all(BLOGPOST_DIR).unwrap();
 
     let paths = glob::glob("docs/blog/*.md").expect("Failed to read glob pattern");
     for entry in paths {
@@ -42,12 +41,12 @@ pub async fn sync_blogposts() {
     println!("blogpost done")
 }
 
-pub async fn sync_booknotes() {
+pub fn sync_booknotes() {
     if Path::new(BOOKNOTES_DIR).exists() {
         fs::remove_dir_all(BOOKNOTES_DIR).unwrap();
     }
 
-    create_dir_all(BOOKNOTES_DIR).unwrap();
+    fs::create_dir_all(BOOKNOTES_DIR).unwrap();
 
     let notes = booknote::load_booknote();
     for (title, note) in notes {
@@ -63,7 +62,7 @@ pub async fn sync_booknotes() {
         });
 
         let json_content = serde_json::to_string_pretty(&file_data).unwrap();
-        File::create(&file_name)
+        fs::File::create(&file_name)
             .unwrap()
             .write_all(json_content.as_bytes())
             .unwrap();
