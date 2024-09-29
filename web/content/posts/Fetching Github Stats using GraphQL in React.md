@@ -1,5 +1,5 @@
 ---
-title: Fetching Github Stats using GraphQL in React
+title: Fetching Github Stats using GraphQL
 displaytitle: Fetching Github Stats\nusing GraphQL in React
 abbrlink: 25747
 date: 2019-12-19 13:06:45
