@@ -1,82 +1,122 @@
+/*!
+ * Font Subsetting Script
+ *
+ * This Rust script is designed to subset an input font (TTF or OTF) using the
+ * pyftsubset tool from the fonttools library. It includes only the characters
+ * used for the website and converts the subsetted font to the WOFF2 format.
+ *
+ * Why Call Python from Rust?
+ * --------------------------
+ * Rust currently lacks a fully mature library for subsetting OpenType and
+ * TrueType fonts. Multiple attempts were made but using a well-polished Python
+ * library avoids any unnecessary extra work with its powerful subsetting and
+ * conversion features, including OpenType table management and compression
+ * into web-friendly WOFF2 formats. The Rust script ensures that the subsetting
+ * process is tightly integrated into the Rust-based workflow.
+ *
+ * Python Libraries:
+ * --------------------------
+ * fonttools - Used for manipulating font files, supporting font subsetting and WOFF2 conversion.
+ * brotli - Used for compressing WOFF2 fonts.
+ *
+ * Installation Instructions:
+ * --------------------------
+ * To use this script, install the required libraries manually:
+ * pip install fonttools brotli
+ */
+
 use sitecore::blogpost::load_blogpost;
 use sitecore::booknote::load_booknote;
-use std::{
-    collections::HashSet,
-    fs::{self, File},
-    io::Write,
-    path::Path,
-};
+use std::collections::HashSet;
+use std::fs;
+use std::io::{self, Write};
+use std::process::Command;
 
-fn main() {
-    let font_files = vec![
-        "web/assets/SourceHanSerifSC-Regular.otf",
-        "web/assets/SourceHanSerifSC-Regular.otf",
-        "web/assets/NotoSerifSC-ExtraBold.ttf",
-    ];
+const FONT_FILES: [&str; 3] = [
+    "SourceHanSerifSC-Regular.otf",
+    "SourceHanSerifSC-Medium.otf",
+    "NotoSerifSC-ExtraBold.ttf",
+];
 
+const FILE_SOURCE_LOCATION: &str = "web/assets/";
+const FILE_DEST_LOCATION: &str = "public/fonts/";
+
+const UNICODE_FILE: &str = "unicodes.txt";
+
+fn main() -> std::io::Result<()> {
     let blogposts = load_blogpost();
     let booknotes = load_booknote();
-    let mut unique_chars = HashSet::new();
 
+    let mut characters = HashSet::new();
+
+    // Collect all characters from blogposts and booknotes
     for post in blogposts.values() {
         for ch in post.frontmatter.title.chars() {
-            unique_chars.insert(ch);
+            characters.insert(ch);
         }
 
         for ch in post.content.chars() {
-            unique_chars.insert(ch);
+            characters.insert(ch);
         }
     }
 
     for note in booknotes.values() {
         for ch in note.frontmatter.title.chars() {
-            unique_chars.insert(ch);
+            characters.insert(ch);
         }
 
         for chapter in &note.content {
             for ch in chapter.name.chars() {
-                unique_chars.insert(ch);
+                characters.insert(ch);
             }
             for note in &chapter.notes {
                 for ch in note.chars() {
-                    unique_chars.insert(ch);
+                    characters.insert(ch);
                 }
             }
         }
     }
 
-    let mut char_vec: Vec<_> = unique_chars.into_iter().collect();
-    char_vec.sort_unstable();
-    let char_string: String = char_vec.iter().collect();
+    fs::write(
+        UNICODE_FILE,
+        characters
+            .iter()
+            .map(|&ch| format!("U+{:X}", ch as u32))
+            .collect::<Vec<String>>()
+            .join(","),
+    )?;
 
-    let glyphhanger_dir = ".glyphhanger";
-    if !Path::new(glyphhanger_dir).exists() {
-        fs::create_dir(glyphhanger_dir).expect("Unable to create .glyphhanger directory");
+    // Run pyftsubset for each font file
+    for font_file in FONT_FILES.iter() {
+        let source_file = format!("{}{}", FILE_SOURCE_LOCATION, font_file);
+        let dest_file = format!(
+            "{}{}",
+            FILE_DEST_LOCATION,
+            font_file
+                .replace(".otf", "-subset.woff2")
+                .replace(".ttf", "-subset.woff2")
+        );
+
+        print!("Subsetting {} ...", font_file);
+        io::stdout().flush()?;
+
+        let status = Command::new("pyftsubset")
+            .arg(&source_file)
+            .arg(format!("--unicodes-file={}", UNICODE_FILE))
+            .arg("--flavor=woff2")
+            .arg(format!("--output-file={}", dest_file))
+            .status()
+            .expect("Failed to run pyftsubset");
+
+        if status.success() {
+            println!("\tdone!");
+        } else {
+            eprintln!("Failed to subset font: {}", font_file);
+        }
     }
 
-    let test_file_path = format!("{}/test.txt", glyphhanger_dir);
+    // Clean up the temporary unicode file
+    fs::remove_file(UNICODE_FILE)?;
 
-    let mut file = File::create(&test_file_path).expect("Unable to create test.txt");
-    file.write_all(char_string.as_bytes())
-        .expect("Unable to write data");
-
-    print_optimized_command(&font_files, &test_file_path, glyphhanger_dir);
-}
-
-fn print_optimized_command(font_files: &[&str], test_file_path: &str, glyphhanger_dir: &str) {
-    let mut command = format!(
-        "glyphhanger {} > {}/glyphhanger_output",
-        test_file_path, glyphhanger_dir
-    );
-
-    for font in font_files {
-        let output_file = format!("{}/glyphhanger_output", glyphhanger_dir);
-        command.push_str(&format!(
-            " && pyftsubset {} --unicodes-file={} --flavor=woff2",
-            font, output_file
-        ));
-    }
-
-    println!("Run the following command:");
-    println!("{}", command);
+    Ok(())
 }

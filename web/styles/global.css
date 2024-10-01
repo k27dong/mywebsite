@@ -22,7 +22,7 @@
   font-family: "Source Han Serif";
   src:
     local("Source Han Serif SC"),
-    url("/fonts/SourceHanSerifSC-Medium.subset.woff2") format("woff2");
+    url("/fonts/SourceHanSerifSC-Medium-subset.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -32,7 +32,7 @@
   font-family: "Source Han Serif";
   src:
     local("Source Han Serif SC"),
-    url("/fonts/SourceHanSerifSC-Regular.subset.woff2") format("woff2");
+    url("/fonts/SourceHanSerifSC-Regular-subset.woff2") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -41,8 +41,7 @@
 @font-face {
   font-family: "Noto Serif SC ExtraBold";
   src:
-    local("Noto Serif SC ExtraBold"),
-    url("/fonts/NotoSerifSC-ExtraBold.subset.woff2") format("woff2");
+    url("/fonts/NotoSerifSC-ExtraBold-subset.woff2") format("woff2");
   font-style: normal;
   font-display: swap;
 }
