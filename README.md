@@ -2,21 +2,11 @@
 
 https://www.kefan.me/
 
-<a href="https://vercel.com/" target="_blank" style="text-decoration: none;">
-  <img src="https://deploy-badge.vercel.app/vercel/mywebsite-seven-chi?logo=" alt="Vercel Deploy" />
-</a>
-<a href="https://stats.uptimerobot.com/n66xyTGv63" target="_blank" style="text-decoration: none;">
-  <img src="https://img.shields.io/uptimerobot/status/m787427706-0eab16df7d2eef051f934714?up_message=live&down_message=down&style=flat&label=website" alt="Uptime Robot Status" />
-</a>
-<a href="https://app.codacy.com/gh/k27dong/mywebsite/dashboard" target="_blank" style="text-decoration: none;">
-  <img src="https://img.shields.io/codacy/grade/2b8bdddeeaca49e7ba41fcca6619ed57?style=flat&logo=codacy" alt="Codacy Grade" />
-</a>
-<a href="https://github.com/k27dong/mywebsite/blob/main/LICENSE" target="_blank" style="text-decoration: none;">
-  <img src="https://img.shields.io/github/license/k27dong/mywebsite?style=flat" alt="GitHub License" />
-</a>
-<a href="https://kefan.me/rss.xml" target="_blank" style="text-decoration: none;">
-  <img src="https://img.shields.io/badge/rss-blue?style=flat&logo=rss&logoColor=white&labelColor=grey" alt="RSS Feed" />
-</a>
+<a href="https://vercel.com/"><img src="https://deploy-badge.vercel.app/vercel/mywebsite-seven-chi?logo=" alt="Vercel Deploy" /></a>
+<a href="https://stats.uptimerobot.com/n66xyTGv63"><img src="https://img.shields.io/uptimerobot/status/m787427706-0eab16df7d2eef051f934714?up_message=live&down_message=down&style=flat&label=website" alt="Uptime Robot Status" /></a>
+<a href="https://app.codacy.com/gh/k27dong/mywebsite/dashboard"><img src="https://img.shields.io/codacy/grade/2b8bdddeeaca49e7ba41fcca6619ed57?style=flat&logo=codacy" alt="Codacy Grade" /></a>
+<a href="https://github.com/k27dong/mywebsite/blob/main/LICENSE"><img src="https://img.shields.io/github/license/k27dong/mywebsite?style=flat" alt="GitHub License" /></a>
+<a href="https://kefan.me/rss.xml"><img src="https://img.shields.io/badge/rss-blue?style=flat&logo=rss&logoColor=white&labelColor=grey" alt="RSS Feed" /></a>
 
 ## Tech Stack
 
@@ -28,7 +18,7 @@ https://www.kefan.me/
   <tr>
     <td align="center"><strong>Frontend</strong></td>
     <td align="center">
-      <a href="https://astro.build/" target="_blank">
+      <a href="https://astro.build/">
         <img src="https://img.shields.io/badge/astro-17191e?style=flat&logo=astro&logoColor=ffffff" width="80">
       </a>
     </td>
@@ -36,7 +26,7 @@ https://www.kefan.me/
   <tr>
     <td align="center"><strong>Backend</strong></td>
     <td align="center">
-      <a href="https://actix.rs/" target="_blank">
+      <a href="https://actix.rs/">
         <img src="https://img.shields.io/badge/actix-65319a?style=flat&logo=actix" width="80">
       </a>
     </td>
@@ -44,11 +34,11 @@ https://www.kefan.me/
   <tr>
     <td align="center"><strong>Deployment</strong></td>
     <td align="center">
-      <a href="https://vercel.com/" target="_blank">
+      <a href="https://vercel.com/">
         <img src="https://img.shields.io/badge/vercel-white?style=flat&logo=vercel&logoColor=black" width="80">
       </a>
       <br>
-      <a href="https://www.shuttle.rs/" target="_blank">
+      <a href="https://www.shuttle.rs/">
         <img src="https://img.shields.io/badge/shuttle.rs-f1daa4?style=flat&logo=Rocket&logoColor=ea642d" width="80">
       </a>
     </td>
