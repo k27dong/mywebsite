@@ -21,14 +21,16 @@ const { title, author, content } = Astro.props.data as Booknote["data"]
     {author}
   </Callout>
 
-  <article class="px-[1.2rem] pb-[2.4rem] sm:px-[6rem]">
-    <div class="font-article font-normal leading-7">
+  <article
+    class="w-full max-w-[1000px] px-[1.2rem] pb-10 sm:mx-auto md:px-24 lg:px-16"
+  >
+    <div class="font-article font-medium sm:font-normal">
       {
         content.map((section) => (
           <div class="mb-10">
             <h1 class="mb-2 text-2xl font-semibold">{section.name}</h1>
             {section.notes.map((note) => (
-              <div class="mb-4 border border-gray-300 bg-gray-100 p-4 text-base">
+              <div class="mb-4 border border-gray-300 bg-gray-100 p-4 text-base leading-[1.7rem]">
                 {note.split("\n").map((line, index, arr) => (
                   <p class={index < arr.length - 1 ? "mb-2" : ""}>{line}</p>
                 ))}

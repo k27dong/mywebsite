@@ -30,6 +30,14 @@ export default {
         textblack: "#0c0c0c",
       },
       typography: {
+        DEFAULT: {
+          css: {
+            blockquote: {
+              fontStyle: "normal",
+              color: 'theme("colors.gray.700")',
+            },
+          },
+        },
         quoteless: {
           css: {
             "blockquote p:first-of-type::before": { content: "none" },
@@ -48,11 +56,18 @@ export default {
             },
           },
         },
-        nonitalic: {
+        bqitalic: {
           css: {
             blockquote: {
-              fontStyle: 'normal'
+              fontStyle: "italic",
             },
+          },
+        },
+        notebox: {
+          css: {
+            border: "1px solid #D1D5DB",
+            backgroundColor: "#F3F4F6",
+            padding: "1rem",
           },
         },
       },
