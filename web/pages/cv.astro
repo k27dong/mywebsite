@@ -15,22 +15,11 @@ const experiences: Experience[] = (await getCollection("experiences")).sort(
       return new Date(`${month} 1, ${year}`)
     }
 
-    const [a_start_str, a_end_str] = a.data.date.split(" - ") as [
-      string,
-      string,
-    ]
-    const [b_start_str, b_end_str] = b.data.date.split(" - ") as [
-      string,
-      string,
-    ]
+    const [a_start_str] = a.data.date.split(" - ") as [string, string]
+    const [b_start_str] = b.data.date.split(" - ") as [string, string]
 
-    const a_start: Date = !parse_time(a_start_str)
-      ? parse_time(a_start_str)
-      : new Date(`${a_start_str} 1 ${parse_time(a_end_str).getFullYear()}`)
-
-    const b_start: Date = !parse_time(b_start_str)
-      ? parse_time(b_start_str)
-      : new Date(`${b_start_str} 1 ${parse_time(b_end_str).getFullYear()}`)
+    const a_start: Date = parse_time(a_start_str)
+    const b_start: Date = parse_time(b_start_str)
 
     return b_start.getTime() - a_start.getTime()
   },
