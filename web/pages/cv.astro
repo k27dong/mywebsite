@@ -10,18 +10,7 @@ type Skill = CollectionEntry<"skills">
 
 const experiences: Experience[] = (await getCollection("experiences")).sort(
   (a: Experience, b: Experience) => {
-    const parse_time = (time: string): Date => {
-      const [month, year] = time.split(" ")
-      return new Date(`${month} 1, ${year}`)
-    }
-
-    const [a_start_str] = a.data.date.split(" - ") as [string, string]
-    const [b_start_str] = b.data.date.split(" - ") as [string, string]
-
-    const a_start: Date = parse_time(a_start_str)
-    const b_start: Date = parse_time(b_start_str)
-
-    return b_start.getTime() - a_start.getTime()
+    return b.data.startDate.getTime() - a.data.startDate.getTime()
   },
 )
 
