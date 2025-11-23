@@ -45,6 +45,7 @@ Secrets*.toml
 
 # Fontbook (generated)
 /.glyphhanger
+public/fonts/.char_count
 
 # Vercel
 .vercel

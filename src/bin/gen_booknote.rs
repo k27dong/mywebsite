@@ -2,7 +2,8 @@ use regex::Regex;
 use std::{
     cmp::max,
     fs::{self, File},
-    io::Write, path::Path,
+    io::Write,
+    path::Path,
 };
 
 fn main() -> std::io::Result<()> {
