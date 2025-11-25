@@ -4,93 +4,18 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-
-  #     - name: Set up Rust
-  #       uses: actions-rs/toolchain@v1
-  #       with:
-  #         toolchain: stable
-
-  #     - name: Run `sync_content` binary
-  #       run: cargo run --bin sync_content
-
-  #     - name: Upload `web/content` folder as artifact
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: content-folder
-  #         path: web/content/
-
-  #     - name: Set up Node.js
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 22
-
-  #     - name: Install pnpm
-  #       run: npm install -g pnpm
-
-  #     - name: Install dependencies and build Astro.js
-  #       run: |
-  #         pnpm install
-  #         pnpm build
-
-  #     - name: Upload `dist` folder as artifact
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: dist-folder
-  #         path: dist/
-
   deploy:
     runs-on: ubuntu-latest
-    # needs: build
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # - name: Download `web/content` folder
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: content-folder
-      #     path: web/content/
-
-      # - name: Download `dist` folder
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: dist-folder
-      #     path: dist/
-
-      - name: Replace .gitignore
-        run: |
-          cp deploy.gitignore .gitignore
-
-      - name: Deploy (attempt 1)
-        uses: shuttle-hq/deploy-action@main
-        id: deploy_attempt_1
+      - name: Deploy to Shuttle
+        uses: shuttle-hq/deploy-action@v2
         with:
-          deploy-key: ${{ secrets.SHUTTLE_API_KEY }}
-          allow-dirty: "true"
-        continue-on-error: true
-
-      - name: Deploy (attempt 2)
-        if: steps.deploy_attempt_1.outcome == 'failure'
-        uses: shuttle-hq/deploy-action@main
-        id: deploy_attempt_2
-        with:
-          deploy-key: ${{ secrets.SHUTTLE_API_KEY }}
-          allow-dirty: "true"
-        continue-on-error: true
-
-      - name: Deploy (attempt 3)
-        if: steps.deploy_attempt_2.outcome == 'failure'
-        uses: shuttle-hq/deploy-action@main
-        id: deploy_attempt_3
-        with:
-          deploy-key: ${{ secrets.SHUTTLE_API_KEY }}
-          allow-dirty: "true"
+          shuttle-api-key: ${{ secrets.SHUTTLE_API_KEY }}
+          project-id: ${{ secrets.SHUTTLE_PROJECT_ID }}
