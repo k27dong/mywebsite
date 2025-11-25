@@ -1,1 +1,4 @@
 name = "kdwebsite"
+
+[build]
+features = ["shuttle"]
