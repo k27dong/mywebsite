@@ -33,6 +33,13 @@
 //                                 Amazon Lily, Sky Island, Mary Geoise, Jaya, Punk Hazard, Zou, Fish-Man Island
 //                               - Adds both English and Chinese location names (CN to be filled manually)
 //
+// Layer 8 (translate):          Translates character data to Chinese using GPT-5-mini with caching
+//                               - Translates: name, Affiliations, devil_fruit.name
+//                               - Uses OpenAI GPT-5-mini for accurate One Piece-specific translations
+//                               - Maintains local dictionary cache to avoid re-translating
+//                               - Cache file: data/onepiece_translation_cache.json
+//                               - Requires OPENAI_API_KEY environment variable
+//
 // Exclude List:
 //   Important characters that are preserved during cleaning (layers 4-5):
 //   - Major narrative characters (Yonko crews, Revolutionary Army, World Government, etc.)
@@ -51,6 +58,7 @@
 //   cargo run --bin sync_onepiece -- --layers all --strict              # Run all layers, ignore exclude list
 
 use anyhow::Result;
+use async_openai::{Client as OpenAIClient, types::{ChatCompletionRequestMessage, ChatCompletionRequestSystemMessageArgs, ChatCompletionRequestUserMessageArgs, CreateChatCompletionRequestArgs}};
 use clap::Parser;
 use indicatif::{ProgressBar, ProgressStyle};
 use rayon::prelude::*;
@@ -58,22 +66,37 @@ use regex::Regex;
 use reqwest::blocking::Client;
 use scraper::{Html, Selector};
 use serde::{Deserialize, Serialize};
-use std::fs::File;
+use std::collections::HashMap;
+use std::fs::{self, File};
 use std::io::{Read, Write};
+use std::path::Path;
 use std::sync::{Arc, Mutex};
+
+// Output file paths (accessible to both backend and frontend)
+const OUTPUT_FILE: &str = "data/onepiece_characters.json";
+const TRANSLATION_CACHE_FILE: &str = "data/onepiece_translation_cache.json";
+
+// Translation model: GPT-5-mini (best quality/cost balance)
+const TRANSLATION_MODEL: &str = "gpt-5-mini";
+const MODEL_INPUT_PRICE_PER_1M: f64 = 0.25;
+const MODEL_OUTPUT_PRICE_PER_1M: f64 = 2.00;
 
 /// Command-line arguments for the One Piece character scraper
 #[derive(Parser, Debug)]
 #[command(name = "sync_onepiece")]
 #[command(about = "One Piece character data scraper with layered processing", long_about = None)]
 struct Args {
-    /// Layers to run (comma-separated): scrape, clean_affiliation, clean_chapter, clean_bounty, clean_height, add_arc, map_origin, or 'all'
+    /// Layers to run (comma-separated): scrape, clean_affiliation, clean_chapter, clean_bounty, clean_height, add_arc, map_origin, translate, or 'all'
     #[arg(short, long, default_value = "all", value_delimiter = ',')]
     layers: Vec<String>,
 
     /// Strict mode: ignore exclude list and remove ALL entries that don't meet criteria
     #[arg(short, long, default_value_t = false)]
     strict: bool,
+
+    /// Limit number of characters to translate (for testing, 0 = no limit)
+    #[arg(long, default_value_t = 0)]
+    translate_limit: usize,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
@@ -85,6 +108,7 @@ enum Layer {
     CleanHeight = 5,
     AddArc = 6,
     MapOrigin = 7,
+    Translate = 8,
 }
 
 impl Layer {
@@ -97,6 +121,7 @@ impl Layer {
             "clean_height" => Some(Layer::CleanHeight),
             "add_arc" => Some(Layer::AddArc),
             "map_origin" => Some(Layer::MapOrigin),
+            "translate" => Some(Layer::Translate),
             _ => None,
         }
     }
@@ -110,6 +135,7 @@ impl Layer {
             Layer::CleanHeight => "clean_height",
             Layer::AddArc => "add_arc",
             Layer::MapOrigin => "map_origin",
+            Layer::Translate => "translate",
         }
     }
 
@@ -122,6 +148,7 @@ impl Layer {
             Layer::CleanHeight => "Remove entries with no height (respects exclude list)",
             Layer::AddArc => "Add story arc information based on debut chapter",
             Layer::MapOrigin => "Map origin to standardized major locations",
+            Layer::Translate => "Translate to Chinese using GPT-5-mini (with caching)",
         }
     }
 }
@@ -379,6 +406,8 @@ struct DevilFruit {
 #[derive(Debug, Serialize, Deserialize, Default, Clone)]
 struct Character {
     name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    name_cn: Option<String>,
     image: Option<String>,
     japanese_name: Option<String>,
     debut: Option<String>,
@@ -388,6 +417,8 @@ struct Character {
     debut_arc_cn: Option<String>,
     #[serde(rename = "Affiliations")]
     affiliations: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none", rename = "Affiliations_cn")]
+    affiliations_cn: Option<Vec<String>>,
     #[serde(rename = "Occupations")]
     occupations: Vec<String>,
     #[serde(rename = "Origin")]
@@ -409,9 +440,27 @@ struct Character {
     #[serde(rename = "Height")]
     height: Vec<String>,
     devil_fruit: Option<DevilFruit>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    devil_fruit_cn: Option<DevilFruitCn>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
+struct DevilFruitCn {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    name: Option<String>,
+}
+
+// Translation cache structure
+#[derive(Debug, Serialize, Deserialize, Default)]
+struct TranslationCache {
+    #[serde(default)]
+    terms: HashMap<String, String>,
 }
 
 fn main() -> Result<()> {
+    // Load .env file if it exists (silently ignore if not found)
+    let _ = dotenvy::dotenv();
+
     let args = Args::parse();
 
     // Parse and sort layers
@@ -426,6 +475,7 @@ fn main() -> Result<()> {
                 Layer::CleanHeight,
                 Layer::AddArc,
                 Layer::MapOrigin,
+                Layer::Translate,
             ];
             break;
         } else if let Some(layer) = Layer::from_str(layer_str) {
@@ -434,7 +484,7 @@ fn main() -> Result<()> {
             }
         } else {
             eprintln!("Unknown layer: {}", layer_str);
-            eprintln!("Available layers: scrape, clean_affiliation, clean_chapter, clean_bounty, clean_height, add_arc, map_origin, all");
+            eprintln!("Available layers: scrape, clean_affiliation, clean_chapter, clean_bounty, clean_height, add_arc, map_origin, translate, all");
             std::process::exit(1);
         }
     }
@@ -465,6 +515,10 @@ fn main() -> Result<()> {
             Layer::CleanHeight => layer_5_clean_height(args.strict)?,
             Layer::AddArc => layer_6_add_arc(&layers)?,
             Layer::MapOrigin => layer_7_map_origin()?,
+            Layer::Translate => {
+                // Translation layer needs async runtime
+                tokio::runtime::Runtime::new()?.block_on(layer_8_translate(args.translate_limit))?;
+            }
         }
     }
 
@@ -580,13 +634,19 @@ fn layer_1_scrape() -> Result<()> {
     final_chars.sort_by(|a, b| a.name.cmp(&b.name));
 
     // 3. Save to JSON
+    // Ensure directory exists
+    if let Some(parent) = Path::new(OUTPUT_FILE).parent() {
+        fs::create_dir_all(parent)?;
+    }
+    
     let json = serde_json::to_string_pretty(&final_chars)?;
-    let mut file = File::create("data.json")?;
+    let mut file = File::create(OUTPUT_FILE)?;
     file.write_all(json.as_bytes())?;
 
     println!(
-        "\n✓ Layer 1 complete: Saved {} characters to data.json",
-        final_chars.len()
+        "\n✓ Layer 1 complete: Saved {} characters to {}",
+        final_chars.len(),
+        OUTPUT_FILE
     );
 
     Ok(())
@@ -598,8 +658,8 @@ fn layer_2_clean_affiliation() -> Result<()> {
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 
     // Load existing data
-    println!("Loading data.json...");
-    let mut file = File::open("data.json")?;
+    println!("Loading {}...", OUTPUT_FILE);
+    let mut file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let mut characters: Vec<Character> = serde_json::from_str(&contents)?;
@@ -626,7 +686,7 @@ fn layer_2_clean_affiliation() -> Result<()> {
 
     // Save cleaned data
     let json = serde_json::to_string_pretty(&characters)?;
-    let mut file = File::create("data.json")?;
+    let mut file = File::create(OUTPUT_FILE)?;
     file.write_all(json.as_bytes())?;
 
     println!(
@@ -645,8 +705,8 @@ fn layer_3_clean_chapter() -> Result<()> {
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 
     // Load existing data
-    println!("Loading data.json...");
-    let mut file = File::open("data.json")?;
+    println!("Loading {}...", OUTPUT_FILE);
+    let mut file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let characters: Vec<Character> = serde_json::from_str(&contents)?;
@@ -694,7 +754,7 @@ fn layer_3_clean_chapter() -> Result<()> {
 
     // Save cleaned data
     let json = serde_json::to_string_pretty(&characters)?;
-    let mut file = File::create("data.json")?;
+    let mut file = File::create(OUTPUT_FILE)?;
     file.write_all(json.as_bytes())?;
 
     println!(
@@ -713,8 +773,8 @@ fn layer_4_clean_bounty(strict: bool) -> Result<()> {
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 
     // Load existing data
-    println!("Loading data.json...");
-    let mut file = File::open("data.json")?;
+    println!("Loading {}...", OUTPUT_FILE);
+    let mut file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let characters: Vec<Character> = serde_json::from_str(&contents)?;
@@ -770,7 +830,7 @@ fn layer_4_clean_bounty(strict: bool) -> Result<()> {
 
     // Save cleaned data
     let json = serde_json::to_string_pretty(&characters)?;
-    let mut file = File::create("data.json")?;
+    let mut file = File::create(OUTPUT_FILE)?;
     file.write_all(json.as_bytes())?;
 
     println!(
@@ -789,8 +849,8 @@ fn layer_5_clean_height(strict: bool) -> Result<()> {
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 
     // Load existing data
-    println!("Loading data.json...");
-    let mut file = File::open("data.json")?;
+    println!("Loading {}...", OUTPUT_FILE);
+    let mut file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let characters: Vec<Character> = serde_json::from_str(&contents)?;
@@ -846,7 +906,7 @@ fn layer_5_clean_height(strict: bool) -> Result<()> {
 
     // Save cleaned data
     let json = serde_json::to_string_pretty(&characters)?;
-    let mut file = File::create("data.json")?;
+    let mut file = File::create(OUTPUT_FILE)?;
     file.write_all(json.as_bytes())?;
 
     println!(
@@ -873,8 +933,8 @@ fn layer_6_add_arc(executed_layers: &[Layer]) -> Result<()> {
     }
 
     // Load existing data
-    println!("Loading data.json...");
-    let mut file = File::open("data.json")?;
+    println!("Loading {}...", OUTPUT_FILE);
+    let mut file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let mut characters: Vec<Character> = serde_json::from_str(&contents)?;
@@ -930,7 +990,7 @@ fn layer_6_add_arc(executed_layers: &[Layer]) -> Result<()> {
 
     // Save updated data
     let json = serde_json::to_string_pretty(&characters)?;
-    let mut file = File::create("data.json")?;
+    let mut file = File::create(OUTPUT_FILE)?;
     file.write_all(json.as_bytes())?;
 
     println!(
@@ -948,8 +1008,8 @@ fn layer_7_map_origin() -> Result<()> {
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 
     // Load existing data
-    println!("Loading data.json...");
-    let mut file = File::open("data.json")?;
+    println!("Loading {}...", OUTPUT_FILE);
+    let mut file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let mut characters: Vec<Character> = serde_json::from_str(&contents)?;
@@ -1002,7 +1062,7 @@ fn layer_7_map_origin() -> Result<()> {
 
     // Save updated data
     let json = serde_json::to_string_pretty(&characters)?;
-    let mut file = File::create("data.json")?;
+    let mut file = File::create(OUTPUT_FILE)?;
     file.write_all(json.as_bytes())?;
 
     println!(
@@ -1012,6 +1072,351 @@ fn layer_7_map_origin() -> Result<()> {
     );
 
     Ok(())
+}
+
+async fn layer_8_translate(limit: usize) -> Result<()> {
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    println!("🌏 Layer 8: Translate");
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+
+    // Check for API key
+    let api_key = std::env::var("OPENAI_API_KEY").map_err(|_| {
+        anyhow::anyhow!(
+            "OPENAI_API_KEY environment variable not set!\n  \
+             Set it with: $env:OPENAI_API_KEY=\"your-key-here\"  (PowerShell)\n  \
+             Or: export OPENAI_API_KEY=\"your-key-here\"  (Bash)"
+        )
+    })?;
+
+    // Load existing data
+    println!("Loading {}...", OUTPUT_FILE);
+    let mut file = File::open(OUTPUT_FILE)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    let mut characters: Vec<Character> = serde_json::from_str(&contents)?;
+    let initial_count = characters.len();
+    
+    // Apply limit if specified
+    if limit > 0 && characters.len() > limit {
+        println!("⚠️  TESTING MODE: Limiting to {} characters (out of {})\n", limit, initial_count);
+        characters.truncate(limit);
+    } else {
+        println!("Loaded {} characters\n", initial_count);
+    }
+
+    // Load translation cache
+    let mut cache = load_translation_cache()?;
+    let initial_cache_size = cache.terms.len();
+    println!("Loaded translation cache with {} entries\n", initial_cache_size);
+
+    // Create OpenAI client
+    let client = OpenAIClient::with_config(
+        async_openai::config::OpenAIConfig::new().with_api_key(api_key)
+    );
+
+    // Collect all terms to translate (only One Piece-specific terms)
+    let mut terms_to_translate = std::collections::HashSet::new();
+    for character in &characters {
+        // Character names
+        terms_to_translate.insert(simplify_term(&character.name));
+        
+        // Affiliations (One Piece-specific organizations)
+        for aff in &character.affiliations {
+            terms_to_translate.insert(simplify_term(aff));
+        }
+        
+        // Devil Fruits (One Piece-specific)
+        if let Some(df) = &character.devil_fruit {
+            if let Some(name) = &df.name {
+                terms_to_translate.insert(simplify_term(name));
+            }
+        }
+        
+        // Skip Occupations - they're generic terms (Pirate, Captain, etc.)
+    }
+
+    // Filter out already cached terms and empty strings
+    let uncached_terms: Vec<String> = terms_to_translate
+        .iter()
+        .filter(|term| !term.is_empty() && !cache.terms.contains_key(*term))
+        .cloned()
+        .collect();
+
+    println!("Total unique terms: {}", terms_to_translate.len());
+    println!("Already cached: {}", terms_to_translate.len() - uncached_terms.len());
+    println!("Need to translate: {}", uncached_terms.len());
+    
+    // Estimate cost
+    if !uncached_terms.is_empty() {
+        let estimated_input_tokens = uncached_terms.iter().map(|t| t.len()).sum::<usize>() * 2; // Rough estimate
+        let estimated_output_tokens = estimated_input_tokens; // Similar length for translations
+        let estimated_cost = (estimated_input_tokens as f64 * MODEL_INPUT_PRICE_PER_1M / 1_000_000.0) 
+                           + (estimated_output_tokens as f64 * MODEL_OUTPUT_PRICE_PER_1M / 1_000_000.0);
+        println!("💰 Estimated cost: ${:.4} USD", estimated_cost);
+        println!("   ({}: ${:.2}/1M input, ${:.2}/1M output)\n", 
+                 TRANSLATION_MODEL, MODEL_INPUT_PRICE_PER_1M, MODEL_OUTPUT_PRICE_PER_1M);
+    } else {
+        println!();
+    }
+
+    if uncached_terms.is_empty() {
+        println!("✓ All terms already translated!");
+    } else {
+        // Create progress bar
+        let pb = ProgressBar::new(uncached_terms.len() as u64);
+        pb.set_style(
+            ProgressStyle::default_bar()
+                .template("{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {pos}/{len} ({eta}) {msg}")
+                .unwrap()
+                .progress_chars("#>-"),
+        );
+
+        // Batch translate in groups of 15 to save API calls (reduced from 20 for safety)
+        let batch_size = 15;
+        let total_batches = (uncached_terms.len() + batch_size - 1) / batch_size;
+        
+        for (batch_idx, batch) in uncached_terms.chunks(batch_size).enumerate() {
+            pb.set_message(format!("Batch {}/{} ({} terms)", batch_idx + 1, total_batches, batch.len()));
+            
+            match translate_batch(&client, batch).await {
+                Ok(translations) => {
+                    for (term, translation) in translations {
+                        cache.terms.insert(term, translation);
+                    }
+                    pb.inc(batch.len() as u64);
+                }
+                Err(e) => {
+                    eprintln!("\n⚠️  Translation batch {} failed: {}", batch_idx + 1, e);
+                    eprintln!("   Continuing with remaining batches...");
+                    pb.inc(batch.len() as u64);
+                }
+            }
+
+            // Small delay to avoid rate limiting
+            if batch_idx < total_batches - 1 {
+                tokio::time::sleep(tokio::time::Duration::from_millis(200)).await;
+            }
+        }
+
+        pb.finish_with_message("✓ Translation complete!");
+        println!();
+    }
+
+    // Apply translations to characters
+    println!("Applying translations to characters...");
+    let pb = ProgressBar::new(characters.len() as u64);
+    pb.set_style(
+        ProgressStyle::default_bar()
+            .template("{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {pos}/{len}")
+            .unwrap()
+            .progress_chars("#>-"),
+    );
+
+    for character in &mut characters {
+        // Translate name (using simplified version as cache key)
+        let simplified_name = simplify_term(&character.name);
+        if let Some(translated) = cache.terms.get(&simplified_name) {
+            character.name_cn = Some(translated.clone());
+        }
+
+        // Translate affiliations
+        let mut affiliations_cn = Vec::new();
+        for aff in &character.affiliations {
+            let simplified_aff = simplify_term(aff);
+            if let Some(translated) = cache.terms.get(&simplified_aff) {
+                affiliations_cn.push(translated.clone());
+            }
+        }
+        if !affiliations_cn.is_empty() {
+            character.affiliations_cn = Some(affiliations_cn);
+        }
+
+        // Skip occupations - they're generic, not One Piece-specific
+
+        // Translate devil fruit
+        if let Some(df) = &character.devil_fruit {
+            if let Some(name) = &df.name {
+                let simplified_df = simplify_term(name);
+                if let Some(translated) = cache.terms.get(&simplified_df) {
+                    character.devil_fruit_cn = Some(DevilFruitCn {
+                        name: Some(translated.clone()),
+                    });
+                }
+            }
+        }
+
+        pb.inc(1);
+    }
+
+    pb.finish_and_clear();
+
+    // Sort by name for consistency
+    characters.sort_by(|a, b| a.name.cmp(&b.name));
+
+    // Save updated data
+    let json = serde_json::to_string_pretty(&characters)?;
+    let mut file = File::create(OUTPUT_FILE)?;
+    file.write_all(json.as_bytes())?;
+
+    // Save updated cache
+    save_translation_cache(&cache)?;
+
+    let new_translations = cache.terms.len() - initial_cache_size;
+    println!(
+        "✓ Layer 8 complete: Translated {} characters ({} new terms cached)\n",
+        characters.len(),
+        new_translations
+    );
+
+    Ok(())
+}
+
+// Load translation cache from file
+fn load_translation_cache() -> Result<TranslationCache> {
+    if Path::new(TRANSLATION_CACHE_FILE).exists() {
+        let mut file = File::open(TRANSLATION_CACHE_FILE)?;
+        let mut contents = String::new();
+        file.read_to_string(&mut contents)?;
+        Ok(serde_json::from_str(&contents)?)
+    } else {
+        Ok(TranslationCache::default())
+    }
+}
+
+// Save translation cache to file
+fn save_translation_cache(cache: &TranslationCache) -> Result<()> {
+    if let Some(parent) = Path::new(TRANSLATION_CACHE_FILE).parent() {
+        fs::create_dir_all(parent)?;
+    }
+    let json = serde_json::to_string_pretty(cache)?;
+    let mut file = File::create(TRANSLATION_CACHE_FILE)?;
+    file.write_all(json.as_bytes())?;
+    Ok(())
+}
+
+// Simplify term by removing parenthetical notes like (former), (defected), etc.
+fn simplify_term(term: &str) -> String {
+    // Remove content in parentheses at the end
+    let simplified = term
+        .split('(')
+        .next()
+        .unwrap_or(term)
+        .trim()
+        .to_string();
+    
+    simplified
+}
+
+// Translate a batch of terms using OpenAI GPT-4o-mini
+async fn translate_batch(
+    client: &OpenAIClient<async_openai::config::OpenAIConfig>,
+    terms: &[String],
+) -> Result<Vec<(String, String)>> {
+    // Create simplified input (just the terms, one per line)
+    let terms_list = terms.join("\n");
+    
+    let system_message = ChatCompletionRequestSystemMessageArgs::default()
+        .content(
+            "You are a One Piece (海贼王/ワンピース) manga translation specialist. \
+             Translate ONLY using official One Piece terminology. \
+             \n\nRules:\n\
+             - Character names: Use official transliteration (蒙奇·D·路飞 for Monkey D. Luffy)\n\
+             - Organizations: Use official names (草帽海贼团 for Straw Hat Pirates, 四皇 for Four Emperors)\n\
+             - Devil Fruits: Use official names (橡胶果实 for Gum-Gum Fruit, 透明果实 for Clear-Clear Fruit)\n\
+             - Locations: Use official names (空岛 for Sky Island)\n\
+             - CRITICAL: Return EXACTLY the same number of translations as input terms\n\
+             - Each line in input = exactly ONE translation in output\n\
+             \nReturn ONLY a JSON array of Chinese translations, nothing else."
+        )
+        .build()?;
+
+    let num_terms = terms.len();
+    let user_message = ChatCompletionRequestUserMessageArgs::default()
+        .content(format!(
+            "Translate these {} One Piece terms to simplified Chinese (return EXACTLY {} translations):\n\n{}\n\n\
+             Return format: [\"中文翻译1\", \"中文翻译2\", ...]\n\
+             IMPORTANT: Return exactly {} translations in the same order.",
+            num_terms, num_terms, terms_list, num_terms
+        ))
+        .build()?;
+
+    let request = CreateChatCompletionRequestArgs::default()
+        .model(TRANSLATION_MODEL)
+        .messages(vec![
+            ChatCompletionRequestMessage::System(system_message),
+            ChatCompletionRequestMessage::User(user_message),
+        ])
+        .build()?;
+
+    let response = client.chat().create(request).await?;
+    
+    let translation_text = response
+        .choices
+        .first()
+        .and_then(|choice| choice.message.content.as_ref())
+        .ok_or_else(|| anyhow::anyhow!("No response from OpenAI"))?;
+
+    // Try to extract JSON array from response (in case of markdown code blocks)
+    let json_text = if translation_text.contains("```") {
+        // Extract from code block
+        translation_text
+            .split("```")
+            .nth(1)
+            .and_then(|s| s.strip_prefix("json").or(Some(s)))
+            .unwrap_or(translation_text)
+            .trim()
+    } else {
+        translation_text.trim()
+    };
+
+    // Parse the JSON response
+    let translations: Vec<String> = serde_json::from_str(json_text).map_err(|e| {
+        anyhow::anyhow!("Failed to parse translation response: {}\nResponse was: {}", e, translation_text)
+    })?;
+
+    if translations.len() != terms.len() {
+        // Try to handle mismatches gracefully
+        if translations.len() < terms.len() {
+            // LLM returned fewer translations (likely skipped empty/problematic terms)
+            eprintln!("\n⚠️  Warning: Got {} translations for {} terms", translations.len(), terms.len());
+            eprintln!("   Some terms may not be translated correctly.");
+            
+            // Pair up what we can, skip the rest
+            let paired: Vec<(String, String)> = terms.iter()
+                .take(translations.len())
+                .cloned()
+                .zip(translations.clone())
+                .collect();
+            return Ok(paired);
+        } else {
+            // LLM returned MORE translations (likely split one term)
+            eprintln!("\n⚠️  Warning: Got {} translations for {} terms", translations.len(), terms.len());
+            eprintln!("   Attempting to merge extra translations...");
+            
+            // Try to pair intelligently - merge the extra one back
+            let mut paired = Vec::new();
+            let mut trans_idx = 0;
+            
+            for (_term_idx, term) in terms.iter().enumerate() {
+                if trans_idx < translations.len() {
+                    // Check if this term might have been split (contains multiple parts)
+                    if term.contains(" Fish-Fish Fruit") && trans_idx + 1 < translations.len() {
+                        // Merge two translations
+                        let merged = format!("{} {}", translations[trans_idx], translations[trans_idx + 1]);
+                        paired.push((term.clone(), merged));
+                        trans_idx += 2;
+                    } else {
+                        paired.push((term.clone(), translations[trans_idx].clone()));
+                        trans_idx += 1;
+                    }
+                }
+            }
+            
+            return Ok(paired);
+        }
+    }
+
+    Ok(terms.iter().cloned().zip(translations).collect())
 }
 
 // Helper function to get arc names (English and Chinese) from chapter number

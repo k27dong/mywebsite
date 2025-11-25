@@ -18,6 +18,7 @@
 
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -46,6 +47,10 @@ Secrets*.toml
 # Fontbook (generated)
 /.glyphhanger
 public/fonts/.char_count
+
+# One Piece scraper (generated)
+data/onepiece_characters.json
+data/onepiece_translation_cache.json
 
 # Vercel
 .vercel
