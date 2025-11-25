@@ -40,5 +40,6 @@ dotenvy = "0.15.7"
 serde = { version = "1.0.195", features = ["derive"] }
 serde_json = "1.0.111"
 serde_yaml = "0.9.30"
-shuttle-actix-web = "0.47.0"
-shuttle-runtime = "0.47.0"
+toml = "0.8.20"
+shuttle-actix-web = "0.57.0"
+shuttle-runtime = "0.57.0"

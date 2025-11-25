@@ -8,8 +8,8 @@ cfg_if::cfg_if! {
         use shuttle_runtime::SecretStore;
     }
     else {
-        use std::env;
         use std::fs;
+        use std::collections::HashMap;
     }
 }
 
@@ -98,47 +98,47 @@ pub async fn get_gphrase(
 
 #[cfg(not(feature = "shuttle"))]
 pub fn load_gsheet_config() -> GSheetConfig {
-    if let Ok(_) = env::var("PORT") {
-        GSheetConfig {
-            key_type: String::from("service_account"),
-            project_id: get_env_var("PROJECT_ID"),
-            private_key_id: get_env_var("PRIVATE_KEY_ID"),
-            private_key: get_env_var("PRIVATE_KEY").replace("\\n", "\n"),
-            client_email: get_env_var("CLIENT_EMAIL"),
-            client_id: get_env_var("CLIENT_ID"),
-            auth_uri: String::from("https://accounts.google.com/o/oauth2/auth"),
-            token_uri: String::from("https://oauth2.googleapis.com/token"),
-            auth_provider_x509_cert_url: String::from("https://www.googleapis.com/oauth2/v1/certs"),
-            client_x509_cert_url: get_env_var("CERT_URL"),
-            spreadsheet_id: get_env_var("SPREADSHEET_ID"),
-        }
-    } else {
-        serde_json::from_reader(
-            fs::File::open("gsheet_creds.json").expect("Failed to open gsheet_creds.json"),
-        )
-        .expect("Failed to parse gsheet_creds.json")
+    // Read secrets from Secrets.toml (same file used by Shuttle)
+    let secrets_content = fs::read_to_string("Secrets.toml")
+        .expect("Failed to read Secrets.toml");
+    let secrets: HashMap<String, String> = toml::from_str(&secrets_content)
+        .expect("Failed to parse Secrets.toml");
+
+    GSheetConfig {
+        key_type: get_secret(&secrets, "KEY_TYPE"),
+        project_id: get_secret(&secrets, "PROJECT_ID"),
+        private_key_id: get_secret(&secrets, "PRIVATE_KEY_ID"),
+        private_key: get_secret(&secrets, "PRIVATE_KEY").replace("\\n", "\n"),
+        client_email: get_secret(&secrets, "CLIENT_EMAIL"),
+        client_id: get_secret(&secrets, "CLIENT_ID"),
+        auth_uri: get_secret(&secrets, "AUTH_URI"),
+        token_uri: get_secret(&secrets, "TOKEN_URI"),
+        auth_provider_x509_cert_url: get_secret(&secrets, "AUTH_PROVIDER_X509_CERT_URL"),
+        client_x509_cert_url: get_secret(&secrets, "CLIENT_X509_CERT_URL"),
+        spreadsheet_id: get_secret(&secrets, "SPREADSHEET_ID"),
     }
 }
 
 #[cfg(not(feature = "shuttle"))]
-fn get_env_var(name: &str) -> String {
-    env::var(name).expect(&format!("{} environment variable not set", name))
+fn get_secret(secrets: &HashMap<String, String>, key: &str) -> String {
+    secrets
+        .get(key)
+        .cloned()
+        .unwrap_or_else(|| panic!("Secret {} not found in Secrets.toml", key))
 }
 
 #[cfg(feature = "shuttle")]
 pub async fn load_gsheet_config(secret_store: &SecretStore) -> GSheetConfig {
     GSheetConfig {
-        key_type: "service_account".to_string(),
+        key_type: get_secret(secret_store, "KEY_TYPE").await,
         project_id: get_secret(secret_store, "PROJECT_ID").await,
         private_key_id: get_secret(secret_store, "PRIVATE_KEY_ID").await,
-        private_key: get_secret(secret_store, "PRIVATE_KEY")
-            .await
-            .replace("\\n", "\n"),
+        private_key: get_secret(secret_store, "PRIVATE_KEY").await.replace("\\n", "\n"),
         client_email: get_secret(secret_store, "CLIENT_EMAIL").await,
         client_id: get_secret(secret_store, "CLIENT_ID").await,
-        auth_uri: "https://accounts.google.com/o/oauth2/auth".to_string(),
-        token_uri: "https://oauth2.googleapis.com/token".to_string(),
-        auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs".to_string(),
+        auth_uri: get_secret(secret_store, "AUTH_URI").await,
+        token_uri: get_secret(secret_store, "TOKEN_URI").await,
+        auth_provider_x509_cert_url: get_secret(secret_store, "AUTH_PROVIDER_X509_CERT_URL").await,
         client_x509_cert_url: get_secret(secret_store, "CLIENT_X509_CERT_URL").await,
         spreadsheet_id: get_secret(secret_store, "SPREADSHEET_ID").await,
     }

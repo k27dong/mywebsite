@@ -67,6 +67,7 @@ use reqwest::blocking::Client;
 use scraper::{Html, Selector};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
+use std::collections::HashMap as StdHashMap;
 use std::fs::{self, File};
 use std::io::{Read, Write};
 use std::path::Path;
@@ -457,9 +458,24 @@ struct TranslationCache {
     terms: HashMap<String, String>,
 }
 
+// Load secrets from Secrets.toml
+fn load_secrets() -> StdHashMap<String, String> {
+    if let Ok(content) = fs::read_to_string("Secrets.toml") {
+        toml::from_str(&content).unwrap_or_default()
+    } else {
+        StdHashMap::new()
+    }
+}
+
+// Get a secret value - tries Secrets.toml first, then environment variable
+fn get_secret(secrets: &StdHashMap<String, String>, key: &str) -> Option<String> {
+    secrets.get(key).cloned().or_else(|| std::env::var(key).ok())
+}
+
 fn main() -> Result<()> {
-    // Load .env file if it exists (silently ignore if not found)
+    // Load secrets from Secrets.toml (primary) and .env (fallback)
     let _ = dotenvy::dotenv();
+    let secrets = load_secrets();
 
     let args = Args::parse();
 
@@ -517,7 +533,7 @@ fn main() -> Result<()> {
             Layer::MapOrigin => layer_7_map_origin()?,
             Layer::Translate => {
                 // Translation layer needs async runtime
-                tokio::runtime::Runtime::new()?.block_on(layer_8_translate(args.translate_limit))?;
+                tokio::runtime::Runtime::new()?.block_on(layer_8_translate(args.translate_limit, &secrets))?;
             }
         }
     }
@@ -1074,17 +1090,17 @@ fn layer_7_map_origin() -> Result<()> {
     Ok(())
 }
 
-async fn layer_8_translate(limit: usize) -> Result<()> {
+async fn layer_8_translate(limit: usize, secrets: &StdHashMap<String, String>) -> Result<()> {
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
     println!("🌏 Layer 8: Translate");
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 
-    // Check for API key
-    let api_key = std::env::var("OPENAI_API_KEY").map_err(|_| {
+    // Check for API key (from Secrets.toml or environment)
+    let api_key = get_secret(secrets, "OPENAI_API_KEY").ok_or_else(|| {
         anyhow::anyhow!(
-            "OPENAI_API_KEY environment variable not set!\n  \
-             Set it with: $env:OPENAI_API_KEY=\"your-key-here\"  (PowerShell)\n  \
-             Or: export OPENAI_API_KEY=\"your-key-here\"  (Bash)"
+            "OPENAI_API_KEY not found!\n  \
+             Add it to Secrets.toml: OPENAI_API_KEY = \"your-key-here\"\n  \
+             Or set env var: $env:OPENAI_API_KEY=\"your-key-here\" (PowerShell)"
         )
     })?;
 
