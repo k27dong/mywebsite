@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from "react"
+import pinyin from "tiny-pinyin"
 import charactersData from "../../content/onepiece/characters.json"
 
 type Language = "en" | "cn"
@@ -43,19 +44,27 @@ export default function OnePiece() {
   const dropdownRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
+  // Helper to strip bracketed text like "(former)" or "(temporarily)"
+  const stripBrackets = (text: string) =>
+    text.replace(/\s*\([^)]*\)/g, "").trim()
+
   // Helper to get localized text
   const getText = (char: Character, field: "name" | "affiliations") => {
     if (language === "cn") {
       if (field === "name") return char.cn?.name || char.name
-      if (field === "affiliations")
-        return char.cn?.affiliations?.[0] || char.affiliations?.[0] || ""
+      if (field === "affiliations") {
+        const affiliation =
+          char.cn?.affiliations?.[0] || char.affiliations?.[0] || ""
+        return stripBrackets(affiliation)
+      }
     }
     if (field === "name") return char.name
-    if (field === "affiliations") return char.affiliations?.[0] || ""
+    if (field === "affiliations")
+      return stripBrackets(char.affiliations?.[0] || "")
     return ""
   }
 
-  // Filter characters based on search term
+  // Filter characters based on search term (supports English, Chinese, Japanese, and Pinyin)
   const filteredCharacters = useMemo(() => {
     if (!searchTerm.trim()) return []
 
@@ -65,14 +74,22 @@ export default function OnePiece() {
         const matchesEnglish = char.name.toLowerCase().includes(term)
         const matchesChinese = char.cn?.name?.includes(term)
         const matchesJapanese = char.japanese_name?.includes(term)
-        return matchesEnglish || matchesChinese || matchesJapanese
+        // Pinyin matching for Chinese names
+        const chineseName = char.cn?.name || ""
+        const pinyinStr = pinyin
+          .convertToPinyin(chineseName, "", true)
+          .toLowerCase()
+        const matchesPinyin = pinyinStr.includes(term)
+        return (
+          matchesEnglish || matchesChinese || matchesJapanese || matchesPinyin
+        )
       })
       .slice(0, 10)
-  }, [searchTerm, characters])
+  }, [searchTerm])
 
   const handleSelectCharacter = (character: Character) => {
     setSelectedCharacter(character)
-    setSearchTerm(getText(character, "name"))
+    setSearchTerm("") // Clear input after selection
     setShowDropdown(false)
   }
 
@@ -132,8 +149,8 @@ export default function OnePiece() {
             language === "en" ? "Search for a character..." : "搜索角色..."
           }
           className={`w-full rounded-none border border-black bg-white px-4 py-3
-            text-base outline-none transition-all focus:ring-2 focus:ring-black
-            focus:ring-offset-1 ${fontClass}`}
+            text-base outline-none focus:shadow-[0_0_0_0.5px_black]
+            ${fontClass}`}
           autoComplete="off"
         />
 
@@ -170,16 +187,17 @@ export default function OnePiece() {
                   />
                 </div>
 
-                {/* Name + First Affiliation */}
-                <div className="min-w-0 flex-1">
-                  <div className={`truncate text-sm font-bold ${fontClass}`}>
-                    {getText(char, "name")}
-                  </div>
-                  <div
-                    className={`truncate text-xs text-gray-600 ${fontClass}`}
-                  >
-                    {getText(char, "affiliations")}
-                  </div>
+                {/* Name + First Affiliation (single line) */}
+                <div
+                  className={`min-w-0 flex-1 truncate text-base ${fontClass}`}
+                >
+                  <span className="font-bold">{getText(char, "name")}</span>
+                  {getText(char, "affiliations") && (
+                    <span className="text-gray-500">
+                      {" · "}
+                      {getText(char, "affiliations")}
+                    </span>
+                  )}
                 </div>
               </div>
             ))}

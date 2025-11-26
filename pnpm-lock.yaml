@@ -53,6 +53,9 @@ importers:
       tailwindcss:
         specifier: ^3.4.18
         version: 3.4.18(yaml@2.8.1)
+      tiny-pinyin:
+        specifier: ^1.3.2
+        version: 1.3.2
     devDependencies:
       '@tailwindcss/typography':
         specifier: ^0.5.19
@@ -2543,6 +2546,9 @@ packages:
 
   tiny-inflate@1.0.3:
     resolution: {integrity: sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==}
+
+  tiny-pinyin@1.3.2:
+    resolution: {integrity: sha512-uHNGu4evFt/8eNLldazeAM1M8JrMc1jshhJJfVRARTN3yT8HEEibofeQ7QETWQ5ISBjd6fKtTVBCC/+mGS6FpA==}
 
   tinyexec@1.0.2:
     resolution: {integrity: sha512-W/KYk+NFhkmsYpuHq5JykngiOCnxeVL8v8dFnqxSD8qEEdRfXk1SDM6JzNqcERbcGYj9tMrDQBYV9cjgnunFIg==}
@@ -5880,6 +5886,8 @@ snapshots:
       any-promise: 1.3.0
 
   tiny-inflate@1.0.3: {}
+
+  tiny-pinyin@1.3.2: {}
 
   tinyexec@1.0.2: {}
 
