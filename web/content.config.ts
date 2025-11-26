@@ -104,51 +104,38 @@ const projects = defineCollection({
 const onepiece = defineCollection({
   loader: glob({
     base: "./web/content/onepiece",
-    pattern: "**/*.json",
+    pattern: "characters.json",
   }),
-  schema: z.object({
-    // Identity
-    name: z.string(),
-    japanese_name: z.string(),
-    image: z.string(),
-
-    // Debut
-    debut_chapter: z.number(),
-    debut_arc: z.string(),
-
-    // Associations
-    affiliations: z.array(z.string()),
-    occupations: z.array(z.string()).optional(),
-    residence: z.array(z.string()).optional(),
-
-    // Origin
-    origin: z.string(),
-
-    // Stats
-    bounty: z.number(),
-    status: z.string(),
-    age: z.number().optional(),
-    birthday: z.string().optional(),
-    height: z.number().optional(),
-
-    // Devil Fruit
-    devil_fruit_name: z.string().optional(),
-    devil_fruit_type: z.string().optional(),
-
-    // Haki (required field)
-    haki: z.array(z.string()),
-
-    // Chinese translations
-    cn: z.object({
+  schema: z.array(
+    z.object({
       name: z.string(),
-      affiliations: z.array(z.string()),
-      origin: z.string(),
+      japanese_name: z.string(),
+      image: z.string(),
+      debut_chapter: z.number(),
       debut_arc: z.string(),
+      affiliations: z.array(z.string()),
+      occupations: z.array(z.string()).optional(),
+      residence: z.array(z.string()).optional(),
+      origin: z.string(),
+      bounty: z.number(),
+      status: z.string(),
+      age: z.number().optional(),
+      birthday: z.string().optional(),
+      height: z.number().optional(),
       devil_fruit_name: z.string().optional(),
       devil_fruit_type: z.string().optional(),
       haki: z.array(z.string()),
-    }),
-  }),
+      cn: z.object({
+        name: z.string(),
+        affiliations: z.array(z.string()),
+        origin: z.string(),
+        debut_arc: z.string(),
+        devil_fruit_name: z.string().optional(),
+        devil_fruit_type: z.string().optional(),
+        haki: z.array(z.string()),
+      }),
+    })
+  ),
 })
 
 export const collections = { posts, booknotes, experiences, skills, projects, onepiece }

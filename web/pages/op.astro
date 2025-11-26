@@ -1,13 +1,12 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content"
+import { getEntry, type CollectionEntry } from "astro:content"
 import MainLayout from "../layouts/MainLayout.astro"
 import Callout from "../components/Callout.astro"
 
-type Character = CollectionEntry<"onepiece">
+type Character = CollectionEntry<"onepiece">["data"][number]
 
-const characters: Character[] = (await getCollection("onepiece")).sort(
-  (a: Character, b: Character) => a.data.debut_chapter - b.data.debut_chapter,
-)
+const entry = await getEntry("onepiece", "characters")
+const characters: Character[] = (entry?.data || [])
 ---
 
 <MainLayout title="One Piece">
