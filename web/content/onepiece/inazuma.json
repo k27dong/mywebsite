@@ -1,0 +1,44 @@
+{
+  "affiliations": [
+    "Kamabakka Kingdom",
+    "Newkama Land",
+    "Revolutionary Army",
+    "Impel Down (former)"
+  ],
+  "age": 29,
+  "birthday": "August 3rd",
+  "bounty": 100000000,
+  "cn": {
+    "affiliations": [
+      "卡马巴卡王国",
+      "新卡玛乐园",
+      "革命军",
+      "推进城"
+    ],
+    "debut_arc": "推进城篇",
+    "devil_fruit_name": "剪剪果实",
+    "devil_fruit_type": "超人系",
+    "haki": [],
+    "name": "稻妻",
+    "origin": "南海"
+  },
+  "debut_arc": "Impel Down",
+  "debut_chapter": 536,
+  "devil_fruit_name": "Snip-Snip Fruit (VIZ and Funimation); Shear-Shear Fruit (One Piece Official YouTube Channel)",
+  "devil_fruit_type": "Paramecia",
+  "haki": [],
+  "height": 228,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/d/d8/Inazuma_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20221031183404",
+  "japanese_name": "イナズマ",
+  "name": "Inazuma",
+  "occupations": [
+    "Revolutionary",
+    "Prisoner of the Great Prison (former)"
+  ],
+  "origin": "South Blue",
+  "residence": [
+    "Baltigo (former)",
+    "Momoiro Island"
+  ],
+  "status": "Alive"
+}

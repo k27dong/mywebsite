@@ -1,0 +1,37 @@
+{
+  "affiliations": [
+    "Blackbeard Pirates"
+  ],
+  "age": 28,
+  "birthday": "October 18th",
+  "bounty": 72000000,
+  "cn": {
+    "affiliations": [
+      "黑胡子海贼团"
+    ],
+    "debut_arc": "加雅岛篇",
+    "devil_fruit_name": "病病果实",
+    "devil_fruit_type": "超人系",
+    "haki": [],
+    "name": "多克·Q",
+    "origin": "北海"
+  },
+  "debut_arc": "Jaya",
+  "debut_chapter": 223,
+  "devil_fruit_name": "Sick-Sick Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [],
+  "height": 342,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/c/c4/Doc_Q_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20240211200456",
+  "japanese_name": "ドクQ",
+  "name": "Doc Q",
+  "occupations": [
+    "Titanic Captain (Captain of the Ninth Ship)",
+    "Doctor"
+  ],
+  "origin": "North Blue",
+  "residence": [
+    "Hachinosu"
+  ],
+  "status": "Alive"
+}

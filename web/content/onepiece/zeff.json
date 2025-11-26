@@ -1,0 +1,34 @@
+{
+  "affiliations": [
+    "Baratie",
+    "Cook Pirates (former)"
+  ],
+  "age": 67,
+  "birthday": "April 2nd",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "巴拉蒂"
+    ],
+    "debut_arc": "海上餐厅篇",
+    "haki": [],
+    "name": "泽夫",
+    "origin": "东海"
+  },
+  "debut_arc": "Baratie",
+  "debut_chapter": 43,
+  "haki": [],
+  "height": 189,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/d/d9/Zeff_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230617083525",
+  "japanese_name": "ゼフ",
+  "name": "Zeff",
+  "occupations": [
+    "Head Chef of Baratie",
+    "Pirate Captain (former)"
+  ],
+  "origin": "East Blue",
+  "residence": [
+    "Baratie"
+  ],
+  "status": "Alive"
+}

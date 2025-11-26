@@ -1,0 +1,35 @@
+{
+  "affiliations": [
+    "Marines",
+    "Marine 16th Branch"
+  ],
+  "age": 36,
+  "birthday": "December 12th",
+  "bounty": 100000000,
+  "cn": {
+    "affiliations": [
+      "海军",
+      "海军第16分部"
+    ],
+    "debut_arc": "可可亚西村篇",
+    "haki": [],
+    "name": "内兹米",
+    "origin": "东海"
+  },
+  "debut_arc": "Arlong Park",
+  "debut_chapter": 69,
+  "haki": [],
+  "height": 182,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/9/9d/Nezumi_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20180706061857",
+  "japanese_name": "ネズミ",
+  "name": "Nezumi",
+  "occupations": [
+    "Marine Captain",
+    "Marine Commander (former) (Non-Canon) ≠"
+  ],
+  "origin": "East Blue",
+  "residence": [
+    "16th Branch"
+  ],
+  "status": "Alive"
+}

@@ -1,0 +1,43 @@
+{
+  "affiliations": [
+    "Kuja Pirates (Gorgon Sisters)"
+  ],
+  "age": 28,
+  "birthday": "September 5th",
+  "bounty": 40000000,
+  "cn": {
+    "affiliations": [
+      "库贾海贼团"
+    ],
+    "debut_arc": "女儿岛篇",
+    "devil_fruit_name": "蛇蛇果实·模型：眼镜王蛇",
+    "devil_fruit_type": "动物系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "波雅·玛丽戈德",
+    "origin": "女儿岛"
+  },
+  "debut_arc": "Amazon Lily",
+  "debut_chapter": 516,
+  "devil_fruit_name": "Snake-Snake Fruit King Cobra Model (VIZ); Snake-Snake Fruit: Model King Cobra (Funimation)",
+  "devil_fruit_type": "Zoan",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 432,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/6/6c/Boa_Marigold_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20150903140509",
+  "japanese_name": "ボア・マリーゴールド",
+  "name": "Boa Marigold",
+  "occupations": [
+    "Ruler of Amazon Lily",
+    "Slave (Former)"
+  ],
+  "origin": "Amazon Lily",
+  "residence": [
+    "Amazon Lily Mary Geoise (former)"
+  ],
+  "status": "Alive"
+}

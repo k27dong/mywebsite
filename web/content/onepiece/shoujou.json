@@ -1,0 +1,33 @@
+{
+  "affiliations": [
+    "Saruyama Alliance (Shoujou Pirates)"
+  ],
+  "age": 27,
+  "birthday": "May 8th",
+  "bounty": 36000000,
+  "cn": {
+    "affiliations": [
+      "猿山联盟"
+    ],
+    "debut_arc": "加雅岛篇",
+    "haki": [],
+    "name": "猩猩",
+    "origin": "南海"
+  },
+  "debut_arc": "Jaya",
+  "debut_chapter": 226,
+  "haki": [],
+  "height": 351,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/7/7b/Shoujou_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230806183915",
+  "japanese_name": "ショウジョウ",
+  "name": "Shoujou",
+  "occupations": [
+    "Pirate",
+    "Big Boss"
+  ],
+  "origin": "South Blue",
+  "residence": [
+    "Jaya"
+  ],
+  "status": "Alive"
+}

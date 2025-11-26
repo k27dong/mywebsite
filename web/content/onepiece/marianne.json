@@ -1,0 +1,32 @@
+{
+  "affiliations": [
+    "New Spiders Cafe",
+    "Baroque Works (former)"
+  ],
+  "age": 18,
+  "birthday": "April 29th",
+  "bounty": 29000000,
+  "cn": {
+    "affiliations": [
+      "新蜘蛛咖啡馆",
+      "巴洛克工作社"
+    ],
+    "debut_arc": "小花园篇",
+    "haki": [],
+    "name": "玛丽安娜",
+    "origin": "北海"
+  },
+  "debut_arc": "Little Garden",
+  "debut_chapter": 117,
+  "haki": [],
+  "height": 145,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/b/b4/Marianne_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20250115010211",
+  "japanese_name": "マリアンヌ",
+  "name": "Marianne",
+  "occupations": [
+    "Cafe Employee",
+    "Officer Agent (former)"
+  ],
+  "origin": "North Blue",
+  "status": "Alive"
+}

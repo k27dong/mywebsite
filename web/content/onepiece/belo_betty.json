@@ -1,0 +1,43 @@
+{
+  "affiliations": [
+    "Revolutionary Army (East Army)"
+  ],
+  "age": 34,
+  "birthday": "June 15th",
+  "bounty": 457000000,
+  "cn": {
+    "affiliations": [
+      "革命军"
+    ],
+    "debut_arc": "世界会议篇",
+    "devil_fruit_name": "蓬蓬果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "贝洛·贝蒂",
+    "origin": "东海"
+  },
+  "debut_arc": "Levely",
+  "debut_chapter": 904,
+  "devil_fruit_name": "Pump-Pump Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 196,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/d/dd/Belo_Betty_Anime_Infobox.png/revision/latest/scale-to-width-down/267?cb=20240903112156",
+  "japanese_name": "ベロ・ベティ",
+  "name": "Belo Betty",
+  "occupations": [
+    "East Army Commander of the Revolutionary Army"
+  ],
+  "origin": "East Blue",
+  "residence": [
+    "Baltigo (former)",
+    "Momoiro Island"
+  ],
+  "status": "Alive"
+}

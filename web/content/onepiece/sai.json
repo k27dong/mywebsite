@@ -1,0 +1,44 @@
+{
+  "affiliations": [
+    "Happo Navy",
+    "Chinjao Family",
+    "Straw Hat Grand Fleet"
+  ],
+  "age": 28,
+  "birthday": "August 13th",
+  "bounty": 210000000,
+  "cn": {
+    "affiliations": [
+      "八宝水军",
+      "钦贾欧家族",
+      "草帽大船团"
+    ],
+    "debut_arc": "德雷斯罗萨",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "赛",
+    "origin": "西海"
+  },
+  "debut_arc": "Dressrosa",
+  "debut_chapter": 704,
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 242,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/d/db/Sai_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230301234122",
+  "japanese_name": "サイ",
+  "name": "Sai",
+  "occupations": [
+    "Captain of the Third Ship of the Straw Hat Grand Fleet",
+    "13th Leader of the Happo Navy",
+    "Martial Artist (VIZ: Fighter)"
+  ],
+  "origin": "West Blue",
+  "residence": [
+    "Kano Country"
+  ],
+  "status": "Alive"
+}

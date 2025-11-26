@@ -1,0 +1,39 @@
+{
+  "affiliations": [
+    "Charlotte Family",
+    "Big Mom Pirates"
+  ],
+  "age": 38,
+  "birthday": "April 23rd",
+  "bounty": 120000000,
+  "cn": {
+    "affiliations": [
+      "夏洛特家族",
+      "大妈海贼团"
+    ],
+    "debut_arc": "蛋糕岛篇",
+    "devil_fruit_name": "书书果实",
+    "devil_fruit_type": "超人系",
+    "haki": [],
+    "name": "夏洛特·蒙多尔",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Whole Cake Island",
+  "debut_chapter": 829,
+  "devil_fruit_name": "Book-Book Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [],
+  "height": 260,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/d/d4/Charlotte_Mont-d%27Or_Anime_Infobox.png/revision/latest/scale-to-width-down/267?cb=20180325090436",
+  "japanese_name": "シャーロット・モンドール",
+  "name": "Charlotte Mont-d'Or",
+  "occupations": [
+    "Pirate Officer",
+    "Minister of Cheese"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Cheese Island"
+  ],
+  "status": "Alive"
+}

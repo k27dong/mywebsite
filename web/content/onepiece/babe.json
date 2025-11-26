@@ -1,0 +1,32 @@
+{
+  "affiliations": [
+    "New Spiders Cafe",
+    "Baroque Works (former)"
+  ],
+  "age": 30,
+  "birthday": "June 19th",
+  "bounty": 3200000,
+  "cn": {
+    "affiliations": [
+      "新蜘蛛咖啡馆",
+      "巴洛克工作社"
+    ],
+    "debut_arc": "阿拉巴斯坦篇",
+    "haki": [],
+    "name": "贝布",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Arabasta",
+  "debut_chapter": 160,
+  "haki": [],
+  "height": 218,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/d/da/Babe_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230121225303",
+  "japanese_name": "ベーブ",
+  "name": "Babe",
+  "occupations": [
+    "Cafe Delivery Boy",
+    "Officer Agent (former)"
+  ],
+  "origin": "Grand Line",
+  "status": "Alive"
+}

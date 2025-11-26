@@ -1,0 +1,38 @@
+{
+  "affiliations": [
+    "Red Hair Pirates"
+  ],
+  "age": 47,
+  "birthday": "August 2nd",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "红发海贼团"
+    ],
+    "debut_arc": "冒险的黎明",
+    "haki": [
+      "见闻色"
+    ],
+    "name": "雅索普",
+    "origin": "东海"
+  },
+  "debut_arc": "Romance Dawn",
+  "debut_chapter": 1,
+  "haki": [
+    "observation"
+  ],
+  "height": 183,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/1/15/Yasopp_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20240623091749",
+  "japanese_name": "ヤソップ",
+  "name": "Yasopp",
+  "occupations": [
+    "Pirate",
+    "Senior Officer",
+    "Sniper"
+  ],
+  "origin": "East Blue",
+  "residence": [
+    "Syrup Village (former)"
+  ],
+  "status": "Alive"
+}

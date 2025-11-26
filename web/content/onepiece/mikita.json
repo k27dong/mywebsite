@@ -1,0 +1,36 @@
+{
+  "affiliations": [
+    "New Spiders Cafe",
+    "Baroque Works (former)"
+  ],
+  "age": 24,
+  "birthday": "February 14th",
+  "bounty": 7500000,
+  "cn": {
+    "affiliations": [
+      "新蜘蛛咖啡馆",
+      "巴洛克工作社"
+    ],
+    "debut_arc": "威士忌山峰篇",
+    "devil_fruit_name": "公斤果实",
+    "devil_fruit_type": "超人系",
+    "haki": [],
+    "name": "米基塔",
+    "origin": "西海"
+  },
+  "debut_arc": "Whisky Peak",
+  "debut_chapter": 110,
+  "devil_fruit_name": "Kilo-Kilo Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [],
+  "height": 177,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/b/bc/Mikita_Anime_Infobox.png/revision/latest?cb=20230417164634",
+  "japanese_name": "ミキータ",
+  "name": "Mikita",
+  "occupations": [
+    "Cafe Pâtissier",
+    "Officer Agent (former)"
+  ],
+  "origin": "West Blue",
+  "status": "Alive"
+}

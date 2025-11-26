@@ -1,0 +1,32 @@
+{
+  "affiliations": [
+    "Fallen Monk Pirates"
+  ],
+  "age": 47,
+  "birthday": "August 1st",
+  "bounty": 108000000,
+  "cn": {
+    "affiliations": [
+      "堕落僧侣海贼团"
+    ],
+    "debut_arc": "香波地群岛篇",
+    "haki": [],
+    "name": "乌鲁基",
+    "origin": "空岛"
+  },
+  "debut_arc": "Sabaody Archipelago",
+  "debut_chapter": 498,
+  "haki": [],
+  "height": 388,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/f/fb/Urouge_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230126223235",
+  "japanese_name": "ウルージ",
+  "name": "Urouge",
+  "occupations": [
+    "Pirate Captain"
+  ],
+  "origin": "Sky Island",
+  "residence": [
+    "Ballon Terminal"
+  ],
+  "status": "Alive"
+}

@@ -1,0 +1,51 @@
+{
+  "affiliations": [
+    "Beasts Pirates (Tobiroppo)",
+    "Who's-Who Pirates (former)",
+    "CP9 (former)"
+  ],
+  "age": 38,
+  "birthday": "March 15th",
+  "bounty": 546000000,
+  "cn": {
+    "affiliations": [
+      "百兽海贼团",
+      "胡兹胡兹海贼团",
+      "CP9"
+    ],
+    "debut_arc": "和之国篇·第二幕",
+    "devil_fruit_name": "猫猫果实·剑齿虎形态",
+    "devil_fruit_type": "动物系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "胡斯·胡",
+    "origin": "北海"
+  },
+  "debut_arc": "Wano Country Act 2",
+  "debut_chapter": 977,
+  "devil_fruit_name": "Cat-Cat Fruit, Saber-Toothed Tiger Model",
+  "devil_fruit_type": "Zoan",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 336,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/9/94/Who%27s-Who_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20211201215156",
+  "japanese_name": "フーズ・フー",
+  "name": "Who's-Who",
+  "occupations": [
+    "Shinuchi",
+    "Pirate",
+    "Captain (former)",
+    "Prisoner (former)",
+    "Cipher Pol Agent (former)"
+  ],
+  "origin": "North Blue",
+  "residence": [
+    "Udon",
+    "Onigashima (former)"
+  ],
+  "status": "Alive"
+}

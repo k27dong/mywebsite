@@ -1,0 +1,65 @@
+{
+  "affiliations": [
+    "Straw Hat Pirates",
+    "Straw Hat Grand Fleet",
+    "Four Emperors",
+    "Clan of D.",
+    "Dadan Family (former)",
+    "Baratie (temporary, former)",
+    "Impel Down (former)",
+    "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
+  ],
+  "age": 19,
+  "birthday": "May 5th",
+  "bounty": 3000000000,
+  "cn": {
+    "affiliations": [
+      "草帽海贼团",
+      "草帽大船团",
+      "四皇",
+      "D一族",
+      "达登家族",
+      "巴拉蒂",
+      "推进城",
+      "忍者·海贼·米ンク族·武士同盟"
+    ],
+    "debut_arc": "冒险的黎明",
+    "devil_fruit_name": "橡胶果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色",
+      "霸王色"
+    ],
+    "name": "蒙奇·D·路飞",
+    "origin": "东海"
+  },
+  "debut_arc": "Romance Dawn",
+  "debut_chapter": 1,
+  "devil_fruit_name": "Gum-Gum Fruit (Human-Human Fruit, Model: Nika)",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation",
+    "supreme_king"
+  ],
+  "height": 174,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/6/6d/Monkey_D._Luffy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/268?cb=20240306200817",
+  "japanese_name": "モンキー・ D （ディー） ・ルフィ",
+  "name": "Monkey D. Luffy",
+  "occupations": [
+    "Pirate Captain",
+    "Emperor",
+    "Senior Captain of the Grand Fleet",
+    "Prisoner (former)",
+    "Chore Boy (temporary, former)",
+    "Bandit (former)"
+  ],
+  "origin": "East Blue",
+  "residence": [
+    "Foosha Village (former)",
+    "Mt. Colubo (former)",
+    "Rusukaina (former)"
+  ],
+  "status": "Alive"
+}

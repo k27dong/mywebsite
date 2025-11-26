@@ -1,0 +1,40 @@
+{
+  "affiliations": [
+    "Dressrosa",
+    "Corrida Colosseum"
+  ],
+  "age": 16,
+  "birthday": "August 4th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "德雷斯罗萨",
+      "科里达竞技场"
+    ],
+    "debut_arc": "德雷斯罗萨",
+    "haki": [
+      "见闻色"
+    ],
+    "name": "蕾贝卡",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Dressrosa",
+  "debut_chapter": 704,
+  "haki": [
+    "observation"
+  ],
+  "height": 171,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/f/f6/Rebecca_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20190519094508",
+  "japanese_name": "レベッカ",
+  "name": "Rebecca",
+  "occupations": [
+    "Lady-in-waiting",
+    "Gladiator (former)",
+    "Princess Of Dressrosa (former)"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Dressrosa"
+  ],
+  "status": "Alive"
+}

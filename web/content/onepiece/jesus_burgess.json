@@ -1,0 +1,43 @@
+{
+  "affiliations": [
+    "Blackbeard Pirates"
+  ],
+  "age": 29,
+  "birthday": "December 25th",
+  "bounty": 20000000,
+  "cn": {
+    "affiliations": [
+      "黑胡子海贼团"
+    ],
+    "debut_arc": "加雅岛篇",
+    "devil_fruit_name": "强强果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "耶稣·伯吉斯",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Jaya",
+  "debut_chapter": 222,
+  "devil_fruit_name": "Strong-Strong Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 355,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/4/43/Jesus_Burgess_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/267?cb=20240128022349",
+  "japanese_name": "ジーザス・バージェス",
+  "name": "Jesus Burgess",
+  "occupations": [
+    "Titanic Captain (Captain of the First Ship)",
+    "Helmsman"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Hachinosu"
+  ],
+  "status": "Alive"
+}

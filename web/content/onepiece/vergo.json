@@ -1,0 +1,44 @@
+{
+  "affiliations": [
+    "Donquixote Pirates",
+    "Marines (undercover)",
+    "Marine G-5 (undercover)"
+  ],
+  "birthday": "July 5th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "唐吉诃德家族",
+      "海军",
+      "海军G-5"
+    ],
+    "debut_arc": "庞克哈萨德",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "维尔戈",
+    "origin": "北海"
+  },
+  "debut_arc": "Punk Hazard",
+  "debut_chapter": 671,
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 247,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/c/cf/Vergo_Anime_Infobox.png/revision/latest/scale-to-width-down/267?cb=20230101232239",
+  "japanese_name": "ヴェルゴ",
+  "name": "Vergo",
+  "occupations": [
+    "Pirate Elite Officer",
+    "Vice Admiral (undercover)",
+    "Head of G-5 (undercover)",
+    "Marine Captain (undercover, former)"
+  ],
+  "origin": "North Blue",
+  "residence": [
+    "Downs (former) G-5"
+  ],
+  "status": "Deceased"
+}

@@ -1,0 +1,35 @@
+{
+  "affiliations": [
+    "Red Hair Pirates"
+  ],
+  "age": 35,
+  "birthday": "July 6th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "红发海贼团"
+    ],
+    "debut_arc": "冒险的黎明",
+    "haki": [
+      "武装色"
+    ],
+    "name": "拉基·鲁",
+    "origin": "南海"
+  },
+  "debut_arc": "Romance Dawn",
+  "debut_chapter": 1,
+  "haki": [
+    "armament"
+  ],
+  "height": 241,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/5/59/Lucky_Roux_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/268?cb=20220613165554",
+  "japanese_name": "ラッキー・ルウ",
+  "name": "Lucky Roux",
+  "occupations": [
+    "Pirate",
+    "Senior Officer",
+    "Cook"
+  ],
+  "origin": "South Blue",
+  "status": "Alive"
+}

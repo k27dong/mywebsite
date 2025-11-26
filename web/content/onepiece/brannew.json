@@ -1,0 +1,30 @@
+{
+  "affiliations": [
+    "Marines"
+  ],
+  "age": 56,
+  "birthday": "September 3rd",
+  "bounty": 100000000,
+  "cn": {
+    "affiliations": [
+      "海军"
+    ],
+    "debut_arc": "罗格镇",
+    "haki": [],
+    "name": "布兰纽",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Loguetown",
+  "debut_chapter": 96,
+  "haki": [],
+  "height": 190,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/7/71/Brannew_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/268?cb=20180321231621",
+  "japanese_name": "ブランニュー",
+  "name": "Brannew",
+  "occupations": [
+    "Commodore",
+    "Lieutenant Commander (former)"
+  ],
+  "origin": "Grand Line",
+  "status": "Alive"
+}

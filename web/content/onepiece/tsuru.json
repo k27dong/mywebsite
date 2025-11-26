@@ -1,0 +1,39 @@
+{
+  "affiliations": [
+    "Marines"
+  ],
+  "age": 76,
+  "birthday": "March 26th",
+  "bounty": 500000000,
+  "cn": {
+    "affiliations": [
+      "海军"
+    ],
+    "debut_arc": "加雅岛篇",
+    "devil_fruit_name": "洗洗果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "茨鲁",
+    "origin": "北海"
+  },
+  "debut_arc": "Jaya",
+  "debut_chapter": 234,
+  "devil_fruit_name": "Wash-Wash Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 204,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/9/91/Tsuru_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20240730231455",
+  "japanese_name": "つる",
+  "name": "Tsuru",
+  "occupations": [
+    "Vice Admiral"
+  ],
+  "origin": "North Blue",
+  "status": "Alive"
+}

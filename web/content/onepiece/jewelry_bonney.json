@@ -1,0 +1,42 @@
+{
+  "affiliations": [
+    "Bonney Pirates"
+  ],
+  "age": 24,
+  "birthday": "September 1st",
+  "bounty": 320000000,
+  "cn": {
+    "affiliations": [
+      "邦妮海贼团"
+    ],
+    "debut_arc": "香波地群岛篇",
+    "devil_fruit_name": "炸炸果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色"
+    ],
+    "name": "珠宝·邦妮",
+    "origin": "圣地玛丽乔亚"
+  },
+  "debut_arc": "Sabaody Archipelago",
+  "debut_chapter": 498,
+  "devil_fruit_name": "Age-Age Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament"
+  ],
+  "height": 174,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/6/62/Jewelry_Bonney_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/267?cb=20230123001318",
+  "japanese_name": "ジュエリー・ボニー",
+  "name": "Jewelry Bonney",
+  "occupations": [
+    "Pirate Captain",
+    "Princess (former)"
+  ],
+  "origin": "Mary Geoise",
+  "residence": [
+    "South Blue (Sorbet Kingdom) (former)",
+    "Egghead (former, temporary)"
+  ],
+  "status": "Alive"
+}

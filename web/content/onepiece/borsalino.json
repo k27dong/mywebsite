@@ -1,0 +1,40 @@
+{
+  "affiliations": [
+    "Marines"
+  ],
+  "age": 58,
+  "birthday": "November 23rd",
+  "bounty": 3000000000,
+  "cn": {
+    "affiliations": [
+      "海军"
+    ],
+    "debut_arc": "香波地群岛篇",
+    "devil_fruit_name": "光光果实",
+    "devil_fruit_type": "自然系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "波尔萨利诺",
+    "origin": "北海"
+  },
+  "debut_arc": "Sabaody Archipelago",
+  "debut_chapter": 504,
+  "devil_fruit_name": "Glint-Glint Fruit",
+  "devil_fruit_type": "Logia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 302,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/1/14/Borsalino_Anime_Infobox.png/revision/latest/scale-to-width-down/267?cb=20190603023753",
+  "japanese_name": "ボルサリーノ",
+  "name": "Borsalino",
+  "occupations": [
+    "Admiral",
+    "Vice Admiral (former)"
+  ],
+  "origin": "North Blue",
+  "status": "Alive"
+}

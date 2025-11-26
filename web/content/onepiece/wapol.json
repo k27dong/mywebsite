@@ -1,0 +1,44 @@
+{
+  "affiliations": [
+    "Evil Black Drum Kingdom",
+    "Drum Kingdom (former)",
+    "Bliking Pirates (disbanded)"
+  ],
+  "age": 29,
+  "birthday": "August 9th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "邪恶黑鼓王国",
+      "鼓之国",
+      "布里金海贼团"
+    ],
+    "debut_arc": "磁鼓岛篇",
+    "devil_fruit_name": "咀嚼果实",
+    "devil_fruit_type": "超人系",
+    "haki": [],
+    "name": "Wapol",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Drum Island",
+  "debut_chapter": 131,
+  "devil_fruit_name": "Munch-Munch Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [],
+  "height": 207,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/3/33/Wapol_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/268?cb=20190519090502",
+  "japanese_name": "ワポル",
+  "name": "Wapol",
+  "occupations": [
+    "King of the Evil Black Drum Kingdom",
+    "President of Wapol Konzern",
+    "King of Drum Kingdom (former)",
+    "Pirate",
+    "Captain (former)"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Evil Black Drum Kingdom Drum Kingdom (former)"
+  ],
+  "status": "Alive"
+}

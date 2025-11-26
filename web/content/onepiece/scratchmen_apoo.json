@@ -1,0 +1,43 @@
+{
+  "affiliations": [
+    "On Air Pirates",
+    "Beasts Pirates (former)"
+  ],
+  "age": 31,
+  "birthday": "March 19th",
+  "bounty": 350000000,
+  "cn": {
+    "affiliations": [
+      "On Air海贼团",
+      "百兽海贼团"
+    ],
+    "debut_arc": "香波地群岛篇",
+    "devil_fruit_name": "音音果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "斯克拉奇门·阿普",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Sabaody Archipelago",
+  "debut_chapter": 498,
+  "devil_fruit_name": "Tone-Tone Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 256,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/d/d0/Scratchmen_Apoo_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/268?cb=20210426143015",
+  "japanese_name": "スクラッチメン・アプー",
+  "name": "Scratchmen Apoo",
+  "occupations": [
+    "Pirate Captain",
+    "Musician",
+    "Informant"
+  ],
+  "origin": "Grand Line",
+  "status": "Alive"
+}

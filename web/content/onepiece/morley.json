@@ -1,0 +1,45 @@
+{
+  "affiliations": [
+    "Revolutionary Army (West Army)"
+  ],
+  "age": 160,
+  "birthday": "September 11th",
+  "bounty": 293000000,
+  "cn": {
+    "affiliations": [
+      "革命军"
+    ],
+    "debut_arc": "世界会议篇",
+    "devil_fruit_name": "推推果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "莫利",
+    "origin": "西海"
+  },
+  "debut_arc": "Levely",
+  "debut_chapter": 904,
+  "devil_fruit_name": "Push-Push Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 1253,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/4/48/Morley_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230517025343",
+  "japanese_name": "モーリー",
+  "name": "Morley",
+  "occupations": [
+    "West Army Commander of the Revolutionary Army",
+    "Pirate (former)",
+    "Prisoner of Impel Down (former)"
+  ],
+  "origin": "West Blue",
+  "residence": [
+    "Baltigo (former)",
+    "Momoiro Island"
+  ],
+  "status": "Alive"
+}

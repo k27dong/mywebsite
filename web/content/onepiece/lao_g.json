@@ -1,0 +1,33 @@
+{
+  "affiliations": [
+    "Donquixote Pirates"
+  ],
+  "age": 70,
+  "birthday": "October 7th",
+  "bounty": 61000000,
+  "cn": {
+    "affiliations": [
+      "唐吉诃德家族"
+    ],
+    "debut_arc": "庞克哈萨德",
+    "haki": [],
+    "name": "老G",
+    "origin": "北海"
+  },
+  "debut_arc": "Punk Hazard",
+  "debut_chapter": 682,
+  "haki": [],
+  "height": 157,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/5/52/Lao_G_Anime_Infobox.png/revision/latest/scale-to-width-down/267?cb=20141202204639",
+  "japanese_name": "ラオ G （ジー）",
+  "name": "Lao G",
+  "occupations": [
+    "Pirate Officer"
+  ],
+  "origin": "North Blue",
+  "residence": [
+    "Spider Miles (former)",
+    "Dressrosa (former)"
+  ],
+  "status": "Alive"
+}

@@ -1,0 +1,31 @@
+{
+  "affiliations": [
+    "Fire Tank Pirates"
+  ],
+  "age": 33,
+  "birthday": "May 21st",
+  "bounty": 90000000,
+  "cn": {
+    "affiliations": [
+      "火焰坦克海贼团"
+    ],
+    "debut_arc": "蛋糕岛篇",
+    "haki": [],
+    "name": "戈蒂",
+    "origin": "西海"
+  },
+  "debut_arc": "Whole Cake Island",
+  "debut_chapter": 825,
+  "haki": [],
+  "height": 375,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/a/a1/Gotti_Anime_Infobox.png/revision/latest/scale-to-width-down/267?cb=20230123020057",
+  "japanese_name": "ゴッティ",
+  "name": "Gotti",
+  "occupations": [
+    "Pirate",
+    "Assassin",
+    "Combatant"
+  ],
+  "origin": "West Blue",
+  "status": "Alive"
+}

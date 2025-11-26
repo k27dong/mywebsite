@@ -1,0 +1,34 @@
+{
+  "affiliations": [
+    "CP0",
+    "CP9 (former)",
+    "CP5 (former)"
+  ],
+  "age": 41,
+  "birthday": "March 11th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "CP9",
+      "CP5"
+    ],
+    "debut_arc": "七水之都篇",
+    "haki": [],
+    "name": "斯潘达姆",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Water 7",
+  "debut_chapter": 355,
+  "haki": [],
+  "height": 192,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/e/e7/Spandam_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230913231907",
+  "japanese_name": "スパンダム",
+  "name": "Spandam",
+  "occupations": [
+    "CP0 Chief (former)",
+    "CP9 Chief (former)",
+    "CP5 Chief (former)"
+  ],
+  "origin": "Grand Line",
+  "status": "Alive"
+}

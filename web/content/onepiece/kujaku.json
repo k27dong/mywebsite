@@ -1,0 +1,43 @@
+{
+  "affiliations": [
+    "Marines (G-14)",
+    "(SWORD)"
+  ],
+  "age": 26,
+  "birthday": "September 18th",
+  "bounty": 500000000,
+  "cn": {
+    "affiliations": [
+      "海军"
+    ],
+    "debut_arc": "和之国篇·第二幕",
+    "devil_fruit_name": "鞭鞭果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "孔雀",
+    "origin": "北海"
+  },
+  "debut_arc": "Wano Country Act 2",
+  "debut_chapter": 966,
+  "devil_fruit_name": "Whip-Whip Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 180,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/8/84/Kujaku_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20240811124929",
+  "japanese_name": "孔雀",
+  "name": "Kujaku",
+  "occupations": [
+    "Rear Admiral"
+  ],
+  "origin": "North Blue",
+  "residence": [
+    "G-14"
+  ],
+  "status": "Alive"
+}

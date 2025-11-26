@@ -1,0 +1,38 @@
+{
+  "affiliations": [
+    "Sakura Kingdom"
+  ],
+  "age": 35,
+  "birthday": "June 10th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "樱花王国"
+    ],
+    "debut_arc": "磁鼓岛篇",
+    "devil_fruit_name": "牛牛果实·野牛型",
+    "devil_fruit_type": "动物系",
+    "haki": [],
+    "name": "达尔顿",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Drum Island",
+  "debut_chapter": 132,
+  "devil_fruit_name": "Ox-Ox Fruit, Bison Model (VIZ); Ox-Ox Fruit (4Kids); Ox-Ox Fruit, Bison Form (Funimation)",
+  "devil_fruit_type": "Zoan",
+  "haki": [],
+  "height": 218,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/0/07/Dalton_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230101225126",
+  "japanese_name": "ドルトン",
+  "name": "Dalton",
+  "occupations": [
+    "King of the Sakura Kingdom",
+    "Chief Royal Guard of the Drum Kingdom (former)"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Bighorn",
+    "Drum Castle (Former)"
+  ],
+  "status": "Alive"
+}

@@ -1,0 +1,45 @@
+{
+  "affiliations": [
+    "Chinjao Family",
+    "Happo Navy (retired)",
+    "Straw Hat Grand Fleet"
+  ],
+  "age": 78,
+  "birthday": "December 12th",
+  "bounty": 542000000,
+  "cn": {
+    "affiliations": [
+      "钦贾欧家族",
+      "八宝水军",
+      "草帽大船团"
+    ],
+    "debut_arc": "德雷斯罗萨",
+    "haki": [
+      "武装色",
+      "见闻色",
+      "霸王色"
+    ],
+    "name": "秦加奥",
+    "origin": "西海"
+  },
+  "debut_arc": "Dressrosa",
+  "debut_chapter": 704,
+  "haki": [
+    "armament",
+    "observation",
+    "supreme_king"
+  ],
+  "height": 520,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/b/b0/Chinjao_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20180508221950",
+  "japanese_name": "チンジャオ",
+  "name": "Chinjao",
+  "occupations": [
+    "12th Leader of the Happo Navy",
+    "Pirate (former)"
+  ],
+  "origin": "West Blue",
+  "residence": [
+    "Kano Country"
+  ],
+  "status": "Alive"
+}

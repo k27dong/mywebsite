@@ -1,0 +1,46 @@
+{
+  "affiliations": [
+    "Marines (SWORD)",
+    "Marine 153rd Branch (former)",
+    "Alvida Pirates (defected)"
+  ],
+  "age": 18,
+  "birthday": "May 13th",
+  "bounty": 500000000,
+  "cn": {
+    "affiliations": [
+      "海军",
+      "海军第153分部",
+      "阿尔维达海贼团"
+    ],
+    "debut_arc": "冒险的黎明",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "可比",
+    "origin": "东海"
+  },
+  "debut_arc": "Romance Dawn",
+  "debut_chapter": 2,
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 167,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/b/b8/Koby_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/268?cb=20241114130518",
+  "japanese_name": "コビー",
+  "name": "Koby",
+  "occupations": [
+    "Marine Captain",
+    "Master Chief Petty Officer (promoted)",
+    "Chore Boy (promoted)",
+    "Pirate Ship Caretaker (former)"
+  ],
+  "origin": "East Blue",
+  "residence": [
+    "Shells Town (153rd Branch) (former)",
+    "Goat Island (former)"
+  ],
+  "status": "Alive"
+}

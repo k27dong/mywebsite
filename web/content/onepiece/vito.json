@@ -1,0 +1,31 @@
+{
+  "affiliations": [
+    "Fire Tank Pirates"
+  ],
+  "age": 36,
+  "birthday": "October 21st",
+  "bounty": 95000000,
+  "cn": {
+    "affiliations": [
+      "火焰坦克海贼团"
+    ],
+    "debut_arc": "佐乌篇",
+    "haki": [],
+    "name": "维托",
+    "origin": "西海"
+  },
+  "debut_arc": "Zou",
+  "debut_chapter": 812,
+  "haki": [],
+  "height": 242,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/0/09/Vito_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20221124193213",
+  "japanese_name": "ヴィト",
+  "name": "Vito",
+  "occupations": [
+    "Pirate",
+    "Advisor",
+    "Mafia gangster (former)"
+  ],
+  "origin": "West Blue",
+  "status": "Alive"
+}

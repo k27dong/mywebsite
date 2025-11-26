@@ -1,0 +1,44 @@
+{
+  "affiliations": [
+    "Straw Hat Pirates",
+    "Straw Hat Grand Fleet",
+    "Foxy Pirates (former, temporary)",
+    "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
+  ],
+  "age": 17,
+  "birthday": "December 24th",
+  "bounty": 1000,
+  "cn": {
+    "affiliations": [
+      "草帽海贼团",
+      "草帽大船团",
+      "福克西海贼团",
+      "忍者·海贼·米ンク族·武士同盟"
+    ],
+    "debut_arc": "磁鼓岛篇",
+    "devil_fruit_name": "人人果实",
+    "devil_fruit_type": "动物系",
+    "haki": [],
+    "name": "托尼托尼·乔巴",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Drum Island",
+  "debut_chapter": 134,
+  "devil_fruit_name": "Human-Human Fruit",
+  "devil_fruit_type": "Zoan",
+  "haki": [],
+  "height": 90,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/a/af/Tony_Tony_Chopper_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/268?cb=20240720150824",
+  "japanese_name": "トニートニー・チョッパー",
+  "name": "Tony Tony Chopper",
+  "occupations": [
+    "Doctor",
+    "Senior Officer"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Sakura Kingdom (former)",
+    "Torino Kingdom (former, temporary)"
+  ],
+  "status": "Alive"
+}

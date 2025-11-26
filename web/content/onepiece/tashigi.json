@@ -1,0 +1,45 @@
+{
+  "affiliations": [
+    "Marines",
+    "G-5 Unit 01",
+    "Loguetown Marine Base (former)"
+  ],
+  "age": 23,
+  "birthday": "October 6th",
+  "bounty": 100000000,
+  "cn": {
+    "affiliations": [
+      "海军",
+      "G-5部队01",
+      "罗格镇海军基地"
+    ],
+    "debut_arc": "罗格镇",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "塔希吉",
+    "origin": "东海"
+  },
+  "debut_arc": "Loguetown",
+  "debut_chapter": 96,
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 170,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/1/1e/Tashigi_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230909002901",
+  "japanese_name": "たしぎ",
+  "name": "Tashigi",
+  "occupations": [
+    "Captain",
+    "Ensign (former)",
+    "Master Chief Petty Officer (former)"
+  ],
+  "origin": "East Blue",
+  "residence": [
+    "G-5",
+    "Loguetown (former)"
+  ],
+  "status": "Alive"
+}

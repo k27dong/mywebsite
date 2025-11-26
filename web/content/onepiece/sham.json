@@ -1,0 +1,30 @@
+{
+  "affiliations": [
+    "Black Cat Pirates"
+  ],
+  "age": 23,
+  "birthday": "April 19th",
+  "bounty": 7000000,
+  "cn": {
+    "affiliations": [
+      "黑猫海贼团"
+    ],
+    "debut_arc": "西罗布村篇",
+    "haki": [],
+    "name": "沙姆",
+    "origin": "东海"
+  },
+  "debut_arc": "Syrup Village",
+  "debut_chapter": 31,
+  "haki": [],
+  "height": 201,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/7/77/Sham_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20250715224950",
+  "japanese_name": "シャム",
+  "name": "Sham",
+  "occupations": [
+    "Pirate Officer",
+    "Ship Guard"
+  ],
+  "origin": "East Blue",
+  "status": "Alive"
+}

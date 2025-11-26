@@ -1,0 +1,46 @@
+{
+  "affiliations": [
+    "Cross Guild",
+    "Buggy's Delivery",
+    "Buggy Pirates",
+    "Buggy and Alvida Alliance",
+    "Baroque Works (formerly)"
+  ],
+  "age": 37,
+  "birthday": "March 3rd",
+  "bounty": 24000000,
+  "cn": {
+    "affiliations": [
+      "十字海贼团",
+      "巴基快递",
+      "巴基海贼团",
+      "巴基与阿尔比达同盟",
+      "巴洛克工作社"
+    ],
+    "debut_arc": "小花园篇",
+    "devil_fruit_name": "蜡果实",
+    "devil_fruit_type": "超人系",
+    "haki": [],
+    "name": "加尔迪诺",
+    "origin": "南海"
+  },
+  "debut_arc": "Little Garden",
+  "debut_chapter": 117,
+  "devil_fruit_name": "Wax-Wax Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [],
+  "height": 179,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/1/13/Galdino_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20221003165116",
+  "japanese_name": "ギャルディーノ",
+  "name": "Galdino",
+  "occupations": [
+    "Pirate",
+    "Officer Agent (former)",
+    "Prisoner of the Great Prison (former)"
+  ],
+  "origin": "South Blue",
+  "residence": [
+    "Karai Bari Island"
+  ],
+  "status": "Alive"
+}

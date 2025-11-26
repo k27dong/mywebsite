@@ -1,0 +1,45 @@
+{
+  "affiliations": [
+    "Straw Hat Pirates",
+    "Straw Hat Grand Fleet",
+    "Franky Family (former)",
+    "Tom's Workers (former)",
+    "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
+  ],
+  "age": 36,
+  "birthday": "March 9th",
+  "bounty": 394000000,
+  "cn": {
+    "affiliations": [
+      "草帽海贼团",
+      "草帽大船团",
+      "弗兰奇家族",
+      "汤姆工匠",
+      "忍者·海贼·米ンク族·武士同盟"
+    ],
+    "debut_arc": "七水之都篇",
+    "haki": [],
+    "name": "弗兰奇",
+    "origin": "南海"
+  },
+  "debut_arc": "Water 7",
+  "debut_chapter": 329,
+  "haki": [],
+  "height": 240,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/8/8c/Franky_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/268?cb=20241110020715",
+  "japanese_name": "フランキー",
+  "name": "Franky",
+  "occupations": [
+    "Shipwright",
+    "Senior Officer",
+    "Dismantler",
+    "Underworld boss (former)",
+    "Bounty Hunter (former)"
+  ],
+  "origin": "South Blue",
+  "residence": [
+    "Water 7 (former)",
+    "Karakuri Island (former, temporary)"
+  ],
+  "status": "Alive"
+}

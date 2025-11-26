@@ -1,0 +1,36 @@
+{
+  "affiliations": [
+    "New Spiders Cafe",
+    "Baroque Works (former)"
+  ],
+  "age": 51,
+  "birthday": "December 25th",
+  "bounty": 14000000,
+  "cn": {
+    "affiliations": [
+      "新蜘蛛咖啡馆",
+      "巴洛克工作社"
+    ],
+    "debut_arc": "阿拉巴斯坦篇",
+    "devil_fruit_name": "鼹鼠果实",
+    "devil_fruit_type": "动物系",
+    "haki": [],
+    "name": "德罗非",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Arabasta",
+  "debut_chapter": 160,
+  "devil_fruit_name": "Mole-Mole Fruit (Funimation); Diggy-Diggy Fruit (Viz, 4Kids)",
+  "devil_fruit_type": "Zoan",
+  "haki": [],
+  "height": 156,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/f/f4/Drophy_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230624124714",
+  "japanese_name": "ドロフィー",
+  "name": "Drophy",
+  "occupations": [
+    "Cafe Waitress",
+    "Officer Agent (former)"
+  ],
+  "origin": "Grand Line",
+  "status": "Alive"
+}

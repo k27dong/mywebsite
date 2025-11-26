@@ -1,0 +1,44 @@
+{
+  "affiliations": [
+    "Marines"
+  ],
+  "age": 54,
+  "birthday": "August 10th",
+  "bounty": 3000000000,
+  "cn": {
+    "affiliations": [
+      "海军"
+    ],
+    "debut_arc": "德雷斯罗萨",
+    "devil_fruit_name": "压压果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "藤虎",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Dressrosa",
+  "debut_chapter": 701,
+  "devil_fruit_name": "Press-Press Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 270,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/e/e8/Issho_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20220718140829",
+  "japanese_name": "イッショウ",
+  "name": "Issho",
+  "occupations": [
+    "Admiral",
+    "Guard Captain (former)",
+    "Bodyguard (former)"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Aoi Kingdom (former) Soja Island (former)"
+  ],
+  "status": "Alive"
+}

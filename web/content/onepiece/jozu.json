@@ -1,0 +1,40 @@
+{
+  "affiliations": [
+    "Whitebeard Pirates"
+  ],
+  "age": 42,
+  "birthday": "November 11th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "白胡子海贼团"
+    ],
+    "debut_arc": "加雅岛篇",
+    "devil_fruit_name": "闪闪果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "乔兹",
+    "origin": "西海"
+  },
+  "debut_arc": "Jaya",
+  "debut_chapter": 234,
+  "devil_fruit_name": "Twinkle-Twinkle Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 503,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/6/61/Jozu_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20220702104233",
+  "japanese_name": "ジョズ",
+  "name": "Jozu",
+  "occupations": [
+    "Pirate",
+    "3rd Division Commander"
+  ],
+  "origin": "West Blue",
+  "status": "Alive"
+}

@@ -1,0 +1,38 @@
+{
+  "affiliations": [
+    "Sun Pirates",
+    "Fish-Man District (former)"
+  ],
+  "birthday": "November 5th",
+  "bounty": 230000000,
+  "cn": {
+    "affiliations": [
+      "太阳海贼团",
+      "鱼人区"
+    ],
+    "debut_arc": "女儿岛篇",
+    "haki": [],
+    "name": "渔人·泰格",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Amazon Lily",
+  "debut_chapter": 521,
+  "haki": [],
+  "height": 520,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/c/c5/Fisher_Tiger_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230214162116",
+  "japanese_name": "フィッシャー・タイガー",
+  "name": "Fisher Tiger",
+  "occupations": [
+    "Adventurer",
+    "Pirate",
+    "Captain",
+    "De-facto Leader of Fish-Man District (former)",
+    "Slave (former)"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Fish-Man District (former)",
+    "Mary Geoise (former)"
+  ],
+  "status": "Deceased"
+}

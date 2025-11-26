@@ -1,0 +1,38 @@
+{
+  "affiliations": [
+    "Donquixote Pirates"
+  ],
+  "age": 46,
+  "birthday": "June 12th",
+  "bounty": 58000000,
+  "cn": {
+    "affiliations": [
+      "唐吉诃德家族"
+    ],
+    "debut_arc": "德雷斯罗萨",
+    "devil_fruit_name": "泳泳果实",
+    "devil_fruit_type": "超人系",
+    "haki": [],
+    "name": "塞尼奥尔·平克",
+    "origin": "北海"
+  },
+  "debut_arc": "Dressrosa",
+  "debut_chapter": 702,
+  "devil_fruit_name": "Swim-Swim Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [],
+  "height": 244,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/4/48/Senor_Pink_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20241014120619",
+  "japanese_name": "セニョール・ピンク",
+  "name": "Senor Pink",
+  "occupations": [
+    "Pirate Officer",
+    "Assassin"
+  ],
+  "origin": "North Blue",
+  "residence": [
+    "Spider Miles (former)",
+    "Dressrosa (former)"
+  ],
+  "status": "Alive"
+}

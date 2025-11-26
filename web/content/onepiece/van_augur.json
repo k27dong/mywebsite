@@ -1,0 +1,37 @@
+{
+  "affiliations": [
+    "Blackbeard Pirates"
+  ],
+  "age": 27,
+  "birthday": "October 5th",
+  "bounty": 64000000,
+  "cn": {
+    "affiliations": [
+      "黑胡子海贼团"
+    ],
+    "debut_arc": "加雅岛篇",
+    "devil_fruit_name": "瞬瞬果实",
+    "devil_fruit_type": "超人系",
+    "haki": [],
+    "name": "范·奥古尔",
+    "origin": "东海"
+  },
+  "debut_arc": "Jaya",
+  "debut_chapter": 222,
+  "devil_fruit_name": "Warp-Warp Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [],
+  "height": 340,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/9/95/Van_Augur_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/267?cb=20240211025011",
+  "japanese_name": "ヴァン･オーガー",
+  "name": "Van Augur",
+  "occupations": [
+    "Titanic Captain (Captain of the Third Ship)",
+    "Sniper"
+  ],
+  "origin": "East Blue",
+  "residence": [
+    "Hachinosu"
+  ],
+  "status": "Alive"
+}

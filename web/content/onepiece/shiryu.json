@@ -1,0 +1,44 @@
+{
+  "affiliations": [
+    "Blackbeard Pirates",
+    "Impel Down (former)"
+  ],
+  "age": 44,
+  "birthday": "June 11th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "黑胡子海贼团",
+      "推进城"
+    ],
+    "debut_arc": "推进城篇",
+    "devil_fruit_name": "透明果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色"
+    ],
+    "name": "希留",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Impel Down",
+  "debut_chapter": 538,
+  "devil_fruit_name": "Clear-Clear Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament"
+  ],
+  "height": 340,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/4/4a/Shiryu_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20240728020909",
+  "japanese_name": "シリュウ",
+  "name": "Shiryu",
+  "occupations": [
+    "Titanic Captain (Captain of the Second Ship)",
+    "Head Jailer (former)",
+    "Prisoner of the Great Prison (former)"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Hachinosu"
+  ],
+  "status": "Alive"
+}

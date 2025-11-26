@@ -1,0 +1,32 @@
+{
+  "affiliations": [
+    "Giant Warrior Pirates"
+  ],
+  "age": 160,
+  "birthday": "February 1st",
+  "bounty": 1800000000,
+  "cn": {
+    "affiliations": [
+      "巨人战士海贼团"
+    ],
+    "debut_arc": "小花园篇",
+    "haki": [],
+    "name": "布罗基",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Little Garden",
+  "debut_chapter": 115,
+  "haki": [],
+  "height": 2130,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/b/bf/Brogy_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20250824161255",
+  "japanese_name": "ブロギー",
+  "name": "Brogy",
+  "occupations": [
+    "Pirate Captain"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Elbaph Little Garden (former)"
+  ],
+  "status": "Alive"
+}

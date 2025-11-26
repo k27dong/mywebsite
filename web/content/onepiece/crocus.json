@@ -1,0 +1,40 @@
+{
+  "affiliations": [
+    "Roger Pirates (former)",
+    "Laboon"
+  ],
+  "age": 73,
+  "birthday": "June 4th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "罗杰海贼团",
+      "拉布"
+    ],
+    "debut_arc": "颠倒山篇",
+    "haki": [
+      "见闻色"
+    ],
+    "name": "克洛克斯",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Reverse Mountain",
+  "debut_chapter": 102,
+  "haki": [
+    "observation"
+  ],
+  "height": 203,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/3/34/Crocus_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230403010215",
+  "japanese_name": "クロッカス",
+  "name": "Crocus",
+  "occupations": [
+    "Doctor",
+    "Lighthouse Keeper",
+    "Pirate (former)"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Reverse Mountain (Twin Cape)"
+  ],
+  "status": "Alive"
+}

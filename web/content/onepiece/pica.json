@@ -1,0 +1,42 @@
+{
+  "affiliations": [
+    "Donquixote Pirates"
+  ],
+  "age": 40,
+  "birthday": "December 14th",
+  "bounty": 99000000,
+  "cn": {
+    "affiliations": [
+      "唐吉诃德家族"
+    ],
+    "debut_arc": "德雷斯罗萨",
+    "devil_fruit_name": "石石果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "皮卡",
+    "origin": "北海"
+  },
+  "debut_arc": "Dressrosa",
+  "debut_chapter": 700,
+  "devil_fruit_name": "Stone-Stone Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 470,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/a/a4/Pica_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20221117040111",
+  "japanese_name": "ピーカ",
+  "name": "Pica",
+  "occupations": [
+    "Pirate Executive Officer"
+  ],
+  "origin": "North Blue",
+  "residence": [
+    "Downs (former) Spider Miles (former) Dressrosa (former)"
+  ],
+  "status": "Alive"
+}

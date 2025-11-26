@@ -1,0 +1,43 @@
+{
+  "affiliations": [
+    "Hawkins Pirates",
+    "Beasts Pirates"
+  ],
+  "age": 31,
+  "birthday": "September 9th",
+  "bounty": 320000000,
+  "cn": {
+    "affiliations": [
+      "霍金斯海贼团",
+      "百兽海贼团"
+    ],
+    "debut_arc": "香波地群岛篇",
+    "devil_fruit_name": "稻草果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "巴西尔·霍金斯",
+    "origin": "北海"
+  },
+  "debut_arc": "Sabaody Archipelago",
+  "debut_chapter": 498,
+  "devil_fruit_name": "Straw-Straw Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 210,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/f/f8/Basil_Hawkins_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/267?cb=20230906163534",
+  "japanese_name": "バジル・ホーキンス",
+  "name": "Basil Hawkins",
+  "occupations": [
+    "Pirate",
+    "Captain",
+    "Shinuchi"
+  ],
+  "origin": "North Blue",
+  "status": "Unknown"
+}

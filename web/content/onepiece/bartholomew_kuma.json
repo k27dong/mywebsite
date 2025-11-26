@@ -1,0 +1,58 @@
+{
+  "affiliations": [
+    "Freedom Fighters (former)",
+    "Pacifista",
+    "Revolutionary Army",
+    "Seven Warlords of the Sea (former)",
+    "Sorbet Kingdom (former)"
+  ],
+  "age": 47,
+  "birthday": "February 9th",
+  "bounty": 296000000,
+  "cn": {
+    "affiliations": [
+      "自由战士",
+      "帕西法斯塔",
+      "革命军",
+      "七武海",
+      "索尔贝王国"
+    ],
+    "debut_arc": "加雅岛篇",
+    "devil_fruit_name": "帕乌帕乌果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "巴索罗缪·熊",
+    "origin": "南海"
+  },
+  "debut_arc": "Jaya",
+  "debut_chapter": 233,
+  "devil_fruit_name": "Paw-Paw Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 689,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/8/8d/Bartholomew_Kuma_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20221012030835",
+  "japanese_name": "バーソロミュー・くま",
+  "name": "Bartholomew Kuma",
+  "occupations": [
+    "Army Commander of the Revolutionary Army",
+    "Slave (former)",
+    "Warlord of the Sea (former)",
+    "King of Sorbet Kingdom (former)",
+    "Pastor (former)"
+  ],
+  "origin": "South Blue",
+  "residence": [
+    "Sorbet Kingdom (former)",
+    "Baltigo (former)",
+    "Egghead (former, temporary)",
+    "Mary Geoise (former)",
+    "Sabaody Archipelago (former, temporary)"
+  ],
+  "status": "Alive"
+}

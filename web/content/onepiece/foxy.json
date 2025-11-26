@@ -1,0 +1,33 @@
+{
+  "affiliations": [
+    "Foxy Pirates"
+  ],
+  "age": 38,
+  "birthday": "April 4th",
+  "bounty": 24000000,
+  "cn": {
+    "affiliations": [
+      "福克西海贼团"
+    ],
+    "debut_arc": "长链岛篇",
+    "devil_fruit_name": "迟缓果实",
+    "devil_fruit_type": "超人系",
+    "haki": [],
+    "name": "福克西",
+    "origin": "南海"
+  },
+  "debut_arc": "Long Ring Long Land",
+  "debut_chapter": 305,
+  "devil_fruit_name": "Slow-Slow Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [],
+  "height": 180,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/7/7d/Foxy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/268?cb=20251102162706",
+  "japanese_name": "フォクシー",
+  "name": "Foxy",
+  "occupations": [
+    "Pirate Captain"
+  ],
+  "origin": "South Blue",
+  "status": "Alive"
+}

@@ -1,0 +1,36 @@
+{
+  "affiliations": [
+    "Marines",
+    "Black Cat Pirates (former)"
+  ],
+  "age": 29,
+  "birthday": "December 28th",
+  "bounty": 9000000,
+  "cn": {
+    "affiliations": [
+      "海军",
+      "黑猫海贼团"
+    ],
+    "debut_arc": "西罗布村篇",
+    "haki": [],
+    "name": "詹哥",
+    "origin": "东海"
+  },
+  "debut_arc": "Syrup Village",
+  "debut_chapter": 25,
+  "haki": [],
+  "height": 207,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/d/de/Jango_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20241006021207",
+  "japanese_name": "ジャンゴ",
+  "name": "Jango",
+  "occupations": [
+    "Marine Lieutenant Commander",
+    "Marine Seaman Recruit (promoted)",
+    "Pirate (former)",
+    "Captain (former)",
+    "First Mate (former)",
+    "Dancer (former)"
+  ],
+  "origin": "East Blue",
+  "status": "Alive"
+}

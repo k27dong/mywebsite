@@ -1,0 +1,46 @@
+{
+  "affiliations": [
+    "Charlotte Family",
+    "Big Mom Pirates"
+  ],
+  "age": 48,
+  "birthday": "November 25th",
+  "bounty": 300000000,
+  "cn": {
+    "affiliations": [
+      "夏洛特家族",
+      "大妈海贼团"
+    ],
+    "debut_arc": "蛋糕岛篇",
+    "devil_fruit_name": "热热果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "夏洛特·奥温",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Whole Cake Island",
+  "debut_chapter": 861,
+  "devil_fruit_name": "Heat-Heat Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 492,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/f/f0/Charlotte_Oven_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20181028111159",
+  "japanese_name": "シャーロット・オーブン",
+  "name": "Charlotte Oven",
+  "occupations": [
+    "Pirate Officer",
+    "Minister of Browned Food"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Yakigashi Island",
+    "Hachinosu (former)"
+  ],
+  "status": "Alive"
+}

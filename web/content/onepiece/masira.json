@@ -1,0 +1,33 @@
+{
+  "affiliations": [
+    "Saruyama Alliance (Masira Pirates)"
+  ],
+  "age": 25,
+  "birthday": "March 4th",
+  "bounty": 23000000,
+  "cn": {
+    "affiliations": [
+      "猿山联盟"
+    ],
+    "debut_arc": "加雅岛篇",
+    "haki": [],
+    "name": "马希拉",
+    "origin": "北海"
+  },
+  "debut_arc": "Jaya",
+  "debut_chapter": 219,
+  "haki": [],
+  "height": 345,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/e/e0/Masira_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230904222812",
+  "japanese_name": "マシラ",
+  "name": "Masira",
+  "occupations": [
+    "Pirate",
+    "Boss"
+  ],
+  "origin": "North Blue",
+  "residence": [
+    "Jaya"
+  ],
+  "status": "Alive"
+}

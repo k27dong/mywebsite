@@ -1,0 +1,46 @@
+{
+  "affiliations": [
+    "Charlotte Family",
+    "Big Mom Pirates"
+  ],
+  "age": 48,
+  "birthday": "November 25th",
+  "bounty": 300000000,
+  "cn": {
+    "affiliations": [
+      "夏洛特家族",
+      "大妈海贼团"
+    ],
+    "debut_arc": "蛋糕岛篇",
+    "devil_fruit_name": "扑扑果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "夏洛特·大福",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Whole Cake Island",
+  "debut_chapter": 861,
+  "devil_fruit_name": "Puff-Puff Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 489,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/c/cd/Charlotte_Daifuku_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230215154338",
+  "japanese_name": "シャーロット・ダイフク",
+  "name": "Charlotte Daifuku",
+  "occupations": [
+    "Pirate Officer",
+    "Minister of Beans"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Poripori Island",
+    "Hachinosu (former)"
+  ],
+  "status": "Alive"
+}

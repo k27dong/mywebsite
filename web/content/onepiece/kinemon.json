@@ -1,0 +1,51 @@
+{
+  "affiliations": [
+    "Kouzuki Family",
+    "Ninja-Pirate-Mink-Samurai Alliance",
+    "Nine Red Scabbards"
+  ],
+  "age": 36,
+  "birthday": "January 29th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "光月家",
+      "忍者·海贼·米ンク族·武士同盟",
+      "赤鞘九人男"
+    ],
+    "debut_arc": "庞克哈萨德",
+    "devil_fruit_name": "伽布伽布之术",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "锦卫门",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Punk Hazard",
+  "debut_chapter": 656,
+  "devil_fruit_name": "Garb-Garb Jutsu (VIZ and Funimation); Garb-Garb Fruit (One Piece Official YouTube Channel)",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 295,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/e/ec/Kin%27emon_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20191124100115",
+  "japanese_name": "錦えもん",
+  "name": "Kin'emon",
+  "occupations": [
+    "Samurai",
+    "Great Elder of the Shogunate",
+    "Retainer of the Kouzuki Family",
+    "Leader of the Nine Red Scabbards",
+    "Thief (former)"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Wano Country (Kuri)",
+    "Flower Capital (Shogun Castle)"
+  ],
+  "status": "Alive"
+}

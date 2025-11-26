@@ -1,0 +1,36 @@
+{
+  "affiliations": [
+    "Tontatta Kingdom",
+    "Straw Hat Grand Fleet (Tontatta Pirates)"
+  ],
+  "age": 25,
+  "birthday": "July 24th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "唐塔塔王国",
+      "草帽大船团"
+    ],
+    "debut_arc": "德雷斯罗萨",
+    "devil_fruit_name": "缝缝能力",
+    "devil_fruit_type": "超人系",
+    "haki": [],
+    "name": "雷欧",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Dressrosa",
+  "debut_chapter": 710,
+  "devil_fruit_name": "Stitch-Stitch Power (VIZ and Funimation); Sew-Sew Fruit (One Piece Official YouTube Channel)",
+  "devil_fruit_type": "Paramecia",
+  "haki": [],
+  "height": 23,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/b/be/Leo_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20200422024534",
+  "japanese_name": "レオ",
+  "name": "Leo",
+  "occupations": [
+    "Captain of the Fifth Ship of the Straw Hat Grand Fleet",
+    "Captain of the Tontatta Pirates"
+  ],
+  "origin": "Grand Line",
+  "status": "Alive"
+}

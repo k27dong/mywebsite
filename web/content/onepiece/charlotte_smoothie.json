@@ -1,0 +1,45 @@
+{
+  "affiliations": [
+    "Charlotte Family",
+    "Big Mom Pirates"
+  ],
+  "age": 35,
+  "birthday": "October 12th",
+  "bounty": 932000000,
+  "cn": {
+    "affiliations": [
+      "夏洛特家族",
+      "大妈海贼团"
+    ],
+    "debut_arc": "蛋糕岛篇",
+    "devil_fruit_name": "扭扭果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "夏洛特·丝慕蓉",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Whole Cake Island",
+  "debut_chapter": 846,
+  "devil_fruit_name": "Wring-Wring Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 464,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/c/c5/Charlotte_Smoothie_Anime_Infobox.png/revision/latest/scale-to-width-down/267?cb=20180423150946",
+  "japanese_name": "シャーロット・スムージー",
+  "name": "Charlotte Smoothie",
+  "occupations": [
+    "Sweet Commander",
+    "Minister of Juice"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "100% Island"
+  ],
+  "status": "Alive"
+}

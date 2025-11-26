@@ -1,0 +1,45 @@
+{
+  "affiliations": [
+    "Donquixote Pirates (former)",
+    "Bellamy Pirates (former)"
+  ],
+  "age": 27,
+  "birthday": "August 7th",
+  "bounty": 195000000,
+  "cn": {
+    "affiliations": [
+      "唐吉诃德家族",
+      "贝拉米海贼团"
+    ],
+    "debut_arc": "加雅岛篇",
+    "devil_fruit_name": "波音波音果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "贝拉米",
+    "origin": "未知"
+  },
+  "debut_arc": "Jaya",
+  "debut_chapter": 222,
+  "devil_fruit_name": "Boing-Boing Fruit (VIZ); Spring-Spring Fruit (Funimation)",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 240,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/2/27/Bellamy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/267?cb=20230116235201",
+  "japanese_name": "ベラミー",
+  "name": "Bellamy",
+  "occupations": [
+    "Dyer",
+    "Pirate Captain (former)"
+  ],
+  "origin": "Unknown",
+  "residence": [
+    "Dressrosa (former) Notice (former)"
+  ],
+  "status": "Alive"
+}

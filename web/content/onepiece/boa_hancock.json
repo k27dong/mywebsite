@@ -1,0 +1,49 @@
+{
+  "affiliations": [
+    "Kuja Pirates (Gorgon Sisters)",
+    "Seven Warlords of the Sea (former)"
+  ],
+  "age": 31,
+  "birthday": "September 2nd",
+  "bounty": 1659000000,
+  "cn": {
+    "affiliations": [
+      "库贾海贼团",
+      "七武海"
+    ],
+    "debut_arc": "女儿岛篇",
+    "devil_fruit_name": "美美果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色",
+      "霸王色"
+    ],
+    "name": "波雅·汉库克",
+    "origin": "女儿岛"
+  },
+  "debut_arc": "Amazon Lily",
+  "debut_chapter": 516,
+  "devil_fruit_name": "Love-Love Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation",
+    "supreme_king"
+  ],
+  "height": 191,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/f/f0/Boa_Hancock_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230126022456",
+  "japanese_name": "ボア･ハンコック",
+  "name": "Boa Hancock",
+  "occupations": [
+    "Captain of the Kuja Pirates",
+    "Empress of Amazon Lily",
+    "Warlord of the Sea (former)",
+    "Slave (former)"
+  ],
+  "origin": "Amazon Lily",
+  "residence": [
+    "Amazon Lily Mary Geoise (former)"
+  ],
+  "status": "Alive"
+}

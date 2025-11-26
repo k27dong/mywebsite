@@ -8,37 +8,67 @@
 //                               - Cleans text (removes references, fixes brackets, etc.)
 //                               - Parses arrays, bounties, ages, heights
 //
-// Layer 2 (clean_affiliation):  Removes entries with empty affiliations
+// Layer 2 (scrape_haki):        Scrapes Haki user data from wiki category pages
+//                               - Scrapes: Armament Haki, Observation Haki, Supreme King Haki users
+//                               - Adds haki field to characters (array of: "armament", "observation", "supreme_king")
+//                               - Updates op_original.json with Haki data
+//                               - Excluded from 'all' (run explicitly after scrape)
+//
+// Layer 3 (clean_affiliation):  Removes entries with empty affiliations
 //                               - Filters out characters with no affiliations
 //
-// Layer 3 (clean_chapter):      Cleans debut field to contain only Chapter numbers
+// Layer 4 (clean_chapter):      Cleans debut field to contain only Chapter numbers
 //                               - Extracts only the first Chapter number from debut field
 //                               - Removes entries without a Chapter number in debut
 //
-// Layer 4 (clean_bounty):       Removes entries with no bounty information
+// Layer 5 (clean_bounty):       Removes entries with no bounty information
 //                               - Filters out characters with empty bounty arrays
 //                               - Respects exclude list (unless --strict flag is used)
 //
-// Layer 5 (clean_height):       Removes entries with no height information
+// Layer 6 (clean_height):       Removes entries with no height information
 //                               - Filters out characters with empty height arrays
 //                               - Respects exclude list (unless --strict flag is used)
 //
-// Layer 6 (add_arc):            Adds debut arc information based on chapter number
+// Layer 7 (add_arc):            Adds debut arc information based on chapter number
 //                               - Maps chapter numbers to their corresponding story arcs
 //                               - Adds both English and Chinese arc names (CN to be filled manually)
-//                               - Requires Layer 3 (clean_chapter) to have been run first
+//                               - Requires Layer 4 (clean_chapter) to have been run first
 //
-// Layer 7 (map_origin):         Standardizes origin field to major locations
+// Layer 8 (map_origin):         Standardizes origin field to major locations
 //                               - Maps origins to: Grand Line, East Blue, North Blue, West Blue, South Blue,
 //                                 Amazon Lily, Sky Island, Mary Geoise, Jaya, Punk Hazard, Zou, Fish-Man Island
 //                               - Adds both English and Chinese location names (CN to be filled manually)
 //
-// Layer 8 (translate):          Translates character data to Chinese using GPT-5-mini with caching
+// Layer 9 (map_haki):           Maps Haki types to Chinese
+//                               - observation → 见闻色, armament → 武装色, supreme_king → 霸王色
+//                               - Adds haki_cn field
+//                               - Included in 'all' layers
+//
+// Layer 10 (map_devil_fruit_type): Maps devil fruit types to Chinese
+//                               - Paramecia → 超人系, Zoan → 动物系, Logia → 自然系
+//                               - Adds devil_fruit_cn.type field
+//                               - Included in 'all' layers
+//
+// Layer 11 (translate):         Creates/updates translation cache using GPT-5-mini
 //                               - Translates: name, Affiliations, devil_fruit.name
 //                               - Uses OpenAI GPT-5-mini for accurate One Piece-specific translations
-//                               - Maintains local dictionary cache to avoid re-translating
-//                               - Cache file: data/onepiece_translation_cache.json
+//                               - Updates local dictionary cache (data/op_translation.json)
 //                               - Requires OPENAI_API_KEY environment variable
+//                               - Does NOT apply translations to character data
+//
+// Layer 12 (map_translation):   Applies cached translations to character data
+//                               - Reads from translation cache (data/op_translation.json)
+//                               - Sets: name_cn, affiliations_cn, devil_fruit_cn fields
+//                               - Free operation (no API calls)
+//                               - Included in 'all' layers
+//
+// Layer 13 (sanitize):          Transforms data to clean, sanitized JSON format
+//                               - Converts to consistent camelCase/snake_case naming
+//                               - Numbers stored as numbers (bounty, height, age, debut_chapter)
+//                               - Optional fields omitted when empty (not null or [])
+//                               - Groups all Chinese translations under 'cn' block
+//                               - haki is a required field (empty array if no haki)
+//                               - Output file: data/op_sanitized.json
 //
 // Exclude List:
 //   Important characters that are preserved during cleaning (layers 4-5):
@@ -48,13 +78,23 @@
 //   Use --strict flag to ignore the exclude list and remove ALL entries that don't meet criteria
 //
 // Usage:
-//   cargo run --bin sync_onepiece -- --layers scrape                    # Run only layer 1
-//   cargo run --bin sync_onepiece -- --layers clean_affiliation         # Run only layer 2
-//   cargo run --bin sync_onepiece -- --layers clean_chapter             # Run only layer 3
-//   cargo run --bin sync_onepiece -- --layers clean_bounty              # Run only layer 4
-//   cargo run --bin sync_onepiece -- --layers clean_height              # Run only layer 5
-//   cargo run --bin sync_onepiece -- --layers scrape,clean_affiliation  # Run specific layers
-//   cargo run --bin sync_onepiece -- --layers all                       # Run all layers in order
+//   cargo run --bin sync_onepiece -- --layers scrape                    # Run only layer 1 (fetch from wiki)
+//   cargo run --bin sync_onepiece -- --layers scrape_haki               # Run only layer 2 (fetch Haki data)
+//   cargo run --bin sync_onepiece -- --layers clean_affiliation         # Run only layer 3
+//   cargo run --bin sync_onepiece -- --layers clean_chapter             # Run only layer 4
+//   cargo run --bin sync_onepiece -- --layers clean_bounty              # Run only layer 5
+//   cargo run --bin sync_onepiece -- --layers clean_height              # Run only layer 6
+//   cargo run --bin sync_onepiece -- --layers add_arc                   # Run only layer 7
+//   cargo run --bin sync_onepiece -- --layers map_origin                # Run only layer 8
+//   cargo run --bin sync_onepiece -- --layers map_haki                  # Run only layer 9 (map haki to CN)
+//   cargo run --bin sync_onepiece -- --layers map_devil_fruit_type      # Run only layer 10 (map fruit types to CN)
+//   cargo run --bin sync_onepiece -- --layers translate                 # Run only layer 11 (update cache, costs money!)
+//   cargo run --bin sync_onepiece -- --layers map_translation           # Run only layer 12 (apply cached translations)
+//   cargo run --bin sync_onepiece -- --layers sanitize                  # Run only layer 13 (output clean format)
+//   cargo run --bin sync_onepiece -- --layers scrape,scrape_haki        # Run scrape layers together
+//   cargo run --bin sync_onepiece -- --layers all                       # Run layers 3-10,12-13 (excludes scrape, scrape_haki & translate)
+//   cargo run --bin sync_onepiece -- --layers scrape,scrape_haki,all    # Run all layers INCLUDING scrape
+//   cargo run --bin sync_onepiece -- --layers all,translate             # Run all layers INCLUDING translate (costs money!)
 //   cargo run --bin sync_onepiece -- --layers all --strict              # Run all layers, ignore exclude list
 
 use anyhow::Result;
@@ -74,11 +114,13 @@ use std::path::Path;
 use std::sync::{Arc, Mutex};
 
 // Output file paths (accessible to both backend and frontend)
-const OUTPUT_FILE: &str = "data/onepiece_characters.json";
-const TRANSLATION_CACHE_FILE: &str = "data/onepiece_translation_cache.json";
+const ORIGINAL_FILE: &str = "data/op_original.json";
+const OUTPUT_FILE: &str = "data/op_characters.json";
+const SANITIZED_OUTPUT_FILE: &str = "data/op_sanitized.json";
+const TRANSLATION_CACHE_FILE: &str = "data/op_translation.json";
 
 // Translation model: GPT-5-mini (best quality/cost balance)
-const TRANSLATION_MODEL: &str = "gpt-5-mini";
+const TRANSLATION_MODEL: &str = "gpt-4o-mini";
 const MODEL_INPUT_PRICE_PER_1M: f64 = 0.25;
 const MODEL_OUTPUT_PRICE_PER_1M: f64 = 2.00;
 
@@ -87,7 +129,7 @@ const MODEL_OUTPUT_PRICE_PER_1M: f64 = 2.00;
 #[command(name = "sync_onepiece")]
 #[command(about = "One Piece character data scraper with layered processing", long_about = None)]
 struct Args {
-    /// Layers to run (comma-separated): scrape, clean_affiliation, clean_chapter, clean_bounty, clean_height, add_arc, map_origin, translate, or 'all'
+    /// Layers to run (comma-separated): scrape, scrape_haki, clean_affiliation, clean_chapter, clean_bounty, clean_height, add_arc, map_origin, map_haki, map_devil_fruit_type, translate, map_translation, sanitize, or 'all'
     #[arg(short, long, default_value = "all", value_delimiter = ',')]
     layers: Vec<String>,
 
@@ -103,26 +145,36 @@ struct Args {
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 enum Layer {
     Scrape = 1,
-    CleanAffiliation = 2,
-    CleanChapter = 3,
-    CleanBounty = 4,
-    CleanHeight = 5,
-    AddArc = 6,
-    MapOrigin = 7,
-    Translate = 8,
+    ScrapeHaki = 2,
+    CleanAffiliation = 3,
+    CleanChapter = 4,
+    CleanBounty = 5,
+    CleanHeight = 6,
+    AddArc = 7,
+    MapOrigin = 8,
+    MapHaki = 9,
+    MapDevilFruitType = 10,
+    Translate = 11,
+    MapTranslation = 12,
+    Sanitize = 13,
 }
 
 impl Layer {
     fn from_str(s: &str) -> Option<Self> {
         match s.to_lowercase().as_str() {
             "scrape" => Some(Layer::Scrape),
+            "scrape_haki" => Some(Layer::ScrapeHaki),
             "clean_affiliation" => Some(Layer::CleanAffiliation),
             "clean_chapter" => Some(Layer::CleanChapter),
             "clean_bounty" => Some(Layer::CleanBounty),
             "clean_height" => Some(Layer::CleanHeight),
             "add_arc" => Some(Layer::AddArc),
             "map_origin" => Some(Layer::MapOrigin),
+            "map_haki" => Some(Layer::MapHaki),
+            "map_devil_fruit_type" => Some(Layer::MapDevilFruitType),
             "translate" => Some(Layer::Translate),
+            "map_translation" => Some(Layer::MapTranslation),
+            "sanitize" => Some(Layer::Sanitize),
             _ => None,
         }
     }
@@ -130,26 +182,36 @@ impl Layer {
     fn name(&self) -> &str {
         match self {
             Layer::Scrape => "scrape",
+            Layer::ScrapeHaki => "scrape_haki",
             Layer::CleanAffiliation => "clean_affiliation",
             Layer::CleanChapter => "clean_chapter",
             Layer::CleanBounty => "clean_bounty",
             Layer::CleanHeight => "clean_height",
             Layer::AddArc => "add_arc",
             Layer::MapOrigin => "map_origin",
+            Layer::MapHaki => "map_haki",
+            Layer::MapDevilFruitType => "map_devil_fruit_type",
             Layer::Translate => "translate",
+            Layer::MapTranslation => "map_translation",
+            Layer::Sanitize => "sanitize",
         }
     }
 
     fn description(&self) -> &str {
         match self {
             Layer::Scrape => "Fetch and parse character data from wiki",
+            Layer::ScrapeHaki => "Fetch Haki user data from wiki categories",
             Layer::CleanAffiliation => "Remove entries with empty affiliations",
             Layer::CleanChapter => "Clean debut field to chapter numbers only",
             Layer::CleanBounty => "Remove entries with no bounty (respects exclude list)",
             Layer::CleanHeight => "Remove entries with no height (respects exclude list)",
             Layer::AddArc => "Add story arc information based on debut chapter",
             Layer::MapOrigin => "Map origin to standardized major locations",
-            Layer::Translate => "Translate to Chinese using GPT-5-mini (with caching)",
+            Layer::MapHaki => "Map Haki types to Chinese (见闻色/武装色/霸王色)",
+            Layer::MapDevilFruitType => "Map devil fruit types to Chinese (超人系/动物系/自然系)",
+            Layer::Translate => "Create/update translation cache using GPT-5-mini (costs money!)",
+            Layer::MapTranslation => "Apply cached translations to character data",
+            Layer::Sanitize => "Transform to clean format and output to op_sanitized.json",
         }
     }
 }
@@ -443,12 +505,81 @@ struct Character {
     devil_fruit: Option<DevilFruit>,
     #[serde(skip_serializing_if = "Option::is_none")]
     devil_fruit_cn: Option<DevilFruitCn>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    haki: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    haki_cn: Option<Vec<String>>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Default, Clone)]
 struct DevilFruitCn {
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none", rename = "type")]
+    fruit_type: Option<String>,
+}
+
+// ============================================================================
+// Sanitized output format (Layer 9)
+// ============================================================================
+
+/// Chinese translations block
+#[derive(Debug, Serialize, Deserialize, Clone)]
+struct SanitizedCn {
+    name: String,
+    affiliations: Vec<String>,
+    origin: String,
+    debut_arc: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    devil_fruit_name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    devil_fruit_type: Option<String>,
+    haki: Vec<String>,
+}
+
+/// Clean, sanitized character format
+#[derive(Debug, Serialize, Deserialize, Clone)]
+struct SanitizedCharacter {
+    // Identity
+    name: String,
+    japanese_name: String,
+    image: String,
+
+    // Debut
+    debut_chapter: u32,
+    debut_arc: String,
+
+    // Associations
+    affiliations: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    occupations: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    residence: Option<Vec<String>>,
+
+    // Origin
+    origin: String,
+
+    // Stats
+    bounty: u64,
+    status: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    age: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    birthday: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    height: Option<u32>,
+
+    // Devil Fruit
+    #[serde(skip_serializing_if = "Option::is_none")]
+    devil_fruit_name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    devil_fruit_type: Option<String>,
+
+    // Haki
+    haki: Vec<String>,
+
+    // Chinese translations
+    cn: SanitizedCn,
 }
 
 // Translation cache structure
@@ -483,24 +614,34 @@ fn main() -> Result<()> {
     let mut layers = Vec::new();
     for layer_str in &args.layers {
         if layer_str.to_lowercase() == "all" {
-            layers = vec![
-                Layer::Scrape,
+            // Note: Scrape, ScrapeHaki, and Translate are excluded from 'all'
+            // - Scrape: Data doesn't change often, run explicitly
+            // - ScrapeHaki: Additional scraping, run explicitly after scrape
+            // - Translate: Costs money, run explicitly
+            // Merge with existing layers (e.g., scrape,all should include scrape)
+            for layer in [
                 Layer::CleanAffiliation,
                 Layer::CleanChapter,
                 Layer::CleanBounty,
                 Layer::CleanHeight,
                 Layer::AddArc,
                 Layer::MapOrigin,
-                Layer::Translate,
-            ];
-            break;
+                Layer::MapHaki,
+                Layer::MapDevilFruitType,
+                Layer::MapTranslation,
+                Layer::Sanitize,
+            ] {
+                if !layers.contains(&layer) {
+                    layers.push(layer);
+                }
+            }
         } else if let Some(layer) = Layer::from_str(layer_str) {
             if !layers.contains(&layer) {
                 layers.push(layer);
             }
         } else {
             eprintln!("Unknown layer: {}", layer_str);
-            eprintln!("Available layers: scrape, clean_affiliation, clean_chapter, clean_bounty, clean_height, add_arc, map_origin, translate, all");
+            eprintln!("Available layers: scrape, scrape_haki, clean_affiliation, clean_chapter, clean_bounty, clean_height, add_arc, map_origin, map_haki, map_devil_fruit_type, translate, map_translation, sanitize, all");
             std::process::exit(1);
         }
     }
@@ -525,20 +666,26 @@ fn main() -> Result<()> {
     for layer in &layers {
         match layer {
             Layer::Scrape => layer_1_scrape()?,
-            Layer::CleanAffiliation => layer_2_clean_affiliation()?,
-            Layer::CleanChapter => layer_3_clean_chapter()?,
-            Layer::CleanBounty => layer_4_clean_bounty(args.strict)?,
-            Layer::CleanHeight => layer_5_clean_height(args.strict)?,
-            Layer::AddArc => layer_6_add_arc(&layers)?,
-            Layer::MapOrigin => layer_7_map_origin()?,
+            Layer::ScrapeHaki => layer_2_scrape_haki()?,
+            Layer::CleanAffiliation => layer_3_clean_affiliation()?,
+            Layer::CleanChapter => layer_4_clean_chapter()?,
+            Layer::CleanBounty => layer_5_clean_bounty(args.strict)?,
+            Layer::CleanHeight => layer_6_clean_height(args.strict)?,
+            Layer::AddArc => layer_7_add_arc(&layers)?,
+            Layer::MapOrigin => layer_8_map_origin()?,
+            Layer::MapHaki => layer_9_map_haki()?,
+            Layer::MapDevilFruitType => layer_10_map_devil_fruit_type()?,
             Layer::Translate => {
                 // Translation layer needs async runtime
-                tokio::runtime::Runtime::new()?.block_on(layer_8_translate(args.translate_limit, &secrets))?;
+                tokio::runtime::Runtime::new()?.block_on(layer_11_translate(args.translate_limit, &secrets))?;
             }
+            Layer::MapTranslation => layer_12_map_translation()?,
+            Layer::Sanitize => layer_13_sanitize()?,
         }
     }
 
-    println!("\n✅ All layers completed successfully!");
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    println!("✅ All layers completed successfully!");
     Ok(())
 }
 
@@ -649,53 +796,127 @@ fn layer_1_scrape() -> Result<()> {
     // Sort by name for consistency
     final_chars.sort_by(|a, b| a.name.cmp(&b.name));
 
-    // 3. Save to JSON
+    // 3. Save to JSON (original file - raw scraped data)
     // Ensure directory exists
-    if let Some(parent) = Path::new(OUTPUT_FILE).parent() {
+    if let Some(parent) = Path::new(ORIGINAL_FILE).parent() {
         fs::create_dir_all(parent)?;
     }
     
     let json = serde_json::to_string_pretty(&final_chars)?;
-    let mut file = File::create(OUTPUT_FILE)?;
+    let mut file = File::create(ORIGINAL_FILE)?;
     file.write_all(json.as_bytes())?;
 
     println!(
         "\n✓ Layer 1 complete: Saved {} characters to {}",
         final_chars.len(),
-        OUTPUT_FILE
+        ORIGINAL_FILE
     );
 
     Ok(())
 }
 
-fn layer_2_clean_affiliation() -> Result<()> {
-    println!("\n━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    println!("🧹 Layer 2: Clean Affiliation");
+fn layer_2_scrape_haki() -> Result<()> {
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    println!("📥 Layer 2: Scraping Haki Data");
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 
-    // Load existing data
-    println!("Loading {}...", OUTPUT_FILE);
-    let mut file = File::open(OUTPUT_FILE)?;
+    // Load existing character data from original file
+    if !Path::new(ORIGINAL_FILE).exists() {
+        eprintln!("❌ Error: {} not found!", ORIGINAL_FILE);
+        eprintln!("   Run 'scrape' layer first to fetch character data.");
+        std::process::exit(1);
+    }
+
+    let mut file = File::open(ORIGINAL_FILE)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    let mut characters: Vec<Character> = serde_json::from_str(&contents)?;
+    println!("Loaded {} characters from {}\n", characters.len(), ORIGINAL_FILE);
+
+    // Build HTTP client
+    let mut headers = reqwest::header::HeaderMap::new();
+    headers.insert("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8".parse().unwrap());
+    headers.insert("Accept-Language", "en-US,en;q=0.9".parse().unwrap());
+
+    let client = Client::builder()
+        .user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+        .default_headers(headers)
+        .build()?;
+
+    // Scrape each Haki type
+    let haki_urls = [
+        ("https://onepiece.fandom.com/wiki/Category:Armament_Haki_Users", "armament"),
+        ("https://onepiece.fandom.com/wiki/Category:Observation_Haki_Users", "observation"),
+        ("https://onepiece.fandom.com/wiki/Category:Supreme_King_Haki_Users", "supreme_king"),
+    ];
+
+    let mut haki_map: HashMap<String, Vec<String>> = HashMap::new();
+
+    for (url, haki_type) in haki_urls {
+        println!("Scraping {} Haki users...", haki_type);
+        let resp = client.get(url).send()?.text()?;
+        let document = Html::parse_document(&resp);
+
+        // Find all character links in the category
+        let link_selector = Selector::parse(".category-page__member-link").unwrap();
+        
+        let mut count = 0;
+        for link in document.select(&link_selector) {
+            if let Some(name) = link.value().attr("title") {
+                let name = name.to_string();
+                haki_map.entry(name.clone()).or_insert_with(Vec::new).push(haki_type.to_string());
+                count += 1;
+            }
+        }
+        println!("  Found {} {} Haki users", count, haki_type);
+    }
+
+    println!("\nTotal unique Haki users: {}", haki_map.len());
+
+    // Match and update characters
+    let mut matched_count = 0;
+    for character in &mut characters {
+        if let Some(haki_types) = haki_map.get(&character.name) {
+            character.haki = Some(haki_types.clone());
+            matched_count += 1;
+        }
+    }
+
+    println!("Matched {} characters with Haki data\n", matched_count);
+
+    // Sort by name for consistency
+    characters.sort_by(|a, b| a.name.cmp(&b.name));
+
+    // Save updated data back to original file
+    let json = serde_json::to_string_pretty(&characters)?;
+    let mut file = File::create(ORIGINAL_FILE)?;
+    file.write_all(json.as_bytes())?;
+
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    println!(
+        "⚔️  Layer 2: Scrape Haki: done! {} characters have Haki",
+        matched_count
+    );
+
+    Ok(())
+}
+
+fn layer_3_clean_affiliation() -> Result<()> {
+    // Load from original file if it exists (first layer after scrape), otherwise use output file
+    let source_file = if Path::new(ORIGINAL_FILE).exists() {
+        ORIGINAL_FILE
+    } else {
+        OUTPUT_FILE
+    };
+    let mut file = File::open(source_file)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let mut characters: Vec<Character> = serde_json::from_str(&contents)?;
     let initial_count = characters.len();
-    println!("Loaded {} characters\n", initial_count);
-
-    // Create progress bar
-    let pb = ProgressBar::new(1);
-    pb.set_style(
-        ProgressStyle::default_bar()
-            .template("{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {msg}")
-            .unwrap()
-            .progress_chars("#>-"),
-    );
 
     // Remove entries with empty affiliations
-    pb.set_message("Removing entries with empty affiliations...");
     characters.retain(|c| !c.affiliations.is_empty());
     let removed = initial_count - characters.len();
-    pb.finish_and_clear();
 
     // Sort by name for consistency
     characters.sort_by(|a, b| a.name.cmp(&b.name));
@@ -705,8 +926,9 @@ fn layer_2_clean_affiliation() -> Result<()> {
     let mut file = File::create(OUTPUT_FILE)?;
     file.write_all(json.as_bytes())?;
 
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
     println!(
-        "✓ Layer 2 complete: {} → {} characters ({} removed)\n",
+        "🧹 Layer 3: Clean Affiliation: done! {} → {} ({} removed)",
         initial_count,
         characters.len(),
         removed
@@ -715,54 +937,40 @@ fn layer_2_clean_affiliation() -> Result<()> {
     Ok(())
 }
 
-fn layer_3_clean_chapter() -> Result<()> {
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    println!("📖 Layer 3: Clean Chapter");
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-
+fn layer_4_clean_chapter() -> Result<()> {
     // Load existing data
-    println!("Loading {}...", OUTPUT_FILE);
     let mut file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let characters: Vec<Character> = serde_json::from_str(&contents)?;
     let initial_count = characters.len();
-    println!("Loaded {} characters\n", initial_count);
-
-    // Create progress bar
-    let pb = ProgressBar::new(1);
-    pb.set_style(
-        ProgressStyle::default_bar()
-            .template("{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {msg}")
-            .unwrap()
-            .progress_chars("#>-"),
-    );
 
     // Clean debut field and remove entries without Chapter
-    pb.set_message("Cleaning debut fields to chapter numbers...");
+    // Also handles already-cleaned data (just a number)
     let chapter_regex = Regex::new(r"Chapter\s+(\d+)").unwrap();
+    let number_regex = Regex::new(r"^\d+$").unwrap();
     
     let characters: Vec<Character> = characters
         .into_iter()
         .filter_map(|mut c| {
             if let Some(debut) = &c.debut {
-                // Extract first chapter number
-                if let Some(caps) = chapter_regex.captures(debut) {
+                // If already just a number (previously cleaned), keep it
+                if number_regex.is_match(debut) {
+                    Some(c)
+                // Otherwise, try to extract chapter number
+                } else if let Some(caps) = chapter_regex.captures(debut) {
                     c.debut = Some(caps[1].to_string());
                     Some(c)
                 } else {
-                    // No chapter found, remove this entry
                     None
                 }
             } else {
-                // No debut field, remove this entry
                 None
             }
         })
         .collect();
     
     let removed = initial_count - characters.len();
-    pb.finish_and_clear();
 
     // Sort by name for consistency
     let mut characters = characters;
@@ -773,8 +981,9 @@ fn layer_3_clean_chapter() -> Result<()> {
     let mut file = File::create(OUTPUT_FILE)?;
     file.write_all(json.as_bytes())?;
 
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
     println!(
-        "✓ Layer 3 complete: {} → {} characters ({} removed)\n",
+        "📖 Layer 4: Clean Chapter: done! {} → {} ({} removed)",
         initial_count,
         characters.len(),
         removed
@@ -783,47 +992,26 @@ fn layer_3_clean_chapter() -> Result<()> {
     Ok(())
 }
 
-fn layer_4_clean_bounty(strict: bool) -> Result<()> {
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    println!("💰 Layer 4: Clean Bounty");
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-
+fn layer_5_clean_bounty(strict: bool) -> Result<()> {
     // Load existing data
-    println!("Loading {}...", OUTPUT_FILE);
     let mut file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let characters: Vec<Character> = serde_json::from_str(&contents)?;
     let initial_count = characters.len();
-    println!("Loaded {} characters\n", initial_count);
-
-    // Create progress bar
-    let pb = ProgressBar::new(1);
-    pb.set_style(
-        ProgressStyle::default_bar()
-            .template("{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {msg}")
-            .unwrap()
-            .progress_chars("#>-"),
-    );
 
     // Remove entries with no bounty (unless in exclude list)
-    pb.set_message("Removing entries with no bounty...");
     let mut excluded_count = 0;
     
     let characters: Vec<Character> = characters
         .into_iter()
         .filter(|c| {
-            // Check if character has bounty
             if !c.bounty.is_empty() {
                 return true;
             }
-            
-            // If strict mode, remove everyone without bounty
             if strict {
                 return false;
             }
-            
-            // Otherwise check exclude list
             if EXCLUDE_LIST.contains(&c.name.as_str()) {
                 excluded_count += 1;
                 true
@@ -834,11 +1022,6 @@ fn layer_4_clean_bounty(strict: bool) -> Result<()> {
         .collect();
     
     let removed = initial_count - characters.len();
-    pb.finish_and_clear();
-
-    if !strict && excluded_count > 0 {
-        println!("  ℹ️  Protected {} characters from exclude list", excluded_count);
-    }
 
     // Sort by name for consistency
     let mut characters = characters;
@@ -849,57 +1032,43 @@ fn layer_4_clean_bounty(strict: bool) -> Result<()> {
     let mut file = File::create(OUTPUT_FILE)?;
     file.write_all(json.as_bytes())?;
 
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    let protected = if !strict && excluded_count > 0 {
+        format!(" ({} protected)", excluded_count)
+    } else {
+        String::new()
+    };
     println!(
-        "✓ Layer 4 complete: {} → {} characters ({} removed)\n",
+        "💰 Layer 5: Clean Bounty: done! {} → {} ({} removed){}",
         initial_count,
         characters.len(),
-        removed
+        removed,
+        protected
     );
 
     Ok(())
 }
 
-fn layer_5_clean_height(strict: bool) -> Result<()> {
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    println!("📏 Layer 5: Clean Height");
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-
+fn layer_6_clean_height(strict: bool) -> Result<()> {
     // Load existing data
-    println!("Loading {}...", OUTPUT_FILE);
     let mut file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let characters: Vec<Character> = serde_json::from_str(&contents)?;
     let initial_count = characters.len();
-    println!("Loaded {} characters\n", initial_count);
-
-    // Create progress bar
-    let pb = ProgressBar::new(1);
-    pb.set_style(
-        ProgressStyle::default_bar()
-            .template("{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {msg}")
-            .unwrap()
-            .progress_chars("#>-"),
-    );
 
     // Remove entries with no height (unless in exclude list)
-    pb.set_message("Removing entries with no height...");
     let mut excluded_count = 0;
     
     let characters: Vec<Character> = characters
         .into_iter()
         .filter(|c| {
-            // Check if character has height
             if !c.height.is_empty() {
                 return true;
             }
-            
-            // If strict mode, remove everyone without height
             if strict {
                 return false;
             }
-            
-            // Otherwise check exclude list
             if EXCLUDE_LIST.contains(&c.name.as_str()) {
                 excluded_count += 1;
                 true
@@ -910,11 +1079,6 @@ fn layer_5_clean_height(strict: bool) -> Result<()> {
         .collect();
     
     let removed = initial_count - characters.len();
-    pb.finish_and_clear();
-
-    if !strict && excluded_count > 0 {
-        println!("  ℹ️  Protected {} characters from exclude list", excluded_count);
-    }
 
     // Sort by name for consistency
     let mut characters = characters;
@@ -925,60 +1089,47 @@ fn layer_5_clean_height(strict: bool) -> Result<()> {
     let mut file = File::create(OUTPUT_FILE)?;
     file.write_all(json.as_bytes())?;
 
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    let protected = if !strict && excluded_count > 0 {
+        format!(" ({} protected)", excluded_count)
+    } else {
+        String::new()
+    };
     println!(
-        "✓ Layer 5 complete: {} → {} characters ({} removed)\n",
+        "📏 Layer 6: Clean Height: done! {} → {} ({} removed){}",
         initial_count,
         characters.len(),
-        removed
+        removed,
+        protected
     );
 
     Ok(())
 }
 
-fn layer_6_add_arc(executed_layers: &[Layer]) -> Result<()> {
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    println!("📚 Layer 6: Add Arc Info");
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-
+fn layer_7_add_arc(executed_layers: &[Layer]) -> Result<()> {
     // Check if clean_chapter has been run
     if !executed_layers.contains(&Layer::CleanChapter) {
-        eprintln!("❌ Error: Layer 6 (add_arc) requires Layer 3 (clean_chapter) to be run first!");
+        eprintln!("❌ Error: Layer 7 (add_arc) requires Layer 4 (clean_chapter) to be run first!");
         eprintln!("   The debut field must contain only chapter numbers.");
         eprintln!("\n   Run with: --layers clean_chapter,add_arc");
         std::process::exit(1);
     }
 
     // Load existing data
-    println!("Loading {}...", OUTPUT_FILE);
     let mut file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let mut characters: Vec<Character> = serde_json::from_str(&contents)?;
-    let initial_count = characters.len();
-    println!("Loaded {} characters\n", initial_count);
 
-    // Create progress bar
-    let pb = ProgressBar::new(characters.len() as u64);
-    pb.set_style(
-        ProgressStyle::default_bar()
-            .template("{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {pos}/{len} {msg}")
-            .unwrap()
-            .progress_chars("#>-"),
-    );
-
-    pb.set_message("Mapping chapters to arcs...");
+    // Add arc information to each character
     let mut mapped_count = 0;
     let mut failed_count = 0;
 
-    // Add arc information to each character
     for character in &mut characters {
         if let Some(debut_str) = &character.debut {
-            // Parse chapter number
             if let Ok(chapter) = debut_str.parse::<u32>() {
-                // Find matching arc
                 if let Some((arc_name_en, arc_name_cn)) = get_arc_names(chapter) {
                     character.debut_arc = Some(arc_name_en.to_string());
-                    // Use Chinese name if available, otherwise empty string
                     character.debut_arc_cn = if arc_name_cn.is_empty() {
                         Some(String::new())
                     } else {
@@ -992,13 +1143,6 @@ fn layer_6_add_arc(executed_layers: &[Layer]) -> Result<()> {
                 failed_count += 1;
             }
         }
-        pb.inc(1);
-    }
-
-    pb.finish_and_clear();
-
-    if failed_count > 0 {
-        println!("  ⚠️  {} characters could not be mapped to an arc", failed_count);
     }
 
     // Sort by name for consistency
@@ -1009,48 +1153,36 @@ fn layer_6_add_arc(executed_layers: &[Layer]) -> Result<()> {
     let mut file = File::create(OUTPUT_FILE)?;
     file.write_all(json.as_bytes())?;
 
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    let unmapped = if failed_count > 0 {
+        format!(" ({} unmapped)", failed_count)
+    } else {
+        String::new()
+    };
     println!(
-        "✓ Layer 6 complete: Added arc info to {} characters ({} unmapped)\n",
+        "📚 Layer 7: Add Arc: done! {} characters mapped{}",
         mapped_count,
-        failed_count
+        unmapped
     );
 
     Ok(())
 }
 
-fn layer_7_map_origin() -> Result<()> {
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    println!("🗺️  Layer 7: Map Origin");
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-
+fn layer_8_map_origin() -> Result<()> {
     // Load existing data
-    println!("Loading {}...", OUTPUT_FILE);
     let mut file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let mut characters: Vec<Character> = serde_json::from_str(&contents)?;
-    let initial_count = characters.len();
-    println!("Loaded {} characters\n", initial_count);
 
-    // Create progress bar
-    let pb = ProgressBar::new(characters.len() as u64);
-    pb.set_style(
-        ProgressStyle::default_bar()
-            .template("{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {pos}/{len} {msg}")
-            .unwrap()
-            .progress_chars("#>-"),
-    );
-
-    pb.set_message("Mapping origins to regions...");
+    // Map origin to standardized regions
     let mut mapped_count = 0;
     let mut no_origin_count = 0;
 
-    // Map origin to standardized regions
     for character in &mut characters {
         if let Some(origin) = &character.origin {
             if let Some((region_en, region_cn)) = map_origin_to_region(origin) {
                 character.origin_region = Some(region_en.to_string());
-                // Use Chinese name if available, otherwise empty string
                 character.origin_region_cn = if region_cn.is_empty() {
                     Some(String::new())
                 } else {
@@ -1059,18 +1191,10 @@ fn layer_7_map_origin() -> Result<()> {
                 mapped_count += 1;
             }
         } else {
-            // Set Unknown for characters with no origin
             character.origin_region = Some("Unknown".to_string());
             character.origin_region_cn = Some("未知".to_string());
             no_origin_count += 1;
         }
-        pb.inc(1);
-    }
-
-    pb.finish_and_clear();
-
-    if no_origin_count > 0 {
-        println!("  ℹ️  {} characters have no origin field", no_origin_count);
     }
 
     // Sort by name for consistency
@@ -1081,18 +1205,121 @@ fn layer_7_map_origin() -> Result<()> {
     let mut file = File::create(OUTPUT_FILE)?;
     file.write_all(json.as_bytes())?;
 
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    let no_origin = if no_origin_count > 0 {
+        format!(" ({} unknown)", no_origin_count)
+    } else {
+        String::new()
+    };
     println!(
-        "✓ Layer 7 complete: Mapped {} characters to regions ({} no origin)\n",
+        "🗺️ Layer 8: Map Origin: done! {} characters mapped{}",
         mapped_count,
-        no_origin_count
+        no_origin
     );
 
     Ok(())
 }
 
-async fn layer_8_translate(limit: usize, secrets: &StdHashMap<String, String>) -> Result<()> {
+fn layer_9_map_haki() -> Result<()> {
+    // Load existing data
+    let mut file = File::open(OUTPUT_FILE)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    let mut characters: Vec<Character> = serde_json::from_str(&contents)?;
+
+    // Map Haki types to Chinese
+    let mut mapped_count = 0;
+
+    for character in &mut characters {
+        if let Some(haki_types) = &character.haki {
+            let haki_cn: Vec<String> = haki_types
+                .iter()
+                .map(|haki_type| match haki_type.as_str() {
+                    "observation" => "见闻色".to_string(),
+                    "armament" => "武装色".to_string(),
+                    "supreme_king" => "霸王色".to_string(),
+                    _ => haki_type.clone(), // Unknown type, keep as-is
+                })
+                .collect();
+
+            if !haki_cn.is_empty() {
+                character.haki_cn = Some(haki_cn);
+                mapped_count += 1;
+            }
+        }
+    }
+
+    // Sort by name for consistency
+    characters.sort_by(|a, b| a.name.cmp(&b.name));
+
+    // Save updated data
+    let json = serde_json::to_string_pretty(&characters)?;
+    let mut file = File::create(OUTPUT_FILE)?;
+    file.write_all(json.as_bytes())?;
+
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    println!("🌏 Layer 8: Translate");
+    println!(
+        "⚔️ Layer 9: Map Haki: done! {} Haki types mapped",
+        mapped_count
+    );
+
+    Ok(())
+}
+
+fn layer_10_map_devil_fruit_type() -> Result<()> {
+    // Load existing data
+    let mut file = File::open(OUTPUT_FILE)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    let mut characters: Vec<Character> = serde_json::from_str(&contents)?;
+
+    // Map devil fruit types to Chinese
+    let mut mapped_count = 0;
+
+    for character in &mut characters {
+        if let Some(df) = &character.devil_fruit {
+            if let Some(fruit_type) = &df.fruit_type {
+                let fruit_type_cn = match fruit_type.as_str() {
+                    "Paramecia" => "超人系",
+                    "Zoan" => "动物系",
+                    "Logia" => "自然系",
+                    _ => continue, // Unknown type, skip
+                };
+
+                // Create or update devil_fruit_cn
+                if let Some(df_cn) = &mut character.devil_fruit_cn {
+                    df_cn.fruit_type = Some(fruit_type_cn.to_string());
+                } else {
+                    character.devil_fruit_cn = Some(DevilFruitCn {
+                        name: None,
+                        fruit_type: Some(fruit_type_cn.to_string()),
+                    });
+                }
+                mapped_count += 1;
+            }
+        }
+    }
+
+    // Sort by name for consistency
+    characters.sort_by(|a, b| a.name.cmp(&b.name));
+
+    // Save updated data
+    let json = serde_json::to_string_pretty(&characters)?;
+    let mut file = File::create(OUTPUT_FILE)?;
+    file.write_all(json.as_bytes())?;
+
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    println!(
+        "🍎 Layer 10: Map Devil Fruit Type: done! {} fruit types mapped",
+        mapped_count
+    );
+
+    Ok(())
+}
+
+async fn layer_11_translate(limit: usize, secrets: &StdHashMap<String, String>) -> Result<()> {
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    println!("🌏 Layer 11: Translate (Update Cache)");
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 
     // Check for API key (from Secrets.toml or environment)
@@ -1106,19 +1333,21 @@ async fn layer_8_translate(limit: usize, secrets: &StdHashMap<String, String>) -
 
     // Load existing data
     println!("Loading {}...", OUTPUT_FILE);
-    let mut file = File::open(OUTPUT_FILE)?;
+    let file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
+    let mut file = file;
     file.read_to_string(&mut contents)?;
-    let mut characters: Vec<Character> = serde_json::from_str(&contents)?;
+    let characters: Vec<Character> = serde_json::from_str(&contents)?;
     let initial_count = characters.len();
     
     // Apply limit if specified
-    if limit > 0 && characters.len() > limit {
+    let characters = if limit > 0 && characters.len() > limit {
         println!("⚠️  TESTING MODE: Limiting to {} characters (out of {})\n", limit, initial_count);
-        characters.truncate(limit);
+        characters.into_iter().take(limit).collect()
     } else {
         println!("Loaded {} characters\n", initial_count);
-    }
+        characters
+    };
 
     // Load translation cache
     let mut cache = load_translation_cache()?;
@@ -1176,7 +1405,7 @@ async fn layer_8_translate(limit: usize, secrets: &StdHashMap<String, String>) -
     }
 
     if uncached_terms.is_empty() {
-        println!("✓ All terms already translated!");
+        println!("✓ All terms already cached!");
     } else {
         // Create progress bar
         let pb = ProgressBar::new(uncached_terms.len() as u64);
@@ -1218,71 +1447,17 @@ async fn layer_8_translate(limit: usize, secrets: &StdHashMap<String, String>) -
         println!();
     }
 
-    // Apply translations to characters
-    println!("Applying translations to characters...");
-    let pb = ProgressBar::new(characters.len() as u64);
-    pb.set_style(
-        ProgressStyle::default_bar()
-            .template("{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {pos}/{len}")
-            .unwrap()
-            .progress_chars("#>-"),
-    );
-
-    for character in &mut characters {
-        // Translate name (using simplified version as cache key)
-        let simplified_name = simplify_term(&character.name);
-        if let Some(translated) = cache.terms.get(&simplified_name) {
-            character.name_cn = Some(translated.clone());
-        }
-
-        // Translate affiliations
-        let mut affiliations_cn = Vec::new();
-        for aff in &character.affiliations {
-            let simplified_aff = simplify_term(aff);
-            if let Some(translated) = cache.terms.get(&simplified_aff) {
-                affiliations_cn.push(translated.clone());
-            }
-        }
-        if !affiliations_cn.is_empty() {
-            character.affiliations_cn = Some(affiliations_cn);
-        }
-
-        // Skip occupations - they're generic, not One Piece-specific
-
-        // Translate devil fruit
-        if let Some(df) = &character.devil_fruit {
-            if let Some(name) = &df.name {
-                let simplified_df = simplify_term(name);
-                if let Some(translated) = cache.terms.get(&simplified_df) {
-                    character.devil_fruit_cn = Some(DevilFruitCn {
-                        name: Some(translated.clone()),
-                    });
-                }
-            }
-        }
-
-        pb.inc(1);
-    }
-
-    pb.finish_and_clear();
-
-    // Sort by name for consistency
-    characters.sort_by(|a, b| a.name.cmp(&b.name));
-
-    // Save updated data
-    let json = serde_json::to_string_pretty(&characters)?;
-    let mut file = File::create(OUTPUT_FILE)?;
-    file.write_all(json.as_bytes())?;
-
     // Save updated cache
     save_translation_cache(&cache)?;
 
     let new_translations = cache.terms.len() - initial_cache_size;
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
     println!(
-        "✓ Layer 8 complete: Translated {} characters ({} new terms cached)\n",
-        characters.len(),
+        "✓ Layer 11 complete: {} new terms added to cache",
         new_translations
     );
+    println!("   Total cache size: {} terms", cache.terms.len());
+    println!("   Cache file: {}\n", TRANSLATION_CACHE_FILE);
 
     Ok(())
 }
@@ -1750,4 +1925,248 @@ fn parse_ages(text: &str) -> Vec<String> {
         // Fallback to the standard array parsing
         parse_array(text)
     }
+}
+
+// ============================================================================
+// Layer 12: Map Translation - Apply cached translations to character data
+// ============================================================================
+
+fn layer_12_map_translation() -> Result<()> {
+    // Load existing data
+    let mut file = File::open(OUTPUT_FILE)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    let mut characters: Vec<Character> = serde_json::from_str(&contents)?;
+
+    // Load translation cache
+    let cache = load_translation_cache()?;
+
+    // Apply translations to characters
+    let mut translated_count = 0;
+
+    for character in &mut characters {
+        let mut has_translation = false;
+
+        // Translate name (using simplified version as cache key)
+        let simplified_name = simplify_term(&character.name);
+        if let Some(translated) = cache.terms.get(&simplified_name) {
+            character.name_cn = Some(translated.clone());
+            has_translation = true;
+        }
+
+        // Translate affiliations
+        let mut affiliations_cn = Vec::new();
+        for aff in &character.affiliations {
+            let simplified_aff = simplify_term(aff);
+            if let Some(translated) = cache.terms.get(&simplified_aff) {
+                affiliations_cn.push(translated.clone());
+            }
+        }
+        if !affiliations_cn.is_empty() {
+            character.affiliations_cn = Some(affiliations_cn);
+            has_translation = true;
+        }
+
+        // Skip occupations - they're generic, not One Piece-specific
+
+        // Translate devil fruit name (preserve existing fruit_type if present)
+        if let Some(df) = &character.devil_fruit {
+            if let Some(name) = &df.name {
+                let simplified_df = simplify_term(name);
+                if let Some(translated) = cache.terms.get(&simplified_df) {
+                    // Preserve existing fruit_type if it exists
+                    let existing_type = character.devil_fruit_cn.as_ref().and_then(|df| df.fruit_type.clone());
+                    character.devil_fruit_cn = Some(DevilFruitCn {
+                        name: Some(translated.clone()),
+                        fruit_type: existing_type,
+                    });
+                    has_translation = true;
+                }
+            }
+        }
+
+        if has_translation {
+            translated_count += 1;
+        }
+    }
+
+    // Sort by name for consistency
+    characters.sort_by(|a, b| a.name.cmp(&b.name));
+
+    // Save updated data
+    let json = serde_json::to_string_pretty(&characters)?;
+    let mut file = File::create(OUTPUT_FILE)?;
+    file.write_all(json.as_bytes())?;
+
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    println!(
+        "🈯 Layer 12: Map Translation: done! {} characters mapped ({} cached terms)",
+        translated_count,
+        cache.terms.len()
+    );
+
+    Ok(())
+}
+
+// ============================================================================
+// Layer 13: Sanitize - Transform to clean output format
+// ============================================================================
+
+fn layer_13_sanitize() -> Result<()> {
+    // Load existing data
+    let mut file = File::open(OUTPUT_FILE)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    let characters: Vec<Character> = serde_json::from_str(&contents)?;
+
+    // Transform each character
+    let sanitized: Vec<SanitizedCharacter> = characters
+        .iter()
+        .filter_map(|c| sanitize_character(c))
+        .collect();
+
+    let skipped = characters.len() - sanitized.len();
+
+    // Sort by name for consistency
+    let mut sanitized = sanitized;
+    sanitized.sort_by(|a, b| a.name.cmp(&b.name));
+
+    // Save sanitized data
+    let json = serde_json::to_string_pretty(&sanitized)?;
+    let mut file = File::create(SANITIZED_OUTPUT_FILE)?;
+    file.write_all(json.as_bytes())?;
+
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    let skipped_msg = if skipped > 0 {
+        format!(" ({} skipped)", skipped)
+    } else {
+        String::new()
+    };
+    println!(
+        "✨ Layer 13: Sanitize: done! {} characters → {}{}",
+        sanitized.len(),
+        SANITIZED_OUTPUT_FILE,
+        skipped_msg
+    );
+
+    Ok(())
+}
+
+/// Transform a Character to SanitizedCharacter format
+fn sanitize_character(c: &Character) -> Option<SanitizedCharacter> {
+    // Parse debut chapter (required)
+    let debut_chapter = c.debut.as_ref()?.parse::<u32>().ok()?;
+
+    // Get debut arc (required)
+    let debut_arc = c.debut_arc.clone()?;
+    let debut_arc_cn = c.debut_arc_cn.clone().unwrap_or_default();
+
+    // Get origin (use origin_region which is standardized, default to "Unknown")
+    let origin = c.origin_region.clone().unwrap_or_else(|| "Unknown".to_string());
+    let origin_cn = c.origin_region_cn.clone().unwrap_or_else(|| "未知".to_string());
+
+    // Parse bounty - take the highest value
+    let bounty = c.bounty
+        .iter()
+        .filter_map(|b| b.replace(',', "").parse::<u64>().ok())
+        .max()
+        .unwrap_or(0);
+
+    // Parse age - extract numbers and take the highest
+    let age = extract_max_number(&c.age);
+
+    // Parse height - extract cm values and take the highest
+    let height = extract_max_height(&c.height);
+
+    // Get status (default to "Unknown")
+    let status = c.status.clone().unwrap_or_else(|| "Unknown".to_string());
+
+    // Get devil fruit info
+    let (devil_fruit_name, devil_fruit_type) = if let Some(df) = &c.devil_fruit {
+        (df.name.clone(), df.fruit_type.clone())
+    } else {
+        (None, None)
+    };
+
+    // Get devil fruit CN info
+    let devil_fruit_name_cn = c.devil_fruit_cn.as_ref().and_then(|df| df.name.clone());
+    let devil_fruit_type_cn = c.devil_fruit_cn.as_ref().and_then(|df| df.fruit_type.clone());
+
+    // Build occupations (omit if empty)
+    let occupations = if c.occupations.is_empty() {
+        None
+    } else {
+        Some(c.occupations.clone())
+    };
+
+    // Build residence (omit if empty)
+    let residence = if c.residence.is_empty() {
+        None
+    } else {
+        Some(c.residence.clone())
+    };
+
+    // Get Haki (required field, default to empty array)
+    let haki = c.haki.clone().unwrap_or_default();
+    let haki_cn = c.haki_cn.clone().unwrap_or_default();
+
+    // Build CN block
+    let cn = SanitizedCn {
+        name: c.name_cn.clone().unwrap_or_else(|| c.name.clone()),
+        affiliations: c.affiliations_cn.clone().unwrap_or_default(),
+        origin: origin_cn,
+        debut_arc: debut_arc_cn,
+        devil_fruit_name: devil_fruit_name_cn,
+        devil_fruit_type: devil_fruit_type_cn,
+        haki: haki_cn,
+    };
+
+    Some(SanitizedCharacter {
+        name: c.name.clone(),
+        japanese_name: c.japanese_name.clone().unwrap_or_default(),
+        image: c.image.clone().unwrap_or_default(),
+        debut_chapter,
+        debut_arc,
+        affiliations: c.affiliations.clone(),
+        occupations,
+        residence,
+        origin,
+        bounty,
+        status,
+        age,
+        birthday: c.birthday.clone(),
+        height,
+        devil_fruit_name,
+        devil_fruit_type,
+        haki,
+        cn,
+    })
+}
+
+/// Extract the maximum number from a list of age strings like ["21 (debut)", "23 (after timeskip)"]
+fn extract_max_number(values: &[String]) -> Option<u32> {
+    let num_regex = Regex::new(r"(\d+)").unwrap();
+    
+    values
+        .iter()
+        .filter_map(|s| {
+            num_regex.captures(s).and_then(|caps| {
+                caps.get(1)?.as_str().parse::<u32>().ok()
+            })
+        })
+        .max()
+}
+
+/// Extract the maximum height in cm from strings like ["195 cm", "200 cm"]
+fn extract_max_height(values: &[String]) -> Option<u32> {
+    let height_regex = Regex::new(r"(\d+)\s*cm").unwrap();
+    
+    values
+        .iter()
+        .filter_map(|s| {
+            height_regex.captures(s).and_then(|caps| {
+                caps.get(1)?.as_str().parse::<u32>().ok()
+            })
+        })
+        .max()
 }

@@ -1,0 +1,40 @@
+{
+  "affiliations": [
+    "Blackbeard Pirates",
+    "Impel Down (former)"
+  ],
+  "age": 42,
+  "birthday": "September 30th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "黑胡子海贼团",
+      "推进城"
+    ],
+    "debut_arc": "顶上战争",
+    "devil_fruit_name": "岛屿果实",
+    "devil_fruit_type": "超人系",
+    "haki": [],
+    "name": "阿瓦洛·皮萨罗",
+    "origin": "北海"
+  },
+  "debut_arc": "Marineford",
+  "debut_chapter": 575,
+  "devil_fruit_name": "Isle-Isle Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [],
+  "height": 505,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/e/ef/Avalo_Pizarro_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/268?cb=20200112042123",
+  "japanese_name": "アバロ・ピサロ",
+  "name": "Avalo Pizarro",
+  "occupations": [
+    "Titanic Captain (Captain of the Fourth Ship)",
+    "Prisoner of the Great Prison (former)",
+    "King (former)"
+  ],
+  "origin": "North Blue",
+  "residence": [
+    "Hachinosu"
+  ],
+  "status": "Alive"
+}

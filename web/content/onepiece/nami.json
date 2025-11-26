@@ -1,0 +1,47 @@
+{
+  "affiliations": [
+    "Straw Hat Pirates",
+    "Straw Hat Grand Fleet",
+    "Arlong Pirates (defected)",
+    "Ganzack Pirates (movie, former)",
+    "Golden Lion Pirates (movie, former)",
+    "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
+  ],
+  "age": 20,
+  "birthday": "July 3rd",
+  "bounty": 366000000,
+  "cn": {
+    "affiliations": [
+      "草帽海贼团",
+      "草帽大船团",
+      "阿龙海贼团",
+      "甘扎克海贼团",
+      "黄金狮子海贼团",
+      "忍者·海贼·米ンク族·武士同盟"
+    ],
+    "debut_arc": "橘子镇",
+    "haki": [],
+    "name": "娜美",
+    "origin": "东海"
+  },
+  "debut_arc": "Orange Town",
+  "debut_chapter": 8,
+  "haki": [],
+  "height": 170,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/6/68/Nami_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/268?cb=20231229102046",
+  "japanese_name": "ナミ",
+  "name": "Nami",
+  "occupations": [
+    "Navigator",
+    "Senior Officer",
+    "Thief",
+    "Pirate Officer (Arlong Pirates, former)",
+    "Kunoichi (temporary)"
+  ],
+  "origin": "East Blue",
+  "residence": [
+    "Oykot Kingdom (former) Cocoyasi Village (former)",
+    "Weatheria (former, temporary)"
+  ],
+  "status": "Alive"
+}

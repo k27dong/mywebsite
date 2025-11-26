@@ -1,0 +1,37 @@
+{
+  "affiliations": [
+    "Arlong Pirates",
+    "Sun Pirates (former)",
+    "Impel Down (former)"
+  ],
+  "age": 41,
+  "birthday": "May 3rd",
+  "bounty": 20000000,
+  "cn": {
+    "affiliations": [
+      "阿龙海贼团",
+      "太阳海贼团",
+      "推进城"
+    ],
+    "debut_arc": "可可亚西村篇",
+    "haki": [],
+    "name": "阿龙",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Arlong Park",
+  "debut_chapter": 69,
+  "haki": [],
+  "height": 263,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/0/01/Arlong_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230403145629",
+  "japanese_name": "アーロン",
+  "name": "Arlong",
+  "occupations": [
+    "Pirate Captain",
+    "Prisoner of the Great Prison (former)"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Fish-Man District (former) Arlong Park (former)"
+  ],
+  "status": "Alive"
+}

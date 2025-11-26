@@ -1,0 +1,45 @@
+{
+  "affiliations": [
+    "Charlotte Family",
+    "Big Mom Pirates"
+  ],
+  "age": 50,
+  "birthday": "March 14th",
+  "bounty": 700000000,
+  "cn": {
+    "affiliations": [
+      "夏洛特家族",
+      "大妈海贼团"
+    ],
+    "debut_arc": "蛋糕岛篇",
+    "devil_fruit_name": "舔舔果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "夏洛特·佩罗斯佩罗",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Whole Cake Island",
+  "debut_chapter": 834,
+  "devil_fruit_name": "Lick-Lick Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 333,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/7/7e/Charlotte_Perospero_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20211101122146",
+  "japanese_name": "シャーロット・ペロスペロー",
+  "name": "Charlotte Perospero",
+  "occupations": [
+    "Pirate Officer",
+    "Minister of Candy"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Candy Island"
+  ],
+  "status": "Alive"
+}

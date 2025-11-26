@@ -1,0 +1,47 @@
+{
+  "affiliations": [
+    "Kouzuki Family",
+    "Nine Red Scabbards",
+    "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
+  ],
+  "age": 41,
+  "birthday": "June 14th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "光月家",
+      "赤鞘九人男",
+      "忍者·海贼·米ンク族·武士同盟"
+    ],
+    "debut_arc": "和之国篇·第一幕",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "川松",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Wano Country Act 1",
+  "debut_chapter": 920,
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 271,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/5/5e/Kawamatsu_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20201215013006",
+  "japanese_name": "河松",
+  "name": "Kawamatsu",
+  "occupations": [
+    "Daimyo",
+    "Retainer of the Kouzuki Family",
+    "Samurai",
+    "Sumo Wrestler",
+    "Highway Robber (former)"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Wano Country (Kuri)",
+    "Wano Country (Hakumai)"
+  ],
+  "status": "Alive"
+}

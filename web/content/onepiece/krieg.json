@@ -1,0 +1,29 @@
+{
+  "affiliations": [
+    "Krieg Pirates"
+  ],
+  "age": 44,
+  "birthday": "September 19th",
+  "bounty": 17000000,
+  "cn": {
+    "affiliations": [
+      "克里克海贼团"
+    ],
+    "debut_arc": "海上餐厅篇",
+    "haki": [],
+    "name": "克里克",
+    "origin": "东海"
+  },
+  "debut_arc": "Baratie",
+  "debut_chapter": 45,
+  "haki": [],
+  "height": 243,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/b/bb/Krieg_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230123170612",
+  "japanese_name": "クリーク",
+  "name": "Krieg",
+  "occupations": [
+    "Pirate Captain / Admiral"
+  ],
+  "origin": "East Blue",
+  "status": "Alive"
+}

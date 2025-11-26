@@ -1,0 +1,46 @@
+{
+  "affiliations": [
+    "Big Mom Pirates",
+    "Nox Pirates (former)"
+  ],
+  "age": 27,
+  "birthday": "April 11th",
+  "bounty": 330000000,
+  "cn": {
+    "affiliations": [
+      "大妈海贼团",
+      "诺克斯海贼团"
+    ],
+    "debut_arc": "鱼人岛篇",
+    "devil_fruit_name": "龟龟果实",
+    "devil_fruit_type": "动物系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "佩科姆斯",
+    "origin": "未知"
+  },
+  "debut_arc": "Fish-Man Island",
+  "debut_chapter": 651,
+  "devil_fruit_name": "Turtle-Turtle Fruit",
+  "devil_fruit_type": "Zoan",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 232,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/1/15/Pekoms_Anime_Infobox.png/revision/latest/scale-to-width-down/267?cb=20221107145536",
+  "japanese_name": "ペコムズ",
+  "name": "Pekoms",
+  "occupations": [
+    "Combatant",
+    "Broker",
+    "Explorer (former)"
+  ],
+  "origin": "Unknown",
+  "residence": [
+    "Zou (former)"
+  ],
+  "status": "Unknown"
+}

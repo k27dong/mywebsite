@@ -1,0 +1,43 @@
+{
+  "affiliations": [
+    "Kuja Pirates (Gorgon Sisters)"
+  ],
+  "age": 30,
+  "birthday": "September 3rd",
+  "bounty": 40000000,
+  "cn": {
+    "affiliations": [
+      "库贾海贼团"
+    ],
+    "debut_arc": "女儿岛篇",
+    "devil_fruit_name": "蛇蛇果实·水蟒形态",
+    "devil_fruit_type": "动物系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "波雅·桑德森妮娅",
+    "origin": "女儿岛"
+  },
+  "debut_arc": "Amazon Lily",
+  "debut_chapter": 516,
+  "devil_fruit_name": "Snake-Snake Fruit Anaconda Model (VIZ); Snake-Snake Fruit: Model Anaconda (Funimation)",
+  "devil_fruit_type": "Zoan",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 453,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/8/8c/Boa_Sandersonia_Anime_Infobox.png/revision/latest/scale-to-width-down/267?cb=20141017161424",
+  "japanese_name": "ボア・サンダーソニア",
+  "name": "Boa Sandersonia",
+  "occupations": [
+    "Ruler of Amazon Lily",
+    "Slave (former)"
+  ],
+  "origin": "Amazon Lily",
+  "residence": [
+    "Amazon Lily Mary Geoise (former)"
+  ],
+  "status": "Alive"
+}

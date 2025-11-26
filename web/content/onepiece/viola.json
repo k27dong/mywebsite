@@ -1,0 +1,38 @@
+{
+  "affiliations": [
+    "Riku Family",
+    "Donquixote Pirates (defected)"
+  ],
+  "age": 29,
+  "birthday": "April 30th",
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "里库家",
+      "唐吉诃德家族"
+    ],
+    "debut_arc": "德雷斯罗萨",
+    "devil_fruit_name": "凝视果实",
+    "devil_fruit_type": "超人系",
+    "haki": [],
+    "name": "维奥拉",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Dressrosa",
+  "debut_chapter": 703,
+  "devil_fruit_name": "Glare-Glare Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [],
+  "height": 178,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/d/d7/Viola_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20221027021751",
+  "japanese_name": "ヴィオラ",
+  "name": "Viola",
+  "occupations": [
+    "Princess of Dressrosa",
+    "Pirate Officer (former)",
+    "Assassin (former)",
+    "Dancer"
+  ],
+  "origin": "Grand Line",
+  "status": "Alive"
+}

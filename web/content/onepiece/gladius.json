@@ -1,0 +1,37 @@
+{
+  "affiliations": [
+    "Donquixote Pirates"
+  ],
+  "age": 33,
+  "birthday": "August 6th",
+  "bounty": 31000000,
+  "cn": {
+    "affiliations": [
+      "唐吉诃德家族"
+    ],
+    "debut_arc": "庞克哈萨德",
+    "devil_fruit_name": "爆弹果实",
+    "devil_fruit_type": "超人系",
+    "haki": [],
+    "name": "格拉迪乌斯",
+    "origin": "北海"
+  },
+  "debut_arc": "Punk Hazard",
+  "debut_chapter": 682,
+  "devil_fruit_name": "Pop-Pop Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [],
+  "height": 260,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/3/3d/Gladius_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20231025224459",
+  "japanese_name": "グラディウス",
+  "name": "Gladius",
+  "occupations": [
+    "Pirate Officer"
+  ],
+  "origin": "North Blue",
+  "residence": [
+    "Spider Miles (former)",
+    "Dressrosa (former)"
+  ],
+  "status": "Alive"
+}

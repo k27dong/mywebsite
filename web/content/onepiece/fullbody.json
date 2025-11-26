@@ -1,0 +1,31 @@
+{
+  "affiliations": [
+    "Marines"
+  ],
+  "age": 28,
+  "birthday": "September 7th",
+  "bounty": 1000000,
+  "cn": {
+    "affiliations": [
+      "海军"
+    ],
+    "debut_arc": "海上餐厅篇",
+    "haki": [],
+    "name": "富尔巴迪",
+    "origin": "北海"
+  },
+  "debut_arc": "Baratie",
+  "debut_chapter": 43,
+  "haki": [],
+  "height": 184,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/9/96/Fullbody_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20230527233610",
+  "japanese_name": "フルボディ",
+  "name": "Fullbody",
+  "occupations": [
+    "Marine Lieutenant Commander",
+    "Marine Seaman Recruit (promoted)",
+    "Marine Lieutenant (demoted)"
+  ],
+  "origin": "North Blue",
+  "status": "Alive"
+}

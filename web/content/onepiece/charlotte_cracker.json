@@ -1,0 +1,45 @@
+{
+  "affiliations": [
+    "Charlotte Family",
+    "Big Mom Pirates"
+  ],
+  "age": 45,
+  "birthday": "February 28th",
+  "bounty": 860000000,
+  "cn": {
+    "affiliations": [
+      "夏洛特家族",
+      "大妈海贼团"
+    ],
+    "debut_arc": "蛋糕岛篇",
+    "devil_fruit_name": "比斯比斯果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "夏洛特·克力架",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Whole Cake Island",
+  "debut_chapter": 835,
+  "devil_fruit_name": "Bis-Bis Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 307,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/6/64/Charlotte_Cracker_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20170730021804",
+  "japanese_name": "シャーロット・クラッカー",
+  "name": "Charlotte Cracker",
+  "occupations": [
+    "Sweet Commander",
+    "Minister of Biscuit"
+  ],
+  "origin": "Grand Line",
+  "residence": [
+    "Biscuits Island"
+  ],
+  "status": "Alive"
+}

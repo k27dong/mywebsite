@@ -1,0 +1,35 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content"
+import MainLayout from "../layouts/MainLayout.astro"
+import Callout from "../components/Callout.astro"
+
+type Character = CollectionEntry<"onepiece">
+
+const characters: Character[] = (await getCollection("onepiece")).sort(
+  (a: Character, b: Character) => a.data.debut_chapter - b.data.debut_chapter,
+)
+---
+
+<MainLayout title="One Piece">
+  <Callout slot="callout">
+    <button
+      class="rounded-sm border border-black px-3 py-1 transition-colors
+        hover:bg-black hover:text-white"
+    >
+      EN / 中文
+    </button>
+  </Callout>
+
+  <section
+    class="mx-auto w-full max-w-screen-xl px-8 pb-12 md:px-10 md:pb-24 lg:px-24"
+  >
+    <div class="mx-auto max-w-5xl">
+      <p class="mb-4 text-center font-jbmono">
+        Total Characters: {characters.length}
+      </p>
+
+      <!-- Game content will go here -->
+    </div>
+  </section>
+</MainLayout>
+

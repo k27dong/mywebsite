@@ -1,0 +1,38 @@
+{
+  "affiliations": [
+    "Seraphim (Pacifista)"
+  ],
+  "age": 2,
+  "bounty": 0,
+  "cn": {
+    "affiliations": [
+      "撒拉芬"
+    ],
+    "debut_arc": "蛋头岛篇",
+    "devil_fruit_name": "泳泳果实",
+    "devil_fruit_type": "超人系",
+    "haki": [
+      "武装色",
+      "见闻色"
+    ],
+    "name": "S-鲨鱼",
+    "origin": "伟大航路"
+  },
+  "debut_arc": "Egghead",
+  "debut_chapter": 1065,
+  "devil_fruit_name": "Swim-Swim Fruit",
+  "devil_fruit_type": "Paramecia",
+  "haki": [
+    "armament",
+    "observation"
+  ],
+  "height": 320,
+  "image": "https://static.wikia.nocookie.net/onepiece/images/9/92/S-Shark_Anime_Infobox.png/revision/latest/scale-to-width-down/268?cb=20240407033821",
+  "japanese_name": "S （エス） -シャーク",
+  "name": "S-Shark",
+  "origin": "Grand Line",
+  "residence": [
+    "Egghead"
+  ],
+  "status": "Alive"
+}
