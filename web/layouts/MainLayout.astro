@@ -1,9 +1,10 @@
 ---
-import  SpeedInsights  from "@vercel/speed-insights/astro"
-import Base from "../components/Base.astro"
-import Header from "../components/Header.astro"
-import { SITE_TITLE, SITE_DESCRIPTION, SITE_PREVIEW_IMAGE } from "../consts"
-import Navigation from "../components/Navigation.astro"
+import SpeedInsights from "@vercel/speed-insights/astro"
+
+import Base from "@/components/Base.astro"
+import Header from "@/components/Header.astro"
+import Navigation from "@/components/Navigation.astro"
+import { SITE_DESCRIPTION, SITE_PREVIEW_IMAGE, SITE_TITLE } from "@/consts"
 
 interface Props {
   tab_title?: string

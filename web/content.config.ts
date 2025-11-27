@@ -1,5 +1,5 @@
-import { defineCollection, z } from "astro:content"
 import { glob } from "astro/loaders"
+import { defineCollection, z } from "astro:content"
 
 const posts = defineCollection({
   loader: glob({
@@ -134,10 +134,8 @@ const onepiece = defineCollection({
         devil_fruit_type: z.string().optional(),
         haki: z.array(z.string()),
       }),
-    })
+    }),
   ),
 })
 
 export const collections = { posts, booknotes, experiences, skills, projects, onepiece }
-
-

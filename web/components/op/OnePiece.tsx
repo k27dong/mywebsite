@@ -1,18 +1,15 @@
-import { useState, useMemo, useEffect } from "react"
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxOptions,
-  ComboboxOption,
-} from "@headlessui/react"
+import { Combobox, ComboboxInput, ComboboxOption, ComboboxOptions } from "@headlessui/react"
+import { useEffect, useMemo, useState } from "react"
 import pinyin from "tiny-pinyin"
-import charactersData from "../../content/onepiece/characters.json"
-import { API_BASE_URL } from "../../consts"
+
+import { API_BASE_URL } from "@/consts"
+import charactersData from "@/content/onepiece/characters.json"
+
 import {
-  type Language,
   type Character,
-  TranslationKey,
   CharacterField,
+  type Language,
+  TranslationKey,
   useTranslation,
 } from "./translations"
 
@@ -22,9 +19,7 @@ export default function OnePiece() {
   const [language, setLanguage] = useState<Language>("en")
   const t = useTranslation(language)
   const [query, setQuery] = useState("")
-  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
-    null,
-  )
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null)
   const [todaysCharacter, setTodaysCharacter] = useState<Character | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -41,13 +36,9 @@ export default function OnePiece() {
         const matchesJapanese = char.japanese_name?.includes(term)
         // Pinyin matching for Chinese names
         const chineseName = char.cn?.name || ""
-        const pinyinStr = pinyin
-          .convertToPinyin(chineseName, "", true)
-          .toLowerCase()
+        const pinyinStr = pinyin.convertToPinyin(chineseName, "", true).toLowerCase()
         const matchesPinyin = pinyinStr.includes(term)
-        return (
-          matchesEnglish || matchesChinese || matchesJapanese || matchesPinyin
-        )
+        return matchesEnglish || matchesChinese || matchesJapanese || matchesPinyin
       })
       .slice(0, 10)
   }, [query])
@@ -86,9 +77,7 @@ export default function OnePiece() {
         setError(null)
       } catch (err) {
         console.error("Failed to fetch today's character:", err)
-        setError(
-          err instanceof Error ? err.message : "Failed to fetch character",
-        )
+        setError(err instanceof Error ? err.message : "Failed to fetch character")
       } finally {
         setLoading(false)
       }
@@ -112,30 +101,26 @@ export default function OnePiece() {
             onChange={(e) => setQuery(e.target.value)}
             displayValue={() => query}
             placeholder={t(TranslationKey.SearchPlaceholder)}
-            className={`w-full rounded-none border border-black bg-white px-4 py-3
-              text-base outline-none focus:shadow-[0_0_0_0.5px_black]
-              ${t(TranslationKey.FontClass)}`}
+            className={`w-full rounded-none border border-black bg-white px-4 py-3 text-base
+              outline-none focus:shadow-[0_0_0_0.5px_black] ${t(TranslationKey.FontClass)}`}
             autoComplete="off"
           />
 
           {filteredCharacters.length > 0 && (
             <ComboboxOptions
-              className="absolute left-0 right-0 z-10 mt-1 max-h-96
-                overflow-y-auto rounded-sm border border-black bg-white shadow-lg"
+              className="absolute left-0 right-0 z-10 mt-1 max-h-96 overflow-y-auto rounded-sm
+                border border-black bg-white shadow-lg"
             >
               {filteredCharacters.map((char) => (
                 <ComboboxOption
                   key={char.name}
                   value={char}
-                  className="flex cursor-pointer items-center gap-3 border-b
-                    border-gray-200 px-4 py-3 transition-colors last:border-b-0
-                    hover:bg-gray-100 data-[focus]:bg-gray-100"
+                  className="flex cursor-pointer items-center gap-3 border-b border-gray-200 px-4
+                    py-3 transition-colors last:border-b-0 hover:bg-gray-100
+                    data-[focus]:bg-gray-100"
                 >
                   {/* Squared Image */}
-                  <div
-                    className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-sm
-                      bg-gray-200"
-                  >
+                  <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-sm bg-gray-200">
                     <img
                       src={char.image}
                       alt={char.name}
@@ -153,9 +138,7 @@ export default function OnePiece() {
                   <div
                     className={`min-w-0 flex-1 truncate text-base ${t(TranslationKey.FontClass)}`}
                   >
-                    <span className="font-bold">
-                      {t(CharacterField.Name, char)}
-                    </span>
+                    <span className="font-bold">{t(CharacterField.Name, char)}</span>
                     {t(CharacterField.Affiliation, char) && (
                       <span className="text-gray-500">
                         {" · "}
@@ -172,18 +155,12 @@ export default function OnePiece() {
 
       {/* Selected Character Display (for testing) */}
       {selectedCharacter && (
-        <div
-          className="mx-auto max-w-2xl rounded-sm border border-black bg-white
-            p-6"
-        >
+        <div className="mx-auto max-w-2xl rounded-sm border border-black bg-white p-6">
           <h3 className={`mb-4 text-lg font-bold ${t(TranslationKey.FontClass)}`}>
             {t(TranslationKey.SelectedCharacter)}:
           </h3>
           <div className="flex items-start gap-4">
-            <div
-              className="h-32 w-32 flex-shrink-0 overflow-hidden rounded-sm
-                bg-gray-200"
-            >
+            <div className="h-32 w-32 flex-shrink-0 overflow-hidden rounded-sm bg-gray-200">
               <img
                 src={selectedCharacter.image}
                 alt={selectedCharacter.name}
@@ -207,4 +184,3 @@ export default function OnePiece() {
     </div>
   )
 }
-

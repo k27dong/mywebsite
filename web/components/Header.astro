@@ -20,16 +20,13 @@ const get_scale = (text: string) => {
   // return 0.2 + 0.6 * Math.exp(-0.1 * len);
 }
 
-const compress_rate = Math.min(
-  ...title.split("\\n").map((line) => get_scale(line)),
-)
+const compress_rate = Math.min(...title.split("\\n").map((line) => get_scale(line)))
 ---
 
 <header class="grid">
   <h1
-    class="bold grid place-content-center overflow-hidden border-b border-black
-      px-[1.2rem] py-8 text-center font-semibold uppercase leading-[0.8]
-      sm:px-[2rem]"
+    class="bold grid place-content-center overflow-hidden border-b border-black px-[1.2rem] py-8
+      text-center font-semibold uppercase leading-[0.8] sm:px-[2rem]"
   >
     {
       title.split("\\n").map((line) => (

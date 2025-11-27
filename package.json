@@ -7,7 +7,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write \"web/**/*.{astro,ts,tsx,js,jsx,json,css}\"",
+    "format:check": "prettier --check \"web/**/*.{astro,ts,tsx,js,jsx,json,css}\""
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.12",
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-classnames": "^0.7.9",

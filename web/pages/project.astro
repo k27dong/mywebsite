@@ -1,8 +1,9 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content"
-import Callout from "../components/Callout.astro"
-import MainLayout from "../layouts/MainLayout.astro"
-import { GITHUB_LINK } from "../consts"
+
+import Callout from "@/components/Callout.astro"
+import { GITHUB_LINK } from "@/consts"
+import MainLayout from "@/layouts/MainLayout.astro"
 
 const get_mobile_tags = (languages: string[], limit = 16) => {
   let total = 0
@@ -44,13 +45,10 @@ const callout_mobile = `ls ~/projects/ | nl`
   </Callout>
 
   <div class="pb-10 sm:mt-[-2rem]">
-    <div
-      class="mx-auto mb-12 w-full max-w-lg px-4 pb-2 tracking-tighter sm:px-0"
-    >
+    <div class="mx-auto mb-12 w-full max-w-lg px-4 pb-2 tracking-tighter sm:px-0">
       <p class="text-left">
-        A collection of all kinds of project I've worked on during my free time.
-        Sometimes they solve real problems, other times they're just fun
-        experiments. Check out my
+        A collection of all kinds of project I've worked on during my free time. Sometimes they
+        solve real problems, other times they're just fun experiments. Check out my
         <a
           href={GITHUB_LINK}
           class="underline underline-offset-2"
@@ -62,10 +60,7 @@ const callout_mobile = `ls ~/projects/ | nl`
       </p>
     </div>
 
-    <section
-      class="grid w-full grid-cols-2 border-t border-black md:grid-cols-3
-        xl:grid-cols-4"
-    >
+    <section class="grid w-full grid-cols-2 border-t border-black md:grid-cols-3 xl:grid-cols-4">
       {
         projects.map((project, index) => (
           <a
@@ -100,9 +95,7 @@ const callout_mobile = `ls ~/projects/ | nl`
 
               <ul class="flex flex-wrap gap-2 text-xs text-gray-600 sm:hidden">
                 {project.data.mobile_tags.map((lang: string) => (
-                  <li class="rounded bg-gray-200 px-2 py-1 tracking-tighter">
-                    {lang}
-                  </li>
+                  <li class="rounded bg-gray-200 px-2 py-1 tracking-tighter">{lang}</li>
                 ))}
               </ul>
             </div>

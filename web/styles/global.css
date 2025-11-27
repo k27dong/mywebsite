@@ -40,8 +40,7 @@
 
 @font-face {
   font-family: "Noto Serif SC ExtraBold";
-  src:
-    url("/fonts/NotoSerifSC-ExtraBold-subset.woff2") format("woff2");
+  src: url("/fonts/NotoSerifSC-ExtraBold-subset.woff2") format("woff2");
   font-style: normal;
   font-display: swap;
 }
