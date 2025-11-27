@@ -1,68 +1,30 @@
 import { useState, useMemo, useEffect, useRef } from "react"
 import pinyin from "tiny-pinyin"
 import charactersData from "../../content/onepiece/characters.json"
-
-type Language = "en" | "cn"
-
-interface Character {
-  name: string
-  japanese_name?: string
-  image: string
-  debut_chapter?: number
-  debut_arc?: string
-  affiliations?: string[]
-  occupations?: string[]
-  origin?: string
-  bounty?: number
-  status?: string
-  age?: number
-  birthday?: string
-  height?: number
-  devil_fruit_name?: string
-  devil_fruit_type?: string
-  haki?: string[]
-  cn?: {
-    name?: string
-    affiliations?: string[]
-    origin?: string
-    debut_arc?: string
-    devil_fruit_name?: string
-    devil_fruit_type?: string
-    haki?: string[]
-  }
-}
+import { API_BASE_URL } from "../../consts"
+import {
+  type Language,
+  type Character,
+  TranslationKey,
+  CharacterField,
+  useTranslation,
+} from "./translations"
 
 const characters: Character[] = charactersData as Character[]
 
 export default function OnePiece() {
   const [language, setLanguage] = useState<Language>("en")
+  const t = useTranslation(language)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
   )
+  const [todaysCharacter, setTodaysCharacter] = useState<Character | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [showDropdown, setShowDropdown] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-
-  // Helper to strip bracketed text like "(former)" or "(temporarily)"
-  const stripBrackets = (text: string) =>
-    text.replace(/\s*\([^)]*\)/g, "").trim()
-
-  // Helper to get localized text
-  const getText = (char: Character, field: "name" | "affiliations") => {
-    if (language === "cn") {
-      if (field === "name") return char.cn?.name || char.name
-      if (field === "affiliations") {
-        const affiliation =
-          char.cn?.affiliations?.[0] || char.affiliations?.[0] || ""
-        return stripBrackets(affiliation)
-      }
-    }
-    if (field === "name") return char.name
-    if (field === "affiliations")
-      return stripBrackets(char.affiliations?.[0] || "")
-    return ""
-  }
 
   // Filter characters based on search term (supports English, Chinese, Japanese, and Pinyin)
   const filteredCharacters = useMemo(() => {
@@ -125,15 +87,104 @@ export default function OnePiece() {
   useEffect(() => {
     const toggleBtn = document.getElementById("language-toggle")
     if (toggleBtn) {
-      toggleBtn.textContent = language === "en" ? "EN" : "汉"
+      toggleBtn.textContent = t(TranslationKey.LanguageButton)
     }
-  }, [language])
+  }, [language, t])
 
-  // Font class based on language
-  const fontClass = language === "cn" ? "font-sourcehan" : "font-jbmono"
+  // Fetch today's character from backend
+  useEffect(() => {
+    const fetchTodaysCharacter = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch(`${API_BASE_URL}/api/op/today`)
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        const data = await response.json()
+        setTodaysCharacter(data)
+        setError(null)
+      } catch (err) {
+        console.error("Failed to fetch today's character:", err)
+        setError(
+          err instanceof Error ? err.message : "Failed to fetch character",
+        )
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchTodaysCharacter()
+  }, [])
 
   return (
     <div className="mx-auto max-w-5xl">
+      {/* Today's Character */}
+      <div className="mb-8">
+        {loading && (
+          <div className={`text-center ${t(TranslationKey.FontClass)}`}>
+            {t(TranslationKey.Loading)}
+          </div>
+        )}
+        {error && (
+          <div
+            className={`rounded-sm border border-red-500 bg-red-50 p-4 text-center
+              text-red-700 ${t(TranslationKey.FontClass)}`}
+          >
+            {t(TranslationKey.Error)}
+            {error}
+          </div>
+        )}
+        {todaysCharacter && !loading && !error && (
+          <div
+            className="mx-auto max-w-2xl rounded-sm border border-black bg-white
+              p-6"
+          >
+            <h3 className={`mb-4 text-lg font-bold ${t(TranslationKey.FontClass)}`}>
+              {t(TranslationKey.TodaysCharacter)}:
+            </h3>
+            <div className="flex items-start gap-4">
+              <div
+                className="h-32 w-32 flex-shrink-0 overflow-hidden rounded-sm
+                  bg-gray-200"
+              >
+                <img
+                  src={todaysCharacter.image}
+                  alt={todaysCharacter.name}
+                  className="h-full w-full object-cover"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget
+                    target.style.display = "none"
+                  }}
+                />
+              </div>
+              <div className={`flex-1 text-sm ${t(TranslationKey.FontClass)}`}>
+                <p>
+                  <strong>{t(TranslationKey.Name)}:</strong>{" "}
+                  {t(CharacterField.Name, todaysCharacter)}
+                </p>
+                <p>
+                  <strong>{t(TranslationKey.DebutChapter)}:</strong>{" "}
+                  {todaysCharacter.debut_chapter}
+                </p>
+                <p>
+                  <strong>{t(TranslationKey.Arc)}:</strong>{" "}
+                  {t(CharacterField.DebutArc, todaysCharacter)}
+                </p>
+                <p>
+                  <strong>{t(TranslationKey.Origin)}:</strong>{" "}
+                  {t(CharacterField.Origin, todaysCharacter)}
+                </p>
+                <p>
+                  <strong>{t(TranslationKey.Bounty)}:</strong>{" "}
+                  {todaysCharacter.bounty?.toLocaleString() || 0}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
       {/* Search Bar */}
       <div className="relative mx-auto mb-8 max-w-2xl">
         <input
@@ -145,12 +196,10 @@ export default function OnePiece() {
             setShowDropdown(true)
           }}
           onFocus={() => setShowDropdown(true)}
-          placeholder={
-            language === "en" ? "Search for a character..." : "搜索角色..."
-          }
+          placeholder={t(TranslationKey.SearchPlaceholder)}
           className={`w-full rounded-none border border-black bg-white px-4 py-3
             text-base outline-none focus:shadow-[0_0_0_0.5px_black]
-            ${fontClass}`}
+            ${t(TranslationKey.FontClass)}`}
           autoComplete="off"
         />
 
@@ -189,13 +238,15 @@ export default function OnePiece() {
 
                 {/* Name + First Affiliation (single line) */}
                 <div
-                  className={`min-w-0 flex-1 truncate text-base ${fontClass}`}
+                  className={`min-w-0 flex-1 truncate text-base ${t(TranslationKey.FontClass)}`}
                 >
-                  <span className="font-bold">{getText(char, "name")}</span>
-                  {getText(char, "affiliations") && (
+                  <span className="font-bold">
+                    {t(CharacterField.Name, char)}
+                  </span>
+                  {t(CharacterField.Affiliation, char) && (
                     <span className="text-gray-500">
                       {" · "}
-                      {getText(char, "affiliations")}
+                      {t(CharacterField.Affiliation, char)}
                     </span>
                   )}
                 </div>
@@ -211,8 +262,8 @@ export default function OnePiece() {
           className="mx-auto max-w-2xl rounded-sm border border-black bg-white
             p-6"
         >
-          <h3 className={`mb-4 text-lg font-bold ${fontClass}`}>
-            {language === "en" ? "Selected Character" : "已选角色"}:
+          <h3 className={`mb-4 text-lg font-bold ${t(TranslationKey.FontClass)}`}>
+            {t(TranslationKey.SelectedCharacter)}:
           </h3>
           <div className="flex items-start gap-4">
             <div
@@ -226,14 +277,14 @@ export default function OnePiece() {
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className={`flex-1 text-sm ${fontClass}`}>
+            <div className={`flex-1 text-sm ${t(TranslationKey.FontClass)}`}>
               <p>
-                <strong>{language === "en" ? "Name" : "名字"}:</strong>{" "}
-                {getText(selectedCharacter, "name")}
+                <strong>{t(TranslationKey.Name)}:</strong>{" "}
+                {t(CharacterField.Name, selectedCharacter)}
               </p>
               <p>
-                <strong>{language === "en" ? "Affiliation" : "所属"}:</strong>{" "}
-                {getText(selectedCharacter, "affiliations")}
+                <strong>{t(TranslationKey.Affiliation)}:</strong>{" "}
+                {t(CharacterField.Affiliation, selectedCharacter)}
               </p>
             </div>
           </div>
@@ -242,3 +293,4 @@ export default function OnePiece() {
     </div>
   )
 }
+
