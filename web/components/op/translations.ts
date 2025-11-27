@@ -135,7 +135,7 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   },
   [TranslationKey.LanguageButton]: {
     en: "EN",
-    cn: "汉",
+    cn: "漢",
   },
   [TranslationKey.FontClass]: {
     en: "font-jbmono",

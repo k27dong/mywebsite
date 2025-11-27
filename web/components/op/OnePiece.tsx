@@ -1,4 +1,10 @@
-import { useState, useMemo, useEffect, useRef } from "react"
+import { useState, useMemo, useEffect } from "react"
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxOptions,
+  ComboboxOption,
+} from "@headlessui/react"
 import pinyin from "tiny-pinyin"
 import charactersData from "../../content/onepiece/characters.json"
 import { API_BASE_URL } from "../../consts"
@@ -15,22 +21,19 @@ const characters: Character[] = charactersData as Character[]
 export default function OnePiece() {
   const [language, setLanguage] = useState<Language>("en")
   const t = useTranslation(language)
-  const [searchTerm, setSearchTerm] = useState("")
+  const [query, setQuery] = useState("")
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
   )
   const [todaysCharacter, setTodaysCharacter] = useState<Character | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [showDropdown, setShowDropdown] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
 
   // Filter characters based on search term (supports English, Chinese, Japanese, and Pinyin)
   const filteredCharacters = useMemo(() => {
-    if (!searchTerm.trim()) return []
+    if (!query.trim()) return []
 
-    const term = searchTerm.toLowerCase()
+    const term = query.toLowerCase()
     return characters
       .filter((char) => {
         const matchesEnglish = char.name.toLowerCase().includes(term)
@@ -47,29 +50,7 @@ export default function OnePiece() {
         )
       })
       .slice(0, 10)
-  }, [searchTerm])
-
-  const handleSelectCharacter = (character: Character) => {
-    setSelectedCharacter(character)
-    setSearchTerm("") // Clear input after selection
-    setShowDropdown(false)
-  }
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node) &&
-        inputRef.current &&
-        !inputRef.current.contains(e.target as Node)
-      ) {
-        setShowDropdown(false)
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [])
+  }, [query])
 
   // Connect to external language toggle button in Astro Callout
   useEffect(() => {
@@ -118,142 +99,75 @@ export default function OnePiece() {
 
   return (
     <div className="mx-auto max-w-5xl">
-      {/* Today's Character */}
-      <div className="mb-8">
-        {loading && (
-          <div className={`text-center ${t(TranslationKey.FontClass)}`}>
-            {t(TranslationKey.Loading)}
-          </div>
-        )}
-        {error && (
-          <div
-            className={`rounded-sm border border-red-500 bg-red-50 p-4 text-center
-              text-red-700 ${t(TranslationKey.FontClass)}`}
-          >
-            {t(TranslationKey.Error)}
-            {error}
-          </div>
-        )}
-        {todaysCharacter && !loading && !error && (
-          <div
-            className="mx-auto max-w-2xl rounded-sm border border-black bg-white
-              p-6"
-          >
-            <h3 className={`mb-4 text-lg font-bold ${t(TranslationKey.FontClass)}`}>
-              {t(TranslationKey.TodaysCharacter)}:
-            </h3>
-            <div className="flex items-start gap-4">
-              <div
-                className="h-32 w-32 flex-shrink-0 overflow-hidden rounded-sm
-                  bg-gray-200"
-              >
-                <img
-                  src={todaysCharacter.image}
-                  alt={todaysCharacter.name}
-                  className="h-full w-full object-cover"
-                  referrerPolicy="no-referrer"
-                  onError={(e) => {
-                    const target = e.currentTarget
-                    target.style.display = "none"
-                  }}
-                />
-              </div>
-              <div className={`flex-1 text-sm ${t(TranslationKey.FontClass)}`}>
-                <p>
-                  <strong>{t(TranslationKey.Name)}:</strong>{" "}
-                  {t(CharacterField.Name, todaysCharacter)}
-                </p>
-                <p>
-                  <strong>{t(TranslationKey.DebutChapter)}:</strong>{" "}
-                  {todaysCharacter.debut_chapter}
-                </p>
-                <p>
-                  <strong>{t(TranslationKey.Arc)}:</strong>{" "}
-                  {t(CharacterField.DebutArc, todaysCharacter)}
-                </p>
-                <p>
-                  <strong>{t(TranslationKey.Origin)}:</strong>{" "}
-                  {t(CharacterField.Origin, todaysCharacter)}
-                </p>
-                <p>
-                  <strong>{t(TranslationKey.Bounty)}:</strong>{" "}
-                  {todaysCharacter.bounty?.toLocaleString() || 0}
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
       {/* Search Bar */}
       <div className="relative mx-auto mb-8 max-w-2xl">
-        <input
-          ref={inputRef}
-          type="text"
-          value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value)
-            setShowDropdown(true)
+        <Combobox
+          value={selectedCharacter}
+          onChange={(char) => {
+            setSelectedCharacter(char)
+            setQuery("")
           }}
-          onFocus={() => setShowDropdown(true)}
-          placeholder={t(TranslationKey.SearchPlaceholder)}
-          className={`w-full rounded-none border border-black bg-white px-4 py-3
-            text-base outline-none focus:shadow-[0_0_0_0.5px_black]
-            ${t(TranslationKey.FontClass)}`}
-          autoComplete="off"
-        />
+        >
+          <ComboboxInput
+            onChange={(e) => setQuery(e.target.value)}
+            displayValue={() => query}
+            placeholder={t(TranslationKey.SearchPlaceholder)}
+            className={`w-full rounded-none border border-black bg-white px-4 py-3
+              text-base outline-none focus:shadow-[0_0_0_0.5px_black]
+              ${t(TranslationKey.FontClass)}`}
+            autoComplete="off"
+          />
 
-        {/* Dropdown */}
-        {showDropdown && filteredCharacters.length > 0 && (
-          <div
-            ref={dropdownRef}
-            className="absolute left-0 right-0 z-10 mt-1 max-h-96
-              overflow-y-auto rounded-sm border border-black bg-white shadow-lg"
-          >
-            {filteredCharacters.map((char, index) => (
-              <div
-                key={`${char.name}-${index}`}
-                onClick={() => handleSelectCharacter(char)}
-                className="flex cursor-pointer items-center gap-3 border-b
-                  border-gray-200 px-4 py-3 transition-colors last:border-b-0
-                  hover:bg-gray-100"
-              >
-                {/* Squared Image */}
-                <div
-                  className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-sm
-                    bg-gray-200"
+          {filteredCharacters.length > 0 && (
+            <ComboboxOptions
+              className="absolute left-0 right-0 z-10 mt-1 max-h-96
+                overflow-y-auto rounded-sm border border-black bg-white shadow-lg"
+            >
+              {filteredCharacters.map((char) => (
+                <ComboboxOption
+                  key={char.name}
+                  value={char}
+                  className="flex cursor-pointer items-center gap-3 border-b
+                    border-gray-200 px-4 py-3 transition-colors last:border-b-0
+                    hover:bg-gray-100 data-[focus]:bg-gray-100"
                 >
-                  <img
-                    src={char.image}
-                    alt={char.name}
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      const target = e.currentTarget
-                      target.style.display = "none"
-                    }}
-                  />
-                </div>
+                  {/* Squared Image */}
+                  <div
+                    className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-sm
+                      bg-gray-200"
+                  >
+                    <img
+                      src={char.image}
+                      alt={char.name}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const target = e.currentTarget
+                        target.style.display = "none"
+                      }}
+                    />
+                  </div>
 
-                {/* Name + First Affiliation (single line) */}
-                <div
-                  className={`min-w-0 flex-1 truncate text-base ${t(TranslationKey.FontClass)}`}
-                >
-                  <span className="font-bold">
-                    {t(CharacterField.Name, char)}
-                  </span>
-                  {t(CharacterField.Affiliation, char) && (
-                    <span className="text-gray-500">
-                      {" · "}
-                      {t(CharacterField.Affiliation, char)}
+                  {/* Name + First Affiliation (single line) */}
+                  <div
+                    className={`min-w-0 flex-1 truncate text-base ${t(TranslationKey.FontClass)}`}
+                  >
+                    <span className="font-bold">
+                      {t(CharacterField.Name, char)}
                     </span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+                    {t(CharacterField.Affiliation, char) && (
+                      <span className="text-gray-500">
+                        {" · "}
+                        {t(CharacterField.Affiliation, char)}
+                      </span>
+                    )}
+                  </div>
+                </ComboboxOption>
+              ))}
+            </ComboboxOptions>
+          )}
+        </Combobox>
       </div>
 
       {/* Selected Character Display (for testing) */}
