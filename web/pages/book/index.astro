@@ -1,7 +1,8 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content"
-import MainLayout from "../../layouts/MainLayout.astro"
-import Callout from "../../components/Callout.astro"
+
+import Callout from "@/components/Callout.astro"
+import MainLayout from "@/layouts/MainLayout.astro"
 
 type Booknote = CollectionEntry<"booknotes">
 
@@ -15,32 +16,22 @@ const total_notes = booknotes.reduce((acc, book) => acc + book.data.notenum, 0)
 <MainLayout title="Booknotes">
   <Callout slot="callout">{`Total: ${total_notes} entries`} </Callout>
 
-  <section
-    class="mx-auto w-full max-w-screen-xl px-8 pb-12 md:px-10 md:pb-24 lg:px-24"
-  >
+  <section class="mx-auto w-full max-w-screen-xl px-8 pb-12 md:px-10 md:pb-24 lg:px-24">
     <div class="mx-auto max-w-5xl">
       <table class="w-full table-auto border-collapse">
         <thead>
           <tr>
             <th class="w-5/12 px-2 py-2 text-left sm:w-auto sm:px-4">Title</th>
             <th class="w-5/12 px-1 py-2 text-left sm:w-auto sm:px-4">Author</th>
-            <th
-              class="w-1/6 whitespace-nowrap px-1 py-2 text-center sm:w-auto
-                sm:px-4"
-              >Count</th
-            >
+            <th class="w-1/6 whitespace-nowrap px-1 py-2 text-center sm:w-auto sm:px-4">Count</th>
             <th class="hidden px-4 py-2 text-center md:table-cell">Rating</th>
-            <th class="hidden max-w-[30vw] px-4 py-2 text-left md:table-cell"
-              >Tags</th
-            >
+            <th class="hidden max-w-[30vw] px-4 py-2 text-left md:table-cell">Tags</th>
           </tr>
         </thead>
         <tbody class="border-b border-gray-500 font-article">
           {
             booknotes.map((book, index) => (
-              <tr
-                class={`${index === 0 ? "border-black" : "border-gray-500"} border-t`}
-              >
+              <tr class={`${index === 0 ? "border-black" : "border-gray-500"} border-t`}>
                 <td class="w-3/6 overflow-hidden overflow-ellipsis px-2 py-2 text-base sm:w-auto sm:px-4">
                   <a
                     href={`/book/${book.data.title}/`}

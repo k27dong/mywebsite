@@ -1,9 +1,10 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content"
 import { Icon } from "astro-icon/components"
-import MainLayout from "../layouts/MainLayout.astro"
-import Callout from "../components/Callout.astro"
-import { RESUME_FILE, EDUCATION } from "../consts"
+
+import Callout from "@/components/Callout.astro"
+import { EDUCATION, RESUME_FILE } from "@/consts"
+import MainLayout from "@/layouts/MainLayout.astro"
 
 type Experience = CollectionEntry<"experiences">
 type Skill = CollectionEntry<"skills">
@@ -96,14 +97,14 @@ const callout_style = `
         href={current_job.data.link}
         target="_blank"
         rel="noopener noreferrer"
-        class="group flex flex-1 items-center justify-center border-b
-          border-black pb-2 pt-6 md:border-b-0 md:p-4"
+        class="group flex flex-1 items-center justify-center border-b border-black pb-2 pt-6
+          md:border-b-0 md:p-4"
       >
         <div class="text-center">
           <header class="mb-4">
             <div
-              class="mb-1 text-2xl font-bold tracking-tight
-                group-hover:underline group-hover:underline-offset-4"
+              class="mb-1 text-2xl font-bold tracking-tight group-hover:underline
+                group-hover:underline-offset-4"
             >
               {current_job.data.company}
             </div>
@@ -150,16 +151,11 @@ const callout_style = `
     </div>
 
     <div class="border-t border-black md:col-span-2">
-      <div
-        class="py-8 sm:border-l sm:border-r sm:border-black sm:px-10 md:mx-auto
-          md:max-w-[65vw]"
-      >
+      <div class="py-8 sm:border-l sm:border-r sm:border-black sm:px-10 md:mx-auto md:max-w-[65vw]">
         <ul>
           {
             past_experiences.map((exp: Experience, index) => (
-              <li
-                class={`mb-6 ${index > 0 ? "border-t border-gray-300 pt-6" : ""}`}
-              >
+              <li class={`mb-6 ${index > 0 ? "border-t border-gray-300 pt-6" : ""}`}>
                 <div class="px-8 md:p-0">
                   <header class="mb-4">
                     <div class="mb-1 flex items-center justify-between">

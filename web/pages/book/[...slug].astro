@@ -1,7 +1,8 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content"
-import MainLayout from "../../layouts/MainLayout.astro"
-import Callout from "../../components/Callout.astro"
+import { getCollection, type CollectionEntry } from "astro:content"
+
+import Callout from "@/components/Callout.astro"
+import MainLayout from "@/layouts/MainLayout.astro"
 
 type Booknote = CollectionEntry<"booknotes">
 
@@ -21,9 +22,7 @@ const { title, author, content } = Astro.props.data as Booknote["data"]
     {author}
   </Callout>
 
-  <article
-    class="w-full max-w-[1000px] px-[1.2rem] pb-10 sm:mx-auto md:px-24 lg:px-16"
-  >
+  <article class="w-full max-w-[1000px] px-[1.2rem] pb-10 sm:mx-auto md:px-24 lg:px-16">
     <div class="font-article font-medium sm:font-normal">
       {
         content.map((section) => (

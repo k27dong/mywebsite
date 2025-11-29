@@ -1,22 +1,20 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro"
-import Callout from "../../components/Callout.astro"
-import OnePiece from "../../components/op/OnePiece"
+import MainLayout from "@/layouts/MainLayout.astro"
+import Callout from "@/components/Callout.astro"
+import OnePiece from "@/components/op/OnePiece"
 ---
 
 <MainLayout title="One Piece" calloutPadding="px-3 py-1">
   <Callout slot="callout">
     <button
       id="language-toggle"
-      class="font-sourcehan text-xl font-medium underline decoration-1
-        underline-offset-2 hover:decoration-2"
+      class="font-sourcehan text-xl font-medium underline decoration-1 underline-offset-2
+        hover:decoration-2"
       >EN</button
     >
   </Callout>
 
-  <section
-    class="mx-auto w-full max-w-screen-xl px-8 pb-12 md:px-10 md:pb-24 lg:px-24"
-  >
+  <section class="mx-auto w-full max-w-screen-xl px-8 pb-12 md:px-10 md:pb-24 lg:px-24">
     <OnePiece client:load />
   </section>
 </MainLayout>

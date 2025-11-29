@@ -159,8 +159,7 @@ const characterFieldGetters: Record<
     match(language)
       .with("en", () => stripBrackets(char.affiliations?.[0] || ""))
       .with("cn", () => {
-        const affiliation =
-          char.cn?.affiliations?.[0] || char.affiliations?.[0] || ""
+        const affiliation = char.cn?.affiliations?.[0] || char.affiliations?.[0] || ""
         return stripBrackets(affiliation)
       })
       .exhaustive(),
@@ -186,11 +185,7 @@ function translateUI(key: TranslationKey, language: Language): string {
     .exhaustive()
 }
 
-function translateCharField(
-  field: CharacterField,
-  language: Language,
-  char: Character,
-): string {
+function translateCharField(field: CharacterField, language: Language, char: Character): string {
   return characterFieldGetters[field](char, language)
 }
 
@@ -204,7 +199,6 @@ export function useTranslation(language: Language) {
     }
     return translateUI(keyOrField as TranslationKey, language)
   }
-  
+
   return t
 }
-

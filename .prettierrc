@@ -1,5 +1,5 @@
 {
-  "printWidth": 80,
+  "printWidth": 100,
   "semi": false,
   "tabWidth": 2,
   "useTabs": false,
@@ -9,9 +9,14 @@
   "endingPosition": "absolute-with-indent",
   "experimentalOptimization": true,
   "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
     "prettier-plugin-astro",
     "prettier-plugin-tailwindcss",
     "prettier-plugin-classnames",
     "prettier-plugin-merge"
-  ]
+  ],
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^@/", "^[.]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderParserPlugins": ["typescript", "jsx"]
 }
