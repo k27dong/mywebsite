@@ -5,6 +5,7 @@ use std::collections::HashMap;
 use sitecore::blogpost::BlogPost;
 use sitecore::booknote::BookNote;
 use sitecore::gphrasehandler::{GSheetConfig, PhraseParams};
+use sitecore::onepiece::Character;
 use sitecore::parser::parse_date;
 use sitecore::playlist::Playlist;
 use sitecore::project::Project;
@@ -28,6 +29,7 @@ struct AppState {
     projects: Vec<Project>,
     playlists: HashMap<u32, Playlist>,
     gsheet_config: GSheetConfig,
+    op_characters: Vec<Character>,
 }
 
 #[get("/health")]
@@ -176,6 +178,18 @@ async fn get_phrase(query: web::Query<PhraseParams>, data: web::Data<AppState>) 
     HttpResponse::Ok().content_type("text/plain").body(phrase)
 }
 
+#[get("/api/op/today")]
+async fn get_today(data: web::Data<AppState>) -> impl Responder {
+    let characters = &data.op_characters;
+
+    match sitecore::onepiece::get_todays_character(characters) {
+        Some(character) => HttpResponse::Ok().json(character),
+        None => HttpResponse::InternalServerError().json(json!({
+            "error": "No characters available"
+        })),
+    }
+}
+
 #[cfg(not(feature = "shuttle"))]
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -184,8 +198,8 @@ async fn main() -> std::io::Result<()> {
 
     HttpServer::new(|| {
         let cors = Cors::default()
-            .allowed_origin("http://localhost:5173")
-            .allowed_origin("http://127.0.0.1:5173")
+            .allowed_origin("http://localhost:4321")
+            .allowed_origin("http://127.0.0.1:4321")
             .allowed_origin("https://kefan.me")
             .allowed_origin("https://www.kefan.me")
             .allowed_methods(vec!["GET"])
@@ -201,6 +215,7 @@ async fn main() -> std::io::Result<()> {
                 projects: sitecore::project::load_projects(),
                 playlists: sitecore::playlist::load_playlist(),
                 gsheet_config: sitecore::gphrasehandler::load_gsheet_config(),
+                op_characters: sitecore::onepiece::load_characters(),
             }))
             .service(health)
             .service(ready)
@@ -212,6 +227,7 @@ async fn main() -> std::io::Result<()> {
             .service(get_book_note)
             .service(get_playlist)
             .service(get_phrase)
+            .service(get_today)
             .service(
                 fs::Files::new("/", "./dist")
                     .index_file("index.html")
@@ -240,6 +256,7 @@ async fn actix_web(
             projects: sitecore::project::load_projects(),
             playlists: sitecore::playlist::load_playlist(),
             gsheet_config,
+            op_characters: sitecore::onepiece::load_characters(),
         }));
         cfg.service(health);
         cfg.service(ready);
@@ -251,6 +268,7 @@ async fn actix_web(
         cfg.service(get_book_note);
         cfg.service(get_playlist);
         cfg.service(get_phrase);
+        cfg.service(get_today);
     };
 
     Ok(config.into())

@@ -520,12 +520,11 @@ struct DevilFruitCn {
 }
 
 // ============================================================================
-// Sanitized output format (Layer 9)
+// Sanitized output format (Layer 13)
 // ============================================================================
 
-/// Chinese translations block
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct SanitizedCn {
+struct CharacterCn {
     name: String,
     affiliations: Vec<String>,
     origin: String,
@@ -537,29 +536,19 @@ struct SanitizedCn {
     haki: Vec<String>,
 }
 
-/// Clean, sanitized character format
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct SanitizedCharacter {
-    // Identity
+struct OutputCharacter {
     name: String,
     japanese_name: String,
     image: String,
-
-    // Debut
     debut_chapter: u32,
     debut_arc: String,
-
-    // Associations
     affiliations: Vec<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     occupations: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     residence: Option<Vec<String>>,
-
-    // Origin
     origin: String,
-
-    // Stats
     bounty: u64,
     status: String,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -568,18 +557,12 @@ struct SanitizedCharacter {
     birthday: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     height: Option<u32>,
-
-    // Devil Fruit
     #[serde(skip_serializing_if = "Option::is_none")]
     devil_fruit_name: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     devil_fruit_type: Option<String>,
-
-    // Haki
     haki: Vec<String>,
-
-    // Chinese translations
-    cn: SanitizedCn,
+    cn: CharacterCn,
 }
 
 // Translation cache structure
@@ -2020,7 +2003,7 @@ fn layer_13_sanitize() -> Result<()> {
     let characters: Vec<Character> = serde_json::from_str(&contents)?;
 
     // Transform each character
-    let sanitized: Vec<SanitizedCharacter> = characters
+    let sanitized: Vec<OutputCharacter> = characters
         .iter()
         .filter_map(|c| sanitize_character(c))
         .collect();
@@ -2052,8 +2035,8 @@ fn layer_13_sanitize() -> Result<()> {
     Ok(())
 }
 
-/// Transform a Character to SanitizedCharacter format
-fn sanitize_character(c: &Character) -> Option<SanitizedCharacter> {
+/// Transform a Character to OutputCharacter format
+fn sanitize_character(c: &Character) -> Option<OutputCharacter> {
     // Parse debut chapter (required)
     let debut_chapter = c.debut.as_ref()?.parse::<u32>().ok()?;
 
@@ -2111,7 +2094,7 @@ fn sanitize_character(c: &Character) -> Option<SanitizedCharacter> {
     let haki_cn = c.haki_cn.clone().unwrap_or_default();
 
     // Build CN block
-    let cn = SanitizedCn {
+    let cn = CharacterCn {
         name: c.name_cn.clone().unwrap_or_else(|| c.name.clone()),
         affiliations: c.affiliations_cn.clone().unwrap_or_default(),
         origin: origin_cn,
@@ -2121,7 +2104,7 @@ fn sanitize_character(c: &Character) -> Option<SanitizedCharacter> {
         haki: haki_cn,
     };
 
-    Some(SanitizedCharacter {
+    Some(OutputCharacter {
         name: c.name.clone(),
         japanese_name: c.japanese_name.clone().unwrap_or_default(),
         image: c.image.clone().unwrap_or_default(),

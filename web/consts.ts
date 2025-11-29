@@ -12,3 +12,6 @@ export const EDUCATION = {
   time: "2018 - 2023",
   link: "https://uwaterloo.ca/electrical-computer-engineering/"
 }
+
+// API Configuration
+export const API_BASE_URL = import.meta.env.PUBLIC_API_URL || "http://localhost:5000"
