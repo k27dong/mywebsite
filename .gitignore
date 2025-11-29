@@ -48,9 +48,8 @@ Secrets*.toml
 /.glyphhanger
 public/fonts/.char_count
 
-# One Piece scraper (generated)
-data/onepiece_characters.json
-data/onepiece_translation_cache.json
+# Helper data (generated)
+data/
 
 # Vercel
 .vercel

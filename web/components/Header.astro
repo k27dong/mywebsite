@@ -2,9 +2,10 @@
 interface Props {
   title: string
   callout: boolean
+  padding?: string
 }
 
-const { title, callout } = Astro.props
+const { title, callout, padding = "px-4 py-2" } = Astro.props
 
 const get_scale = (text: string) => {
   const len = text.length
@@ -45,7 +46,7 @@ const compress_rate = Math.min(
   {
     callout && (
       <div class="flex justify-self-center">
-        <small class={`border border-t-0 border-black px-4 py-2 text-sm`}>
+        <small class={`border border-t-0 border-black text-sm ${padding}`}>
           <slot name="callout" />
         </small>
       </div>
