@@ -8,6 +8,7 @@ import charactersData from "@/content/onepiece/characters.json"
 import {
   type Character,
   CharacterField,
+  getHakiDisplay,
   type Language,
   TranslationKey,
   useTranslation,
@@ -19,14 +20,16 @@ export default function OnePiece() {
   const [language, setLanguage] = useState<Language>("en")
   const t = useTranslation(language)
   const [query, setQuery] = useState("")
-  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null)
+  const [guessHistory, setGuessHistory] = useState<Character[]>([])
   const [todaysCharacter, setTodaysCharacter] = useState<Character | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   // Filter characters based on search term (supports English, Chinese, Japanese, and Pinyin)
   const filteredCharacters = useMemo(() => {
-    if (!query.trim()) return []
+    if (!query.trim()) {
+      return []
+    }
 
     const term = query.toLowerCase()
     return characters
@@ -34,7 +37,6 @@ export default function OnePiece() {
         const matchesEnglish = char.name.toLowerCase().includes(term)
         const matchesChinese = char.cn?.name?.includes(term)
         const matchesJapanese = char.japanese_name?.includes(term)
-        // Pinyin matching for Chinese names
         const chineseName = char.cn?.name || ""
         const pinyinStr = pinyin.convertToPinyin(chineseName, "", true).toLowerCase()
         const matchesPinyin = pinyinStr.includes(term)
@@ -43,23 +45,27 @@ export default function OnePiece() {
       .slice(0, 10)
   }, [query])
 
-  // Connect to external language toggle button in Astro Callout
+  // Handle image loading errors
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.style.display = "none"
+  }
+
+  // Connect to external language toggle button in Astro Callout and update text
   useEffect(() => {
     const toggleBtn = document.getElementById("language-toggle")
+    if (!toggleBtn) {
+      return
+    }
 
     const handleToggle = () => {
       setLanguage((prev) => (prev === "en" ? "cn" : "en"))
     }
 
-    toggleBtn?.addEventListener("click", handleToggle)
-    return () => toggleBtn?.removeEventListener("click", handleToggle)
-  }, [])
+    toggleBtn.textContent = t(TranslationKey.LanguageButton)
+    toggleBtn.addEventListener("click", handleToggle)
 
-  // Update button text when language changes
-  useEffect(() => {
-    const toggleBtn = document.getElementById("language-toggle")
-    if (toggleBtn) {
-      toggleBtn.textContent = t(TranslationKey.LanguageButton)
+    return () => {
+      toggleBtn.removeEventListener("click", handleToggle)
     }
   }, [language, t])
 
@@ -87,13 +93,15 @@ export default function OnePiece() {
   }, [])
 
   return (
-    <div className="mx-auto max-w-5xl">
+    <div className="mx-auto max-w-6xl">
       {/* Search Bar */}
       <div className="relative mx-auto mb-8 max-w-2xl">
         <Combobox
-          value={selectedCharacter}
-          onChange={(char) => {
-            setSelectedCharacter(char)
+          value={null}
+          onChange={(char: Character | null) => {
+            if (char) {
+              setGuessHistory((prev) => [char, ...prev])
+            }
             setQuery("")
           }}
         >
@@ -101,8 +109,9 @@ export default function OnePiece() {
             onChange={(e) => setQuery(e.target.value)}
             displayValue={() => query}
             placeholder={t(TranslationKey.SearchPlaceholder)}
-            className={`w-full rounded-none border border-black bg-white px-4 py-3 text-base
-              outline-none focus:shadow-[0_0_0_0.5px_black] ${t(TranslationKey.FontClass)}`}
+            className={`w-full rounded-none border border-black bg-white px-4 py-3 text-sm
+              sm:text-base md:text-lg outline-none focus:shadow-[0_0_0_0.5px_black]
+              ${t(TranslationKey.FontClass)}`}
             autoComplete="off"
           />
 
@@ -127,16 +136,14 @@ export default function OnePiece() {
                       className="h-full w-full object-cover"
                       loading="lazy"
                       referrerPolicy="no-referrer"
-                      onError={(e) => {
-                        const target = e.currentTarget
-                        target.style.display = "none"
-                      }}
+                      onError={handleImageError}
                     />
                   </div>
 
                   {/* Name + First Affiliation (single line) */}
                   <div
-                    className={`min-w-0 flex-1 truncate text-base ${t(TranslationKey.FontClass)}`}
+                    className={`min-w-0 flex-1 truncate text-sm sm:text-base md:text-lg
+                      ${t(TranslationKey.FontClass)}`}
                   >
                     <span className="font-bold">{t(CharacterField.Name, char)}</span>
                     {t(CharacterField.Affiliation, char) && (
@@ -153,32 +160,131 @@ export default function OnePiece() {
         </Combobox>
       </div>
 
-      {/* Selected Character Display (for testing) */}
-      {selectedCharacter && (
-        <div className="mx-auto max-w-2xl rounded-sm border border-black bg-white p-6">
-          <h3 className={`mb-4 text-lg font-bold ${t(TranslationKey.FontClass)}`}>
-            {t(TranslationKey.SelectedCharacter)}:
-          </h3>
-          <div className="flex items-start gap-4">
-            <div className="h-32 w-32 flex-shrink-0 overflow-hidden rounded-sm bg-gray-200">
-              <img
-                src={selectedCharacter.image}
-                alt={selectedCharacter.name}
-                className="h-full w-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className={`flex-1 text-sm ${t(TranslationKey.FontClass)}`}>
-              <p>
-                <strong>{t(TranslationKey.Name)}:</strong>{" "}
-                {t(CharacterField.Name, selectedCharacter)}
-              </p>
-              <p>
-                <strong>{t(TranslationKey.Affiliation)}:</strong>{" "}
-                {t(CharacterField.Affiliation, selectedCharacter)}
-              </p>
-            </div>
-          </div>
+      {/* Guess History Table */}
+      {guessHistory.length > 0 && (
+        <div className="mx-auto mt-8 border border-black bg-white">
+          <table
+            className={`w-full table-fixed border-collapse leading-snug
+              ${t(TranslationKey.FontClass)} ${t(TranslationKey.TableTextSize)}`}
+          >
+            <thead>
+              <tr className="border-b border-black bg-gray-50">
+                <th className="w-[3%] border-r border-black px-1 py-2 text-center font-bold">
+                  #
+                </th>
+                <th className="w-[5%] border-r border-black px-1 py-2 text-center font-bold" />
+                <th className="w-[12%] border-r border-black px-1 py-2 text-left font-bold">
+                  {t(TranslationKey.Name)}
+                </th>
+                <th className="w-[13%] border-r border-black px-1 py-2 text-left font-bold">
+                  {t(TranslationKey.Affiliation)}
+                </th>
+                <th className="w-[8%] border-r border-black px-1 py-2 text-left font-bold">
+                  {t(TranslationKey.Origin)}
+                </th>
+                <th className="w-[12%] border-r border-black px-1 py-2 text-left font-bold">
+                  {t(TranslationKey.Arc)}
+                </th>
+                <th className="w-[10%] border-r border-black px-1 py-2 text-center font-bold">
+                  {t(TranslationKey.DevilFruit)}
+                </th>
+                <th className="w-[8%] border-r border-black px-1 py-2 text-center font-bold">
+                  {t(TranslationKey.DevilFruitType)}
+                </th>
+                <th className="w-[8%] border-r border-black px-1 py-2 text-center font-bold">
+                  {t(TranslationKey.Haki)}
+                </th>
+                <th className="w-[11%] border-r border-black px-1 py-2 text-right font-bold">
+                  {t(TranslationKey.Bounty)}
+                </th>
+                <th className="w-[6%] border-r border-black px-1 py-2 text-center font-bold">
+                  {t(TranslationKey.Height)}
+                </th>
+                <th className="w-[4%] px-1 py-2 text-center font-bold">
+                  {t(TranslationKey.Alive)}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {guessHistory.map((char, index) => (
+                <tr
+                  key={`${char.name}-${guessHistory.length - index}`}
+                  className="border-b border-gray-200 transition-colors last:border-b-0
+                    hover:bg-gray-50"
+                >
+                  <td
+                    className="border-r border-black px-1 py-2 text-center text-gray-500"
+                  >
+                    {guessHistory.length - index}
+                  </td>
+                  <td className="border-r border-black px-1 py-1">
+                    <div className="mx-auto h-8 w-8 sm:h-10 sm:w-10 overflow-hidden rounded-sm bg-gray-200">
+                      <img
+                        src={char.image}
+                        alt={char.name}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        onError={handleImageError}
+                      />
+                    </div>
+                  </td>
+                  <td
+                    className="border-r border-black px-1 py-2 font-medium break-words"
+                  >
+                    {t(CharacterField.Name, char)}
+                  </td>
+                  <td
+                    className="border-r border-black px-1 py-2 text-gray-700 break-words"
+                  >
+                    {t(CharacterField.Affiliation, char) || "—"}
+                  </td>
+                  <td
+                    className="border-r border-black px-1 py-2 text-gray-700 break-words"
+                  >
+                    {t(CharacterField.Origin, char) || "—"}
+                  </td>
+                  <td
+                    className="border-r border-black px-1 py-2 text-gray-700 break-words"
+                  >
+                    {t(CharacterField.DebutArc, char) || "—"}
+                  </td>
+                  <td
+                    className="border-r border-black px-1 py-2 text-center text-gray-700 break-words"
+                  >
+                    {t(CharacterField.DevilFruit, char)}
+                  </td>
+                  <td
+                    className="border-r border-black px-1 py-2 text-center text-gray-700 break-words"
+                  >
+                    {t(CharacterField.DevilFruitType, char)}
+                  </td>
+                  <td className="border-r border-black px-1 py-2 text-gray-700">
+                    <div className="flex flex-col items-center justify-center">
+                      {getHakiDisplay(char, language).map((label, i) => (
+                        <div key={i} className="leading-tight">
+                          {label}
+                        </div>
+                      ))}
+                    </div>
+                  </td>
+                  <td
+                    className="border-r border-black px-1 py-2 text-right text-gray-700 break-words"
+                  >
+                    {t(CharacterField.Bounty, char)}
+                  </td>
+                  <td
+                    className="border-r border-black px-1 py-2 text-center text-gray-700 break-words"
+                  >
+                    {t(CharacterField.Height, char)}
+                  </td>
+                  <td className="px-1 py-2 text-center text-gray-700 break-words">
+                    {t(CharacterField.Alive, char)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>
