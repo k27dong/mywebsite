@@ -76,9 +76,9 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   [TranslationKey.Loading]: { en: "Loading...", cn: "加载中..." },
   [TranslationKey.Error]: { en: "Error: ", cn: "错误: " },
   [TranslationKey.Name]: { en: "Name", cn: "名字" },
-  [TranslationKey.Affiliation]: { en: "Affiliation", cn: "所属" },
+  [TranslationKey.Affiliation]: { en: "Affiliation", cn: "关系" },
   [TranslationKey.DebutChapter]: { en: "Debut Chapter", cn: "首次登场" },
-  [TranslationKey.Arc]: { en: "Arc", cn: "篇章" },
+  [TranslationKey.Arc]: { en: "Arc", cn: "登场篇章" },
   [TranslationKey.Origin]: { en: "Origin", cn: "出身" },
   [TranslationKey.Bounty]: { en: "Bounty ฿", cn: "赏金 ฿" },
   [TranslationKey.Status]: { en: "Status", cn: "状态" },
@@ -122,7 +122,7 @@ const formatBountyCn = (bounty: number): string => {
   )
 }
 
-const formatBounty = (bounty: number | undefined, lang: Language): string => {
+export const formatBounty = (bounty: number | undefined, lang: Language): string => {
   if (bounty == null) return "—"
   if (bounty === 0) return "0"
   return match(lang)
@@ -131,7 +131,7 @@ const formatBounty = (bounty: number | undefined, lang: Language): string => {
     .exhaustive()
 }
 
-const formatHeight = (height: number | undefined): string => {
+export const formatHeight = (height: number | undefined): string => {
   if (!height) return "—"
   if (height <= 220) return `${height}cm`
   return `${Math.floor(height / 100)}m${(height % 100).toString().padStart(2, "0")}`
