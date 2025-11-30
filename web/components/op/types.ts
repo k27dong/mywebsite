@@ -27,6 +27,14 @@ export enum TranslationKey {
   LanguageButton = "LanguageButton",
   FontClass = "FontClass",
   TableTextSize = "TableTextSize",
+
+  // Legend
+  LegendTitle = "LegendTitle",
+  LegendCorrect = "LegendCorrect",
+  LegendPartial = "LegendPartial",
+  LegendWrong = "LegendWrong",
+  LegendHigher = "LegendHigher",
+  LegendLower = "LegendLower",
 }
 
 export enum CharacterField {
