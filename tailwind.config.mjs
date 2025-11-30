@@ -72,6 +72,16 @@ export default {
           },
         },
       },
+      keyframes: {
+        pop: {
+          "0%": { transform: "scale(0.9)", opacity: "0" },
+          "50%": { transform: "scale(1.05)" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+      },
+      animation: {
+        pop: "pop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
