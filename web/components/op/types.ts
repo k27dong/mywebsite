@@ -35,6 +35,13 @@ export enum TranslationKey {
   LegendWrong = "LegendWrong",
   LegendHigher = "LegendHigher",
   LegendLower = "LegendLower",
+
+  // Success View
+  SuccessTitle = "SuccessTitle",
+  NextCharacterIn = "NextCharacterIn",
+  Seconds = "Seconds",
+  Minutes = "Minutes",
+  Hours = "Hours",
 }
 
 export enum CharacterField {

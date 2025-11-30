@@ -32,6 +32,13 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   [TranslationKey.LegendWrong]: { en: "Wrong", cn: "错误" },
   [TranslationKey.LegendHigher]: { en: "Higher", cn: "更高" },
   [TranslationKey.LegendLower]: { en: "Lower", cn: "更低" },
+
+  // Success View
+  [TranslationKey.SuccessTitle]: { en: "You found the character!", cn: "你找到了今日角色！" },
+  [TranslationKey.NextCharacterIn]: { en: "Next character in", cn: "下个角色刷新倒计时" },
+  [TranslationKey.Seconds]: { en: "s", cn: "秒" },
+  [TranslationKey.Minutes]: { en: "m", cn: "分" },
+  [TranslationKey.Hours]: { en: "h", cn: "时" },
 }
 
 // Utilities
