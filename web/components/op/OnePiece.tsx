@@ -193,7 +193,7 @@ export default function OnePiece() {
       <Legend t={t} />
 
       {hasWon && todaysCharacter ? (
-        <div className="mx-auto mb-8 max-w-2xl animate-fade-in">
+        <div className="mx-auto mb-8 max-w-2xl animate-pop">
           <div className="flex flex-col items-center gap-6 rounded-sm border border-emerald-200 bg-emerald-50 p-8 shadow-sm">
             <div className="text-center">
               <h2 className={`mb-2 text-2xl font-bold text-emerald-800 ${t(TranslationKey.FontClass)}`}>
