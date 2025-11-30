@@ -12,7 +12,8 @@ use sitecore::project::Project;
 
 cfg_if::cfg_if! {
     if #[cfg(feature = "shuttle")] {
-        use actix_web::web::ServiceConfig;
+        use actix_cors::Cors;
+        use actix_web::{http, web::ServiceConfig};
         use shuttle_actix_web::ShuttleActixWeb;
         use shuttle_runtime::SecretStore;
     }
@@ -250,6 +251,16 @@ async fn actix_web(
 
     let gsheet_config = sitecore::gphrasehandler::load_gsheet_config(&secret_store).await;
     let config = move |cfg: &mut ServiceConfig| {
+        let cors = Cors::default()
+            .allowed_origin("http://localhost:4321")
+            .allowed_origin("http://127.0.0.1:4321")
+            .allowed_origin("https://kefan.me")
+            .allowed_origin("https://www.kefan.me")
+            .allowed_methods(vec!["GET"])
+            .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT])
+            .allowed_header(http::header::CONTENT_TYPE)
+            .max_age(3600);
+
         cfg.app_data(web::Data::new(AppState {
             posts: sitecore::blogpost::load_blogpost(),
             notes: sitecore::booknote::load_booknote(),
@@ -258,17 +269,21 @@ async fn actix_web(
             gsheet_config,
             op_characters: sitecore::onepiece::load_characters(),
         }));
-        cfg.service(health);
-        cfg.service(ready);
-        cfg.service(get_blog_list);
-        cfg.service(get_post);
-        cfg.service(get_project_list);
-        cfg.service(get_salt_list);
-        cfg.service(get_total_note_num);
-        cfg.service(get_book_note);
-        cfg.service(get_playlist);
-        cfg.service(get_phrase);
-        cfg.service(get_today);
+        cfg.service(
+            web::scope("")
+                .wrap(cors)
+                .service(health)
+                .service(ready)
+                .service(get_blog_list)
+                .service(get_post)
+                .service(get_project_list)
+                .service(get_salt_list)
+                .service(get_total_note_num)
+                .service(get_book_note)
+                .service(get_playlist)
+                .service(get_phrase)
+                .service(get_today),
+        );
     };
 
     Ok(config.into())
