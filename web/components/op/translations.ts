@@ -1,73 +1,6 @@
 import { match } from "ts-pattern"
 
-export type Language = "en" | "cn"
-
-export enum TranslationKey {
-  // UI Labels
-  SearchPlaceholder = "SearchPlaceholder",
-  TodaysCharacter = "TodaysCharacter",
-  SelectedCharacter = "SelectedCharacter",
-  Loading = "Loading",
-  Error = "Error",
-  // Character Field Labels
-  Name = "Name",
-  Affiliation = "Affiliation",
-  DebutChapter = "DebutChapter",
-  Arc = "Arc",
-  Origin = "Origin",
-  Bounty = "Bounty",
-  Status = "Status",
-  Birthday = "Birthday",
-  Height = "Height",
-  DevilFruit = "DevilFruit",
-  DevilFruitType = "DevilFruitType",
-  Haki = "Haki",
-  Alive = "Alive",
-  // Language UI
-  LanguageButton = "LanguageButton",
-  FontClass = "FontClass",
-  TableTextSize = "TableTextSize",
-}
-
-export enum CharacterField {
-  Name = "Name",
-  Affiliation = "Affiliation",
-  DebutArc = "DebutArc",
-  Origin = "Origin",
-  DevilFruit = "DevilFruit",
-  DevilFruitType = "DevilFruitType",
-  Bounty = "Bounty",
-  Height = "Height",
-  Alive = "Alive",
-}
-
-export interface Character {
-  name: string
-  japanese_name?: string
-  image: string
-  debut_chapter?: number
-  debut_arc?: string
-  affiliations?: string[]
-  occupations?: string[]
-  origin?: string
-  bounty?: number
-  status?: string
-  age?: number
-  birthday?: string
-  height?: number
-  devil_fruit_name?: string
-  devil_fruit_type?: string
-  haki?: string[]
-  cn?: {
-    name?: string
-    affiliations?: string[]
-    origin?: string
-    debut_arc?: string
-    devil_fruit_name?: string
-    devil_fruit_type?: string
-    haki?: string[]
-  }
-}
+import { type Character, CharacterField, type Language, TranslationKey } from "./types"
 
 const translations: Record<TranslationKey, Record<Language, string>> = {
   [TranslationKey.SearchPlaceholder]: { en: "Search for a character...", cn: "搜索角色..." },
@@ -201,10 +134,14 @@ const characterFieldGetters: Record<CharacterField, (char: Character, lang: Lang
   [CharacterField.Height]: (char) => formatHeight(char.height),
 
   [CharacterField.Alive]: (char, lang) =>
-    match(lang)
-      .with("en", () => (char.status === "Alive" ? "Yes" : "No"))
-      .with("cn", () => (char.status === "Alive" ? "是" : "否"))
-      .exhaustive(),
+    match({ status: char.status, lang })
+      .with({ status: "Alive", lang: "en" }, () => "Yes")
+      .with({ status: "Alive", lang: "cn" }, () => "是")
+      .with({ status: "Deceased", lang: "en" }, () => "No")
+      .with({ status: "Deceased", lang: "cn" }, () => "否")
+      .with({ status: "Unknown", lang: "en" }, () => "?")
+      .with({ status: "Unknown", lang: "cn" }, () => "？")
+      .otherwise(() => "?"),
 }
 
 // Translation hook

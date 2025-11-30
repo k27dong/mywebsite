@@ -6,118 +6,31 @@ import { match } from "ts-pattern"
 import { API_BASE_URL } from "@/consts"
 import charactersData from "@/content/onepiece/characters.json"
 
+import { getHakiDisplay, useTranslation } from "./translations"
 import {
   type Character,
   CharacterField,
+  type ComparisonResult,
   type Language,
   TranslationKey,
-  getHakiDisplay,
-  useTranslation,
-} from "./translations"
+} from "./types"
+import {
+  compareAffiliation,
+  compareAlive,
+  compareDebutArc,
+  compareHaki,
+  compareNumber,
+  compareStrings,
+  getMatchBgClass,
+} from "./utils"
 
 const characters: Character[] = charactersData as Character[]
 
-// Match result types for cell coloring
-type MatchResult = "correct" | "partial" | "wrong"
-
-// Numeric comparison result - a closed set of outcomes
-type NumericComparison =
-  | { result: "correct" }
-  | { result: "wrong"; direction: "up" }
-  | { result: "wrong"; direction: "down" }
-  | { result: "wrong" }
-  | { result: "none" }
-
-// Comparison helpers
-const compareStrings = (guess: string | undefined, answer: string | undefined): MatchResult => {
-  const g = (guess || "").toLowerCase().trim()
-  const a = (answer || "").toLowerCase().trim()
-  if (g === a) return "correct"
-  return "wrong"
-}
-
-const compareAffiliation = (guess: Character, answer: Character): MatchResult => {
-  const guessAff = guess.affiliations?.[0]?.toLowerCase().trim() || ""
-  const answerAff = answer.affiliations?.[0]?.toLowerCase().trim() || ""
-  return guessAff === answerAff ? "correct" : "wrong"
-}
-
-const compareHaki = (guess: Character, answer: Character): MatchResult => {
-  const guessHaki = new Set((guess.haki || []).map((h) => h.toLowerCase()))
-  const answerHaki = new Set((answer.haki || []).map((h) => h.toLowerCase()))
-
-  const bothEmpty = guessHaki.size === 0 && answerHaki.size === 0
-  const setsIdentical =
-    guessHaki.size === answerHaki.size && [...guessHaki].every((h) => answerHaki.has(h))
-  const hasOverlap = [...guessHaki].some((h) => answerHaki.has(h))
-
-  return match({ bothEmpty, setsIdentical, hasOverlap })
-    .with({ bothEmpty: true }, () => "correct" as const)
-    .with({ setsIdentical: true }, () => "correct" as const)
-    .with({ hasOverlap: true }, () => "partial" as const)
-    .otherwise(() => "wrong" as const)
-}
-
-const compareAlive = (guess: Character, answer: Character): MatchResult => {
-  return guess.status === answer.status ? "correct" : "wrong"
-}
-
-const compareNumber = (
-  guess: number | undefined,
-  answer: number | undefined,
-): NumericComparison => {
-  // Don't compare if either value is null/undefined
-  if (guess == null || answer == null) return { result: "none" }
-  if (guess === answer) return { result: "correct" }
-  if (guess < answer) return { result: "wrong", direction: "up" }
-  return { result: "wrong", direction: "down" }
-}
-
-const compareDebutArc = (guess: Character, answer: Character): NumericComparison => {
-  const guessArc = (guess.debut_arc || "").toLowerCase().trim()
-  const answerArc = (answer.debut_arc || "").toLowerCase().trim()
-
-  // Exact arc match
-  if (guessArc === answerArc && guessArc !== "") return { result: "correct" }
-
-  // If arcs differ, compare by chapter number
-  const guessChapter = guess.debut_chapter
-  const answerChapter = answer.debut_chapter
-
-  // Can't compare if either chapter is missing
-  if (guessChapter == null || answerChapter == null) return { result: "wrong" }
-
-  if (guessChapter === answerChapter) return { result: "correct" }
-  if (guessChapter < answerChapter) return { result: "wrong", direction: "up" }
-  return { result: "wrong", direction: "down" }
-}
-
-const DirectionArrow = ({ comparison }: { comparison: NumericComparison }) =>
+const DirectionArrow = ({ comparison }: { comparison: ComparisonResult }) =>
   match(comparison)
     .with({ direction: "up" }, () => "↑")
     .with({ direction: "down" }, () => "↓")
-    .with({ result: "correct" }, () => null)
-    .with({ result: "wrong" }, () => null)
-    .with({ result: "none" }, () => null)
-    .exhaustive()
-
-// Get background color class based on match result
-const getMatchBgClass = (result: MatchResult): string =>
-  match(result)
-    .with("correct", () => "bg-emerald-400/90 text-emerald-950")
-    .with("partial", () => "bg-amber-300/90 text-amber-950")
-    .with("wrong", () => "bg-slate-300 text-slate-950")
-    .exhaustive()
-
-// Get background color class for numeric comparisons with direction
-const getNumericMatchBgClass = (comparison: NumericComparison): string =>
-  match(comparison)
-    .with({ result: "correct" }, () => "bg-emerald-400/90 text-emerald-950")
-    .with({ direction: "up" }, () => "bg-sky-500/20 text-sky-900")
-    .with({ direction: "down" }, () => "bg-rose-500/20 text-rose-900")
-    .with({ result: "wrong" }, () => "bg-slate-300 text-slate-950")
-    .with({ result: "none" }, () => "text-gray-700")
-    .exhaustive()
+    .otherwise(() => null)
 
 export default function OnePiece() {
   const [language, setLanguage] = useState<Language>("en")
@@ -354,7 +267,7 @@ export default function OnePiece() {
                   <td
                     className={`break-words border-r border-black px-1 py-2 ${
                       todaysCharacter
-                        ? getNumericMatchBgClass(compareDebutArc(char, todaysCharacter))
+                        ? getMatchBgClass(compareDebutArc(char, todaysCharacter))
                         : "text-gray-700"
                     }`}
                   >
@@ -407,7 +320,7 @@ export default function OnePiece() {
                   <td
                     className={`break-words border-r border-black px-1 py-2 text-right ${
                       todaysCharacter
-                        ? getNumericMatchBgClass(compareNumber(char.bounty, todaysCharacter.bounty))
+                        ? getMatchBgClass(compareNumber(char.bounty, todaysCharacter.bounty))
                         : "text-gray-700"
                     }`}
                   >
@@ -425,7 +338,7 @@ export default function OnePiece() {
                   <td
                     className={`break-words border-r border-black px-2 py-2 text-center ${
                       todaysCharacter
-                        ? getNumericMatchBgClass(compareNumber(char.height, todaysCharacter.height))
+                        ? getMatchBgClass(compareNumber(char.height, todaysCharacter.height))
                         : "text-gray-700"
                     }`}
                   >
