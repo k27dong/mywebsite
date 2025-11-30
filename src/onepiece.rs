@@ -47,8 +47,8 @@ pub struct Character {
 }
 
 pub fn load_characters() -> Vec<Character> {
-    let file_content =
-        fs::read_to_string("data/op_sanitized.json").expect("Failed to read character file");
+    let file_content = fs::read_to_string("web/content/onepiece/characters.json")
+        .expect("Failed to read character file");
 
     let characters: Vec<Character> =
         serde_json::from_str(&file_content).expect("Failed to parse JSON");
