@@ -69,6 +69,44 @@ const Legend = ({ t }: { t: (key: TranslationKey) => string }) => (
   </div>
 )
 
+const Countdown = ({ t }: { t: (key: TranslationKey) => string }) => {
+  const [timeLeft, setTimeLeft] = useState<{ hours: number; minutes: number; seconds: number }>({
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  })
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date()
+      const tomorrow = new Date(now)
+      tomorrow.setUTCHours(24, 0, 0, 0)
+      const diff = tomorrow.getTime() - now.getTime()
+
+      if (diff > 0) {
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24)
+        const minutes = Math.floor((diff / (1000 * 60)) % 60)
+        const seconds = Math.floor((diff / 1000) % 60)
+        setTimeLeft({ hours, minutes, seconds })
+      }
+    }
+
+    calculateTimeLeft()
+    const timer = setInterval(calculateTimeLeft, 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <div className="flex flex-col items-center gap-1 rounded-sm bg-gray-100 p-4">
+      <div className="text-sm font-medium text-gray-600">{t(TranslationKey.NextCharacterIn)}</div>
+      <div className="font-mono text-xl font-bold tracking-wider text-gray-900 sm:text-2xl">
+        {String(timeLeft.hours).padStart(2, "0")}:{String(timeLeft.minutes).padStart(2, "0")}:
+        {String(timeLeft.seconds).padStart(2, "0")}
+      </div>
+    </div>
+  )
+}
+
 export default function OnePiece() {
   const [language, setLanguage] = useState<Language>("en")
   const t = useTranslation(language)
@@ -77,6 +115,11 @@ export default function OnePiece() {
   const [todaysCharacter, setTodaysCharacter] = useState<Character | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  const hasWon =
+    guessHistory.length > 0 &&
+    todaysCharacter &&
+    guessHistory[0].name === todaysCharacter.name
 
   // Filter characters based on search term (supports English, Chinese, Japanese, and Pinyin)
   const filteredCharacters = useMemo(() => {
@@ -149,88 +192,116 @@ export default function OnePiece() {
     <div className="mx-auto max-w-screen-xl">
       <Legend t={t} />
 
-      {/* Search Bar */}
-      <div className="relative mx-auto mb-8 max-w-2xl">
-        <Combobox
-          value={null}
-          onChange={(char: Character | null) => {
-            if (char) {
-              if (guessHistory.some((guess) => guess.name === char.name)) {
-                return
+      {hasWon && todaysCharacter ? (
+        <div className="mx-auto mb-8 max-w-2xl animate-fade-in">
+          <div className="flex flex-col items-center gap-6 rounded-sm border border-emerald-200 bg-emerald-50 p-8 shadow-sm">
+            <div className="text-center">
+              <h2 className={`mb-2 text-2xl font-bold text-emerald-800 ${t(TranslationKey.FontClass)}`}>
+                {t(TranslationKey.SuccessTitle)}
+              </h2>
+              <div className={`text-lg text-emerald-700 ${t(TranslationKey.FontClass)}`}>
+                <span className="font-bold">{t(CharacterField.Name, todaysCharacter)}</span>
+              </div>
+            </div>
+
+            <div className="h-32 w-32 overflow-hidden rounded-sm border-2 border-emerald-200 shadow-md sm:h-40 sm:w-40">
+              <img
+                src={todaysCharacter.image}
+                alt={todaysCharacter.name}
+                className="h-full w-full object-cover"
+                loading="lazy"
+                referrerPolicy="no-referrer"
+                onError={handleImageError}
+              />
+            </div>
+
+            <Countdown t={t} />
+          </div>
+        </div>
+      ) : (
+        /* Search Bar */
+        <div className="relative mx-auto mb-8 max-w-2xl">
+          <Combobox
+            value={null}
+            onChange={(char: Character | null) => {
+              if (char) {
+                if (guessHistory.some((guess) => guess.name === char.name)) {
+                  return
+                }
+                setGuessHistory((prev) => [char, ...prev])
               }
-              setGuessHistory((prev) => [char, ...prev])
-            }
-            setQuery("")
-          }}
-        >
-          <ComboboxInput
-            onChange={(e) => setQuery(e.target.value)}
-            displayValue={() => query}
-            placeholder={t(TranslationKey.SearchPlaceholder)}
-            className={`w-full rounded-none border border-black bg-white px-4 py-3 text-sm
+              setQuery("")
+            }}
+          >
+            <ComboboxInput
+              onChange={(e) => setQuery(e.target.value)}
+              displayValue={() => query}
+              placeholder={t(TranslationKey.SearchPlaceholder)}
+              className={`w-full rounded-none border border-black bg-white px-4 py-3 text-sm
               outline-none focus:shadow-[0_0_0_0.5px_black] sm:text-base md:text-lg
               ${t(TranslationKey.FontClass)}`}
-            autoComplete="off"
-          />
+              autoComplete="off"
+            />
 
-          {filteredCharacters.length > 0 && (
-            <ComboboxOptions
-              className="absolute left-0 right-0 z-10 mt-1 max-h-96 overflow-y-auto rounded-sm
+            {filteredCharacters.length > 0 && (
+              <ComboboxOptions
+                className="absolute left-0 right-0 z-10 mt-1 max-h-96 overflow-y-auto rounded-sm
                 border border-black bg-white shadow-lg"
-            >
-            {filteredCharacters.map((char) => {
-                const isGuessed = guessHistory.some((guess) => guess.name === char.name)
-                return (
-                  <ComboboxOption
-                    key={char.name}
-                    value={char}
-                    disabled={isGuessed}
-                    className={`flex cursor-pointer items-center gap-3 border-b border-gray-200 px-4
+              >
+                {filteredCharacters.map((char) => {
+                  const isGuessed = guessHistory.some((guess) => guess.name === char.name)
+                  return (
+                    <ComboboxOption
+                      key={char.name}
+                      value={char}
+                      disabled={isGuessed}
+                      className={`flex cursor-pointer items-center gap-3 border-b border-gray-200 px-4
                     py-3 transition-colors last:border-b-0
                     ${
                       isGuessed
                         ? "cursor-not-allowed bg-gray-50 opacity-60"
                         : "hover:bg-gray-100 data-[focus]:bg-gray-100"
                     }`}
-                  >
-                    {/* Squared Image */}
-                    <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-sm bg-gray-200">
-                      <img
-                        src={char.image}
-                        alt={char.name}
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                        onError={handleImageError}
-                      />
-                    </div>
-
-                    {/* Name + First Affiliation (single line) */}
-                    <div
-                      className={`min-w-0 flex-1 truncate text-sm sm:text-base md:text-lg
-                    ${t(TranslationKey.FontClass)}`}
                     >
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold">{t(CharacterField.Name, char)}</span>
-                        {isGuessed && (
-                          <span className="rounded bg-gray-200 px-1.5 py-0.5 text-xs text-gray-600">
-                            {t(TranslationKey.SelectedCharacter)}
+                      {/* Squared Image */}
+                      <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-sm bg-gray-200">
+                        <img
+                          src={char.image}
+                          alt={char.name}
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
+                          onError={handleImageError}
+                        />
+                      </div>
+
+                      {/* Name + First Affiliation (single line) */}
+                      <div
+                        className={`min-w-0 flex-1 truncate text-sm sm:text-base md:text-lg
+                    ${t(TranslationKey.FontClass)}`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold">{t(CharacterField.Name, char)}</span>
+                          {isGuessed && (
+                            <span className="rounded bg-gray-200 px-1.5 py-0.5 text-xs text-gray-600">
+                              {t(TranslationKey.SelectedCharacter)}
+                            </span>
+                          )}
+                        </div>
+                        {t(CharacterField.Affiliation, char) && (
+                          <span className="text-gray-500">
+                            {t(CharacterField.Affiliation, char)}
                           </span>
                         )}
                       </div>
-                      {t(CharacterField.Affiliation, char) && (
-                        <span className="text-gray-500">
-                          {t(CharacterField.Affiliation, char)}
-                        </span>
-                      )}
-                    </div>
-                  </ComboboxOption>
-                )
-              })}
-            </ComboboxOptions>
-          )}
-        </Combobox>
-      </div>
+                    </ComboboxOption>
+                  )
+                })}
+              </ComboboxOptions>
+            )}
+          </Combobox>
+        </div>
+      )}
 
       {/* Guess History Table */}
       {guessHistory.length > 0 && (
