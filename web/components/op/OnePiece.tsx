@@ -32,6 +32,43 @@ const DirectionArrow = ({ comparison }: { comparison: ComparisonResult }) =>
     .with({ direction: "down" }, () => "↓")
     .otherwise(() => null)
 
+const LegendItem = ({
+  colorClass,
+  label,
+  symbol,
+}: {
+  colorClass: string
+  label: string
+  symbol?: string
+}) => (
+  <div className="flex items-center gap-2">
+    <div
+      className={`flex h-6 w-6 items-center justify-center rounded-sm border border-black/10 text-sm font-bold ${colorClass}`}
+    >
+      {symbol}
+    </div>
+    <span className="text-sm font-medium text-gray-700">{label}</span>
+  </div>
+)
+
+const Legend = ({ t }: { t: (key: TranslationKey) => string }) => (
+  <div className="mb-8 flex flex-wrap justify-center gap-x-6 gap-y-3 px-4">
+    <LegendItem colorClass="bg-emerald-400/90" label={t(TranslationKey.LegendCorrect)} />
+    <LegendItem colorClass="bg-amber-300/90" label={t(TranslationKey.LegendPartial)} />
+    <LegendItem colorClass="bg-slate-300" label={t(TranslationKey.LegendWrong)} />
+    <LegendItem
+      colorClass="bg-sky-500/20 text-sky-900"
+      label={t(TranslationKey.LegendHigher)}
+      symbol="↑"
+    />
+    <LegendItem
+      colorClass="bg-rose-500/20 text-rose-900"
+      label={t(TranslationKey.LegendLower)}
+      symbol="↓"
+    />
+  </div>
+)
+
 export default function OnePiece() {
   const [language, setLanguage] = useState<Language>("en")
   const t = useTranslation(language)
@@ -110,6 +147,8 @@ export default function OnePiece() {
 
   return (
     <div className="mx-auto max-w-screen-xl">
+      <Legend t={t} />
+
       {/* Search Bar */}
       <div className="relative mx-auto mb-8 max-w-2xl">
         <Combobox
@@ -333,7 +372,7 @@ export default function OnePiece() {
                           />
                         )}
                       </span>
-                    </div>
+                    </div>  
                   </td>
                   <td
                     className={`break-words border-r border-black px-2 py-2 text-center ${

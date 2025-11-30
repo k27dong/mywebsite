@@ -24,6 +24,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   [TranslationKey.LanguageButton]: { en: "EN", cn: "漢" },
   [TranslationKey.FontClass]: { en: "font-sans font-normal", cn: "font-sourcehan" },
   [TranslationKey.TableTextSize]: { en: "text-sm sm:text-base", cn: "text-sm sm:text-base" },
+
+  // Legend
+  [TranslationKey.LegendTitle]: { en: "Color Key", cn: "颜色说明" },
+  [TranslationKey.LegendCorrect]: { en: "Correct", cn: "正确" },
+  [TranslationKey.LegendPartial]: { en: "Partial", cn: "部分正确" },
+  [TranslationKey.LegendWrong]: { en: "Wrong", cn: "错误" },
+  [TranslationKey.LegendHigher]: { en: "Higher", cn: "更高" },
+  [TranslationKey.LegendLower]: { en: "Lower", cn: "更低" },
 }
 
 // Utilities
