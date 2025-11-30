@@ -116,6 +116,51 @@ export default function OnePiece() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
+  // Initialize state from local storage on mount
+  useEffect(() => {
+    try {
+      // Load language preference
+      const savedLang = localStorage.getItem("op_language") as Language | null
+      if (savedLang && (savedLang === "en" || savedLang === "cn")) {
+        setLanguage(savedLang)
+      }
+
+      const saved = localStorage.getItem("op_game_state")
+      if (saved) {
+        const { date, history } = JSON.parse(saved)
+        const today = new Date().toISOString().split("T")[0]
+        if (date === today) {
+          // Restore history if it's the same day
+          const restoredHistory = history
+            .map((name: string) => characters.find((c) => c.name === name))
+            .filter((c: Character | undefined): c is Character => c !== undefined)
+          setGuessHistory(restoredHistory)
+        } else {
+          // Clear storage if it's a new day
+          localStorage.removeItem("op_game_state")
+        }
+      }
+    } catch (e) {
+      console.error("Failed to load game state:", e)
+    }
+  }, [])
+
+  // Save state when history changes
+  useEffect(() => {
+    if (guessHistory.length > 0) {
+      const state = {
+        date: new Date().toISOString().split("T")[0],
+        history: guessHistory.map((c) => c.name),
+      }
+      localStorage.setItem("op_game_state", JSON.stringify(state))
+    }
+  }, [guessHistory])
+
+  // Save language preference
+  useEffect(() => {
+    localStorage.setItem("op_language", language)
+  }, [language])
+
   const hasWon =
     guessHistory.length > 0 &&
     todaysCharacter &&
