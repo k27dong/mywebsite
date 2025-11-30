@@ -5,7 +5,7 @@ import { type Character, CharacterField, type Language, TranslationKey } from ".
 const translations: Record<TranslationKey, Record<Language, string>> = {
   [TranslationKey.SearchPlaceholder]: { en: "Search for a character...", cn: "搜索角色..." },
   [TranslationKey.TodaysCharacter]: { en: "Today's Character", cn: "今日角色" },
-  [TranslationKey.SelectedCharacter]: { en: "Selected Character", cn: "已选角色" },
+  [TranslationKey.SelectedCharacter]: { en: "Selected", cn: "已选" },
   [TranslationKey.Loading]: { en: "Loading...", cn: "加载中..." },
   [TranslationKey.Error]: { en: "Error: ", cn: "错误: " },
   [TranslationKey.Name]: { en: "Name", cn: "名字" },

@@ -155,6 +155,9 @@ export default function OnePiece() {
           value={null}
           onChange={(char: Character | null) => {
             if (char) {
+              if (guessHistory.some((guess) => guess.name === char.name)) {
+                return
+              }
               setGuessHistory((prev) => [char, ...prev])
             }
             setQuery("")
@@ -175,41 +178,55 @@ export default function OnePiece() {
               className="absolute left-0 right-0 z-10 mt-1 max-h-96 overflow-y-auto rounded-sm
                 border border-black bg-white shadow-lg"
             >
-              {filteredCharacters.map((char) => (
-                <ComboboxOption
-                  key={char.name}
-                  value={char}
-                  className="flex cursor-pointer items-center gap-3 border-b border-gray-200 px-4
-                    py-3 transition-colors last:border-b-0 hover:bg-gray-100
-                    data-[focus]:bg-gray-100"
-                >
-                  {/* Squared Image */}
-                  <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-sm bg-gray-200">
-                    <img
-                      src={char.image}
-                      alt={char.name}
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                      referrerPolicy="no-referrer"
-                      onError={handleImageError}
-                    />
-                  </div>
-
-                  {/* Name + First Affiliation (single line) */}
-                  <div
-                    className={`min-w-0 flex-1 truncate text-sm sm:text-base md:text-lg
-                    ${t(TranslationKey.FontClass)}`}
+            {filteredCharacters.map((char) => {
+                const isGuessed = guessHistory.some((guess) => guess.name === char.name)
+                return (
+                  <ComboboxOption
+                    key={char.name}
+                    value={char}
+                    disabled={isGuessed}
+                    className={`flex cursor-pointer items-center gap-3 border-b border-gray-200 px-4
+                    py-3 transition-colors last:border-b-0
+                    ${
+                      isGuessed
+                        ? "cursor-not-allowed bg-gray-50 opacity-60"
+                        : "hover:bg-gray-100 data-[focus]:bg-gray-100"
+                    }`}
                   >
-                    <span className="font-bold">{t(CharacterField.Name, char)}</span>
-                    {t(CharacterField.Affiliation, char) && (
-                      <span className="text-gray-500">
-                        {" · "}
-                        {t(CharacterField.Affiliation, char)}
-                      </span>
-                    )}
-                  </div>
-                </ComboboxOption>
-              ))}
+                    {/* Squared Image */}
+                    <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-sm bg-gray-200">
+                      <img
+                        src={char.image}
+                        alt={char.name}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        onError={handleImageError}
+                      />
+                    </div>
+
+                    {/* Name + First Affiliation (single line) */}
+                    <div
+                      className={`min-w-0 flex-1 truncate text-sm sm:text-base md:text-lg
+                    ${t(TranslationKey.FontClass)}`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold">{t(CharacterField.Name, char)}</span>
+                        {isGuessed && (
+                          <span className="rounded bg-gray-200 px-1.5 py-0.5 text-xs text-gray-600">
+                            {t(TranslationKey.SelectedCharacter)}
+                          </span>
+                        )}
+                      </div>
+                      {t(CharacterField.Affiliation, char) && (
+                        <span className="text-gray-500">
+                          {t(CharacterField.Affiliation, char)}
+                        </span>
+                      )}
+                    </div>
+                  </ComboboxOption>
+                )
+              })}
             </ComboboxOptions>
           )}
         </Combobox>
