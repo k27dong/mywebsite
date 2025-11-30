@@ -2,4 +2,4 @@ name = "kdwebsite"
 
 [build]
 features = ["shuttle"]
-assets = ["docs"]
+assets = ["docs", "data"]
