@@ -9,7 +9,7 @@
       "Thriller Bark Pirates (Mysterious Four) (former)"
     ],
     "occupations": [
-      "Reporter Soldier Zombies and General Zombies Commander"
+      "Zombie Commander"
     ],
     "origin": "West Blue",
     "bounty": 0,
@@ -42,8 +42,8 @@
       "Cross Guild",
       "Buggy's Delivery",
       "Buggy and Alvida Alliance",
-      "Buggy Pirates (Acting Captain, temporarily)",
-      "Alvida Pirates (formerly)"
+      "Buggy Pirates (Acting Captain) (temporarily)",
+      "Alvida Pirates (former)"
     ],
     "occupations": [
       "Pirate Captain"
@@ -58,7 +58,7 @@
     "age": 27,
     "birthday": "March 14th",
     "height": 198,
-    "devil_fruit_name": "Slip-Slip Fruit (Viz, 4Kids); Smooth-Smooth Fruit (Funimation)",
+    "devil_fruit_name": "Smooth-Smooth Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [],
     "cn": {
@@ -87,8 +87,8 @@
       "Marines"
     ],
     "occupations": [
-      "Admiral",
-      "Police Officer (former)"
+      "Marine Admiral",
+      "Police Officer"
     ],
     "residence": [
       "Taya Kingdom (former)"
@@ -99,7 +99,7 @@
     "age": 41,
     "birthday": "February 29th",
     "height": 308,
-    "devil_fruit_name": "Woods-Woods Fruit",
+    "devil_fruit_name": "Wood-Wood Fruit",
     "devil_fruit_type": "Logia",
     "haki": [
       "armament",
@@ -112,7 +112,7 @@
       ],
       "origin": "南海",
       "debut_arc": "世界会议篇",
-      "devil_fruit_name": "森森果实",
+      "devil_fruit_name": "木木果实",
       "devil_fruit_type": "自然系",
       "haki": [
         "武装色",
@@ -133,7 +133,7 @@
     ],
     "occupations": [
       "Pirate Captain",
-      "Prisoner of the Great Prison (former)"
+      "Prisoner"
     ],
     "residence": [
       "Fish-Man District (former) Arlong Park (former)"
@@ -172,7 +172,7 @@
     "occupations": [
       "Bandit",
       "Retainer of the Kouzuki Family",
-      "Yakuza Boss (former)",
+      "Yakuza Boss",
       "Samurai"
     ],
     "residence": [
@@ -210,7 +210,7 @@
     "debut_chapter": 1062,
     "debut_arc": "Egghead",
     "affiliations": [
-      "Marines (SSG) (Former)"
+      "Marines (SSG) (former)"
     ],
     "residence": [
       "Egghead"
@@ -243,8 +243,8 @@
       "Impel Down (former)"
     ],
     "occupations": [
-      "Titanic Captain (Captain of the Fourth Ship)",
-      "Prisoner of the Great Prison (former)",
+      "Pirate Captain",
+      "Prisoner (former)",
       "King (former)"
     ],
     "residence": [
@@ -397,7 +397,7 @@
         "自由战士",
         "帕西法斯塔",
         "革命军",
-        "七武海",
+        "王下七武海",
         "索尔贝王国"
       ],
       "origin": "南海",
@@ -418,11 +418,10 @@
     "debut_arc": "Dressrosa",
     "affiliations": [
       "Barto Club",
-      "his own Mafia Family (former)",
+      "Mafia Family (former)",
       "Straw Hat Grand Fleet"
     ],
     "occupations": [
-      "Captain of the Second Ship of the Straw Hat Grand Fleet",
       "Pirate Captain",
       "Mafia Leader (former)"
     ],
@@ -432,14 +431,14 @@
     "age": 24,
     "birthday": "October 6th",
     "height": 220,
-    "devil_fruit_name": "Barrier-Barrier Fruit (VIZ and Funimation subs); Bari-Bari Fruit (Funimation dub)",
+    "devil_fruit_name": "Barrier-Barrier Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [],
     "cn": {
       "name": "巴托洛米欧",
       "affiliations": [
         "巴托俱乐部",
-        "他自己的黑手党家族",
+        "黑手党家族",
         "草帽大船团"
       ],
       "origin": "东海",
@@ -457,11 +456,10 @@
     "debut_arc": "Sabaody Archipelago",
     "affiliations": [
       "Hawkins Pirates",
-      "Beasts Pirates"
+      "Beast Pirates"
     ],
     "occupations": [
-      "Pirate",
-      "Captain",
+      "Pirate Captain",
       "Shinuchi"
     ],
     "origin": "North Blue",
@@ -502,7 +500,7 @@
       "Marines"
     ],
     "occupations": [
-      "Vice Admiral"
+      "Marine Vice Admiral"
     ],
     "origin": "Grand Line",
     "bounty": 500000000,
@@ -582,7 +580,7 @@
     "age": 27,
     "birthday": "August 7th",
     "height": 240,
-    "devil_fruit_name": "Boing-Boing Fruit (VIZ); Spring-Spring Fruit (Funimation)",
+    "devil_fruit_name": "Spring-Spring Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [
       "armament",
@@ -596,7 +594,7 @@
       ],
       "origin": "未知",
       "debut_arc": "加雅岛篇",
-      "devil_fruit_name": "波音波音果实",
+      "devil_fruit_name": "弹簧果实",
       "devil_fruit_type": "超人系",
       "haki": [
         "武装色",
@@ -614,7 +612,7 @@
       "Revolutionary Army (East Army)"
     ],
     "occupations": [
-      "East Army Commander of the Revolutionary Army"
+      "East Army Commander"
     ],
     "residence": [
       "Baltigo (former)",
@@ -654,11 +652,10 @@
     "debut_chapter": 1,
     "debut_arc": "Romance Dawn",
     "affiliations": [
-      "Red Hair Pirates"
+      "Red-Haired Pirates"
     ],
     "occupations": [
-      "Pirate",
-      "First Mate"
+      "Pirate First Mate"
     ],
     "origin": "North Blue",
     "bounty": 0,
@@ -693,7 +690,7 @@
     ],
     "occupations": [
       "Queen of Newkama Land",
-      "Officer Agent (former)",
+      "Former Officer Agent",
       "Prisoner of the Great Prison"
     ],
     "origin": "East Blue",
@@ -731,7 +728,7 @@
     "occupations": [
       "Pirate",
       "Navigator",
-      "Guardians' helper"
+      "Guardians' Helper"
     ],
     "residence": [
       "Zou (former)",
@@ -766,7 +763,7 @@
     ],
     "occupations": [
       "Shinuchi",
-      "Brothel owner"
+      "Brothel Owner"
     ],
     "residence": [
       "Onigashima"
@@ -808,8 +805,7 @@
       "Bluejam Pirates"
     ],
     "occupations": [
-      "Pirate",
-      "Captain"
+      "Pirate Captain"
     ],
     "origin": "East Blue",
     "bounty": 14300000,
@@ -835,14 +831,14 @@
     "debut_chapter": 516,
     "debut_arc": "Amazon Lily",
     "affiliations": [
-      "Kuja Pirates (Gorgon Sisters)",
+      "Kuja Pirates",
       "Seven Warlords of the Sea (former)"
     ],
     "occupations": [
-      "Captain of the Kuja Pirates",
-      "Empress of Amazon Lily",
-      "Warlord of the Sea (former)",
-      "Slave (former)"
+      "Pirate Captain",
+      "Empress",
+      "Former Warlord of the Sea",
+      "Former Slave"
     ],
     "residence": [
       "Amazon Lily Mary Geoise (former)"
@@ -864,7 +860,7 @@
       "name": "波雅·汉库克",
       "affiliations": [
         "库贾海贼团",
-        "七武海"
+        "王下七武海"
       ],
       "origin": "女儿岛",
       "debut_arc": "女儿岛篇",
@@ -884,11 +880,11 @@
     "debut_chapter": 516,
     "debut_arc": "Amazon Lily",
     "affiliations": [
-      "Kuja Pirates (Gorgon Sisters)"
+      "Kuja Pirates"
     ],
     "occupations": [
       "Ruler of Amazon Lily",
-      "Slave (Former)"
+      "Former Slave"
     ],
     "residence": [
       "Amazon Lily Mary Geoise (former)"
@@ -899,7 +895,7 @@
     "age": 28,
     "birthday": "September 5th",
     "height": 432,
-    "devil_fruit_name": "Snake-Snake Fruit King Cobra Model (VIZ); Snake-Snake Fruit: Model King Cobra (Funimation)",
+    "devil_fruit_name": "Snake-Snake Fruit, Model: King Cobra",
     "devil_fruit_type": "Zoan",
     "haki": [
       "armament",
@@ -912,7 +908,7 @@
       ],
       "origin": "女儿岛",
       "debut_arc": "女儿岛篇",
-      "devil_fruit_name": "蛇蛇果实·模型：眼镜王蛇",
+      "devil_fruit_name": "蛇蛇果实·眼镜王蛇型",
       "devil_fruit_type": "动物系",
       "haki": [
         "武装色",
@@ -927,11 +923,11 @@
     "debut_chapter": 516,
     "debut_arc": "Amazon Lily",
     "affiliations": [
-      "Kuja Pirates (Gorgon Sisters)"
+      "Kuja Pirates"
     ],
     "occupations": [
       "Ruler of Amazon Lily",
-      "Slave (former)"
+      "Former Slave"
     ],
     "residence": [
       "Amazon Lily Mary Geoise (former)"
@@ -942,7 +938,7 @@
     "age": 30,
     "birthday": "September 3rd",
     "height": 453,
-    "devil_fruit_name": "Snake-Snake Fruit Anaconda Model (VIZ); Snake-Snake Fruit: Model Anaconda (Funimation)",
+    "devil_fruit_name": "Snake-Snake Fruit, Model: Anaconda",
     "devil_fruit_type": "Zoan",
     "haki": [
       "armament",
@@ -955,7 +951,7 @@
       ],
       "origin": "女儿岛",
       "debut_arc": "女儿岛篇",
-      "devil_fruit_name": "蛇蛇果实·水蟒形态",
+      "devil_fruit_name": "蛇蛇果实·蚺蛇型",
       "devil_fruit_type": "动物系",
       "haki": [
         "武装色",
@@ -1002,8 +998,8 @@
       "Marines"
     ],
     "occupations": [
-      "Admiral",
-      "Vice Admiral (former)"
+      "Marine Admiral",
+      "Marine Vice Admiral (former)"
     ],
     "origin": "North Blue",
     "bounty": 3000000000,
@@ -1042,8 +1038,8 @@
       "Marines"
     ],
     "occupations": [
-      "Commodore",
-      "Lieutenant Commander (former)"
+      "Marine Commodore",
+      "Marine Lieutenant Commander (former)"
     ],
     "origin": "Grand Line",
     "bounty": 100000000,
@@ -1110,8 +1106,8 @@
       "Musician",
       "Swordsman",
       "Senior Officer",
-      "Pirate Captain (acting, former)",
-      "Battle Convoy leader (former)",
+      "Pirate Captain (former)",
+      "Battle Convoy Leader (former)",
       "World-Famous Rock Star (former)"
     ],
     "residence": [
@@ -1128,7 +1124,7 @@
     "devil_fruit_type": "Paramecia",
     "haki": [],
     "cn": {
-      "name": "Brook",
+      "name": "布鲁克",
       "affiliations": [
         "草帽海贼团",
         "草帽大船团",
@@ -1183,9 +1179,9 @@
       "MADS (former)"
     ],
     "occupations": [
-      "Pirate (former)",
-      "Scientist (former, self-proclaimed)",
-      "Science Robber (科学強盗 , Kagaku Gōtō ?)"
+      "Pirate",
+      "Scientist",
+      "Science Robber"
     ],
     "residence": [
       "Hachinosu (former)"
@@ -1216,7 +1212,7 @@
     "debut_arc": "Orange Town",
     "affiliations": [
       "Cross Guild",
-      "Buggy's Delivery (Unknown status) ?",
+      "Buggy's Delivery",
       "Buggy Pirates",
       "Buggy and Alvida Alliance",
       "Four Emperors",
@@ -1228,10 +1224,10 @@
       "Pirate Captain",
       "Emperor",
       "Figurehead President of Cross Guild",
-      "Chairman of Buggy's Delivery (former)",
-      "Warlord of the Sea (former)",
-      "Apprentice (former)",
-      "Prisoner of the Great Prison (former)"
+      "Chairman of Buggy's Delivery",
+      "Warlord of the Sea",
+      "Apprentice",
+      "Prisoner"
     ],
     "residence": [
       "Karai Bari Island",
@@ -1254,7 +1250,7 @@
         "巴基海贼团",
         "巴基与阿尔比达同盟",
         "四皇",
-        "七武海",
+        "王下七武海",
         "罗杰海贼团",
         "推进城"
       ],
@@ -1293,7 +1289,7 @@
     "devil_fruit_type": "Logia",
     "haki": [],
     "cn": {
-      "name": "Caesar Clown",
+      "name": "凯撒·克劳恩",
       "affiliations": [
         "NEO MADS",
         "唐吉诃德家族",
@@ -1302,6 +1298,7 @@
       ],
       "origin": "伟大航路",
       "debut_arc": "庞克哈萨德",
+      "devil_fruit_name": "气体果实",
       "devil_fruit_type": "自然系",
       "haki": []
     }
@@ -1319,8 +1316,8 @@
     "occupations": [
       "Pirate",
       "Captain",
-      "Mafia don (former)",
-      "Combatant (former)"
+      "Mafia Don",
+      "Combatant"
     ],
     "origin": "West Blue",
     "bounty": 350000000,
@@ -1352,12 +1349,10 @@
     "debut_arc": "Return to Sabaody",
     "affiliations": [
       "Caribou Pirates",
-      "Fake Straw Hat Crew (former, temporary)",
-      "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
+      "Fake Straw Hat Crew (former)"
     ],
     "occupations": [
-      "Pirate Captain",
-      "Kidnapper"
+      "Pirate Captain"
     ],
     "origin": "North Blue",
     "bounty": 210000000,
@@ -1372,8 +1367,7 @@
       "name": "卡里布",
       "affiliations": [
         "卡里布海贼团",
-        "伪草帽海贼团",
-        "忍者·海贼·米ンク族·武士同盟"
+        "伪草帽海贼团"
       ],
       "origin": "北海",
       "debut_arc": "新世界前篇",
@@ -1393,8 +1387,8 @@
       "Impel Down (former)"
     ],
     "occupations": [
-      "Titanic Captain (Captain of the Sixth Ship)",
-      "Prisoner of the Great Prison (former)"
+      "Pirate Captain",
+      "Prisoner (former)"
     ],
     "residence": [
       "Hachinosu"
@@ -1405,7 +1399,7 @@
     "age": 36,
     "birthday": "March 29th",
     "height": 361,
-    "devil_fruit_name": "Dog-Dog Fruit, Model: Nine Tailed Fox",
+    "devil_fruit_name": "Dog-Dog Fruit, Model: Nine-Tailed Fox",
     "devil_fruit_type": "Zoan",
     "haki": [],
     "cn": {
@@ -1416,7 +1410,7 @@
       ],
       "origin": "南海",
       "debut_arc": "顶上战争",
-      "devil_fruit_name": "犬犬果实·模型：九尾狐",
+      "devil_fruit_name": "狗狗果实·九尾狐型",
       "devil_fruit_type": "动物系",
       "haki": []
     }
@@ -1433,9 +1427,8 @@
       "Bourgeois Kingdom"
     ],
     "occupations": [
-      "Captain of the First Ship of the Straw Hat Grand Fleet",
       "Pirate Captain",
-      "Prince of the Bourgeois Kingdom (former)"
+      "Prince (former)"
     ],
     "residence": [
       "Bourgeois Kingdom (former)"
@@ -1477,7 +1470,7 @@
       "Brownbeard Pirates (disbanded)"
     ],
     "occupations": [
-      "Leader of the Centaur Patrol Unit (former)",
+      "Centaur Patrol Leader (former)",
       "Pirate Captain (former)"
     ],
     "origin": "Grand Line",
@@ -1490,6 +1483,7 @@
     "cn": {
       "name": "查德罗斯·海格里耶斯",
       "affiliations": [
+        "凯撒·克劳恩",
         "半人马巡逻队",
         "布朗胡子海贼团"
       ],
@@ -1725,7 +1719,7 @@
     ],
     "occupations": [
       "Pirate Captain",
-      "Emperor (former)",
+      "Emperor",
       "Queen of Totto Land"
     ],
     "residence": [
@@ -2096,7 +2090,7 @@
     "debut_arc": "Dressrosa",
     "affiliations": [
       "Chinjao Family",
-      "Happo Navy (retired)",
+      "Happo Navy (former)",
       "Straw Hat Grand Fleet"
     ],
     "occupations": [
@@ -2204,7 +2198,7 @@
       "name": "克洛克达尔",
       "affiliations": [
         "十字海贼团",
-        "七武海",
+        "王下七武海",
         "巴洛克工作社",
         "推进城"
       ],
@@ -2231,7 +2225,7 @@
     "occupations": [
       "Doctor",
       "Lighthouse Keeper",
-      "Pirate (former)"
+      "Pirate"
     ],
     "residence": [
       "Reverse Mountain (Twin Cape)"
@@ -2268,10 +2262,8 @@
       "Dadan Family"
     ],
     "occupations": [
-      "Mountain Bandit Boss",
-      "Caretaker of Monkey D. Luffy",
-      "Portgas D. Ace",
-      "and Sabo (former)"
+      "Bandit Boss",
+      "Caretaker of Monkey D. Luffy, Portgas D. Ace, and Sabo"
     ],
     "residence": [
       "Mt. Colubo"
@@ -2304,7 +2296,7 @@
     ],
     "occupations": [
       "King of the Sakura Kingdom",
-      "Chief Royal Guard of the Drum Kingdom (former)"
+      "Chief Royal Guard of the Drum Kingdom"
     ],
     "residence": [
       "Bighorn",
@@ -2316,7 +2308,7 @@
     "age": 35,
     "birthday": "June 10th",
     "height": 218,
-    "devil_fruit_name": "Ox-Ox Fruit, Bison Model (VIZ); Ox-Ox Fruit (4Kids); Ox-Ox Fruit, Bison Form (Funimation)",
+    "devil_fruit_name": "Ox-Ox Fruit, Bison Model",
     "devil_fruit_type": "Zoan",
     "haki": [],
     "cn": {
@@ -2344,8 +2336,8 @@
     "occupations": [
       "Pirate",
       "Assassin",
-      "Officer Agent (former)",
-      "Bounty Hunter (former)"
+      "Officer Agent",
+      "Bounty Hunter"
     ],
     "origin": "West Blue",
     "bounty": 75000000,
@@ -2441,16 +2433,16 @@
       "Kouzuki Family",
       "Nine Red Scabbards",
       "Kyoshiro Family",
-      "Kurozumi Family (undercover)",
+      "Kurozumi Family (temporarily)",
       "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
     ],
     "occupations": [
       "Daimyo",
       "Samurai",
-      "Retainer of the Kouzuki Family (former)",
-      "Yakuza Boss (former)",
-      "Money Changer (former)",
-      "Thief (former)"
+      "Former Retainer of the Kouzuki Family",
+      "Former Yakuza Boss",
+      "Former Money Changer",
+      "Former Thief"
     ],
     "residence": [
       "Wano Country (Flower Capital) Wano Country (Kibi)"
@@ -2493,7 +2485,7 @@
     ],
     "occupations": [
       "Pirate Executive Officer",
-      "Colosseum Proprietor (former)",
+      "Former Colosseum Proprietor",
       "Swordsman"
     ],
     "residence": [
@@ -2536,7 +2528,8 @@
       "Blackbeard Pirates"
     ],
     "occupations": [
-      "Titanic Captain (Captain of the Ninth Ship)",
+      "Pirate Captain",
+      "Captain of the Ninth Ship",
       "Doctor"
     ],
     "residence": [
@@ -2573,7 +2566,7 @@
       "Donquixote Pirates",
       "Impel Down",
       "Underworld",
-      "World Government (secret)",
+      "World Government (former)",
       "Seven Warlords of the Sea (former)",
       "Dressrosa (former)"
     ],
@@ -2581,8 +2574,8 @@
       "Pirate Captain",
       "Prisoner of the Great Prison",
       "Underworld Broker",
-      "King of Dressrosa (former)",
-      "World Noble (former)"
+      "Former King of Dressrosa",
+      "Former World Noble"
     ],
     "residence": [
       "Mary Geoise (former)",
@@ -2605,13 +2598,13 @@
       "supreme_king"
     ],
     "cn": {
-      "name": "Donquixote Doflamingo",
+      "name": "唐吉诃德·多弗朗明哥",
       "affiliations": [
         "唐吉诃德家族",
         "推进城",
         "地下世界",
         "世界政府",
-        "七武海",
+        "王下七武海",
         "德雷斯罗萨"
       ],
       "origin": "圣地玛丽乔亚",
@@ -2670,7 +2663,7 @@
     "occupations": [
       "Pirate",
       "Cross Guild Chief Officer",
-      "Warlord of the Sea (former)"
+      "Warlord of the Sea"
     ],
     "residence": [
       "Kuraigana Island (former)",
@@ -2690,7 +2683,7 @@
       "name": "德拉库尔·米霍克",
       "affiliations": [
         "十字海贼团",
-        "七武海"
+        "王下七武海"
       ],
       "origin": "未知",
       "debut_arc": "海上餐厅篇",
@@ -2712,7 +2705,7 @@
     ],
     "occupations": [
       "Cafe Waitress",
-      "Officer Agent (former)"
+      "Officer Agent"
     ],
     "origin": "Grand Line",
     "bounty": 14000000,
@@ -2720,7 +2713,7 @@
     "age": 51,
     "birthday": "December 25th",
     "height": 156,
-    "devil_fruit_name": "Mole-Mole Fruit (Funimation); Diggy-Diggy Fruit (Viz, 4Kids)",
+    "devil_fruit_name": "Mole-Mole Fruit",
     "devil_fruit_type": "Zoan",
     "haki": [],
     "cn": {
@@ -2778,7 +2771,7 @@
     ],
     "occupations": [
       "Pirate Captain",
-      "Emperor (former)"
+      "Emperor"
     ],
     "residence": [
       "Sphinx (former)",
@@ -2839,7 +2832,7 @@
     "cn": {
       "name": "爱德华·威布尔",
       "affiliations": [
-        "七武海"
+        "王下七武海"
       ],
       "origin": "伟大航路",
       "debut_arc": "佐乌篇",
@@ -2862,10 +2855,10 @@
       "Newkama Land (former)"
     ],
     "occupations": [
-      "G Army Commander of the Revolutionary Army",
+      "Revolutionary Army Commander",
       "Queen of the Kamabakka Kingdom",
-      "Queen of Newkama Land (former)",
-      "Slave (former)"
+      "Queen of Newkama Land",
+      "Slave"
     ],
     "residence": [
       "Momoiro Island Mary Geoise (former)"
@@ -2876,7 +2869,7 @@
     "age": 53,
     "birthday": "January 8th",
     "height": 449,
-    "devil_fruit_name": "Horm-Horm Fruit (VIZ and Funimation); Hor-Hor Fruit (One Piece Official YouTube Channel)",
+    "devil_fruit_name": "Horm-Horm Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [],
     "cn": {
@@ -2905,7 +2898,7 @@
       "Automata"
     ],
     "occupations": [
-      "God of Skypiea (former)"
+      "God of Skypiea"
     ],
     "residence": [
       "Moon Upper Yard (former)",
@@ -2948,8 +2941,8 @@
       "World Nobles"
     ],
     "occupations": [
-      "Co-Head of the World Government (Public)",
-      "Warrior God of Finance (財務武神 , Zaimu Bushin ? , English versions: \"Godhead of Finance\")"
+      "Co-Head of the World Government",
+      "Warrior God of Finance"
     ],
     "residence": [
       "Mary Geoise"
@@ -2982,7 +2975,8 @@
     "debut_chapter": 498,
     "debut_arc": "Sabaody Archipelago",
     "affiliations": [
-      "Kid Pirates Ninja-Pirate-Mink-Samurai Alliance"
+      "Kid Pirates",
+      "Ninja-Pirate-Mink-Samurai Alliance"
     ],
     "occupations": [
       "Pirate Captain"
@@ -3003,7 +2997,8 @@
     "cn": {
       "name": "尤斯塔斯·基德",
       "affiliations": [
-        "基德海贼团 忍者-海贼-猛兽族-武士同盟"
+        "基德海贼团",
+        "忍者·海贼·米ンク族·武士同盟"
       ],
       "origin": "南海",
       "debut_arc": "香波地群岛篇",
@@ -3025,11 +3020,11 @@
     "affiliations": [
       "Five Elders",
       "Knights of God",
-      "World Nobles (Figarland Family)"
+      "World Nobles"
     ],
     "occupations": [
       "Co-Head of the World Government (Public)",
-      "Warrior God of Science and Defense (科学防衛武神 , Kagaku Bōei Bushin ? , VIZ: \"Godhead of Science & Defense\")",
+      "Warrior God of Science and Defense",
       "Supreme Commander of Knights of God",
       "World Noble"
     ],
@@ -3066,7 +3061,7 @@
       "Adventurer",
       "Pirate",
       "Captain",
-      "De-facto Leader of Fish-Man District (former)",
+      "De Facto Leader of Fish-Man District (former)",
       "Slave (former)"
     ],
     "residence": [
@@ -3080,7 +3075,7 @@
     "height": 520,
     "haki": [],
     "cn": {
-      "name": "渔人·泰格",
+      "name": "费舍尔·泰格",
       "affiliations": [
         "太阳海贼团",
         "鱼人区"
@@ -3140,7 +3135,7 @@
       "Shipwright",
       "Senior Officer",
       "Dismantler",
-      "Underworld boss (former)",
+      "Underworld Boss (former)",
       "Bounty Hunter (former)"
     ],
     "residence": [
@@ -3179,8 +3174,8 @@
     ],
     "occupations": [
       "Marine Lieutenant Commander",
-      "Marine Seaman Recruit (promoted)",
-      "Marine Lieutenant (demoted)"
+      "Seaman Recruit (Promoted)",
+      "Marine Lieutenant (Demoted)"
     ],
     "origin": "North Blue",
     "bounty": 1000000,
@@ -3207,15 +3202,15 @@
     "debut_arc": "Little Garden",
     "affiliations": [
       "Cross Guild",
-      "Buggy's Delivery",
+      "Buggy Delivery",
       "Buggy Pirates",
       "Buggy and Alvida Alliance",
-      "Baroque Works (formerly)"
+      "Baroque Works (former)"
     ],
     "occupations": [
       "Pirate",
-      "Officer Agent (former)",
-      "Prisoner of the Great Prison (former)"
+      "Officer Agent",
+      "Prisoner of the Great Prison"
     ],
     "residence": [
       "Karai Bari Island"
@@ -3233,7 +3228,7 @@
       "name": "加尔迪诺",
       "affiliations": [
         "十字海贼团",
-        "巴基快递",
+        "巴基宅急便",
         "巴基海贼团",
         "巴基与阿尔比达同盟",
         "巴洛克工作社"
@@ -3256,7 +3251,7 @@
     ],
     "occupations": [
       "God of Skypiea",
-      "Mercenary (former)"
+      "Mercenary"
     ],
     "origin": "Grand Line",
     "bounty": 0,
@@ -3288,7 +3283,7 @@
     ],
     "occupations": [
       "Pirate Captain",
-      "Warlord of the Sea (former)"
+      "Warlord of the Sea"
     ],
     "residence": [
       "Florian Triangle (former)",
@@ -3307,7 +3302,7 @@
       "name": "月光·莫利亚",
       "affiliations": [
         "惊悚巴克海贼团",
-        "七武海",
+        "王下七武海",
         "壁虎海贼团"
       ],
       "origin": "西海",
@@ -3329,8 +3324,8 @@
     ],
     "occupations": [
       "Cafe Employee",
-      "Officer Agent (former)",
-      "Sniper (former)"
+      "Officer Agent",
+      "Sniper"
     ],
     "origin": "South Blue",
     "bounty": 10000000,
@@ -3338,7 +3333,7 @@
     "age": 26,
     "birthday": "July 26th",
     "height": 197,
-    "devil_fruit_name": "Bomb-Bomb Fruit (4Kids, Funimation, Odex); Boom-Boom Fruit (Viz)",
+    "devil_fruit_name": "Bomb-Bomb Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [],
     "cn": {
@@ -3349,6 +3344,7 @@
       ],
       "origin": "南海",
       "debut_arc": "威士忌山峰篇",
+      "devil_fruit_name": "爆弹果实",
       "devil_fruit_type": "超人系",
       "haki": []
     }
@@ -3394,8 +3390,8 @@
       "Freedom Fighters (former)"
     ],
     "occupations": [
-      "East Army Captain of the Revolutionary Army",
-      "Slave (former)"
+      "East Army Captain",
+      "Slave"
     ],
     "residence": [
       "South Blue (Sorbet Kingdom)",
@@ -3467,8 +3463,8 @@
       "Rocks Pirates (former)"
     ],
     "occupations": [
-      "Empress of Amazon Lily (former)",
-      "Pirate Captain (former)"
+      "Empress of Amazon Lily",
+      "Pirate Captain"
     ],
     "residence": [
       "Hachinosu (former)",
@@ -3480,7 +3476,7 @@
     "birthday": "February 4th",
     "haki": [],
     "cn": {
-      "name": "Gloriosa",
+      "name": "格洛丽奥萨",
       "affiliations": [
         "九蛇",
         "库贾海贼团",
@@ -3567,17 +3563,17 @@
     "debut_chapter": 706,
     "debut_arc": "Dressrosa",
     "affiliations": [
-      "Revolutionary Army"
+      "Ohara Archaeologists"
     ],
     "occupations": [
-      "Revolutionary Army member Fish-Man Karate Instructor Fish-Man Jujutsu Martial Artist"
+      "Archaeologist"
     ],
     "residence": [
       "Ryugu Kingdom (former) Baltigo (former) Momoiro Island"
     ],
     "origin": "Grand Line",
     "bounty": 0,
-    "status": "Alive",
+    "status": "Deceased",
     "age": 38,
     "birthday": "August 9th",
     "height": 280,
@@ -3585,7 +3581,7 @@
     "cn": {
       "name": "哈克",
       "affiliations": [
-        "革命军"
+        "奥哈拉考古学家"
       ],
       "origin": "伟大航路",
       "debut_arc": "德雷斯罗萨",
@@ -3668,7 +3664,7 @@
       "Sun Pirates (former)"
     ],
     "occupations": [
-      "Takoyaki seller",
+      "Takoyaki Seller",
       "Pirate Officer (former)"
     ],
     "residence": [
@@ -3701,12 +3697,12 @@
     "debut_chapter": 3,
     "debut_arc": "Romance Dawn",
     "affiliations": [
-      "Marines (Headquarters ; SWORD) (formerly 153rd Branch)"
+      "Marines (Headquarters, SWORD)"
     ],
     "occupations": [
       "Lieutenant Commander",
-      "Chief Petty Officer (promoted)",
-      "Chore Boy (promoted)"
+      "Chief Petty Officer (former)",
+      "Chore Boy (former)"
     ],
     "residence": [
       "Shells Town (153rd Branch) (former)"
@@ -3816,7 +3812,7 @@
     "age": 34,
     "birthday": "March 3rd",
     "height": 181,
-    "devil_fruit_name": "Bind-Bind Fruit (VIZ); Cage-Cage Fruit (4Kids , Funimation)",
+    "devil_fruit_name": "Bind-Bind Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [],
     "cn": {
@@ -3909,8 +3905,8 @@
       "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
     ],
     "occupations": [
-      "Prisoner (former)",
-      "Yakuza Boss (former)",
+      "Former Prisoner",
+      "Former Yakuza Boss",
       "Samurai"
     ],
     "residence": [
@@ -3989,7 +3985,7 @@
       "World Government"
     ],
     "occupations": [
-      "Supreme ruler of the World Government (clandestine)"
+      "Clandestine Supreme Ruler of the World Government"
     ],
     "residence": [
       "Mary Geoise (Pangaea Castle)"
@@ -4028,7 +4024,7 @@
     ],
     "occupations": [
       "Revolutionary",
-      "Prisoner of the Great Prison (former)"
+      "Former Prisoner of the Great Prison"
     ],
     "residence": [
       "Baltigo (former)",
@@ -4040,7 +4036,7 @@
     "age": 29,
     "birthday": "August 3rd",
     "height": 228,
-    "devil_fruit_name": "Snip-Snip Fruit (VIZ and Funimation); Shear-Shear Fruit (One Piece Official YouTube Channel)",
+    "devil_fruit_name": "Snip-Snip Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [],
     "cn": {
@@ -4076,11 +4072,11 @@
     ],
     "occupations": [
       "Daimyo",
-      "Ruler of the Mokomo Dukedom (former)",
-      "Commander of the Musketeers",
+      "Former Ruler of the Mokomo Dukedom",
+      "Commander of the Musketeer Squad",
       "Retainer",
       "Samurai",
-      "Pirate Apprentice (former)"
+      "Former Pirate Apprentice"
     ],
     "residence": [
       "Zou (former) (Kurau City) Wano Country (Kuri)"
@@ -4125,7 +4121,7 @@
       "Marines"
     ],
     "occupations": [
-      "Admiral",
+      "Marine Admiral",
       "Guard Captain (former)",
       "Bodyguard (former)"
     ],
@@ -4173,7 +4169,7 @@
     "occupations": [
       "16th Division Commander (former)",
       "Samurai",
-      "Retainer of the Kouzuki Family"
+      "Kouzuki Family Retainer"
     ],
     "residence": [
       "Wano Country (Ringo) Wano Country (Kuri)"
@@ -4210,7 +4206,7 @@
     "debut_chapter": 801,
     "debut_arc": "Dressrosa",
     "affiliations": [
-      "Beasts Pirates"
+      "Beast Pirates"
     ],
     "occupations": [
       "All-Star",
@@ -4226,7 +4222,7 @@
     "age": 28,
     "birthday": "September 28th",
     "height": 830,
-    "devil_fruit_name": "Elephant-Elephant Fruit, Ancient Zoan Model: Mammoth (Funimation), Eleph-Eleph Fruit Ancient Zoan Model Mammoth",
+    "devil_fruit_name": "Elephant-Elephant Fruit, Ancient Zoan Model: Mammoth",
     "devil_fruit_type": "Zoan",
     "haki": [
       "armament",
@@ -4258,7 +4254,8 @@
       "Marines (defected)"
     ],
     "occupations": [
-      "History Teacher Vice Admiral (former)"
+      "History Teacher",
+      "Marine Vice Admiral (former)"
     ],
     "residence": [
       "Elbaph (Sun World)"
@@ -4299,8 +4296,8 @@
       "Marine Lieutenant Commander",
       "Marine Seaman Recruit (promoted)",
       "Pirate (former)",
-      "Captain (former)",
-      "First Mate (former)",
+      "Pirate Captain (former)",
+      "Pirate First Mate (former)",
       "Dancer (former)"
     ],
     "origin": "East Blue",
@@ -4332,8 +4329,8 @@
       "World Nobles"
     ],
     "occupations": [
-      "Co-Head of the World Government (Public)",
-      "Warrior God of Science and Defense (科学防衛武神 , Kagaku Bōei Bushin ? , English versions: \"Godhead of Science & Defense\")",
+      "Co-Head of the World Government",
+      "Warrior God of Science and Defense",
       "Scientist"
     ],
     "residence": [
@@ -4370,7 +4367,7 @@
       "Blackbeard Pirates"
     ],
     "occupations": [
-      "Titanic Captain (Captain of the First Ship)",
+      "Pirate Captain",
       "Helmsman"
     ],
     "residence": [
@@ -4414,7 +4411,7 @@
     ],
     "occupations": [
       "Pirate Captain",
-      "Princess (former)"
+      "Princess"
     ],
     "residence": [
       "South Blue (Sorbet Kingdom) (former)",
@@ -4465,10 +4462,10 @@
       "Pirate",
       "Helmsman",
       "Senior Officer",
-      "Captain (former)",
-      "Warlord of the Sea (former)",
-      "Soldier (former)",
-      "Prisoner of the Great Prison (former)"
+      "Captain",
+      "Warlord of the Sea",
+      "Soldier",
+      "Prisoner"
     ],
     "residence": [
       "Fish-Man District (former)"
@@ -4489,7 +4486,8 @@
         "草帽海贼团",
         "草帽大船团",
         "太阳海贼团",
-        "七武海",
+        "大妈海贼团的盟友",
+        "王下七武海",
         "龙宫王国",
         "推进城",
         "忍者·海贼·米ンク族·武士同盟"
@@ -4513,7 +4511,7 @@
     ],
     "occupations": [
       "Pirate",
-      "3rd Division Commander"
+      "Third Division Commander"
     ],
     "origin": "West Blue",
     "bounty": 0,
@@ -4521,7 +4519,7 @@
     "age": 42,
     "birthday": "November 11th",
     "height": 503,
-    "devil_fruit_name": "Twinkle-Twinkle Fruit",
+    "devil_fruit_name": "Diamond-Diamond Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [
       "armament",
@@ -4534,7 +4532,7 @@
       ],
       "origin": "西海",
       "debut_arc": "加雅岛篇",
-      "devil_fruit_name": "闪闪果实",
+      "devil_fruit_name": "钻石果实",
       "devil_fruit_type": "超人系",
       "haki": [
         "武装色",
@@ -4602,13 +4600,7 @@
     "debut_chapter": 323,
     "debut_arc": "Water 7",
     "affiliations": [
-      "CP0",
-      "CP9 (former)",
-      "Galley-La Company (former)"
-    ],
-    "occupations": [
-      "Cipher Pol Agent",
-      "Shipwright (cover)"
+      "Kyoshiro Family"
     ],
     "residence": [
       "Guanhao (former)"
@@ -4628,8 +4620,7 @@
     "cn": {
       "name": "卡库",
       "affiliations": [
-        "CP9",
-        "加雷拉公司"
+        "京四郎一族"
       ],
       "origin": "东海",
       "debut_arc": "七水之都篇",
@@ -4712,7 +4703,7 @@
       "Revolutionary Army (North Army)"
     ],
     "occupations": [
-      "North Army Commander of the Revolutionary Army"
+      "North Army Commander"
     ],
     "residence": [
       "Baltigo (former)",
@@ -4761,7 +4752,7 @@
       "Retainer of the Kouzuki Family",
       "Samurai",
       "Sumo Wrestler",
-      "Highway Robber (former)"
+      "Highway Robber"
     ],
     "residence": [
       "Wano Country (Kuri)",
@@ -4885,7 +4876,7 @@
     "occupations": [
       "Pirate",
       "Combatant",
-      "Assassin (former)"
+      "Assassin"
     ],
     "origin": "South Blue",
     "bounty": 200000000,
@@ -4900,6 +4891,7 @@
     "cn": {
       "name": "基拉",
       "affiliations": [
+        "基德海贼团",
         "黑炭大蛇",
         "忍者·海贼·米ンク族·武士同盟"
       ],
@@ -4927,7 +4919,7 @@
       "Great Elder of the Shogunate",
       "Retainer of the Kouzuki Family",
       "Leader of the Nine Red Scabbards",
-      "Thief (former)"
+      "Thief"
     ],
     "residence": [
       "Wano Country (Kuri)",
@@ -4939,7 +4931,7 @@
     "age": 36,
     "birthday": "January 29th",
     "height": 295,
-    "devil_fruit_name": "Garb-Garb Jutsu (VIZ and Funimation); Garb-Garb Fruit (One Piece Official YouTube Channel)",
+    "devil_fruit_name": "Garb-Garb Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [
       "armament",
@@ -4954,7 +4946,7 @@
       ],
       "origin": "伟大航路",
       "debut_arc": "庞克哈萨德",
-      "devil_fruit_name": "伽布伽布之术",
+      "devil_fruit_name": "加布加布果实",
       "devil_fruit_type": "超人系",
       "haki": [
         "武装色",
@@ -5018,7 +5010,7 @@
     "occupations": [
       "Revolutionary Army Officer",
       "Assistant Fish-Man Karate Instructor",
-      "Slave (former)"
+      "Former Slave"
     ],
     "residence": [
       "Baltigo (former)",
@@ -5052,15 +5044,15 @@
     "debut_chapter": 2,
     "debut_arc": "Romance Dawn",
     "affiliations": [
-      "Marines (SWORD)",
+      "Marines",
       "Marine 153rd Branch (former)",
       "Alvida Pirates (defected)"
     ],
     "occupations": [
       "Marine Captain",
-      "Master Chief Petty Officer (promoted)",
-      "Chore Boy (promoted)",
-      "Pirate Ship Caretaker (former)"
+      "Master Chief Petty Officer",
+      "Chore Boy",
+      "Former Pirate Ship Caretaker"
     ],
     "residence": [
       "Shells Town (153rd Branch) (former)",
@@ -5102,7 +5094,7 @@
     ],
     "occupations": [
       "Stationmaster",
-      "\"Lovely\" secretary of Tom (former)"
+      "Former Secretary of Tom"
     ],
     "residence": [
       "Water 7",
@@ -5183,7 +5175,7 @@
     "age": 8,
     "birthday": "October 7th",
     "height": 322,
-    "devil_fruit_name": "Fish-Fish Fruit, Model: Azure Dragon Fish-Fish Fruit, Azure Dragon Model",
+    "devil_fruit_name": "Fish-Fish Fruit, Model: Azure Dragon",
     "devil_fruit_type": "Zoan",
     "haki": [
       "observation"
@@ -5196,7 +5188,7 @@
       ],
       "origin": "伟大航路",
       "debut_arc": "庞克哈萨德",
-      "devil_fruit_name": "鱼鱼果实·幻兽种·青龙形态",
+      "devil_fruit_name": "鱼鱼果实·幻兽种：青龙",
       "devil_fruit_type": "动物系",
       "haki": [
         "见闻色"
@@ -5217,8 +5209,8 @@
     "occupations": [
       "Samurai",
       "Daimyo",
-      "Pirate (former)",
-      "2nd Division Commander (former)"
+      "Pirate",
+      "Second Division Commander"
     ],
     "residence": [
       "Wano Country (Kuri)",
@@ -5262,7 +5254,7 @@
     ],
     "occupations": [
       "Swordsmith",
-      "Shogun (former)"
+      "Shogun"
     ],
     "residence": [
       "Wano Country (Amigasa Village , formerly Flower Capital)"
@@ -5305,7 +5297,7 @@
     "status": "Deceased",
     "birthday": "January 19th",
     "height": 190,
-    "devil_fruit_name": "Time-Time Ability (VIZ); Time-Time Fruit (Funimation)",
+    "devil_fruit_name": "Time-Time Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [],
     "cn": {
@@ -5318,7 +5310,7 @@
       ],
       "origin": "未知",
       "debut_arc": "和之国篇·第一幕",
-      "devil_fruit_name": "时光能力",
+      "devil_fruit_name": "时光果实",
       "devil_fruit_type": "超人系",
       "haki": []
     }
@@ -5333,7 +5325,7 @@
       "Krieg Pirates"
     ],
     "occupations": [
-      "Pirate Captain / Admiral"
+      "Pirate Captain"
     ],
     "origin": "East Blue",
     "bounty": 17000000,
@@ -5360,10 +5352,10 @@
     "debut_arc": "Wano Country Act 2",
     "affiliations": [
       "Marines (G-14)",
-      "(SWORD)"
+      "SWORD"
     ],
     "occupations": [
-      "Rear Admiral"
+      "Marine Rear Admiral"
     ],
     "residence": [
       "G-14"
@@ -5383,7 +5375,8 @@
     "cn": {
       "name": "孔雀",
       "affiliations": [
-        "海军"
+        "海军",
+        "SWORD"
       ],
       "origin": "北海",
       "debut_arc": "和之国篇·第二幕",
@@ -5470,7 +5463,7 @@
     "debut_chapter": 965,
     "debut_arc": "Wano Country Act 2",
     "affiliations": [
-      "Wano Country (Kurozumi Family)"
+      "Kurozumi Family"
     ],
     "residence": [
       "Wano Country (Flower Capital)"
@@ -5486,7 +5479,7 @@
     "cn": {
       "name": "黑炭·日暮",
       "affiliations": [
-        "和之国"
+        "黑炭家"
       ],
       "origin": "伟大航路",
       "debut_arc": "和之国篇·第二幕",
@@ -5503,16 +5496,16 @@
     "debut_arc": "Dressrosa",
     "affiliations": [
       "Kurozumi Family",
-      "Kouzuki Family (undercover)",
-      "Nine Red Scabbards (undercover)",
-      "Ninja-Pirate-Mink-Samurai Alliance (undercover)",
+      "Kouzuki Family (temporarily)",
+      "Nine Red Scabbards (temporarily)",
+      "Ninja-Pirate-Mink-Samurai Alliance (temporarily)",
       "Beasts Pirates (former)"
     ],
     "occupations": [
       "Theatre Performer (former)",
       "Spy of the Kurozumi Family",
       "Samurai",
-      "Retainer of the Kouzuki Family (undercover)"
+      "Retainer of the Kouzuki Family (temporarily)"
     ],
     "residence": [
       "Wano Country (Kuri) Wano Country (Kibi) (former)"
@@ -5554,7 +5547,8 @@
     "debut_chapter": 927,
     "debut_arc": "Wano Country Act 1",
     "affiliations": [
-      "Wano Country (Kurozumi Family)",
+      "Wano Country",
+      "Kurozumi Family",
       "Beasts Pirates (former)"
     ],
     "occupations": [
@@ -5568,18 +5562,19 @@
     "status": "Deceased",
     "birthday": "September 23rd",
     "height": 350,
-    "devil_fruit_name": "Snake-Snake Fruit, Model: Eight Headed Serpent",
+    "devil_fruit_name": "Snake-Snake Fruit, Model: Eight-Headed Serpent",
     "devil_fruit_type": "Zoan",
     "haki": [],
     "cn": {
       "name": "黑炭大蛇",
       "affiliations": [
         "和之国",
+        "黑炭家",
         "百兽海贼团"
       ],
       "origin": "伟大航路",
       "debut_arc": "和之国篇·第一幕",
-      "devil_fruit_name": "蛇果实（模型：八岐大蛇）",
+      "devil_fruit_name": "蛇蛇果实·幻兽种：八岐大蛇",
       "devil_fruit_type": "动物系",
       "haki": []
     }
@@ -5591,10 +5586,11 @@
     "debut_chapter": 965,
     "debut_arc": "Wano Country Act 2",
     "affiliations": [
-      "Wano Country (Kurozumi Family)"
+      "Wano Country",
+      "Kurozumi Family"
     ],
     "occupations": [
-      "Biwa hōshi"
+      "Biwa Hoshi"
     ],
     "residence": [
       "Wano Country (Flower Capital)"
@@ -5610,7 +5606,8 @@
     "cn": {
       "name": "黑炭·塞米马鲁",
       "affiliations": [
-        "和之国"
+        "和之国",
+        "黑炭家"
       ],
       "origin": "伟大航路",
       "debut_arc": "和之国篇·第二幕",
@@ -5630,8 +5627,8 @@
       "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
     ],
     "occupations": [
-      "Kunoichi in training",
-      "Kasa weaver"
+      "Kunoichi in Training",
+      "Kasa Weaver"
     ],
     "residence": [
       "Amigasa Village",
@@ -5671,7 +5668,7 @@
       "Marines (resigned)"
     ],
     "occupations": [
-      "Titanic Captain (Captain of the Tenth Ship)",
+      "Pirate Captain",
       "Admiral (former)",
       "Vice Admiral (former)"
     ],
@@ -5684,7 +5681,7 @@
     "age": 49,
     "birthday": "September 21st",
     "height": 298,
-    "devil_fruit_name": "Ice-Ice Fruit (Funimation); Chilly-Chilly Fruit (VIZ)",
+    "devil_fruit_name": "Ice-Ice Fruit",
     "devil_fruit_type": "Logia",
     "haki": [
       "armament",
@@ -5855,7 +5852,7 @@
     "age": 25,
     "birthday": "July 24th",
     "height": 23,
-    "devil_fruit_name": "Stitch-Stitch Power (VIZ and Funimation); Sew-Sew Fruit (One Piece Official YouTube Channel)",
+    "devil_fruit_name": "Sew-Sew Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [],
     "cn": {
@@ -5866,7 +5863,7 @@
       ],
       "origin": "伟大航路",
       "debut_arc": "德雷斯罗萨",
-      "devil_fruit_name": "缝缝能力",
+      "devil_fruit_name": "缝缝果实",
       "devil_fruit_type": "超人系",
       "haki": []
     }
@@ -5878,7 +5875,7 @@
     "debut_chapter": 1061,
     "debut_arc": "Egghead",
     "affiliations": [
-      "Marines (SSG) (Former)"
+      "Marines (SSG) (former)"
     ],
     "residence": [
       "Egghead"
@@ -5910,7 +5907,7 @@
       "Revolutionary Army (South Army)"
     ],
     "occupations": [
-      "South Army Commander of the Revolutionary Army"
+      "South Army Commander"
     ],
     "residence": [
       "Baltigo (former)",
@@ -5946,7 +5943,7 @@
     "debut_chapter": 1,
     "debut_arc": "Romance Dawn",
     "affiliations": [
-      "Red Hair Pirates"
+      "Red-Haired Pirates"
     ],
     "occupations": [
       "Pirate",
@@ -6052,7 +6049,7 @@
     "debut_chapter": 1,
     "debut_arc": "Romance Dawn",
     "affiliations": [
-      "Partys Bar"
+      "Party's Bar"
     ],
     "occupations": [
       "Bar Owner",
@@ -6102,7 +6099,7 @@
     "age": 45,
     "birthday": "October 5th",
     "height": 203,
-    "devil_fruit_name": "Tweet-Tweet Fruit, Phoenix Model (Crunchy subs) Bird-Bird Fruit, Model: Phoenix (One Piece Official YouTube Channel)",
+    "devil_fruit_name": "Bird-Bird Fruit, Model: Phoenix",
     "devil_fruit_type": "Zoan",
     "haki": [
       "armament",
@@ -6116,7 +6113,7 @@
       ],
       "origin": "伟大航路",
       "debut_arc": "加雅岛篇",
-      "devil_fruit_name": "鸟鸟果实·凤凰形态",
+      "devil_fruit_name": "鸟鸟果实·幻鸟种（凤凰）",
       "devil_fruit_type": "动物系",
       "haki": [
         "武装色",
@@ -6136,7 +6133,7 @@
     ],
     "occupations": [
       "Co-Head of the World Government (Public)",
-      "Warrior God of Environment (環境武神 , Kankyō Bushin ? , English versions: \"Godhead of Environment\")"
+      "Warrior God of Environment"
     ],
     "residence": [
       "Mary Geoise"
@@ -6208,7 +6205,7 @@
       "Whitebeard Pirates 2nd Division (defected)"
     ],
     "occupations": [
-      "Pirate",
+      "Pirate Captain",
       "Admiral",
       "Emperor",
       "Apprentice (former)",
@@ -6235,7 +6232,7 @@
         "黑胡子海贼团",
         "四皇",
         "D一族",
-        "七武海",
+        "王下七武海",
         "白胡子海贼团第二队"
       ],
       "origin": "伟大航路",
@@ -6293,7 +6290,7 @@
     ],
     "occupations": [
       "Cafe Pâtissier",
-      "Officer Agent (former)"
+      "Officer Agent (Former)"
     ],
     "origin": "West Blue",
     "bounty": 7500000,
@@ -6305,7 +6302,7 @@
     "devil_fruit_type": "Paramecia",
     "haki": [],
     "cn": {
-      "name": "米基塔",
+      "name": "米琪塔",
       "affiliations": [
         "新蜘蛛咖啡馆",
         "巴洛克工作社"
@@ -6324,11 +6321,11 @@
     "debut_chapter": 420,
     "debut_arc": "Enies Lobby",
     "affiliations": [
-      "Marines G-1 Branch"
+      "Marines (G-1 Branch)"
     ],
     "occupations": [
-      "Vice Admiral",
-      "Base Commander of G-1"
+      "Marine Vice Admiral",
+      "G-1 Base Commander"
     ],
     "residence": [
       "G-1"
@@ -6346,7 +6343,7 @@
     "cn": {
       "name": "莫蒙加",
       "affiliations": [
-        "海军G-1支部"
+        "海军"
       ],
       "origin": "伟大航路",
       "debut_arc": "司法岛篇",
@@ -6363,12 +6360,12 @@
     "debut_chapter": 657,
     "debut_arc": "Punk Hazard",
     "affiliations": [
-      "Caesar Clown (espionage)",
+      "Caesar Clown (Espionage)",
       "Donquixote Pirates"
     ],
     "occupations": [
-      "Caesar's secretary (Undercover)",
-      "Doflamingo's spy",
+      "Caesar's Secretary (Undercover)",
+      "Doflamingo's Spy",
       "Pirate Officer"
     ],
     "residence": [
@@ -6386,6 +6383,7 @@
     "cn": {
       "name": "莫内",
       "affiliations": [
+        "凯撒·克劳恩",
         "唐吉诃德家族"
       ],
       "origin": "北海",
@@ -6441,11 +6439,11 @@
     "debut_chapter": 92,
     "debut_arc": "Arlong Park",
     "affiliations": [
-      "Marines (semi-retired)",
+      "Marines (temporarily)",
       "Clan of D."
     ],
     "occupations": [
-      "Vice Admiral",
+      "Marine Vice Admiral",
       "Instructor"
     ],
     "residence": [
@@ -6489,7 +6487,7 @@
       "Four Emperors",
       "Clan of D.",
       "Dadan Family (former)",
-      "Baratie (temporary, former)",
+      "Baratie (temporarily)",
       "Impel Down (former)",
       "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
     ],
@@ -6497,9 +6495,9 @@
       "Pirate Captain",
       "Emperor",
       "Senior Captain of the Grand Fleet",
-      "Prisoner (former)",
-      "Chore Boy (temporary, former)",
-      "Bandit (former)"
+      "Prisoner",
+      "Chore Boy",
+      "Bandit"
     ],
     "residence": [
       "Foosha Village (former)",
@@ -6512,7 +6510,7 @@
     "age": 19,
     "birthday": "May 5th",
     "height": 174,
-    "devil_fruit_name": "Gum-Gum Fruit (Human-Human Fruit, Model: Nika)",
+    "devil_fruit_name": "Gum-Gum Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [
       "armament",
@@ -6551,7 +6549,7 @@
     "affiliations": [
       "Saruyama Alliance",
       "Mont Blanc Family",
-      "His original crew (former)"
+      "Original Crew (former)"
     ],
     "occupations": [
       "Pirate",
@@ -6572,7 +6570,7 @@
       "affiliations": [
         "猿山联盟",
         "蒙布朗家族",
-        "他原来的船员"
+        "原始船员"
       ],
       "origin": "北海",
       "debut_arc": "加雅岛篇",
@@ -6631,7 +6629,7 @@
     "age": 53,
     "birthday": "July 14th",
     "height": 305,
-    "devil_fruit_name": "Tweet-Tweet Fruit, Albatross Model (Crunchy subs) Bird-Bird Fruit, Model: Albatross (One Piece Official YouTube Channel)",
+    "devil_fruit_name": "Tweet-Tweet Fruit",
     "devil_fruit_type": "Zoan",
     "haki": [],
     "cn": {
@@ -6642,7 +6640,7 @@
       ],
       "origin": "伟大航路",
       "debut_arc": "蛋糕岛篇",
-      "devil_fruit_name": "鸟果实（模型：信天翁）",
+      "devil_fruit_name": "啾啾果实",
       "devil_fruit_type": "动物系",
       "haki": []
     }
@@ -6658,8 +6656,8 @@
     ],
     "occupations": [
       "West Army Commander of the Revolutionary Army",
-      "Pirate (former)",
-      "Prisoner of Impel Down (former)"
+      "Pirate",
+      "Prisoner of Impel Down"
     ],
     "residence": [
       "Baltigo (former)",
@@ -6702,16 +6700,16 @@
       "Straw Hat Pirates",
       "Straw Hat Grand Fleet",
       "Arlong Pirates (defected)",
-      "Ganzack Pirates (movie, former)",
-      "Golden Lion Pirates (movie, former)",
+      "Ganzack Pirates (former)",
+      "Golden Lion Pirates (former)",
       "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
     ],
     "occupations": [
       "Navigator",
       "Senior Officer",
       "Thief",
-      "Pirate Officer (Arlong Pirates, former)",
-      "Kunoichi (temporary)"
+      "Pirate Officer (former)",
+      "Kunoichi (temporarily)"
     ],
     "residence": [
       "Oykot Kingdom (former) Cocoyasi Village (former)",
@@ -6787,7 +6785,7 @@
       "Clan of D."
     ],
     "occupations": [
-      "Queen of the Arabasta Kingdom"
+      "Queen of Arabasta"
     ],
     "residence": [
       "Arabasta Kingdom"
@@ -6816,9 +6814,10 @@
     "debut_chapter": 103,
     "debut_arc": "Reverse Mountain",
     "affiliations": [
-      "Arabasta Kingdom (Nefertari Family)",
+      "Arabasta Kingdom",
+      "Nefertari Family",
       "Straw Hat Pirates (former)",
-      "Baroque Works (double agent)",
+      "Baroque Works (former)",
       "Clan of D.",
       "Sand-Sand Clan (former)"
     ],
@@ -6827,7 +6826,7 @@
       "Pirate (former)",
       "Bounty Hunter (former)",
       "Frontier Agent (former)",
-      "Sand-Sand Clan Vice-Leader (former)"
+      "Sand-Sand Clan Vice Leader (former)"
     ],
     "residence": [
       "Arabasta Kingdom (Alubarna)"
@@ -6843,6 +6842,7 @@
       "name": "奈芙塔莉·薇薇",
       "affiliations": [
         "阿拉巴斯塔王国",
+        "奈芙塔莉家族",
         "草帽海贼团",
         "巴洛克工作社",
         "D一族",
@@ -6983,7 +6983,7 @@
     ],
     "occupations": [
       "Marine Captain",
-      "Marine Commander (former) (Non-Canon) ≠"
+      "Marine Commander (former)"
     ],
     "residence": [
       "16th Branch"
@@ -7044,19 +7044,19 @@
       "Straw Hat Pirates",
       "Straw Hat Grand Fleet",
       "Baroque Works (defected)",
-      "Foxy Pirates (filler, temporary)",
+      "Foxy Pirates (temporarily)",
       "Ohara Archaeologists (former)",
-      "Revolutionary Army (former, temporarily)",
+      "Revolutionary Army (former)",
       "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
     ],
     "occupations": [
       "Archaeologist",
       "Senior Officer",
-      "Geisha (temporary)",
+      "Geisha (temporarily)",
       "Assassin (former)",
       "Baroque Works Vice President (former)",
-      "Rain Dinners manager (former)",
-      "Revolutionary (former, temporarily)",
+      "Rain Dinners Manager (former)",
+      "Revolutionary (former)",
       "Slave (former)"
     ],
     "residence": [
@@ -7070,7 +7070,7 @@
     "age": 30,
     "birthday": "February 6th",
     "height": 188,
-    "devil_fruit_name": "Hana-Hana Fruit (4Kids); Flower-Flower Fruit (VIZ / Funimation)",
+    "devil_fruit_name": "Hana-Hana Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [],
     "cn": {
@@ -7102,7 +7102,7 @@
     ],
     "occupations": [
       "Special Zombie",
-      "Leader of clan of evil giants (former)"
+      "Leader of Clan of Evil Giants"
     ],
     "origin": "North Blue",
     "bounty": 0,
@@ -7131,10 +7131,9 @@
       "Standing Kingdom"
     ],
     "occupations": [
-      "Captain of the Seventh Ship of the Straw Hat Grand Fleet",
-      "Pirate",
+      "Pirate Captain",
       "Admiral",
-      "Adventurer (former)"
+      "Adventurer"
     ],
     "origin": "Grand Line",
     "bounty": 148000000,
@@ -7166,7 +7165,7 @@
       "Ryugu Kingdom"
     ],
     "occupations": [
-      "Queen of the Ryugu Kingdom"
+      "Queen"
     ],
     "origin": "Grand Line",
     "bounty": 0,
@@ -7243,8 +7242,8 @@
       "Galley-La Company"
     ],
     "occupations": [
-      "Vice President of Galley-La",
-      "Dock One Foreman (promoted)",
+      "Vice President",
+      "Dock One Foreman",
       "Shipwright"
     ],
     "residence": [
@@ -7277,10 +7276,11 @@
       "Mokomo Dukedom",
       "Guardians",
       "Ninja-Pirate-Mink-Samurai Alliance",
-      "Nox Expedition Party\\Pirates (former)"
+      "Nox Expedition Party",
+      "Nox Pirates (former)"
     ],
     "occupations": [
-      "Captain of the Guardians",
+      "Guardian Captain",
       "Pirate Captain (former)",
       "Explorer (former)"
     ],
@@ -7302,7 +7302,8 @@
         "莫科莫公国",
         "守护者",
         "忍者·海贼·米ンク族·武士同盟",
-        "诺克斯远征队/海贼"
+        "诺克斯远征队",
+        "诺克斯海贼团"
       ],
       "origin": "伟大航路",
       "debut_arc": "佐乌篇",
@@ -7370,7 +7371,7 @@
     ],
     "occupations": [
       "Pirate",
-      "Wild Zombies and Surprise Zombies Commander"
+      "Wild Zombies And Surprise Zombies Commander"
     ],
     "residence": [
       "Kuraigana Island (former)",
@@ -7484,10 +7485,10 @@
     "occupations": [
       "2nd Division Commander",
       "Pirate",
-      "Captain (former)",
-      "Prisoner of the Great Prison (former)",
-      "Thief (former)",
-      "Bandit (former)"
+      "Captain",
+      "Prisoner",
+      "Thief",
+      "Bandit"
     ],
     "residence": [
       "Baterilla (former)",
@@ -7498,7 +7499,7 @@
     "status": "Deceased",
     "birthday": "January 1st",
     "height": 185,
-    "devil_fruit_name": "Flame-Flame Fruit (VIZ , Funimation); Flare-Flare Fruit (4Kids , Funimation subs)",
+    "devil_fruit_name": "Flame-Flame Fruit",
     "devil_fruit_type": "Logia",
     "haki": [
       "armament",
@@ -7561,7 +7562,7 @@
     "debut_arc": "Wano Country Act 2",
     "affiliations": [
       "Marines (G-14)",
-      "(SWORD)"
+      "SWORD"
     ],
     "occupations": [
       "Rear Admiral"
@@ -7584,7 +7585,8 @@
     "cn": {
       "name": "格鲁斯王子",
       "affiliations": [
-        "海军"
+        "海军",
+        "SWORD"
       ],
       "origin": "西海",
       "debut_arc": "和之国篇·第二幕",
@@ -7637,7 +7639,7 @@
     "occupations": [
       "All-Star",
       "Scientist",
-      "De Facto Ruler of Udon (former)"
+      "De Facto Ruler of Udon"
     ],
     "residence": [
       "Wano Country (Onigashima)"
@@ -7655,7 +7657,7 @@
       "observation"
     ],
     "cn": {
-      "name": "Queen",
+      "name": "奎因",
       "affiliations": [
         "百兽海贼团",
         "MADS"
@@ -7686,8 +7688,8 @@
       "Ninja",
       "Retainer of the Kouzuki Family",
       "Samurai",
-      "Member of the Kouzuki Family Oniwabanshu (Former)",
-      "Bandit (Former)"
+      "Member of the Kouzuki Family Oniwabanshu",
+      "Bandit"
     ],
     "residence": [
       "Wano Country (Udon)",
@@ -7700,7 +7702,7 @@
     "age": 35,
     "birthday": "February 26th",
     "height": 311,
-    "devil_fruit_name": "Scrolling Jutsu (VIZ); Scroll-Scroll Fruit (One Piece Official YouTube Channel)",
+    "devil_fruit_name": "Scroll-Scroll Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [
       "armament",
@@ -7715,7 +7717,7 @@
       ],
       "origin": "伟大航路",
       "debut_arc": "佐乌篇",
-      "devil_fruit_name": "卷轴术",
+      "devil_fruit_name": "卷轴果实",
       "devil_fruit_type": "超人系",
       "haki": [
         "武装色",
@@ -7734,9 +7736,9 @@
       "Corrida Colosseum"
     ],
     "occupations": [
-      "Lady-in-waiting",
-      "Gladiator (former)",
-      "Princess Of Dressrosa (former)"
+      "Lady-in-Waiting",
+      "Gladiator",
+      "Princess of Dressrosa"
     ],
     "residence": [
       "Dressrosa"
@@ -7774,7 +7776,7 @@
     ],
     "occupations": [
       "King",
-      "Corrida Colosseum Gladiator (former)"
+      "Corrida Colosseum Gladiator"
     ],
     "residence": [
       "Dressrosa"
@@ -7809,7 +7811,7 @@
     ],
     "occupations": [
       "Cipher Pol Agent",
-      "Shipwright (undercover)"
+      "Undercover Shipwright"
     ],
     "residence": [
       "Guanhao (former)"
@@ -7820,7 +7822,7 @@
     "age": 30,
     "birthday": "June 2nd",
     "height": 212,
-    "devil_fruit_name": "Cat-Cat Fruit Leopard Model (VIZ); Cat-Cat Fruit, Model: Leopard (VIZ, Funimation)",
+    "devil_fruit_name": "Cat-Cat Fruit, Model: Leopard",
     "devil_fruit_type": "Zoan",
     "haki": [
       "armament",
@@ -7829,6 +7831,7 @@
     "cn": {
       "name": "罗布·鲁奇",
       "affiliations": [
+        "CP0",
         "CP9",
         "加雷拉公司"
       ],
@@ -7888,16 +7891,16 @@
     "affiliations": [
       "Straw Hat Pirates",
       "Straw Hat Grand Fleet",
-      "Shimotsuki Family (descended)",
+      "Shimotsuki Family",
       "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
     ],
     "occupations": [
-      "Master Swordsman",
+      "Swordsman",
       "Pirate",
       "Crew Combatant",
       "Senior Officer",
-      "Rōnin (temporary)",
-      "Bounty Hunter (former)"
+      "Rōnin",
+      "Bounty Hunter"
     ],
     "residence": [
       "Shimotsuki Village (former)",
@@ -7939,7 +7942,7 @@
     "debut_chapter": 1062,
     "debut_arc": "Egghead",
     "affiliations": [
-      "Seraphim (Pacifista)"
+      "Seraphim"
     ],
     "residence": [
       "Egghead"
@@ -7977,7 +7980,7 @@
     "debut_chapter": 1059,
     "debut_arc": "Egghead",
     "affiliations": [
-      "Seraphim (Pacifista)"
+      "Seraphim"
     ],
     "residence": [
       "Egghead"
@@ -8015,7 +8018,7 @@
     "debut_chapter": 1065,
     "debut_arc": "Egghead",
     "affiliations": [
-      "Seraphim (Pacifista)"
+      "Seraphim"
     ],
     "residence": [
       "Egghead"
@@ -8053,7 +8056,7 @@
     "debut_chapter": 1059,
     "debut_arc": "Egghead",
     "affiliations": [
-      "Seraphim (Pacifista)"
+      "Seraphim"
     ],
     "residence": [
       "Egghead"
@@ -8096,7 +8099,7 @@
       "Goa Kingdom (defected)"
     ],
     "occupations": [
-      "Chief of Staff (参謀総長 , Sanbō Sōchō ?) of the Revolutionary Army",
+      "Chief of Staff",
       "Noble (former)",
       "Pirate (former)",
       "Thief (former)",
@@ -8114,7 +8117,7 @@
     "age": 22,
     "birthday": "March 20th",
     "height": 187,
-    "devil_fruit_name": "Flame-Flame Fruit (VIZ , Funimation); Flare-Flare Fruit (4Kids , Funimation subs)",
+    "devil_fruit_name": "Flame-Flame Fruit",
     "devil_fruit_type": "Logia",
     "haki": [
       "armament",
@@ -8151,7 +8154,7 @@
     "occupations": [
       "Captain of the Third Ship of the Straw Hat Grand Fleet",
       "13th Leader of the Happo Navy",
-      "Martial Artist (VIZ: Fighter)"
+      "Martial Artist"
     ],
     "residence": [
       "Kano Country"
@@ -8204,7 +8207,7 @@
     "age": 55,
     "birthday": "August 16th",
     "height": 306,
-    "devil_fruit_name": "Mag-Mag Fruit (VIZ) Magma-Magma Fruit",
+    "devil_fruit_name": "Magma-Magma Fruit",
     "devil_fruit_type": "Logia",
     "haki": [
       "armament",
@@ -8217,7 +8220,7 @@
       ],
       "origin": "北海",
       "debut_arc": "司法岛篇",
-      "devil_fruit_name": "岩浆果实",
+      "devil_fruit_name": "熔岩果实",
       "devil_fruit_type": "自然系",
       "haki": [
         "武装色",
@@ -8244,7 +8247,7 @@
       "Senior Officer",
       "Sous Chef (former)",
       "Prince (former)",
-      "Cart Vendor (temporary)"
+      "Cart Vendor (temporarily)"
     ],
     "residence": [
       "East Blue (Baratie) (former)",
@@ -8366,7 +8369,7 @@
     "age": 34,
     "birthday": "February 3rd",
     "height": 318,
-    "devil_fruit_name": "Dragon-Dragon Fruit, Triceratops Model",
+    "devil_fruit_name": "Dragon-Dragon Fruit, Model: Triceratops",
     "devil_fruit_type": "Zoan",
     "haki": [
       "armament",
@@ -8380,7 +8383,7 @@
       ],
       "origin": "伟大航路",
       "debut_arc": "和之国篇·第二幕",
-      "devil_fruit_name": "龙龙果实（三角龙形态）",
+      "devil_fruit_name": "龙龙果实·三角龙型",
       "devil_fruit_type": "动物系",
       "haki": [
         "武装色",
@@ -8477,12 +8480,11 @@
     "debut_chapter": 234,
     "debut_arc": "Jaya",
     "affiliations": [
-      "Marines (semi-retired)"
+      "Marines (resigned)"
     ],
     "occupations": [
       "Inspector General",
       "Fleet Admiral (former)",
-      "Admiral (former)",
       "Admiral (former)",
       "Vice Admiral (former)"
     ],
@@ -8566,9 +8568,9 @@
       "Marines (former)"
     ],
     "occupations": [
-      "Marine Officer (former)",
-      "Captain of the Science Unit (former)",
-      "Dr. Vegapunk 's bodyguard (former)"
+      "Marine Officer",
+      "Science Unit Captain",
+      "Dr. Vegapunk's Bodyguard"
     ],
     "residence": [
       "Egghead (former)"
@@ -8632,15 +8634,15 @@
     "debut_chapter": 498,
     "debut_arc": "Sabaody Archipelago",
     "affiliations": [
-      "Shakky's Rip-off Bar",
+      "Shakky's Rip-Off Bar",
       "Kuja",
       "Kuja Pirates (former)"
     ],
     "occupations": [
       "Bartender",
-      "Pirate Captain (former)",
-      "First Mate (former)",
-      "Empress of Amazon Lily (former)"
+      "Pirate Captain",
+      "First Mate",
+      "Empress of Amazon Lily"
     ],
     "residence": [
       "Sabaody Archipelago",
@@ -8656,7 +8658,7 @@
     "cn": {
       "name": "沙库雅克",
       "affiliations": [
-        "夏奇的宰客酒吧",
+        "沙琪的宰客酒吧",
         "九蛇",
         "库贾海贼团"
       ],
@@ -8702,13 +8704,13 @@
     "debut_chapter": 1,
     "debut_arc": "Romance Dawn",
     "affiliations": [
-      "Red Hair Pirates",
+      "Red-Haired Pirates",
       "Four Emperors",
       "Roger Pirates (former)",
       "World Nobles (Figarland Family) (former)"
     ],
     "occupations": [
-      "Chief",
+      "Pirate Captain",
       "Emperor",
       "Apprentice (former)"
     ],
@@ -8752,7 +8754,7 @@
     ],
     "occupations": [
       "Co-Head of the World Government (Public)",
-      "Warrior God of Agriculture (農務武神 , Nōmu Bushin ? , English versions: \"Godhead of Agriculture\")"
+      "Warrior God of Agriculture"
     ],
     "residence": [
       "Mary Geoise"
@@ -8824,7 +8826,7 @@
     "height": 221,
     "haki": [],
     "cn": {
-      "name": "Shimotsuki Kouzaburou",
+      "name": "下月光三郎",
       "affiliations": [
         "霜月家"
       ],
@@ -8907,7 +8909,7 @@
     "occupations": [
       "Kunoichi",
       "Retainer of the Kouzuki Family",
-      "Member of the Kouzuki Family Oniwabanshu (Former)"
+      "Member of the Kouzuki Family Oniwabanshu"
     ],
     "residence": [
       "Wano Country (Kuri)",
@@ -8919,7 +8921,7 @@
     "age": 49,
     "birthday": "October 23rd",
     "height": 180,
-    "devil_fruit_name": "Ripe-Ripe Enticement Jutsu (VIZ and Funimation); Ripe-Ripe Fruit (One Piece Official YouTube Channel)",
+    "devil_fruit_name": "Ripe-Ripe Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [],
     "cn": {
@@ -8930,7 +8932,7 @@
       ],
       "origin": "伟大航路",
       "debut_arc": "和之国篇·第一幕",
-      "devil_fruit_name": "熟熟诱惑术",
+      "devil_fruit_name": "熟熟果实",
       "devil_fruit_type": "超人系",
       "haki": []
     }
@@ -8984,9 +8986,9 @@
       "Impel Down (former)"
     ],
     "occupations": [
-      "Titanic Captain (Captain of the Second Ship)",
-      "Head Jailer (former)",
-      "Prisoner of the Great Prison (former)"
+      "Captain of the Second Ship",
+      "Head Jailer",
+      "Prisoner of the Great Prison"
     ],
     "residence": [
       "Hachinosu"
@@ -9003,7 +9005,7 @@
       "armament"
     ],
     "cn": {
-      "name": "希留",
+      "name": "雨之希留",
       "affiliations": [
         "黑胡子海贼团",
         "推进城"
@@ -9061,8 +9063,8 @@
     ],
     "occupations": [
       "Coating Mechanic",
-      "First Mate (former)",
-      "Pirate (former)"
+      "First Mate",
+      "Pirate"
     ],
     "residence": [
       "Sabaody Archipelago"
@@ -9104,11 +9106,11 @@
       "Loguetown Marine Base (former)"
     ],
     "occupations": [
-      "Vice Admiral",
-      "Base Commander of G-5",
-      "Commander of G-5 Unit 01",
-      "Commodore (former)",
-      "Captain (former)"
+      "Marine Vice Admiral",
+      "G-5 Base Commander",
+      "G-5 Unit 01 Commander",
+      "Marine Commodore",
+      "Marine Captain"
     ],
     "residence": [
       "G-5 Loguetown (former)"
@@ -9119,7 +9121,7 @@
     "age": 36,
     "birthday": "March 14th",
     "height": 209,
-    "devil_fruit_name": "Smoke-Smoke Fruit (4Kids); Plume-Plume Fruit (VIZ, Funimation); Steam-Steam Fruit (Grand Adventure)",
+    "devil_fruit_name": "Smoke-Smoke Fruit",
     "devil_fruit_type": "Logia",
     "haki": [
       "armament",
@@ -9154,9 +9156,9 @@
       "CP5 (former)"
     ],
     "occupations": [
-      "CP0 Chief (former)",
-      "CP9 Chief (former)",
-      "CP5 Chief (former)"
+      "CP0 Chief",
+      "CP9 Chief",
+      "CP5 Chief"
     ],
     "origin": "Grand Line",
     "bounty": 0,
@@ -9168,6 +9170,7 @@
     "cn": {
       "name": "斯潘达姆",
       "affiliations": [
+        "CP0",
         "CP9",
         "CP5"
       ],
@@ -9215,13 +9218,13 @@
     "debut_arc": "Whole Cake Island",
     "affiliations": [
       "Vegapunk",
-      "CP0 (undercover, former)",
-      "Underworld (undercover)",
+      "CP0 (former)",
+      "Underworld",
       "MADS (former)"
     ],
     "occupations": [
       "Spy",
-      "Cipher Pol Agent (undercover, former)",
+      "Cipher Pol Agent",
       "Empress of the Underworld"
     ],
     "origin": "Unknown",
@@ -9230,7 +9233,7 @@
     "age": 36,
     "birthday": "April 24th",
     "height": 179,
-    "devil_fruit_name": "Batto Batto no Mi",
+    "devil_fruit_name": "Batto-Batto Fruit",
     "devil_fruit_type": "Zoan",
     "haki": [
       "armament",
@@ -9240,6 +9243,7 @@
       "name": "斯图西",
       "affiliations": [
         "贝加庞克",
+        "CP0",
         "地下世界",
         "MADS"
       ],
@@ -9347,7 +9351,7 @@
     "height": 200,
     "haki": [],
     "cn": {
-      "name": "T Bone",
+      "name": "T骨",
       "affiliations": [
         "海军"
       ],
@@ -9513,7 +9517,7 @@
     "affiliations": [
       "Straw Hat Pirates",
       "Straw Hat Grand Fleet",
-      "Foxy Pirates (former, temporary)",
+      "Foxy Pirates (temporarily)",
       "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
     ],
     "occupations": [
@@ -9560,7 +9564,7 @@
     ],
     "occupations": [
       "Co-Head of the World Government (Public)",
-      "Warrior God of Justice (法務武神 , Hōmu Bushin ? , English versions: \"Godhead of Justice\")"
+      "Warrior God of Justice"
     ],
     "residence": [
       "Mary Geoise"
@@ -9596,7 +9600,7 @@
       "Heart Pirates",
       "Clan of D.",
       "Ninja-Pirate-Mink-Samurai Alliance (disbanded)",
-      "Seven Warlords of the Sea (revoked)",
+      "Seven Warlords of the Sea (former)",
       "Donquixote Pirates (defected)"
     ],
     "occupations": [
@@ -9627,7 +9631,7 @@
         "心脏海贼团",
         "D一族",
         "忍者·海贼·米ンク族·武士同盟",
-        "七武海",
+        "王下七武海",
         "唐吉诃德家族"
       ],
       "origin": "北海",
@@ -9652,7 +9656,7 @@
     "occupations": [
       "Pirate Executive Officer",
       "Staff Officer",
-      "Sugar 's Bodyguard"
+      "Bodyguard"
     ],
     "residence": [
       "Downs (former) Spider Miles (former) Dressrosa (former)"
@@ -9663,7 +9667,7 @@
     "age": 49,
     "birthday": "March 18th",
     "height": 349,
-    "devil_fruit_name": "Stick-Stick Fruit (Viz) Sticky-Sticky Fruit (FUNimation)",
+    "devil_fruit_name": "Sticky-Sticky Fruit",
     "devil_fruit_type": "Paramecia",
     "haki": [
       "armament",
@@ -9676,7 +9680,7 @@
       ],
       "origin": "北海",
       "debut_arc": "德雷斯罗萨",
-      "devil_fruit_name": "棒棒果实",
+      "devil_fruit_name": "黏黏果实",
       "devil_fruit_type": "超人系",
       "haki": [
         "武装色",
@@ -9694,7 +9698,7 @@
       "Marines"
     ],
     "occupations": [
-      "Vice Admiral"
+      "Marine Vice Admiral"
     ],
     "origin": "North Blue",
     "bounty": 500000000,
@@ -9731,7 +9735,7 @@
     "debut_arc": "Wano Country Act 2",
     "affiliations": [
       "Yamato",
-      "Beasts Pirates (Tobiroppo) (former)"
+      "Beast Pirates (Tobi Roppo) (former)"
     ],
     "occupations": [
       "Shinuchi (former)"
@@ -9811,7 +9815,7 @@
     "occupations": [
       "Sniper",
       "Senior Officer",
-      "Toad Oil Salesman (temporary)"
+      "Toad Oil Salesman (temporarily)"
     ],
     "residence": [
       "Syrup Village (former)",
@@ -9889,7 +9893,7 @@
       "Blackbeard Pirates"
     ],
     "occupations": [
-      "Titanic Captain (Captain of the Third Ship)",
+      "Titanic Captain",
       "Sniper"
     ],
     "residence": [
@@ -9924,11 +9928,10 @@
     "debut_arc": "Fish-Man Island",
     "affiliations": [
       "Flying Pirates",
-      "Ally of the New Fish-Man Pirates (former)"
+      "New Fish-Man Pirates (former)"
     ],
     "occupations": [
-      "Pirate",
-      "Captain"
+      "Pirate Captain"
     ],
     "residence": [
       "Flying Dutchman (former)"
@@ -9946,7 +9949,7 @@
       "name": "范德·德肯九世",
       "affiliations": [
         "飞行海贼团",
-        "新鱼人海贼团的盟友"
+        "新鱼人海贼团"
       ],
       "origin": "伟大航路",
       "debut_arc": "鱼人岛篇",
@@ -9966,8 +9969,8 @@
       "Impel Down (former)"
     ],
     "occupations": [
-      "Titanic Captain (Captain of the Eighth Ship)",
-      "Prisoner of the Great Prison (former)"
+      "Titanic Captain",
+      "Prisoner (former)"
     ],
     "residence": [
       "Hachinosu"
@@ -10002,7 +10005,7 @@
     "debut_arc": "Punk Hazard",
     "affiliations": [
       "MADS (former)",
-      "Marines (former) (SSG)"
+      "Marines (former)"
     ],
     "occupations": [
       "Scientist"
@@ -10028,6 +10031,7 @@
       ],
       "origin": "伟大航路",
       "debut_arc": "庞克哈萨德",
+      "devil_fruit_name": "脑脑果实",
       "devil_fruit_type": "超人系",
       "haki": []
     }
@@ -10040,14 +10044,14 @@
     "debut_arc": "Punk Hazard",
     "affiliations": [
       "Donquixote Pirates",
-      "Marines (undercover)",
-      "Marine G-5 (undercover)"
+      "Marines (temporarily)",
+      "Marines G-5 (temporarily)"
     ],
     "occupations": [
-      "Pirate Elite Officer",
-      "Vice Admiral (undercover)",
-      "Head of G-5 (undercover)",
-      "Marine Captain (undercover, former)"
+      "Pirate Officer",
+      "Marine Vice Admiral",
+      "G-5 Commander",
+      "Marine Captain"
     ],
     "residence": [
       "Downs (former) G-5"
@@ -10300,8 +10304,8 @@
     ],
     "occupations": [
       "Princess of Dressrosa",
-      "Pirate Officer (former)",
-      "Assassin (former)",
+      "Former Pirate Officer",
+      "Former Assassin",
       "Dancer"
     ],
     "origin": "Grand Line",
@@ -10336,7 +10340,7 @@
       "Whitebeard Pirates (former)"
     ],
     "occupations": [
-      "5th Division Commander (former)",
+      "Former 5th Division Commander",
       "Pirate"
     ],
     "origin": "North Blue",
@@ -10374,7 +10378,7 @@
     "occupations": [
       "Pirate",
       "Advisor",
-      "Mafia gangster (former)"
+      "Former Mafia Gangster"
     ],
     "origin": "West Blue",
     "bounty": 95000000,
@@ -10400,12 +10404,12 @@
     "debut_chapter": 131,
     "debut_arc": "Drum Island",
     "affiliations": [
-      "Evil Black Drum Kingdom",
+      "Black Drum Kingdom",
       "Drum Kingdom (former)",
       "Bliking Pirates (disbanded)"
     ],
     "occupations": [
-      "King of the Evil Black Drum Kingdom",
+      "King of the Black Drum Kingdom",
       "President of Wapol Konzern",
       "King of Drum Kingdom (former)",
       "Pirate",
@@ -10424,9 +10428,9 @@
     "devil_fruit_type": "Paramecia",
     "haki": [],
     "cn": {
-      "name": "Wapol",
+      "name": "瓦波尔",
       "affiliations": [
-        "邪恶黑鼓王国",
+        "黑鼓王国",
         "鼓之国",
         "布里金海贼团"
       ],
@@ -10465,7 +10469,7 @@
     "age": 38,
     "birthday": "March 15th",
     "height": 336,
-    "devil_fruit_name": "Cat-Cat Fruit, Saber-Toothed Tiger Model",
+    "devil_fruit_name": "Cat-Cat Fruit, Model: Saber-Toothed Tiger",
     "devil_fruit_type": "Zoan",
     "haki": [
       "armament",
@@ -10480,7 +10484,7 @@
       ],
       "origin": "北海",
       "debut_arc": "和之国篇·第二幕",
-      "devil_fruit_name": "猫猫果实·剑齿虎形态",
+      "devil_fruit_name": "猫猫果实·剑齿虎型",
       "devil_fruit_type": "动物系",
       "haki": [
         "武装色",
@@ -10495,7 +10499,7 @@
     "debut_chapter": 1,
     "debut_arc": "Romance Dawn",
     "affiliations": [
-      "Foosha Village"
+      "Fooshа Village"
     ],
     "occupations": [
       "Mayor"
@@ -10511,7 +10515,7 @@
     "cn": {
       "name": "乌普拍",
       "affiliations": [
-        "风车村"
+        "福沙村"
       ],
       "origin": "东海",
       "debut_arc": "冒险的黎明",
@@ -10559,7 +10563,7 @@
     "affiliations": [
       "Marines (SWORD)",
       "Drake Pirates",
-      "Beasts Pirates (Tobiroppo , former)",
+      "Beasts Pirates (Tobiroppo, former)",
       "Barrels Pirates (defected)",
       "Ninja-Pirate-Mink-Samurai Alliance (disbanded)"
     ],
@@ -10655,7 +10659,7 @@
       "G-5"
     ],
     "occupations": [
-      "Commodore"
+      "Marine Commodore"
     ],
     "residence": [
       "G-5"
@@ -10683,7 +10687,7 @@
     "debut_chapter": 1,
     "debut_arc": "Romance Dawn",
     "affiliations": [
-      "Red Hair Pirates"
+      "Red-Haired Pirates"
     ],
     "occupations": [
       "Pirate",
@@ -10724,9 +10728,9 @@
       "Caesar Clown"
     ],
     "occupations": [
-      "Mercenaries",
-      "Assassins",
-      "Snipers"
+      "Mercenary",
+      "Assassin",
+      "Sniper"
     ],
     "origin": "Grand Line",
     "bounty": 20000000,
@@ -10737,7 +10741,9 @@
     "haki": [],
     "cn": {
       "name": "耶提酷兄弟",
-      "affiliations": [],
+      "affiliations": [
+        "凯撒·克劳恩"
+      ],
       "origin": "伟大航路",
       "debut_arc": "庞克哈萨德",
       "haki": []
@@ -10753,9 +10759,9 @@
       "Caesar Clown"
     ],
     "occupations": [
-      "Mercenaries",
-      "Assassins",
-      "Snipers"
+      "Mercenary",
+      "Assassin",
+      "Sniper"
     ],
     "origin": "Grand Line",
     "bounty": 20000000,
@@ -10766,7 +10772,9 @@
     "haki": [],
     "cn": {
       "name": "耶提酷兄弟",
-      "affiliations": [],
+      "affiliations": [
+        "凯撒·克劳恩"
+      ],
       "origin": "伟大航路",
       "debut_arc": "庞克哈萨德",
       "haki": []
@@ -10779,7 +10787,8 @@
     "debut_chapter": 1065,
     "debut_arc": "Egghead",
     "affiliations": [
-      "Marines (SSG) World Government"
+      "Marines",
+      "World Government"
     ],
     "residence": [
       "Egghead"
@@ -10794,7 +10803,8 @@
     "cn": {
       "name": "约克",
       "affiliations": [
-        "海军"
+        "海军",
+        "世界政府"
       ],
       "origin": "伟大航路",
       "debut_arc": "蛋头岛篇",
@@ -10809,12 +10819,12 @@
     "debut_arc": "Arabasta",
     "affiliations": [
       "New Spiders Cafe",
-      "Baroque Works (Former)"
+      "Baroque Works (former)"
     ],
     "occupations": [
-      "Spiders Cafe Owner",
-      "Assassin (Former)",
-      "Officer Agent (Former)"
+      "New Spiders Cafe Owner",
+      "Assassin (former)",
+      "Officer Agent (former)"
     ],
     "origin": "Grand Line",
     "bounty": 35000000,
@@ -10865,7 +10875,8 @@
     "cn": {
       "name": "泽夫",
       "affiliations": [
-        "巴拉蒂"
+        "巴拉蒂",
+        "厨师海贼团"
       ],
       "origin": "东海",
       "debut_arc": "海上餐厅篇",
@@ -10884,7 +10895,7 @@
       "Rocks Pirates (former)"
     ],
     "occupations": [
-      "Partner (相棒 , Aibō ? , Viz: \"Sidekick\")",
+      "Partner",
       "Living Weapon",
       "Servant (former)"
     ],

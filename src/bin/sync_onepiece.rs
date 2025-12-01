@@ -49,20 +49,28 @@
 //                               - Adds devil_fruit_cn.type field
 //                               - Included in 'all' layers
 //
-// Layer 11 (translate):         Creates/updates translation cache using GPT-5-mini
+// Layer 11 (clean_english):     Cleans and standardizes English entries using GPT-5-mini
+//                               - Cleans: names, affiliations, occupations, devil_fruit.name
+//                               - Standardizes status markers: (former), (defected), etc.
+//                               - Removes localization variants from devil fruit names
+//                               - Fixes capitalization and formatting issues
+//                               - Requires OPENAI_API_KEY environment variable
+//                               - NOT included in 'all' (run explicitly, costs money!)
+//
+// Layer 12 (translate):         Creates/updates translation cache using GPT-5-mini
 //                               - Translates: name, Affiliations, devil_fruit.name
 //                               - Uses OpenAI GPT-5-mini for accurate One Piece-specific translations
 //                               - Updates local dictionary cache (data/op_translation.json)
 //                               - Requires OPENAI_API_KEY environment variable
 //                               - Does NOT apply translations to character data
 //
-// Layer 12 (map_translation):   Applies cached translations to character data
+// Layer 13 (map_translation):   Applies cached translations to character data
 //                               - Reads from translation cache (data/op_translation.json)
 //                               - Sets: name_cn, affiliations_cn, devil_fruit_cn fields
 //                               - Free operation (no API calls)
 //                               - Included in 'all' layers
 //
-// Layer 13 (sanitize):          Transforms data to clean, sanitized JSON format
+// Layer 14 (sanitize):          Transforms data to clean, sanitized JSON format
 //                               - Converts to consistent camelCase/snake_case naming
 //                               - Numbers stored as numbers (bounty, height, age, debut_chapter)
 //                               - Optional fields omitted when empty (not null or [])
@@ -88,13 +96,15 @@
 //   cargo run --bin sync_onepiece -- --layers map_origin                # Run only layer 8
 //   cargo run --bin sync_onepiece -- --layers map_haki                  # Run only layer 9 (map haki to CN)
 //   cargo run --bin sync_onepiece -- --layers map_devil_fruit_type      # Run only layer 10 (map fruit types to CN)
-//   cargo run --bin sync_onepiece -- --layers translate                 # Run only layer 11 (update cache, costs money!)
-//   cargo run --bin sync_onepiece -- --layers map_translation           # Run only layer 12 (apply cached translations)
-//   cargo run --bin sync_onepiece -- --layers sanitize                  # Run only layer 13 (output clean format)
+//   cargo run --bin sync_onepiece -- --layers clean_english             # Run only layer 11 (clean English, costs money!)
+//   cargo run --bin sync_onepiece -- --layers translate                 # Run only layer 12 (update cache, costs money!)
+//   cargo run --bin sync_onepiece -- --layers map_translation           # Run only layer 13 (apply cached translations)
+//   cargo run --bin sync_onepiece -- --layers sanitize                  # Run only layer 14 (output clean format)
 //   cargo run --bin sync_onepiece -- --layers scrape,scrape_haki        # Run scrape layers together
-//   cargo run --bin sync_onepiece -- --layers all                       # Run layers 3-10,12-13 (excludes scrape, scrape_haki & translate)
+//   cargo run --bin sync_onepiece -- --layers all                       # Run layers 3-10,13-14 (excludes scrape, scrape_haki, clean_english & translate)
 //   cargo run --bin sync_onepiece -- --layers scrape,scrape_haki,all    # Run all layers INCLUDING scrape
 //   cargo run --bin sync_onepiece -- --layers all,translate             # Run all layers INCLUDING translate (costs money!)
+//   cargo run --bin sync_onepiece -- --layers all,clean_english         # Run all layers INCLUDING clean_english (costs money!)
 //   cargo run --bin sync_onepiece -- --layers all --strict              # Run all layers, ignore exclude list
 
 use anyhow::Result;
@@ -119,8 +129,8 @@ const OUTPUT_FILE: &str = "data/op_characters.json";
 const SANITIZED_OUTPUT_FILE: &str = "data/op_sanitized.json";
 const TRANSLATION_CACHE_FILE: &str = "data/op_translation.json";
 
-// Translation model: GPT-5-mini (best quality/cost balance)
-const TRANSLATION_MODEL: &str = "gpt-4o-mini";
+// LLM model for cleaning and translation (GPT-5-mini)
+const TRANSLATION_MODEL: &str = "gpt-5-mini";
 const MODEL_INPUT_PRICE_PER_1M: f64 = 0.25;
 const MODEL_OUTPUT_PRICE_PER_1M: f64 = 2.00;
 
@@ -129,7 +139,7 @@ const MODEL_OUTPUT_PRICE_PER_1M: f64 = 2.00;
 #[command(name = "sync_onepiece")]
 #[command(about = "One Piece character data scraper with layered processing", long_about = None)]
 struct Args {
-    /// Layers to run (comma-separated): scrape, scrape_haki, clean_affiliation, clean_chapter, clean_bounty, clean_height, add_arc, map_origin, map_haki, map_devil_fruit_type, translate, map_translation, sanitize, or 'all'
+    /// Layers to run (comma-separated): scrape, scrape_haki, clean_affiliation, clean_chapter, clean_bounty, clean_height, add_arc, map_origin, map_haki, map_devil_fruit_type, clean_english, translate, map_translation, sanitize, or 'all'
     #[arg(short, long, default_value = "all", value_delimiter = ',')]
     layers: Vec<String>,
 
@@ -137,9 +147,9 @@ struct Args {
     #[arg(short, long, default_value_t = false)]
     strict: bool,
 
-    /// Limit number of characters to translate (for testing, 0 = no limit)
+    /// Limit number of characters for LLM layers (clean_english, translate). 0 = no limit
     #[arg(long, default_value_t = 0)]
-    translate_limit: usize,
+    llm_limit: usize,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
@@ -154,9 +164,10 @@ enum Layer {
     MapOrigin = 8,
     MapHaki = 9,
     MapDevilFruitType = 10,
-    Translate = 11,
-    MapTranslation = 12,
-    Sanitize = 13,
+    CleanEnglish = 11,
+    Translate = 12,
+    MapTranslation = 13,
+    Sanitize = 14,
 }
 
 impl Layer {
@@ -172,6 +183,7 @@ impl Layer {
             "map_origin" => Some(Layer::MapOrigin),
             "map_haki" => Some(Layer::MapHaki),
             "map_devil_fruit_type" => Some(Layer::MapDevilFruitType),
+            "clean_english" => Some(Layer::CleanEnglish),
             "translate" => Some(Layer::Translate),
             "map_translation" => Some(Layer::MapTranslation),
             "sanitize" => Some(Layer::Sanitize),
@@ -191,6 +203,7 @@ impl Layer {
             Layer::MapOrigin => "map_origin",
             Layer::MapHaki => "map_haki",
             Layer::MapDevilFruitType => "map_devil_fruit_type",
+            Layer::CleanEnglish => "clean_english",
             Layer::Translate => "translate",
             Layer::MapTranslation => "map_translation",
             Layer::Sanitize => "sanitize",
@@ -209,6 +222,7 @@ impl Layer {
             Layer::MapOrigin => "Map origin to standardized major locations",
             Layer::MapHaki => "Map Haki types to Chinese (见闻色/武装色/霸王色)",
             Layer::MapDevilFruitType => "Map devil fruit types to Chinese (超人系/动物系/自然系)",
+            Layer::CleanEnglish => "Clean English entries using GPT-5-mini (costs money!)",
             Layer::Translate => "Create/update translation cache using GPT-5-mini (costs money!)",
             Layer::MapTranslation => "Apply cached translations to character data",
             Layer::Sanitize => "Transform to clean format and output to op_sanitized.json",
@@ -597,9 +611,10 @@ fn main() -> Result<()> {
     let mut layers = Vec::new();
     for layer_str in &args.layers {
         if layer_str.to_lowercase() == "all" {
-            // Note: Scrape, ScrapeHaki, and Translate are excluded from 'all'
+            // Note: Scrape, ScrapeHaki, CleanEnglish, and Translate are excluded from 'all'
             // - Scrape: Data doesn't change often, run explicitly
             // - ScrapeHaki: Additional scraping, run explicitly after scrape
+            // - CleanEnglish: Costs money, run explicitly
             // - Translate: Costs money, run explicitly
             // Merge with existing layers (e.g., scrape,all should include scrape)
             for layer in [
@@ -624,7 +639,7 @@ fn main() -> Result<()> {
             }
         } else {
             eprintln!("Unknown layer: {}", layer_str);
-            eprintln!("Available layers: scrape, scrape_haki, clean_affiliation, clean_chapter, clean_bounty, clean_height, add_arc, map_origin, map_haki, map_devil_fruit_type, translate, map_translation, sanitize, all");
+            eprintln!("Available layers: scrape, scrape_haki, clean_affiliation, clean_chapter, clean_bounty, clean_height, add_arc, map_origin, map_haki, map_devil_fruit_type, clean_english, translate, map_translation, sanitize, all");
             std::process::exit(1);
         }
     }
@@ -658,12 +673,16 @@ fn main() -> Result<()> {
             Layer::MapOrigin => layer_8_map_origin()?,
             Layer::MapHaki => layer_9_map_haki()?,
             Layer::MapDevilFruitType => layer_10_map_devil_fruit_type()?,
+            Layer::CleanEnglish => {
+                // Clean English layer needs async runtime
+                tokio::runtime::Runtime::new()?.block_on(layer_11_clean_english(args.llm_limit, &secrets))?;
+            }
             Layer::Translate => {
                 // Translation layer needs async runtime
-                tokio::runtime::Runtime::new()?.block_on(layer_11_translate(args.translate_limit, &secrets))?;
+                tokio::runtime::Runtime::new()?.block_on(layer_12_translate(args.llm_limit, &secrets))?;
             }
-            Layer::MapTranslation => layer_12_map_translation()?,
-            Layer::Sanitize => layer_13_sanitize()?,
+            Layer::MapTranslation => layer_13_map_translation()?,
+            Layer::Sanitize => layer_14_sanitize()?,
         }
     }
 
@@ -1300,9 +1319,278 @@ fn layer_10_map_devil_fruit_type() -> Result<()> {
     Ok(())
 }
 
-async fn layer_11_translate(limit: usize, secrets: &StdHashMap<String, String>) -> Result<()> {
+// ============================================================================
+// Layer 11: Clean English - Standardize English entries using GPT-4o-mini
+// ============================================================================
+
+/// Structure for sending character data to GPT for cleaning
+#[derive(Debug, Serialize, Deserialize)]
+struct CleanableCharacter {
+    name: String,
+    affiliations: Vec<String>,
+    occupations: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    status: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    devil_fruit_name: Option<String>,
+}
+
+async fn layer_11_clean_english(limit: usize, secrets: &StdHashMap<String, String>) -> Result<()> {
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    println!("🌏 Layer 11: Translate (Update Cache)");
+    println!("🧹 Layer 11: Clean English (Using GPT-5-mini)");
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+
+    // Check for API key (from Secrets.toml or environment)
+    let api_key = get_secret(secrets, "OPENAI_API_KEY").ok_or_else(|| {
+        anyhow::anyhow!(
+            "OPENAI_API_KEY not found!\n  \
+             Add it to Secrets.toml: OPENAI_API_KEY = \"your-key-here\"\n  \
+             Or set env var: $env:OPENAI_API_KEY=\"your-key-here\" (PowerShell)"
+        )
+    })?;
+
+    // Load existing data
+    println!("Loading {}...", OUTPUT_FILE);
+    let mut file = File::open(OUTPUT_FILE)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    let mut characters: Vec<Character> = serde_json::from_str(&contents)?;
+    let initial_count = characters.len();
+
+    // Apply limit if specified
+    let process_count = if limit > 0 && characters.len() > limit {
+        println!("⚠️  TESTING MODE: Processing {} characters (out of {})\n", limit, initial_count);
+        limit
+    } else {
+        println!("Loaded {} characters\n", initial_count);
+        characters.len()
+    };
+
+    // Create OpenAI client
+    let client = OpenAIClient::with_config(
+        async_openai::config::OpenAIConfig::new().with_api_key(api_key)
+    );
+
+    // Estimate cost
+    let estimated_input_tokens = process_count * 200; // ~200 tokens per character
+    let estimated_output_tokens = process_count * 200;
+    let estimated_cost = (estimated_input_tokens as f64 * MODEL_INPUT_PRICE_PER_1M / 1_000_000.0) 
+                       + (estimated_output_tokens as f64 * MODEL_OUTPUT_PRICE_PER_1M / 1_000_000.0);
+    println!("💰 Estimated cost: ${:.4} USD", estimated_cost);
+    println!("   ({}: ${:.2}/1M input, ${:.2}/1M output)\n", 
+             TRANSLATION_MODEL, MODEL_INPUT_PRICE_PER_1M, MODEL_OUTPUT_PRICE_PER_1M);
+
+    // Process in batches (5 characters at a time for reliable processing)
+    let batch_size = 5;
+    let chars_to_process: Vec<_> = characters.iter().take(process_count).cloned().collect();
+    let total_batches = (chars_to_process.len() + batch_size - 1) / batch_size;
+
+    // Create progress bar
+    let pb = ProgressBar::new(chars_to_process.len() as u64);
+    pb.set_style(
+        ProgressStyle::default_bar()
+            .template("{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {pos}/{len} ({eta}) {msg}")
+            .unwrap()
+            .progress_chars("#>-"),
+    );
+
+    let mut cleaned_count = 0;
+    let mut name_to_cleaned: HashMap<String, CleanableCharacter> = HashMap::new();
+
+    for (batch_idx, batch) in chars_to_process.chunks(batch_size).enumerate() {
+        pb.set_message(format!("Batch {}/{}", batch_idx + 1, total_batches));
+
+        match clean_english_batch(&client, batch).await {
+            Ok(cleaned_chars) => {
+                for cleaned in cleaned_chars {
+                    name_to_cleaned.insert(cleaned.name.clone(), cleaned);
+                    cleaned_count += 1;
+                }
+                pb.inc(batch.len() as u64);
+            }
+            Err(e) => {
+                eprintln!("\n⚠️  Batch {} failed: {}", batch_idx + 1, e);
+                eprintln!("   Continuing with remaining batches...");
+                pb.inc(batch.len() as u64);
+            }
+        }
+
+        // Rate limiting delay
+        if batch_idx < total_batches - 1 {
+            tokio::time::sleep(tokio::time::Duration::from_millis(300)).await;
+        }
+    }
+
+    pb.finish_with_message("✓ Cleaning complete!");
+    println!();
+
+    // Apply cleaned data back to characters
+    let mut updated_count = 0;
+    for character in &mut characters {
+        // Look up by original name (the key we stored)
+        if let Some(cleaned) = name_to_cleaned.get(&character.name) {
+            // Update name
+            character.name = cleaned.name.clone();
+            
+            // Update affiliations
+            character.affiliations = cleaned.affiliations.clone();
+            
+            // Update occupations
+            character.occupations = cleaned.occupations.clone();
+            
+            // Update status
+            if cleaned.status.is_some() {
+                character.status = cleaned.status.clone();
+            }
+            
+            // Update devil fruit name
+            if let Some(ref cleaned_df_name) = cleaned.devil_fruit_name {
+                if let Some(ref mut df) = character.devil_fruit {
+                    df.name = Some(cleaned_df_name.clone());
+                }
+            }
+            
+            updated_count += 1;
+        }
+    }
+
+    // Sort by name for consistency
+    characters.sort_by(|a, b| a.name.cmp(&b.name));
+
+    // Save updated data
+    let json = serde_json::to_string_pretty(&characters)?;
+    let mut file = File::create(OUTPUT_FILE)?;
+    file.write_all(json.as_bytes())?;
+
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    println!(
+        "✓ Layer 11 complete: {} characters cleaned ({} updated)",
+        cleaned_count,
+        updated_count
+    );
+
+    Ok(())
+}
+
+/// Clean a batch of characters using GPT-4o-mini
+async fn clean_english_batch(
+    client: &OpenAIClient<async_openai::config::OpenAIConfig>,
+    characters: &[Character],
+) -> Result<Vec<CleanableCharacter>> {
+    // Extract fields that need cleaning
+    let cleanable: Vec<CleanableCharacter> = characters.iter().map(|c| {
+        CleanableCharacter {
+            name: c.name.clone(),
+            affiliations: c.affiliations.clone(),
+            occupations: c.occupations.clone(),
+            status: c.status.clone(),
+            devil_fruit_name: c.devil_fruit.as_ref().and_then(|df| df.name.clone()),
+        }
+    }).collect();
+
+    let input_json = serde_json::to_string_pretty(&cleanable)?;
+
+    let system_prompt = r#"You are a One Piece encyclopedia editor. Your task is to clean and standardize character data.
+
+## Cleaning Rules:
+
+### Names:
+- Use proper title case for character names
+- Format: "Monkey D. Luffy", "Roronoa Zoro", "Nico Robin"
+- Keep the "D." initial with periods for D. clan members
+- Use romanized Japanese names (not translated names)
+
+### Affiliations:
+- Use official One Piece organization names with proper capitalization
+- Canonical names: "Straw Hat Pirates", "Marines", "World Government", "Revolutionary Army", "Cross Guild"
+- Standardize status markers to one of: "(former)", "(defected)", "(resigned)", "(disbanded)", "(temporarily)"
+- Place status markers at the END of the affiliation name
+- Example: "Straw Hat Pirates (Captain)" not "(Captain) Straw Hat Pirates"
+
+### Occupations:
+- Use proper title case: "Pirate", "Captain", "Swordsman", "Navigator", "Cook", "Doctor", "Archaeologist"
+- Combine compound occupations sensibly: "Pirate Captain", "Marine Admiral"
+
+### Status:
+- Standardize to EXACTLY one of: "Alive", "Deceased", "Unknown"
+- If uncertain, use "Unknown"
+
+### Devil Fruit Names:
+- Use the canonical English name format: "[Name]-[Name] Fruit"
+- Examples: "Gum-Gum Fruit", "Flame-Flame Fruit", "Dark-Dark Fruit", "Op-Op Fruit"
+- Remove localization variants like "(Viz)", "(4Kids)", "(Funimation)"
+- Keep only ONE canonical name, preferring the most commonly used English translation
+- For Zoan fruits: "Human-Human Fruit" or "Bird-Bird Fruit" format
+
+## Output Format:
+Return ONLY a valid JSON array with the cleaned data.
+Preserve the EXACT same order and number of entries as input.
+Do NOT add explanations or markdown code blocks."#;
+
+    let system_message = ChatCompletionRequestSystemMessageArgs::default()
+        .content(system_prompt)
+        .build()?;
+
+    let user_message = ChatCompletionRequestUserMessageArgs::default()
+        .content(format!(
+            "Clean these {} One Piece character entries:\n\n{}",
+            characters.len(), 
+            input_json
+        ))
+        .build()?;
+
+    let request = CreateChatCompletionRequestArgs::default()
+        .model(TRANSLATION_MODEL)
+        .messages(vec![
+            ChatCompletionRequestMessage::System(system_message),
+            ChatCompletionRequestMessage::User(user_message),
+        ])
+        // Note: gpt-5-mini only supports default temperature (1.0)
+        .build()?;
+
+    let response = client.chat().create(request).await?;
+
+    let response_text = response
+        .choices
+        .first()
+        .and_then(|choice| choice.message.content.as_ref())
+        .ok_or_else(|| anyhow::anyhow!("No response from OpenAI"))?;
+
+    // Extract JSON from response (handle potential markdown code blocks)
+    let json_text = if response_text.contains("```") {
+        response_text
+            .split("```")
+            .nth(1)
+            .and_then(|s| s.strip_prefix("json").or(Some(s)))
+            .unwrap_or(response_text)
+            .trim()
+    } else {
+        response_text.trim()
+    };
+
+    // Parse the cleaned characters
+    let cleaned: Vec<CleanableCharacter> = serde_json::from_str(json_text).map_err(|e| {
+        anyhow::anyhow!(
+            "Failed to parse cleaned character response: {}\nResponse was: {}",
+            e,
+            &response_text[..response_text.len().min(500)]
+        )
+    })?;
+
+    if cleaned.len() != characters.len() {
+        return Err(anyhow::anyhow!(
+            "Response count mismatch: expected {}, got {}",
+            characters.len(),
+            cleaned.len()
+        ));
+    }
+
+    Ok(cleaned)
+}
+
+async fn layer_12_translate(limit: usize, secrets: &StdHashMap<String, String>) -> Result<()> {
+    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    println!("🌏 Layer 12: Translate (Update Cache)");
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 
     // Check for API key (from Secrets.toml or environment)
@@ -1436,7 +1724,7 @@ async fn layer_11_translate(limit: usize, secrets: &StdHashMap<String, String>) 
     let new_translations = cache.terms.len() - initial_cache_size;
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
     println!(
-        "✓ Layer 11 complete: {} new terms added to cache",
+        "✓ Layer 12 complete: {} new terms added to cache",
         new_translations
     );
     println!("   Total cache size: {} terms", cache.terms.len());
@@ -1911,10 +2199,10 @@ fn parse_ages(text: &str) -> Vec<String> {
 }
 
 // ============================================================================
-// Layer 12: Map Translation - Apply cached translations to character data
+// Layer 13: Map Translation - Apply cached translations to character data
 // ============================================================================
 
-fn layer_12_map_translation() -> Result<()> {
+fn layer_13_map_translation() -> Result<()> {
     // Load existing data
     let mut file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
@@ -1983,7 +2271,7 @@ fn layer_12_map_translation() -> Result<()> {
 
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━");
     println!(
-        "🈯 Layer 12: Map Translation: done! {} characters mapped ({} cached terms)",
+        "🈯 Layer 13: Map Translation: done! {} characters mapped ({} cached terms)",
         translated_count,
         cache.terms.len()
     );
@@ -1992,10 +2280,10 @@ fn layer_12_map_translation() -> Result<()> {
 }
 
 // ============================================================================
-// Layer 13: Sanitize - Transform to clean output format
+// Layer 14: Sanitize - Transform to clean output format
 // ============================================================================
 
-fn layer_13_sanitize() -> Result<()> {
+fn layer_14_sanitize() -> Result<()> {
     // Load existing data
     let mut file = File::open(OUTPUT_FILE)?;
     let mut contents = String::new();
@@ -2026,7 +2314,7 @@ fn layer_13_sanitize() -> Result<()> {
         String::new()
     };
     println!(
-        "✨ Layer 13: Sanitize: done! {} characters → {}{}",
+        "✨ Layer 14: Sanitize: done! {} characters → {}{}",
         sanitized.len(),
         SANITIZED_OUTPUT_FILE,
         skipped_msg

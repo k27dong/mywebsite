@@ -43,7 +43,8 @@ const LegendItem = ({
 }) => (
   <div className="flex items-center gap-2">
     <div
-      className={`flex h-6 w-6 items-center justify-center rounded-sm border border-black/10 text-sm font-bold ${colorClass}`}
+      className={`flex h-6 w-6 items-center justify-center rounded-sm border border-black/10 text-sm
+        font-bold ${colorClass}`}
     >
       {symbol}
     </div>
@@ -162,9 +163,7 @@ export default function OnePiece() {
   }, [language])
 
   const hasWon =
-    guessHistory.length > 0 &&
-    todaysCharacter &&
-    guessHistory[0].name === todaysCharacter.name
+    guessHistory.length > 0 && todaysCharacter && guessHistory[0].name === todaysCharacter.name
 
   // Filter characters based on search term (supports English, Chinese, Japanese, and Pinyin)
   const filteredCharacters = useMemo(() => {
@@ -238,10 +237,15 @@ export default function OnePiece() {
       <Legend t={t} />
 
       {hasWon && todaysCharacter ? (
-        <div className="mx-auto mb-8 max-w-2xl animate-pop">
-          <div className="flex flex-col items-center gap-6 rounded-sm border border-emerald-200 bg-emerald-50 p-8 shadow-sm">
+        <div className="animate-pop mx-auto mb-8 max-w-2xl">
+          <div
+            className="flex flex-col items-center gap-6 rounded-sm border border-emerald-200
+              bg-emerald-50 p-8 shadow-sm"
+          >
             <div className="text-center">
-              <h2 className={`mb-2 text-2xl font-bold text-emerald-800 ${t(TranslationKey.FontClass)}`}>
+              <h2
+                className={`mb-2 text-2xl font-bold text-emerald-800 ${t(TranslationKey.FontClass)}`}
+              >
                 {t(TranslationKey.SuccessTitle)}
               </h2>
               <div className={`text-lg text-emerald-700 ${t(TranslationKey.FontClass)}`}>
@@ -249,7 +253,10 @@ export default function OnePiece() {
               </div>
             </div>
 
-            <div className="h-32 w-32 overflow-hidden rounded-sm border-2 border-emerald-200 shadow-md sm:h-40 sm:w-40">
+            <div
+              className="h-32 w-32 overflow-hidden rounded-sm border-2 border-emerald-200 shadow-md
+                sm:h-40 sm:w-40"
+            >
               <img
                 src={todaysCharacter.image}
                 alt={todaysCharacter.name}
@@ -283,15 +290,15 @@ export default function OnePiece() {
               displayValue={() => query}
               placeholder={t(TranslationKey.SearchPlaceholder)}
               className={`w-full rounded-none border border-black bg-white px-4 py-3 text-sm
-              outline-none focus:shadow-[0_0_0_0.5px_black] sm:text-base md:text-lg
-              ${t(TranslationKey.FontClass)}`}
+                outline-none focus:shadow-[0_0_0_0.5px_black] sm:text-base md:text-lg
+                ${t(TranslationKey.FontClass)}`}
               autoComplete="off"
             />
 
             {filteredCharacters.length > 0 && (
               <ComboboxOptions
                 className="absolute left-0 right-0 z-10 mt-1 max-h-96 overflow-y-auto rounded-sm
-                border border-black bg-white shadow-lg"
+                  border border-black bg-white shadow-lg"
               >
                 {filteredCharacters.map((char) => {
                   const isGuessed = guessHistory.some((guess) => guess.name === char.name)
@@ -300,16 +307,17 @@ export default function OnePiece() {
                       key={char.name}
                       value={char}
                       disabled={isGuessed}
-                      className={`flex cursor-pointer items-center gap-3 border-b border-gray-200 px-4
-                    py-3 transition-colors last:border-b-0
-                    ${
-                      isGuessed
-                        ? "cursor-not-allowed bg-gray-50 opacity-60"
-                        : "hover:bg-gray-100 data-[focus]:bg-gray-100"
-                    }`}
+                      className={`flex cursor-pointer items-center gap-3 border-b border-gray-200
+                        px-4 py-3 transition-colors last:border-b-0 ${
+                          isGuessed
+                            ? "cursor-not-allowed bg-gray-50 opacity-60"
+                            : "hover:bg-gray-100 data-[focus]:bg-gray-100"
+                        }`}
                     >
                       {/* Squared Image */}
-                      <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-sm bg-gray-200">
+                      <div
+                        className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-sm bg-gray-200"
+                      >
                         <img
                           src={char.image}
                           alt={char.name}
@@ -323,12 +331,14 @@ export default function OnePiece() {
                       {/* Name + First Affiliation (single line) */}
                       <div
                         className={`min-w-0 flex-1 truncate text-sm sm:text-base md:text-lg
-                    ${t(TranslationKey.FontClass)}`}
+                          ${t(TranslationKey.FontClass)}`}
                       >
                         <div className="flex items-center gap-2">
                           <span className="font-bold">{t(CharacterField.Name, char)}</span>
                           {isGuessed && (
-                            <span className="rounded bg-gray-200 px-1.5 py-0.5 text-xs text-gray-600">
+                            <span
+                              className="rounded bg-gray-200 px-1.5 py-0.5 text-xs text-gray-600"
+                            >
                               {t(TranslationKey.SelectedCharacter)}
                             </span>
                           )}
@@ -505,7 +515,7 @@ export default function OnePiece() {
                           />
                         )}
                       </span>
-                    </div>  
+                    </div>
                   </td>
                   <td
                     className={`break-words border-r border-black px-2 py-2 text-center ${
