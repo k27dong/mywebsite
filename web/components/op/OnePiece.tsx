@@ -108,6 +108,176 @@ const Countdown = ({ t }: { t: (key: TranslationKey) => string }) => {
   )
 }
 
+const MobileGuessCard = ({
+  char,
+  todaysCharacter,
+  index,
+  t,
+  language,
+}: {
+  char: Character
+  todaysCharacter: Character | null
+  index: number
+  t: {
+    (key: TranslationKey): string
+    (field: CharacterField, char: Character): string
+  }
+  language: Language
+}) => {
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.style.display = "none"
+  }
+
+  return (
+    <div className="mb-4 rounded-sm border border-black bg-white p-4 shadow-sm">
+      <div className="mb-3 flex items-center gap-3 border-b border-gray-100 pb-2">
+        <div className="text-sm font-bold text-gray-400">#{index}</div>
+        <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-sm bg-gray-200">
+          <img
+            src={char.image}
+            alt={char.name}
+            className="h-full w-full object-cover"
+            loading="lazy"
+            referrerPolicy="no-referrer"
+            onError={handleImageError}
+          />
+        </div>
+        <div className="flex-1 font-bold">{t(CharacterField.Name, char)}</div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-2 text-sm">
+        <div
+          className={`rounded-sm p-2 ${
+            todaysCharacter
+              ? getMatchBgClass(compareAffiliation(char, todaysCharacter))
+              : "bg-gray-100"
+          }`}
+        >
+          <div className="mb-0.5 text-xs text-gray-500">{t(TranslationKey.Affiliation)}</div>
+          <div className="font-medium leading-tight">
+            {t(CharacterField.Affiliation, char) || "—"}
+          </div>
+        </div>
+
+        <div
+          className={`rounded-sm p-2 ${
+            todaysCharacter
+              ? getMatchBgClass(compareStrings(char.origin, todaysCharacter.origin))
+              : "bg-gray-100"
+          }`}
+        >
+          <div className="mb-0.5 text-xs text-gray-500">{t(TranslationKey.Origin)}</div>
+          <div className="font-medium leading-tight">{t(CharacterField.Origin, char) || "—"}</div>
+        </div>
+
+        <div
+          className={`rounded-sm p-2 ${
+            todaysCharacter
+              ? getMatchBgClass(compareDebutArc(char, todaysCharacter))
+              : "bg-gray-100"
+          }`}
+        >
+          <div className="mb-0.5 text-xs text-gray-500">{t(TranslationKey.Arc)}</div>
+          <div className="flex items-center justify-between font-medium leading-tight">
+            <span>{t(CharacterField.DebutArc, char) || "—"}</span>
+            {todaysCharacter && (
+              <div className="ml-1">
+                <DirectionArrow comparison={compareDebutArc(char, todaysCharacter)} />
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div
+          className={`rounded-sm p-2 ${
+            todaysCharacter ? getMatchBgClass(compareAlive(char, todaysCharacter)) : "bg-gray-100"
+          }`}
+        >
+          <div className="mb-0.5 text-xs text-gray-500">{t(TranslationKey.Alive)}</div>
+          <div className="font-medium leading-tight">{t(CharacterField.Alive, char)}</div>
+        </div>
+
+        <div
+          className={`col-span-2 rounded-sm p-2 ${
+            todaysCharacter
+              ? getMatchBgClass(
+                  compareStrings(char.devil_fruit_name, todaysCharacter.devil_fruit_name),
+                )
+              : "bg-gray-100"
+          }`}
+        >
+          <div className="mb-0.5 text-xs text-gray-500">{t(TranslationKey.DevilFruit)}</div>
+          <div className="font-medium leading-tight">{t(CharacterField.DevilFruit, char)}</div>
+        </div>
+
+        <div
+          className={`rounded-sm p-2 ${
+            todaysCharacter
+              ? getMatchBgClass(
+                  compareStrings(char.devil_fruit_type, todaysCharacter.devil_fruit_type),
+                )
+              : "bg-gray-100"
+          }`}
+        >
+          <div className="mb-0.5 text-xs text-gray-500">{t(TranslationKey.DevilFruitType)}</div>
+          <div className="font-medium leading-tight">
+            {t(CharacterField.DevilFruitType, char)}
+          </div>
+        </div>
+
+        <div
+          className={`rounded-sm p-2 ${
+            todaysCharacter ? getMatchBgClass(compareHaki(char, todaysCharacter)) : "bg-gray-100"
+          }`}
+        >
+          <div className="mb-0.5 text-xs text-gray-500">{t(TranslationKey.Haki)}</div>
+          <div className="flex flex-col font-medium leading-tight">
+            {getHakiDisplay(char, language).map((label, i) => (
+              <span key={i}>{label}</span>
+            ))}
+          </div>
+        </div>
+
+        <div
+          className={`rounded-sm p-2 ${
+            todaysCharacter
+              ? getMatchBgClass(compareNumber(char.bounty, todaysCharacter.bounty))
+              : "bg-gray-100"
+          }`}
+        >
+          <div className="mb-0.5 text-xs text-gray-500">{t(TranslationKey.Bounty)}</div>
+          <div className="flex items-center justify-between font-medium leading-tight">
+            <span>{t(CharacterField.Bounty, char)}</span>
+            {todaysCharacter && (
+              <div className="ml-1">
+                <DirectionArrow comparison={compareNumber(char.bounty, todaysCharacter.bounty)} />
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div
+          className={`rounded-sm p-2 ${
+            todaysCharacter
+              ? getMatchBgClass(compareNumber(char.height, todaysCharacter.height))
+              : "bg-gray-100"
+          }`}
+        >
+          <div className="mb-0.5 text-xs text-gray-500">{t(TranslationKey.Height)}</div>
+          <div className="flex items-center justify-between font-medium leading-tight">
+            <span>{t(CharacterField.Height, char)}</span>
+            {todaysCharacter && (
+              <div className="ml-1">
+                <DirectionArrow comparison={compareNumber(char.height, todaysCharacter.height)} />
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function OnePiece() {
   const [language, setLanguage] = useState<Language>("en")
   const t = useTranslation(language)
@@ -360,195 +530,217 @@ export default function OnePiece() {
 
       {/* Guess History Table */}
       {guessHistory.length > 0 && (
-        <div className="mx-auto mt-8 border border-black bg-white">
-          <table
-            className={`w-full table-fixed border-collapse leading-snug
+        <>
+          <div className="mx-auto mt-8 hidden border border-black bg-white md:block">
+            <table
+              className={`w-full table-fixed border-collapse leading-snug
             ${t(TranslationKey.FontClass)} ${t(TranslationKey.TableTextSize)}`}
-          >
-            <thead>
-              <tr className="border-b border-black bg-gray-50">
-                <th className="w-[2%] border-r border-black px-1 py-2 text-center font-bold">#</th>
-                <th className="w-[5%] border-r border-black px-1 py-2 text-center font-bold" />
-                <th className="w-[12%] border-r border-black px-1 py-2 text-left font-bold">
-                  {t(TranslationKey.Name)}
-                </th>
-                <th className="w-[12%] border-r border-black px-1 py-2 text-left font-bold">
-                  {t(TranslationKey.Affiliation)}
-                </th>
-                <th className="w-[8%] border-r border-black px-1 py-2 text-left font-bold">
-                  {t(TranslationKey.Origin)}
-                </th>
-                <th className="w-[13%] border-r border-black px-1 py-2 text-left font-bold">
-                  {t(TranslationKey.Arc)}
-                </th>
-                <th className="w-[10%] border-r border-black px-1 py-2 text-center font-bold">
-                  {t(TranslationKey.DevilFruit)}
-                </th>
-                <th className="w-[8%] border-r border-black px-1 py-2 text-center font-bold">
-                  {t(TranslationKey.DevilFruitType)}
-                </th>
-                <th className="w-[8%] border-r border-black px-1 py-2 text-center font-bold">
-                  {t(TranslationKey.Haki)}
-                </th>
-                <th className="w-[11%] border-r border-black px-1 py-2 text-right font-bold">
-                  {t(TranslationKey.Bounty)}
-                </th>
-                <th className="w-[7%] border-r border-black px-2 py-2 text-center font-bold">
-                  {t(TranslationKey.Height)}
-                </th>
-                <th className="w-[4%] px-1 py-2 text-center font-bold">
-                  {t(TranslationKey.Alive)}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {guessHistory.map((char, index) => (
-                <tr
-                  key={`${char.name}-${guessHistory.length - index}`}
-                  className="border-b border-gray-600 transition-colors last:border-b-0"
-                >
-                  <td className="border-r border-black px-1 py-2 text-center text-gray-500">
-                    {guessHistory.length - index}
-                  </td>
-                  <td className="border-r border-black px-1 py-1">
-                    <div
-                      className="mx-auto h-8 w-8 overflow-hidden rounded-sm bg-gray-200 sm:h-10
-                        sm:w-10"
-                    >
-                      <img
-                        src={char.image}
-                        alt={char.name}
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                        onError={handleImageError}
-                      />
-                    </div>
-                  </td>
-                  <td className="break-words border-r border-black px-1 py-2 font-medium">
-                    {t(CharacterField.Name, char)}
-                  </td>
-                  <td
-                    className={`break-words border-r border-black px-1 py-2 ${
-                      todaysCharacter
-                        ? getMatchBgClass(compareAffiliation(char, todaysCharacter))
-                        : "text-gray-700"
-                    }`}
-                  >
-                    {t(CharacterField.Affiliation, char) || "—"}
-                  </td>
-                  <td
-                    className={`break-words border-r border-black px-1 py-2 ${
-                      todaysCharacter
-                        ? getMatchBgClass(compareStrings(char.origin, todaysCharacter.origin))
-                        : "text-gray-700"
-                    }`}
-                  >
-                    {t(CharacterField.Origin, char) || "—"}
-                  </td>
-                  <td
-                    className={`break-words border-r border-black px-1 py-2 ${
-                      todaysCharacter
-                        ? getMatchBgClass(compareDebutArc(char, todaysCharacter))
-                        : "text-gray-700"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between gap-1">
-                      <span className="flex-1">{t(CharacterField.DebutArc, char) || "—"}</span>
-                      <span className="inline-flex w-4 flex-shrink-0 justify-center">
-                        {todaysCharacter && (
-                          <DirectionArrow comparison={compareDebutArc(char, todaysCharacter)} />
-                        )}
-                      </span>
-                    </div>
-                  </td>
-                  <td
-                    className={`break-words border-r border-black px-1 py-2 text-center ${
-                      todaysCharacter
-                        ? getMatchBgClass(
-                            compareStrings(char.devil_fruit_name, todaysCharacter.devil_fruit_name),
-                          )
-                        : "text-gray-700"
-                    }`}
-                  >
-                    {t(CharacterField.DevilFruit, char)}
-                  </td>
-                  <td
-                    className={`break-words border-r border-black px-1 py-2 text-center ${
-                      todaysCharacter
-                        ? getMatchBgClass(
-                            compareStrings(char.devil_fruit_type, todaysCharacter.devil_fruit_type),
-                          )
-                        : "text-gray-700"
-                    }`}
-                  >
-                    {t(CharacterField.DevilFruitType, char)}
-                  </td>
-                  <td
-                    className={`border-r border-black px-1 py-2 ${
-                      todaysCharacter
-                        ? getMatchBgClass(compareHaki(char, todaysCharacter))
-                        : "text-gray-700"
-                    }`}
-                  >
-                    <div className="flex flex-col items-center justify-center">
-                      {getHakiDisplay(char, language).map((label, i) => (
-                        <div key={i} className="leading-tight">
-                          {label}
-                        </div>
-                      ))}
-                    </div>
-                  </td>
-                  <td
-                    className={`break-words border-r border-black px-1 py-2 text-right ${
-                      todaysCharacter
-                        ? getMatchBgClass(compareNumber(char.bounty, todaysCharacter.bounty))
-                        : "text-gray-700"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between gap-1">
-                      <span className="flex-1 text-right">{t(CharacterField.Bounty, char)}</span>
-                      <span className="inline-flex w-4 flex-shrink-0 justify-center">
-                        {todaysCharacter && (
-                          <DirectionArrow
-                            comparison={compareNumber(char.bounty, todaysCharacter.bounty)}
-                          />
-                        )}
-                      </span>
-                    </div>
-                  </td>
-                  <td
-                    className={`break-words border-r border-black px-2 py-2 text-center ${
-                      todaysCharacter
-                        ? getMatchBgClass(compareNumber(char.height, todaysCharacter.height))
-                        : "text-gray-700"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between gap-1">
-                      <span className="flex-1 text-center">{t(CharacterField.Height, char)}</span>
-                      <span className="inline-flex w-4 flex-shrink-0 justify-center">
-                        {todaysCharacter && (
-                          <DirectionArrow
-                            comparison={compareNumber(char.height, todaysCharacter.height)}
-                          />
-                        )}
-                      </span>
-                    </div>
-                  </td>
-                  <td
-                    className={`break-words px-1 py-2 text-center ${
-                      todaysCharacter
-                        ? getMatchBgClass(compareAlive(char, todaysCharacter))
-                        : "text-gray-700"
-                    }`}
-                  >
-                    {t(CharacterField.Alive, char)}
-                  </td>
+            >
+              <thead>
+                <tr className="border-b border-black bg-gray-50">
+                  <th className="w-[2%] border-r border-black px-1 py-2 text-center font-bold">
+                    #
+                  </th>
+                  <th className="w-[5%] border-r border-black px-1 py-2 text-center font-bold" />
+                  <th className="w-[12%] border-r border-black px-1 py-2 text-left font-bold">
+                    {t(TranslationKey.Name)}
+                  </th>
+                  <th className="w-[12%] border-r border-black px-1 py-2 text-left font-bold">
+                    {t(TranslationKey.Affiliation)}
+                  </th>
+                  <th className="w-[8%] border-r border-black px-1 py-2 text-left font-bold">
+                    {t(TranslationKey.Origin)}
+                  </th>
+                  <th className="w-[13%] border-r border-black px-1 py-2 text-left font-bold">
+                    {t(TranslationKey.Arc)}
+                  </th>
+                  <th className="w-[10%] border-r border-black px-1 py-2 text-center font-bold">
+                    {t(TranslationKey.DevilFruit)}
+                  </th>
+                  <th className="w-[8%] border-r border-black px-1 py-2 text-center font-bold">
+                    {t(TranslationKey.DevilFruitType)}
+                  </th>
+                  <th className="w-[8%] border-r border-black px-1 py-2 text-center font-bold">
+                    {t(TranslationKey.Haki)}
+                  </th>
+                  <th className="w-[11%] border-r border-black px-1 py-2 text-right font-bold">
+                    {t(TranslationKey.Bounty)}
+                  </th>
+                  <th className="w-[7%] border-r border-black px-2 py-2 text-center font-bold">
+                    {t(TranslationKey.Height)}
+                  </th>
+                  <th className="w-[4%] px-1 py-2 text-center font-bold">
+                    {t(TranslationKey.Alive)}
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {guessHistory.map((char, index) => (
+                  <tr
+                    key={`${char.name}-${guessHistory.length - index}`}
+                    className="border-b border-gray-600 transition-colors last:border-b-0"
+                  >
+                    <td className="border-r border-black px-1 py-2 text-center text-gray-500">
+                      {guessHistory.length - index}
+                    </td>
+                    <td className="border-r border-black px-1 py-1">
+                      <div
+                        className="mx-auto h-8 w-8 overflow-hidden rounded-sm bg-gray-200 sm:h-10
+                        sm:w-10"
+                      >
+                        <img
+                          src={char.image}
+                          alt={char.name}
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
+                          onError={handleImageError}
+                        />
+                      </div>
+                    </td>
+                    <td className="break-words border-r border-black px-1 py-2 font-medium">
+                      {t(CharacterField.Name, char)}
+                    </td>
+                    <td
+                      className={`break-words border-r border-black px-1 py-2 ${
+                        todaysCharacter
+                          ? getMatchBgClass(compareAffiliation(char, todaysCharacter))
+                          : "text-gray-700"
+                      }`}
+                    >
+                      {t(CharacterField.Affiliation, char) || "—"}
+                    </td>
+                    <td
+                      className={`break-words border-r border-black px-1 py-2 ${
+                        todaysCharacter
+                          ? getMatchBgClass(compareStrings(char.origin, todaysCharacter.origin))
+                          : "text-gray-700"
+                      }`}
+                    >
+                      {t(CharacterField.Origin, char) || "—"}
+                    </td>
+                    <td
+                      className={`break-words border-r border-black px-1 py-2 ${
+                        todaysCharacter
+                          ? getMatchBgClass(compareDebutArc(char, todaysCharacter))
+                          : "text-gray-700"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-1">
+                        <span className="flex-1">{t(CharacterField.DebutArc, char) || "—"}</span>
+                        <span className="inline-flex w-4 flex-shrink-0 justify-center">
+                          {todaysCharacter && (
+                            <DirectionArrow comparison={compareDebutArc(char, todaysCharacter)} />
+                          )}
+                        </span>
+                      </div>
+                    </td>
+                    <td
+                      className={`break-words border-r border-black px-1 py-2 text-center ${
+                        todaysCharacter
+                          ? getMatchBgClass(
+                              compareStrings(
+                                char.devil_fruit_name,
+                                todaysCharacter.devil_fruit_name,
+                              ),
+                            )
+                          : "text-gray-700"
+                      }`}
+                    >
+                      {t(CharacterField.DevilFruit, char)}
+                    </td>
+                    <td
+                      className={`break-words border-r border-black px-1 py-2 text-center ${
+                        todaysCharacter
+                          ? getMatchBgClass(
+                              compareStrings(
+                                char.devil_fruit_type,
+                                todaysCharacter.devil_fruit_type,
+                              ),
+                            )
+                          : "text-gray-700"
+                      }`}
+                    >
+                      {t(CharacterField.DevilFruitType, char)}
+                    </td>
+                    <td
+                      className={`border-r border-black px-1 py-2 ${
+                        todaysCharacter
+                          ? getMatchBgClass(compareHaki(char, todaysCharacter))
+                          : "text-gray-700"
+                      }`}
+                    >
+                      <div className="flex flex-col items-center justify-center">
+                        {getHakiDisplay(char, language).map((label, i) => (
+                          <div key={i} className="leading-tight">
+                            {label}
+                          </div>
+                        ))}
+                      </div>
+                    </td>
+                    <td
+                      className={`break-words border-r border-black px-1 py-2 text-right ${
+                        todaysCharacter
+                          ? getMatchBgClass(compareNumber(char.bounty, todaysCharacter.bounty))
+                          : "text-gray-700"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-1">
+                        <span className="flex-1 text-right">{t(CharacterField.Bounty, char)}</span>
+                        <span className="inline-flex w-4 flex-shrink-0 justify-center">
+                          {todaysCharacter && (
+                            <DirectionArrow
+                              comparison={compareNumber(char.bounty, todaysCharacter.bounty)}
+                            />
+                          )}
+                        </span>
+                      </div>
+                    </td>
+                    <td
+                      className={`break-words border-r border-black px-2 py-2 text-center ${
+                        todaysCharacter
+                          ? getMatchBgClass(compareNumber(char.height, todaysCharacter.height))
+                          : "text-gray-700"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-1">
+                        <span className="flex-1 text-center">{t(CharacterField.Height, char)}</span>
+                        <span className="inline-flex w-4 flex-shrink-0 justify-center">
+                          {todaysCharacter && (
+                            <DirectionArrow
+                              comparison={compareNumber(char.height, todaysCharacter.height)}
+                            />
+                          )}
+                        </span>
+                      </div>
+                    </td>
+                    <td
+                      className={`break-words px-1 py-2 text-center ${
+                        todaysCharacter
+                          ? getMatchBgClass(compareAlive(char, todaysCharacter))
+                          : "text-gray-700"
+                      }`}
+                    >
+                      {t(CharacterField.Alive, char)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mx-auto mt-8 space-y-4 px-2 md:hidden">
+            {guessHistory.map((char, index) => (
+              <MobileGuessCard
+                key={`${char.name}-mobile-${guessHistory.length - index}`}
+                char={char}
+                todaysCharacter={todaysCharacter}
+                index={guessHistory.length - index}
+                t={t}
+                language={language}
+              />
+            ))}
+          </div>
+        </>
       )}
     </div>
   )
