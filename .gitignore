@@ -53,3 +53,4 @@ data/
 
 # Vercel
 .vercel
+.shuttle*
