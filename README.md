@@ -19,7 +19,7 @@ https://www.kefan.me/
     <td align="center"><strong>Frontend</strong></td>
     <td align="center">
       <a href="https://astro.build/">
-        <img src="https://img.shields.io/badge/astro-17191e?style=flat&logo=astro&logoColor=ffffff" width="80">
+        <img src="https://img.shields.io/badge/astro-17191e?style=flat&logo=astro&logoColor=ffffff" width="90">
       </a>
     </td>
   </tr>
@@ -27,7 +27,7 @@ https://www.kefan.me/
     <td align="center"><strong>Backend</strong></td>
     <td align="center">
       <a href="https://actix.rs/">
-        <img src="https://img.shields.io/badge/actix-65319a?style=flat&logo=actix" width="80">
+        <img src="https://img.shields.io/badge/actix-65319a?style=flat&logo=actix" width="90">
       </a>
     </td>
   </tr>
@@ -35,11 +35,12 @@ https://www.kefan.me/
     <td align="center"><strong>Deployment</strong></td>
     <td align="center">
       <a href="https://vercel.com/">
-        <img src="https://img.shields.io/badge/vercel-white?style=flat&logo=vercel&logoColor=black" width="80">
+        <img src="https://img.shields.io/badge/vercel-white?style=flat&logo=vercel&logoColor=black" width="90">
       </a>
       <br>
-      <a href="https://www.shuttle.rs/">
-        <img src="https://img.shields.io/badge/shuttle.rs-f1daa4?style=flat&logo=Rocket&logoColor=ea642d" width="80">
+      <a href="https://aws.amazon.com/lightsail/">
+        <img src="https://img.shields.io/badge/Lightsail-252F3E?style=flat&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iMjUwMCIgaGVpZ2h0PSIyNTAwIj48cGF0aCBmaWxsPSIjZTE3MTA3IiBkPSJNMjkyLjUgNDA1LjZsLjctMjUuMWMuMS0zLjggMS4xLTkxLjEtODYuMi0xMTMuMi01LjItMS4zLTguOC02LTguOS0xMS4zIDAtNS40IDMuNS0xMC4xIDguNy0xMS41IDg2LjYtMjMuNCA4Ni4zLTExMi4zIDg2LjMtMTEzLjJsLS4zLTIyLjMgMTYuNSAxNWMyLjMgMi4xIDU3LjEgNTIuNyA1OS44IDEyNy4yIDEuNyA0Ny41LTE4LjMgOTMuMy01OS4zIDEzNi4zbC0xNy4zIDE4LjF6bS01OS4zLTE1MGM1NS4xIDIzLjIgNzIgNzIuNiA3Ny4xIDEwMiAyNy41LTM0LjEgNDAuOC02OS41IDM5LjUtMTA1LjctMS41LTQzLjktMjQuMy03OS40LTM5LjctOTguNS01LjMgMjktMjIuMyA3OC4yLTc2LjkgMTAyLjJ6TTg4IDI2NS42SDcwLjljLTUuMyAwLTkuNy00LjMtOS43LTkuNyAwLTUuMyA0LjMtOS43IDkuNy05LjdIODhjNS4zIDAgOS43IDQuMyA5LjcgOS43IDAgNS4zLTQuMyA5LjctOS43IDkuN3ptLTQ4LjEgMEgyMi43Yy01LjMgMC05LjctNC4zLTkuNy05LjcgMC01LjMgNC4zLTkuNyA5LjctOS43aDE3LjJjNS4zIDAgOS43IDQuMyA5LjcgOS43LS4xIDUuMy00LjQgOS43LTkuNyA5Ljd6bTk0LjQgMGgtMjAuNWMtNS4zIDAtOS43LTQuMy05LjctOS43IDAtNS4zIDQuMy05LjcgOS43LTkuN2gyMC41YzUuMyAwIDkuNyA0LjMgOS43IDkuNy0uMSA1LjMtNC40IDkuNy05LjcgOS43em00Mi44IDBoLTE3LjJjLTUuMyAwLTkuNy00LjMtOS43LTkuNyAwLTUuMyA0LjMtOS43IDkuNy05LjdoMTcuMmM1LjMgMCA5LjcgNC4zIDkuNyA5LjcgMCA1LjMtNC4zIDkuNy05LjcgOS43em03Mi4yLTExOC40Yy0xNC41IDAtMjYuMi0xMS43LTI2LjItMjYuMiAwIDE0LjUtMTEuNyAyNi4yLTI2LjIgMjYuMiAxNC41IDAgMjYuMiAxMS43IDI2LjIgMjYuMiAwLTE0LjUgMTEuNy0yNi4yIDI2LjItMjYuMnpNNDQxLjIgMjkzLjhjLTE1LjYgMC0yOC4yLTEyLjYtMjguMi0yOC4yIDAgMTUuNi0xMi42IDI4LjItMjguMiAyOC4yIDE1LjYgMCAyOC4yIDEyLjYgMjguMiAyOC4yIDAtMTUuNiAxMi42LTI4LjIgMjguMi0yOC4yek0yMjMuMSAzNTEuMWMtMjAgMC0zNi4zLTE2LjItMzYuMy0zNi4zIDAgMjAtMTYuMiAzNi4zLTM2LjMgMzYuMyAyMCAwIDM2LjMgMTYuMiAzNi4zIDM2LjMuMS0yMC4xIDE2LjMtMzYuMyAzNi4zLTM2LjN6Ii8%2BPHBhdGggZmlsbD0iI2UxNzEwNyIgZD0iTTI4MC45IDQ1OC43Yy05OS4zIDAtMTgzLjMtNzAuOC0xOTkuOS0xNjguNi0xLTUuOCAyLjktMTEuNCA4LjgtMTIuNCA1LjktLjkgMTEuNCAyLjkgMTIuNCA4LjggMTQuOSA4Ny40IDkwIDE1MC43IDE3OC43IDE1MC43aC43YzQ4LjQtLjIgOTMuOS0xOS4yIDEyOC01My42IDM0LjEtMzQuNCA1Mi44LTgwIDUyLjYtMTI4LjQtLjItNDguNC0xOS4yLTkzLjktNTMuNi0xMjgtMzQuMi0zNC03OS41LTUyLjYtMTI3LjctNTIuNmgtLjdjLTg4LjYuMy0xNjMuNiA2My45LTE3OC4yIDE1MS4yLTEgNS45LTYuNSA5LjgtMTIuNCA4LjhzLTkuOC02LjUtOC44LTEyLjRDOTcuMyAxMjQuNiAxODEuMSA1My41IDI4MC4yIDUzLjFoLjhjNTMuOSAwIDEwNC42IDIwLjkgMTQyLjkgNTguOSAzOC40IDM4LjIgNTkuNyA4OSA1OS45IDE0My4yLjIgNTQuMi0yMC43IDEwNS4yLTU4LjkgMTQzLjYtMzguMiAzOC40LTg5IDU5LjctMTQzLjIgNTkuOWgtLjh6Ii8%2BPC9zdmc%2B&logoSize=20&link=https%3A%2F%2Faws.amazon.com%2Flightsail%2F
+" width="90">
       </a>
     </td>
   </tr>
