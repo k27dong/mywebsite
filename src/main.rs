@@ -10,19 +10,9 @@ use sitecore::parser::parse_date;
 use sitecore::playlist::Playlist;
 use sitecore::project::Project;
 
-cfg_if::cfg_if! {
-    if #[cfg(feature = "shuttle")] {
-        use actix_cors::Cors;
-        use actix_web::{http, web::ServiceConfig};
-        use shuttle_actix_web::ShuttleActixWeb;
-        use shuttle_runtime::SecretStore;
-    }
-    else {
-        use actix_cors::Cors;
-        use actix_web::{http, App, HttpServer};
-        use actix_files as fs;
-    }
-}
+use actix_cors::Cors;
+use actix_files as fs;
+use actix_web::{http, App, HttpServer};
 
 struct AppState {
     posts: HashMap<u32, BlogPost>,
@@ -191,7 +181,6 @@ async fn get_today(data: web::Data<AppState>) -> impl Responder {
     }
 }
 
-#[cfg(not(feature = "shuttle"))]
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     println!("Starting actix server locally");
@@ -240,51 +229,4 @@ async fn main() -> std::io::Result<()> {
     .bind(("0.0.0.0", port.parse::<u16>().unwrap()))?
     .run()
     .await
-}
-
-#[cfg(feature = "shuttle")]
-#[shuttle_runtime::main]
-async fn actix_web(
-    #[shuttle_runtime::Secrets] secret_store: SecretStore,
-) -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
-    println!("Starting actix server with shuttle runtime");
-
-    let gsheet_config = sitecore::gphrasehandler::load_gsheet_config(&secret_store).await;
-    let config = move |cfg: &mut ServiceConfig| {
-        let cors = Cors::default()
-            .allowed_origin("http://localhost:4321")
-            .allowed_origin("http://127.0.0.1:4321")
-            .allowed_origin("https://kefan.me")
-            .allowed_origin("https://www.kefan.me")
-            .allowed_methods(vec!["GET"])
-            .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT])
-            .allowed_header(http::header::CONTENT_TYPE)
-            .max_age(3600);
-
-        cfg.app_data(web::Data::new(AppState {
-            posts: sitecore::blogpost::load_blogpost(),
-            notes: sitecore::booknote::load_booknote(),
-            projects: sitecore::project::load_projects(),
-            playlists: sitecore::playlist::load_playlist(),
-            gsheet_config,
-            op_characters: sitecore::onepiece::load_characters(),
-        }));
-        cfg.service(
-            web::scope("")
-                .wrap(cors)
-                .service(health)
-                .service(ready)
-                .service(get_blog_list)
-                .service(get_post)
-                .service(get_project_list)
-                .service(get_salt_list)
-                .service(get_total_note_num)
-                .service(get_book_note)
-                .service(get_playlist)
-                .service(get_phrase)
-                .service(get_today),
-        );
-    };
-
-    Ok(config.into())
 }

@@ -1,5 +1,0 @@
-name = "kdwebsite"
-
-[build]
-features = ["shuttle"]
-assets = ["docs", "web/content/onepiece"]

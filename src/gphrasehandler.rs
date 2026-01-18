@@ -2,16 +2,7 @@ use encoding_rs::GB18030;
 use google_sheets4::{hyper, hyper_rustls, oauth2, Sheets};
 use rand::seq::SliceRandom;
 use serde::{Deserialize, Serialize};
-
-cfg_if::cfg_if! {
-    if #[cfg(feature = "shuttle")] {
-        use shuttle_runtime::SecretStore;
-    }
-    else {
-        use std::fs;
-        use std::collections::HashMap;
-    }
-}
+use std::env;
 
 #[derive(Deserialize)]
 pub struct PhraseParams {
@@ -96,59 +87,20 @@ pub async fn get_gphrase(
     }
 }
 
-#[cfg(not(feature = "shuttle"))]
 pub fn load_gsheet_config() -> GSheetConfig {
-    // Read secrets from Secrets.toml (same file used by Shuttle)
-    let secrets_content = fs::read_to_string("Secrets.toml")
-        .expect("Failed to read Secrets.toml");
-    let secrets: HashMap<String, String> = toml::from_str(&secrets_content)
-        .expect("Failed to parse Secrets.toml");
-
     GSheetConfig {
-        key_type: get_secret(&secrets, "KEY_TYPE"),
-        project_id: get_secret(&secrets, "PROJECT_ID"),
-        private_key_id: get_secret(&secrets, "PRIVATE_KEY_ID"),
-        private_key: get_secret(&secrets, "PRIVATE_KEY").replace("\\n", "\n"),
-        client_email: get_secret(&secrets, "CLIENT_EMAIL"),
-        client_id: get_secret(&secrets, "CLIENT_ID"),
-        auth_uri: get_secret(&secrets, "AUTH_URI"),
-        token_uri: get_secret(&secrets, "TOKEN_URI"),
-        auth_provider_x509_cert_url: get_secret(&secrets, "AUTH_PROVIDER_X509_CERT_URL"),
-        client_x509_cert_url: get_secret(&secrets, "CLIENT_X509_CERT_URL"),
-        spreadsheet_id: get_secret(&secrets, "SPREADSHEET_ID"),
+        key_type: env::var("KEY_TYPE").expect("KEY_TYPE not set"),
+        project_id: env::var("PROJECT_ID").expect("PROJECT_ID not set"),
+        private_key_id: env::var("PRIVATE_KEY_ID").expect("PRIVATE_KEY_ID not set"),
+        private_key: env::var("PRIVATE_KEY").expect("PRIVATE_KEY not set").replace("\\n", "\n"),
+        client_email: env::var("CLIENT_EMAIL").expect("CLIENT_EMAIL not set"),
+        client_id: env::var("CLIENT_ID").expect("CLIENT_ID not set"),
+        auth_uri: env::var("AUTH_URI").expect("AUTH_URI not set"),
+        token_uri: env::var("TOKEN_URI").expect("TOKEN_URI not set"),
+        auth_provider_x509_cert_url: env::var("AUTH_PROVIDER_X509_CERT_URL").expect("AUTH_PROVIDER_X509_CERT_URL not set"),
+        client_x509_cert_url: env::var("CLIENT_X509_CERT_URL").expect("CLIENT_X509_CERT_URL not set"),
+        spreadsheet_id: env::var("SPREADSHEET_ID").expect("SPREADSHEET_ID not set"),
     }
-}
-
-#[cfg(not(feature = "shuttle"))]
-fn get_secret(secrets: &HashMap<String, String>, key: &str) -> String {
-    secrets
-        .get(key)
-        .cloned()
-        .unwrap_or_else(|| panic!("Secret {} not found in Secrets.toml", key))
-}
-
-#[cfg(feature = "shuttle")]
-pub async fn load_gsheet_config(secret_store: &SecretStore) -> GSheetConfig {
-    GSheetConfig {
-        key_type: get_secret(secret_store, "KEY_TYPE").await,
-        project_id: get_secret(secret_store, "PROJECT_ID").await,
-        private_key_id: get_secret(secret_store, "PRIVATE_KEY_ID").await,
-        private_key: get_secret(secret_store, "PRIVATE_KEY").await.replace("\\n", "\n"),
-        client_email: get_secret(secret_store, "CLIENT_EMAIL").await,
-        client_id: get_secret(secret_store, "CLIENT_ID").await,
-        auth_uri: get_secret(secret_store, "AUTH_URI").await,
-        token_uri: get_secret(secret_store, "TOKEN_URI").await,
-        auth_provider_x509_cert_url: get_secret(secret_store, "AUTH_PROVIDER_X509_CERT_URL").await,
-        client_x509_cert_url: get_secret(secret_store, "CLIENT_X509_CERT_URL").await,
-        spreadsheet_id: get_secret(secret_store, "SPREADSHEET_ID").await,
-    }
-}
-
-#[cfg(feature = "shuttle")]
-async fn get_secret(secret_store: &SecretStore, key: &str) -> String {
-    secret_store
-        .get(key)
-        .expect(&format!("Secret {} was not found", key))
 }
 
 pub fn format_gphrase(phrase: String) -> Vec<u8> {
