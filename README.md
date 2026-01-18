@@ -51,7 +51,7 @@ https://www.kefan.me/
 
 - **Rust-powered Backend:** The backend is entirely written in Rust, offering a highly structured, fast, and reliable architecture with guaranteed memory safety and the capability to handle complex tasks with minimal overhead.
 
-- **Secure Cloud Infrastructure:** The backend is hosted on [AWS Lightsail](https://aws.amazon.com/lightsail/), using `systemd` for resilient process management and [Infisical](https://infisical.com/) for secure, runtime secret injection. The architecture is fronted by [Caddy](https://caddyserver.com/) and [Cloudflare](https://cloudfare.com/), combining an efficient reverse proxy with high-performance DNS to ensure a fast, secure, and globally available environment.
+- **Secure Cloud Infrastructure:** Hosted on [AWS Lightsail](https://aws.amazon.com/lightsail/), the backend uses `systemd` and [Infisical](https://infisical.com/) for resilient management. Fronted by [Caddy](https://caddyserver.com/) and [Cloudflare](https://cloudfare.com/), the setup ensures a fast, secure, and globally available environment.
 
 - **Better Font Loading:** Font size has been minimized using `pyftsubset`. The original font, primarily in [Source Han Serif](https://source.typekit.com/source-han-serif/), was reduced from some 50MB to 4MB, resulting the page to load significantly faster.
 
