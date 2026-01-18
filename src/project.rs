@@ -11,10 +11,19 @@ pub struct Project {
 }
 
 pub fn load_projects() -> Vec<Project> {
-    let file_content =
-        fs::read_to_string("docs/project/project.yaml").expect("Failed to read project file");
+    let file_content = match fs::read_to_string("docs/project/project.yaml") {
+        Ok(content) => content,
+        Err(e) => {
+            eprintln!("Warning: Could not read project file: {}", e);
+            return Vec::new();
+        }
+    };
 
-    let projects: Vec<Project> = serde_yaml::from_str(&file_content).expect("Failed to parse YAML");
-
-    projects
+    match serde_yaml::from_str(&file_content) {
+        Ok(projects) => projects,
+        Err(e) => {
+            eprintln!("Warning: Failed to parse project YAML: {}", e);
+            Vec::new()
+        }
+    }
 }

@@ -26,6 +26,6 @@ jobs:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "target/release/website, .infisical.json"
+          source: "target/release/website"
           target: "/home/ubuntu/mywebsite/"
           strip_components: 2

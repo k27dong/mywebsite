@@ -47,13 +47,21 @@ pub struct Character {
 }
 
 pub fn load_characters() -> Vec<Character> {
-    let file_content = fs::read_to_string("web/content/onepiece/characters.json")
-        .expect("Failed to read character file");
+    let file_content = match fs::read_to_string("web/content/onepiece/characters.json") {
+        Ok(content) => content,
+        Err(e) => {
+            eprintln!("Warning: Could not read characters file: {}", e);
+            return Vec::new();
+        }
+    };
 
-    let characters: Vec<Character> =
-        serde_json::from_str(&file_content).expect("Failed to parse JSON");
-
-    characters
+    match serde_json::from_str(&file_content) {
+        Ok(characters) => characters,
+        Err(e) => {
+            eprintln!("Warning: Failed to parse characters JSON: {}", e);
+            Vec::new()
+        }
+    }
 }
 
 pub fn get_todays_character(characters: &[Character]) -> Option<Character> {
