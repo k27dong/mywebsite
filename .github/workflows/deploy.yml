@@ -1,4 +1,4 @@
-name: Deploy to AWS
+name: Deploy
 
 on:
   push:
@@ -26,6 +26,6 @@ jobs:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "target/release/mywebsite"
+          source: "target/release/website, .infisical.json"
           target: "/home/ubuntu/mywebsite/"
           strip_components: 2
