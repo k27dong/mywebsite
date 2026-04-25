@@ -124,7 +124,7 @@ fn main() -> io::Result<()> {
         print!("{} ...", label_plain);
         io::stdout().flush()?;
 
-        let status = Command::new("python")
+        let status = Command::new(".venv/Scripts/python.exe")
             .arg("-m")
             .arg("fontTools.subset")
             .arg(&source_file)

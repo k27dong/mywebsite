@@ -12,6 +12,7 @@
 
 # virtual env
 /venv
+/.venv
 
 # vscode
 .vscode/
