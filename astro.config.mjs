@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config"
 import vercel from "@astrojs/vercel"
 
 import sitemap from "@astrojs/sitemap"
-import tailwind from "@astrojs/tailwind"
+import tailwindcss from "@tailwindcss/vite"
 import icon from "astro-icon"
 import react from "@astrojs/react"
 
@@ -22,10 +22,12 @@ export default defineConfig({
   }),
   integrations: [
     sitemap(),
-    tailwind(),
     icon({
       iconDir: "./web/icons",
     }),
     react(),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 })
