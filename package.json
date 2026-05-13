@@ -12,7 +12,6 @@
     "format:check": "prettier --check \"web/**/*.{astro,ts,tsx,js,jsx,json,css}\""
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.12",
     "@astrojs/react": "^4.4.2",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
@@ -20,7 +19,6 @@
     "@astrojs/vercel": "^9.0.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.16.0",
     "astro-icon": "^1.1.5",
