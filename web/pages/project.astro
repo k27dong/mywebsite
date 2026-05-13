@@ -18,16 +18,14 @@ type Project = Omit<CollectionEntry<"projects">, "data"> & {
 }
 
 const projects: Project[] = (await getCollection("projects"))
-  .sort((a: Project, b: Project) => a.data.id - b.data.id)
-  .map((project) => {
-    return {
-      ...project,
-      data: {
-        ...project.data,
-        mobile_tags: get_mobile_tags(project.data.language),
-      },
-    }
-  })
+  .sort((a, b) => a.data.id - b.data.id)
+  .map((project) => ({
+    ...project,
+    data: {
+      ...project.data,
+      mobile_tags: get_mobile_tags(project.data.language),
+    },
+  }))
 
 const callout_desktop = `find ~ -name .git \\\n\t| awk -F'/' '{print$(NF-1)}' \\\n\t| nl `
 const callout_mobile = `ls ~/projects/ | nl`
