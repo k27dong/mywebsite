@@ -1,0 +1,4 @@
+# Format-only commits: ignored by 'git blame --ignore-revs-file'
+
+# CRLF -> LF renormalization
+85e95a70bf9a293e3f9f32b570a1628615159a52
