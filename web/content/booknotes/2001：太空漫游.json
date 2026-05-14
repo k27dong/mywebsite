@@ -52,7 +52,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "英国",
   "id": 54,
   "notenum": 10,
   "rating": "9.2",
@@ -63,5 +63,5 @@
     "库布里克"
   ],
   "title": "2001：太空漫游",
-  "year_published": null
+  "year_published": "1968"
 }

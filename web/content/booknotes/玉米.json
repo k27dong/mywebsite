@@ -152,7 +152,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 94,
   "notenum": 95,
   "rating": "8.1",
@@ -164,5 +164,5 @@
     "女性"
   ],
   "title": "玉米",
-  "year_published": null
+  "year_published": "2001"
 }

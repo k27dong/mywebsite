@@ -246,7 +246,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "澳大利亚",
   "id": 40,
   "notenum": 145,
   "rating": "8.3",
@@ -258,5 +258,5 @@
     "文化大革命"
   ],
   "title": "毛泽东传",
-  "year_published": null
+  "year_published": "1980"
 }

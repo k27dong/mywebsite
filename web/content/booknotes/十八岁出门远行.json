@@ -64,7 +64,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 80,
   "notenum": 22,
   "rating": "8.4",
@@ -73,5 +73,5 @@
     "短篇小说集"
   ],
   "title": "十八岁出门远行",
-  "year_published": null
+  "year_published": "1987"
 }

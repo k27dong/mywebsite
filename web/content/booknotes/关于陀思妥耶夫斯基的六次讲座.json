@@ -74,7 +74,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "法国",
   "id": 99,
   "notenum": 42,
   "rating": "9.0",
@@ -85,5 +85,5 @@
     "民族"
   ],
   "title": "关于陀思妥耶夫斯基的六次讲座",
-  "year_published": null
+  "year_published": "1923"
 }

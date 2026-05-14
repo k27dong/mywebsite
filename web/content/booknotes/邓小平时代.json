@@ -185,7 +185,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "美国",
   "id": 35,
   "notenum": 73,
   "rating": "9.2",
@@ -197,5 +197,5 @@
     "改革开放"
   ],
   "title": "邓小平时代",
-  "year_published": null
+  "year_published": "2011"
 }

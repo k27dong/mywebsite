@@ -30,7 +30,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 48,
   "notenum": 13,
   "rating": "7.8",
@@ -43,5 +43,5 @@
     "外国文学"
   ],
   "title": "萤",
-  "year_published": null
+  "year_published": "1983"
 }

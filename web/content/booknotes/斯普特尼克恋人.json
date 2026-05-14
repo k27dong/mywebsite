@@ -99,7 +99,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 71,
   "notenum": 32,
   "rating": "8.2",
@@ -111,5 +111,5 @@
     "现代文学"
   ],
   "title": "斯普特尼克恋人",
-  "year_published": null
+  "year_published": "1999"
 }

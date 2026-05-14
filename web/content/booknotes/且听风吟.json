@@ -51,7 +51,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 61,
   "notenum": 9,
   "rating": "7.8",
@@ -63,5 +63,5 @@
     "青春"
   ],
   "title": "且听风吟",
-  "year_published": null
+  "year_published": "1979"
 }

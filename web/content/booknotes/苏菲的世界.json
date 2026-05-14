@@ -202,7 +202,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "挪威",
   "id": 50,
   "notenum": 85,
   "rating": "8.5",
@@ -213,5 +213,5 @@
     "教育"
   ],
   "title": "苏菲的世界",
-  "year_published": null
+  "year_published": "1991"
 }

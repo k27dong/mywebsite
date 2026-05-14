@@ -126,7 +126,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 6,
   "notenum": 39,
   "rating": "7.6",
@@ -138,5 +138,5 @@
     "散文"
   ],
   "title": "我所理解的生活",
-  "year_published": null
+  "year_published": "2013"
 }

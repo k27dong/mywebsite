@@ -161,7 +161,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "美国",
   "id": 92,
   "notenum": 64,
   "rating": "8.2",
@@ -173,5 +173,5 @@
     "冒险精神"
   ],
   "title": "死在午后",
-  "year_published": null
+  "year_published": "1932"
 }

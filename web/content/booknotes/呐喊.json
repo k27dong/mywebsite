@@ -41,7 +41,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 13,
   "notenum": 9,
   "rating": "9.0",
@@ -53,5 +53,5 @@
     "小说"
   ],
   "title": "呐喊",
-  "year_published": null
+  "year_published": "1923"
 }

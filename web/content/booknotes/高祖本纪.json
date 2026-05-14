@@ -85,7 +85,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 78,
   "notenum": 63,
   "rating": "9.9",
@@ -94,5 +94,5 @@
     "史记"
   ],
   "title": "高祖本纪",
-  "year_published": null
+  "year_published": "西汉"
 }

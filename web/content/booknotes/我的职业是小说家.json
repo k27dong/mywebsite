@@ -60,7 +60,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 89,
   "notenum": 23,
   "rating": "8.3",
@@ -71,5 +71,5 @@
     "日本"
   ],
   "title": "我的职业是小说家",
-  "year_published": null
+  "year_published": "2015"
 }

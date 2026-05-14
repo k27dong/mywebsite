@@ -88,7 +88,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 85,
   "notenum": 46,
   "rating": "9.3",
@@ -99,5 +99,5 @@
     "生命感悟"
   ],
   "title": "我与地坛",
-  "year_published": null
+  "year_published": "1991"
 }

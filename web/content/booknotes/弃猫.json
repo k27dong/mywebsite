@@ -50,7 +50,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 59,
   "notenum": 13,
   "rating": "7.4",
@@ -61,5 +61,5 @@
     "非虚构"
   ],
   "title": "弃猫",
-  "year_published": null
+  "year_published": "2020"
 }

@@ -45,7 +45,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "美国",
   "id": 29,
   "notenum": 23,
   "rating": "8.7",
@@ -57,5 +57,5 @@
     "编程"
   ],
   "title": "黑客与画家",
-  "year_published": null
+  "year_published": "2004"
 }

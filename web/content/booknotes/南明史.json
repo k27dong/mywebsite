@@ -412,7 +412,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 86,
   "notenum": 246,
   "rating": "9.1",
@@ -423,5 +423,5 @@
     "清朝"
   ],
   "title": "南明史",
-  "year_published": null
+  "year_published": "1992"
 }

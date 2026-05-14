@@ -847,7 +847,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 110,
   "notenum": 280,
   "rating": "8.9",
@@ -858,5 +858,5 @@
     "转生"
   ],
   "title": "丰饶之海",
-  "year_published": null
+  "year_published": "1969"
 }

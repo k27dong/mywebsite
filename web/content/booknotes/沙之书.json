@@ -48,7 +48,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "阿根廷",
   "id": 10,
   "notenum": 11,
   "rating": "9.0",
@@ -60,5 +60,5 @@
     "哲学思考"
   ],
   "title": "沙之书",
-  "year_published": null
+  "year_published": "1975"
 }

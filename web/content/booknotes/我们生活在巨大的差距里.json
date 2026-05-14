@@ -164,7 +164,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 90,
   "notenum": 37,
   "rating": "6.6",
@@ -175,5 +175,5 @@
     "杂文集"
   ],
   "title": "我们生活在巨大的差距里",
-  "year_published": null
+  "year_published": "2015"
 }

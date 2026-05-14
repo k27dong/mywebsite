@@ -168,7 +168,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "俄罗斯",
   "id": 58,
   "notenum": 101,
   "rating": "8.9",
@@ -180,5 +180,5 @@
     "自然"
   ],
   "title": "鱼王",
-  "year_published": null
+  "year_published": "1976"
 }

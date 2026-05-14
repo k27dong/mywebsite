@@ -34,7 +34,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 60,
   "notenum": 17,
   "rating": "7.7",
@@ -46,5 +46,5 @@
     "文学"
   ],
   "title": "电视人",
-  "year_published": null
+  "year_published": "1990"
 }

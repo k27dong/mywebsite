@@ -52,7 +52,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 12,
   "notenum": 10,
   "rating": "8.8",
@@ -64,5 +64,5 @@
     "宇宙"
   ],
   "title": "三体",
-  "year_published": null
+  "year_published": "2008"
 }

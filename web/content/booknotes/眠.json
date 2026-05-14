@@ -35,7 +35,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 25,
   "notenum": 8,
   "rating": "7.6",
@@ -45,5 +45,5 @@
     "短篇小说"
   ],
   "title": "眠",
-  "year_published": null
+  "year_published": "1989"
 }

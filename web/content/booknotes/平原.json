@@ -140,7 +140,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 104,
   "notenum": 53,
   "rating": "7.7",
@@ -149,5 +149,5 @@
     "乡土文学"
   ],
   "title": "平原",
-  "year_published": null
+  "year_published": "2005"
 }

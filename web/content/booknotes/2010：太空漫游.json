@@ -86,7 +86,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "英国",
   "id": 55,
   "notenum": 19,
   "rating": "8.8",
@@ -96,5 +96,5 @@
     "经典"
   ],
   "title": "2010：太空漫游",
-  "year_published": null
+  "year_published": "1982"
 }

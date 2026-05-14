@@ -67,7 +67,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 32,
   "notenum": 20,
   "rating": "8.2",
@@ -79,5 +79,5 @@
     "人生探索"
   ],
   "title": "国境以南 太阳以西",
-  "year_published": null
+  "year_published": "1992"
 }

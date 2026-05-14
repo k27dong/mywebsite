@@ -82,7 +82,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 4,
   "notenum": 20,
   "rating": "7.8",
@@ -93,5 +93,5 @@
     "中国文学"
   ],
   "title": "青春",
-  "year_published": null
+  "year_published": "2011"
 }

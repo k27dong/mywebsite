@@ -43,7 +43,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 27,
   "notenum": 21,
   "rating": "7.8",
@@ -57,5 +57,5 @@
     "村上春树-如果我们的语言是威士忌"
   ],
   "title": "如果我们的语言是威士忌",
-  "year_published": null
+  "year_published": "1999"
 }

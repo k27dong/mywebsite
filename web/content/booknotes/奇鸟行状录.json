@@ -194,7 +194,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 44,
   "notenum": 52,
   "rating": "8.4",
@@ -206,5 +206,5 @@
     "人生旅程"
   ],
   "title": "奇鸟行状录",
-  "year_published": null
+  "year_published": "1994"
 }

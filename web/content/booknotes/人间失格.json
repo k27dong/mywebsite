@@ -18,7 +18,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 14,
   "notenum": 11,
   "rating": "8.3",
@@ -30,5 +30,5 @@
     "无赖派"
   ],
   "title": "人间失格",
-  "year_published": null
+  "year_published": "1948"
 }

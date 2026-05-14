@@ -22,7 +22,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "美国",
   "id": 2,
   "notenum": 15,
   "rating": "8.4",
@@ -34,5 +34,5 @@
     "随笔"
   ],
   "title": "瓦尔登湖",
-  "year_published": null
+  "year_published": "1854"
 }

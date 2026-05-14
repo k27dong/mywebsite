@@ -150,7 +150,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 98,
   "notenum": 103,
   "rating": "8.9",
@@ -162,5 +162,5 @@
     "创作技巧"
   ],
   "title": "小说课",
-  "year_published": null
+  "year_published": "2017"
 }

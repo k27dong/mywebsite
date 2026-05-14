@@ -29,7 +29,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 31,
   "notenum": 22,
   "rating": "7.5",
@@ -41,5 +41,5 @@
     "爱情"
   ],
   "title": "天黑以后",
-  "year_published": null
+  "year_published": "2004"
 }

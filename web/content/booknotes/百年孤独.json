@@ -265,7 +265,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "哥伦比亚",
   "id": 84,
   "notenum": 163,
   "rating": "9.3",
@@ -277,5 +277,5 @@
     "社会变革"
   ],
   "title": "百年孤独",
-  "year_published": null
+  "year_published": "1967"
 }

@@ -56,7 +56,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "美国",
   "id": 22,
   "notenum": 19,
   "rating": "8.5",
@@ -68,5 +68,5 @@
     "政治"
   ],
   "title": "西行漫记",
-  "year_published": null
+  "year_published": "1937"
 }
