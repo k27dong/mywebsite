@@ -26,12 +26,13 @@ const compress_rate = Math.min(...title.split("\\n").map((line) => get_scale(lin
 <header class="grid">
   <h1
     class="bold grid place-content-center overflow-hidden border-b border-black px-[1.2rem] py-8
-      text-center font-semibold uppercase leading-[0.8] sm:px-[2rem]"
+      text-center leading-[0.8] font-semibold uppercase sm:px-[2rem]"
   >
     {
       title.split("\\n").map((line) => (
         <span
-          class="ios-will-change inline-block max-w-full transform whitespace-nowrap font-pagetitle text-[clamp(2rem,20vw,10rem)] tracking-[-0.02em] antialiased"
+          class="ios-will-change font-pagetitle inline-block max-w-full transform
+            text-[clamp(2rem,20vw,10rem)] tracking-[-0.02em] whitespace-nowrap antialiased"
           style={`transform: scaleX(${compress_rate});`}
         >
           {line}

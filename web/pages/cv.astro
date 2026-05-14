@@ -48,7 +48,7 @@ const callout_style = `
         {
           skills.map((skill: Skill) => (
             <li class="mb-6">
-              <header class="mb-4 mt-1 text-lg font-semibold underline underline-offset-4">
+              <header class="mt-1 mb-4 text-lg font-semibold underline underline-offset-4">
                 {skill.data.name}
               </header>
               <div class="flex flex-wrap gap-x-4 gap-y-1 font-medium">
@@ -97,7 +97,7 @@ const callout_style = `
         href={current_job.data.link}
         target="_blank"
         rel="noopener noreferrer"
-        class="group flex flex-1 items-center justify-center border-b border-black pb-2 pt-6
+        class="group flex flex-1 items-center justify-center border-b border-black pt-6 pb-2
           md:border-b-0 md:p-4"
       >
         <div class="text-center">
@@ -136,7 +136,7 @@ const callout_style = `
         {
           skills.map((skill: Skill) => (
             <li class="mb-6">
-              <header class="mb-4 mt-1 text-lg font-semibold underline underline-offset-4">
+              <header class="mt-1 mb-4 text-lg font-semibold underline underline-offset-4">
                 {skill.data.name}
               </header>
               <div class="flex flex-wrap gap-x-4 gap-y-1 font-medium">
@@ -151,7 +151,7 @@ const callout_style = `
     </div>
 
     <div class="border-t border-black md:col-span-2">
-      <div class="py-8 sm:border-l sm:border-r sm:border-black sm:px-10 md:mx-auto md:max-w-[65vw]">
+      <div class="py-8 sm:border-r sm:border-l sm:border-black sm:px-10 md:mx-auto md:max-w-[65vw]">
         <ul>
           {
             past_experiences.map((exp: Experience, index) => (
@@ -167,7 +167,10 @@ const callout_style = `
                       >
                         {exp.data.company}
                       </a>
-                      <div class="text-right text-base font-bold tracking-tight text-gray-700 md:text-lg">
+                      <div
+                        class="text-right text-base font-bold tracking-tight text-gray-700
+                          md:text-lg"
+                      >
                         {exp.data.role}
                       </div>
                     </div>
@@ -193,7 +196,10 @@ const callout_style = `
                   {exp.data.points && (
                     <div class="flex flex-wrap gap-2">
                       {exp.data.points.map((point: string) => (
-                        <span class="inline-block rounded-sm bg-gray-200 px-2 py-1 text-xs text-gray-700">
+                        <span
+                          class="inline-block rounded-sm bg-gray-200 px-2 py-1 text-xs
+                            text-gray-700"
+                        >
                           {point}
                         </span>
                       ))}

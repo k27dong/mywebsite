@@ -47,7 +47,8 @@
 @theme {
   --font-jbmono: "JetBrains Mono", sans-serif;
   --font-sourcehan: "Source Han Serif", serif;
-  --font-pagetitle: "Georgia", "Cambria", "Times New Roman", "Times", "Noto Serif SC ExtraBold", serif;
+  --font-pagetitle:
+    "Georgia", "Cambria", "Times New Roman", "Times", "Noto Serif SC ExtraBold", serif;
   --font-article: "Georgia", "Cambria", "Times New Roman", "Times", "Source Han Serif", serif;
 
   --color-highlight: #4a6c8c;
@@ -59,9 +60,17 @@
 }
 
 @keyframes pop {
-  0% { transform: scale(0.9); opacity: 0; }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @layer utilities {

@@ -6,8 +6,7 @@
   "singleQuote": false,
   "bracketSpacing": true,
   "arrowParens": "always",
-  "endingPosition": "absolute-with-indent",
-  "experimentalOptimization": true,
+  "endingPosition": "absolute",
   "plugins": [
     "@trivago/prettier-plugin-sort-imports",
     "prettier-plugin-astro",
