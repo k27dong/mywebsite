@@ -1,0 +1,33 @@
+# Normalize all text to LF
+* text=auto eol=lf
+
+# Explicit text overrides
+*.md text eol=lf
+*.json text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.astro text eol=lf
+*.mjs text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+*.rs text eol=lf
+*.html text eol=lf
+*.sh text eol=lf
+
+# Binaries
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.svg text eol=lf
+*.pdf binary
+*.gif binary
+*.lock text eol=lf
