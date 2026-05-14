@@ -27,9 +27,9 @@ const booknotes = defineCollection({
     notenum: z.number(),
     rating: z.coerce.number(),
     tags: z.array(z.string()),
-    year_published: z.string().nullish(),
-    country: z.string().nullish(),
-    read_date: z.string().nullish(),
+    year_published: z.string(),
+    country: z.string(),
+    read_date: z.string(),
     content: z.array(
       z.object({
         name: z.string(),
