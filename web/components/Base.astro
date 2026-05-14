@@ -11,6 +11,12 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
 const { title, description, image } = Astro.props
+
+const pathname = Astro.url.pathname
+const NEEDS_CJK =
+  pathname.startsWith("/blog") ||
+  pathname.startsWith("/book") ||
+  pathname.startsWith("/project")
 ---
 
 <!-- Global Metadata -->
@@ -33,27 +39,33 @@ const { title, description, image } = Astro.props
 <!-- Font preloads -->
 <link rel="preload" href="/fonts/jbmono-regular.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/jbmono-bold.woff2" as="font" type="font/woff2" crossorigin />
-<link
-  rel="preload"
-  href="/fonts/SourceHanSerifSC-Medium-subset.woff2"
-  as="font"
-  type="font/woff2"
-  crossorigin
-/>
-<link
-  rel="preload"
-  href="/fonts/SourceHanSerifSC-Regular-subset.woff2"
-  as="font"
-  type="font/woff2"
-  crossorigin
-/>
-<link
-  rel="preload"
-  href="/fonts/NotoSerifSC-ExtraBold-subset.woff2"
-  as="font"
-  type="font/woff2"
-  crossorigin
-/>
+{
+  NEEDS_CJK && (
+    <>
+      <link
+        rel="preload"
+        href="/fonts/SourceHanSerifSC-Medium-subset.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin
+      />
+      <link
+        rel="preload"
+        href="/fonts/SourceHanSerifSC-Regular-subset.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin
+      />
+      <link
+        rel="preload"
+        href="/fonts/NotoSerifSC-ExtraBold-subset.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin
+      />
+    </>
+  )
+}
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
