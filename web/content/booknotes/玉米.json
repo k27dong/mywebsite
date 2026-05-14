@@ -152,9 +152,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 94,
   "notenum": 95,
   "rating": "8.1",
-  "tags": ["乡土文学", "权力意志", "父权制", "女性"],
-  "title": "玉米"
+  "read_date": null,
+  "tags": [
+    "乡土文学",
+    "权力意志",
+    "父权制",
+    "女性"
+  ],
+  "title": "玉米",
+  "year_published": null
 }

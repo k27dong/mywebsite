@@ -70,9 +70,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 101,
   "notenum": 28,
   "rating": "8.5",
-  "tags": ["哲学", "散文", "日本文化", "战争"],
-  "title": "太阳与铁"
+  "read_date": null,
+  "tags": [
+    "哲学",
+    "散文",
+    "日本文化",
+    "战争"
+  ],
+  "title": "太阳与铁",
+  "year_published": null
 }

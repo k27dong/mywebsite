@@ -22,9 +22,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 2,
   "notenum": 15,
   "rating": "8.4",
-  "tags": ["美国文学", "散文", "自然主义", "随笔"],
-  "title": "瓦尔登湖"
+  "read_date": null,
+  "tags": [
+    "美国文学",
+    "散文",
+    "自然主义",
+    "随笔"
+  ],
+  "title": "瓦尔登湖",
+  "year_published": null
 }

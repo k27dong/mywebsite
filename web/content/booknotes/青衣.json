@@ -119,9 +119,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 95,
   "notenum": 82,
   "rating": "8.1",
-  "tags": ["传统与现代", "文学", "生活", "离婚"],
-  "title": "青衣"
+  "read_date": null,
+  "tags": [
+    "传统与现代",
+    "文学",
+    "生活",
+    "离婚"
+  ],
+  "title": "青衣",
+  "year_published": null
 }

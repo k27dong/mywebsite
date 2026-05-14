@@ -118,9 +118,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 97,
   "notenum": 36,
   "rating": "8.1",
-  "tags": ["短篇小说集", "现实主义", "荒诞", "人性"],
-  "title": "现实一种"
+  "read_date": null,
+  "tags": [
+    "短篇小说集",
+    "现实主义",
+    "荒诞",
+    "人性"
+  ],
+  "title": "现实一种",
+  "year_published": null
 }

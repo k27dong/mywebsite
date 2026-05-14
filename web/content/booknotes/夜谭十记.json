@@ -88,9 +88,15 @@
       ]
     }
   ],
+  "country": null,
   "id": 70,
   "notenum": 31,
   "rating": "7.8",
-  "tags": ["中国文学", "短篇小说集"],
-  "title": "夜谭十记"
+  "read_date": null,
+  "tags": [
+    "中国文学",
+    "短篇小说集"
+  ],
+  "title": "夜谭十记",
+  "year_published": null
 }

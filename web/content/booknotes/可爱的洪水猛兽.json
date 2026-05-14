@@ -22,9 +22,16 @@
       ]
     }
   ],
+  "country": null,
   "id": 8,
   "notenum": 5,
   "rating": "8.1",
-  "tags": ["杂文", "意见领袖", "当代"],
-  "title": "可爱的洪水猛兽"
+  "read_date": null,
+  "tags": [
+    "杂文",
+    "意见领袖",
+    "当代"
+  ],
+  "title": "可爱的洪水猛兽",
+  "year_published": null
 }

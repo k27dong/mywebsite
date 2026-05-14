@@ -246,9 +246,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 40,
   "notenum": 145,
   "rating": "8.3",
-  "tags": ["传记", "中国历史", "政治领袖", "文化大革命"],
-  "title": "毛泽东传"
+  "read_date": null,
+  "tags": [
+    "传记",
+    "中国历史",
+    "政治领袖",
+    "文化大革命"
+  ],
+  "title": "毛泽东传",
+  "year_published": null
 }

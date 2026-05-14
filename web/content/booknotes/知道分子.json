@@ -30,9 +30,16 @@
       ]
     }
   ],
+  "country": null,
   "id": 28,
   "notenum": 8,
   "rating": "6.8",
-  "tags": ["随笔", "杂文", "社会批判"],
-  "title": "知道分子"
+  "read_date": null,
+  "tags": [
+    "随笔",
+    "杂文",
+    "社会批判"
+  ],
+  "title": "知道分子",
+  "year_published": null
 }

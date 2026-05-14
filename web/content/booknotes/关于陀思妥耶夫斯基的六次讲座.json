@@ -74,9 +74,16 @@
       ]
     }
   ],
+  "country": null,
   "id": 99,
   "notenum": 42,
   "rating": "9.0",
-  "tags": ["文学讲座", "俄罗斯文学", "民族"],
-  "title": "关于陀思妥耶夫斯基的六次讲座"
+  "read_date": null,
+  "tags": [
+    "文学讲座",
+    "俄罗斯文学",
+    "民族"
+  ],
+  "title": "关于陀思妥耶夫斯基的六次讲座",
+  "year_published": null
 }

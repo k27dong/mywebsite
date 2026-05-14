@@ -50,9 +50,16 @@
       ]
     }
   ],
+  "country": null,
   "id": 59,
   "notenum": 13,
   "rating": "7.4",
-  "tags": ["日本文学", "散文", "非虚构"],
-  "title": "弃猫"
+  "read_date": null,
+  "tags": [
+    "日本文学",
+    "散文",
+    "非虚构"
+  ],
+  "title": "弃猫",
+  "year_published": null
 }

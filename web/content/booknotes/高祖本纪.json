@@ -85,9 +85,14 @@
       ]
     }
   ],
+  "country": null,
   "id": 78,
   "notenum": 63,
   "rating": "9.9",
-  "tags": ["史记"],
-  "title": "高祖本纪"
+  "read_date": null,
+  "tags": [
+    "史记"
+  ],
+  "title": "高祖本纪",
+  "year_published": null
 }

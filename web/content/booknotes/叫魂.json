@@ -89,9 +89,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 82,
   "notenum": 47,
   "rating": "9.1",
-  "tags": ["历史", "清朝", "社会心理", "民间信仰与巫术"],
-  "title": "叫魂"
+  "read_date": null,
+  "tags": [
+    "历史",
+    "清朝",
+    "社会心理",
+    "民间信仰与巫术"
+  ],
+  "title": "叫魂",
+  "year_published": null
 }

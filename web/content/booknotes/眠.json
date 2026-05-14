@@ -30,12 +30,20 @@
     },
     {
       "name": "5",
-      "notes": ["没有专注力的人生，就仿佛大睁着双眼却什么也看不见。"]
+      "notes": [
+        "没有专注力的人生，就仿佛大睁着双眼却什么也看不见。"
+      ]
     }
   ],
+  "country": null,
   "id": 25,
   "notenum": 8,
   "rating": "7.6",
-  "tags": ["日本文学", "短篇小说"],
-  "title": "眠"
+  "read_date": null,
+  "tags": [
+    "日本文学",
+    "短篇小说"
+  ],
+  "title": "眠",
+  "year_published": null
 }

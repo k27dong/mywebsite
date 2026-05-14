@@ -9,9 +9,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 7,
   "notenum": 2,
   "rating": "7.8",
-  "tags": ["杂文", "随笔", "博客", "80后"],
-  "title": "杂的文"
+  "read_date": null,
+  "tags": [
+    "杂文",
+    "随笔",
+    "博客",
+    "80后"
+  ],
+  "title": "杂的文",
+  "year_published": null
 }
