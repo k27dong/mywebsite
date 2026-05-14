@@ -73,6 +73,12 @@
   }
 }
 
+/* Disable View Transitions crossfade — keep ClientRouter's instant swap, drop the animation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
 @layer utilities {
   /* Reproduce custom typography variants from old tailwind.config.mjs */
 
