@@ -58,3 +58,6 @@ data/
 # AI assistants
 .cursor/
 .claude/
+
+# Superpowers brainstorm sessions
+.superpowers/
