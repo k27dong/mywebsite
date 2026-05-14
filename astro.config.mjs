@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config"
+import { defineConfig, envField } from "astro/config"
 import vercel from "@astrojs/vercel"
 
 import sitemap from "@astrojs/sitemap"
@@ -17,6 +17,15 @@ export default defineConfig({
     },
   },
   output: "static",
+  env: {
+    schema: {
+      PUBLIC_API_URL: envField.string({
+        context: "client",
+        access: "public",
+        default: "http://localhost:5000",
+      }),
+    },
+  },
   adapter: vercel({
     webAnalytics: { enabled: true },
   }),
