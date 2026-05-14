@@ -824,7 +824,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 33,
   "notenum": 267,
   "rating": "9.2",
@@ -836,5 +836,5 @@
     "农业文明"
   ],
   "title": "海子诗全集",
-  "year_published": null
+  "year_published": "2009"
 }

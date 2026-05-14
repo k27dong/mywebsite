@@ -166,7 +166,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 87,
   "notenum": 74,
   "rating": "8.3",
@@ -177,5 +177,5 @@
     "残疾人"
   ],
   "title": "推拿",
-  "year_published": null
+  "year_published": "2008"
 }

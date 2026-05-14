@@ -65,7 +65,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 103,
   "notenum": 18,
   "rating": "8.1",
@@ -77,5 +77,5 @@
     "失望"
   ],
   "title": "挪威的森林",
-  "year_published": null
+  "year_published": "1987"
 }

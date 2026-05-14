@@ -192,7 +192,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 38,
   "notenum": 55,
   "rating": "8.1",
@@ -204,5 +204,5 @@
     "俄狄浦斯"
   ],
   "title": "海边的卡夫卡",
-  "year_published": null
+  "year_published": "2002"
 }

@@ -65,7 +65,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "美国",
   "id": 37,
   "notenum": 23,
   "rating": "8.4",
@@ -76,5 +76,5 @@
     "经典"
   ],
   "title": "乞力马扎罗的雪",
-  "year_published": null
+  "year_published": "1936"
 }

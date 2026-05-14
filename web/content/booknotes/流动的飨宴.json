@@ -111,7 +111,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "美国",
   "id": 41,
   "notenum": 39,
   "rating": "8.2",
@@ -123,5 +123,5 @@
     "自传体"
   ],
   "title": "流动的飨宴",
-  "year_published": null
+  "year_published": "1964"
 }

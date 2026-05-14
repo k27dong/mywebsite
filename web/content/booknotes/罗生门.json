@@ -76,7 +76,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 52,
   "notenum": 29,
   "rating": "8.7",
@@ -88,5 +88,5 @@
     "短篇集"
   ],
   "title": "罗生门",
-  "year_published": null
+  "year_published": "1915"
 }

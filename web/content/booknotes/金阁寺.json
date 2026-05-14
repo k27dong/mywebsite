@@ -136,7 +136,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 53,
   "notenum": 84,
   "rating": "8.7",
@@ -148,5 +148,5 @@
     "道德"
   ],
   "title": "金阁寺",
-  "year_published": null
+  "year_published": "1956"
 }

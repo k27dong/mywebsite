@@ -118,7 +118,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 97,
   "notenum": 36,
   "rating": "8.1",
@@ -130,5 +130,5 @@
     "人性"
   ],
   "title": "现实一种",
-  "year_published": null
+  "year_published": "1988"
 }

@@ -78,7 +78,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 30,
   "notenum": 41,
   "rating": "8.0",
@@ -89,5 +89,5 @@
     "短篇小说集"
   ],
   "title": "神的孩子全跳舞",
-  "year_published": null
+  "year_published": "2000"
 }

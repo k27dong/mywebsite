@@ -76,7 +76,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "美国",
   "id": 36,
   "notenum": 14,
   "rating": "6.9",
@@ -88,5 +88,5 @@
     "爱情"
   ],
   "title": "渡河入林",
-  "year_published": null
+  "year_published": "1950"
 }

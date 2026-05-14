@@ -8,7 +8,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 15,
   "notenum": 1,
   "rating": "8.2",
@@ -18,5 +18,5 @@
     "科幻"
   ],
   "title": "朝闻道",
-  "year_published": null
+  "year_published": "2002"
 }

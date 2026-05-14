@@ -22,7 +22,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 8,
   "notenum": 5,
   "rating": "8.1",
@@ -33,5 +33,5 @@
     "当代"
   ],
   "title": "可爱的洪水猛兽",
-  "year_published": null
+  "year_published": "2015"
 }

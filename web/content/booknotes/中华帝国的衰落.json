@@ -136,7 +136,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "美国",
   "id": 100,
   "notenum": 74,
   "rating": "7.7",
@@ -148,5 +148,5 @@
     "糟糕翻译"
   ],
   "title": "中华帝国的衰落",
-  "year_published": null
+  "year_published": "1975"
 }

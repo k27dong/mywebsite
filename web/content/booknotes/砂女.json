@@ -147,7 +147,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 69,
   "notenum": 35,
   "rating": "8.7",
@@ -160,5 +160,5 @@
     "奇幻"
   ],
   "title": "砂女",
-  "year_published": null
+  "year_published": "1962"
 }

@@ -68,7 +68,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "英国",
   "id": 65,
   "notenum": 31,
   "rating": "8.1",
@@ -80,5 +80,5 @@
     "社会结构"
   ],
   "title": "蝇王",
-  "year_published": null
+  "year_published": "1954"
 }

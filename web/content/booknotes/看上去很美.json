@@ -151,7 +151,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 43,
   "notenum": 59,
   "rating": "8.1",
@@ -162,5 +162,5 @@
     "童年"
   ],
   "title": "看上去很美",
-  "year_published": null
+  "year_published": "1999"
 }

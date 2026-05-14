@@ -89,7 +89,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "美国",
   "id": 82,
   "notenum": 47,
   "rating": "9.1",
@@ -101,5 +101,5 @@
     "民间信仰与巫术"
   ],
   "title": "叫魂",
-  "year_published": null
+  "year_published": "1990"
 }

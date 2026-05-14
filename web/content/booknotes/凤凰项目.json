@@ -20,7 +20,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "美国",
   "id": 5,
   "notenum": 3,
   "rating": "8.5",
@@ -32,5 +32,5 @@
     "项目管理"
   ],
   "title": "凤凰项目",
-  "year_published": null
+  "year_published": "2013"
 }

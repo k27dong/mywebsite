@@ -8,7 +8,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 1,
   "notenum": 1,
   "rating": "8.0",
@@ -20,5 +20,5 @@
     "短篇集"
   ],
   "title": "东京奇谭集",
-  "year_published": null
+  "year_published": "2005"
 }

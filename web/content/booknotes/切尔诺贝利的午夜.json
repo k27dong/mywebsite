@@ -116,7 +116,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "英国",
   "id": 73,
   "notenum": 39,
   "rating": "9.1",
@@ -127,5 +127,5 @@
     "历史事件"
   ],
   "title": "切尔诺贝利的午夜",
-  "year_published": null
+  "year_published": "2019"
 }

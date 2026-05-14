@@ -138,7 +138,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 93,
   "notenum": 36,
   "rating": "7.7",
@@ -149,5 +149,5 @@
     "心理描写"
   ],
   "title": "沉沦",
-  "year_published": null
+  "year_published": "1921"
 }

@@ -83,7 +83,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 34,
   "notenum": 16,
   "rating": "8.1",
@@ -95,5 +95,5 @@
     "生活"
   ],
   "title": "大萝卜和难挑的鳄梨",
-  "year_published": null
+  "year_published": "2008"
 }

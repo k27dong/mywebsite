@@ -557,7 +557,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 68,
   "notenum": 165,
   "rating": "9.5",
@@ -569,5 +569,5 @@
     "四大名著"
   ],
   "title": "三国志通俗演义",
-  "year_published": null
+  "year_published": "明朝"
 }

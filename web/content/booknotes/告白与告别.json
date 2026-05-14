@@ -34,7 +34,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 21,
   "notenum": 7,
   "rating": "6.5",
@@ -46,5 +46,5 @@
     "社会评论"
   ],
   "title": "告白与告别",
-  "year_published": null
+  "year_published": "2012"
 }

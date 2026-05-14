@@ -160,7 +160,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 96,
   "notenum": 63,
   "rating": "8.2",
@@ -172,5 +172,5 @@
     "心理"
   ],
   "title": "相爱的日子",
-  "year_published": null
+  "year_published": "2009"
 }

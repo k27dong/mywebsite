@@ -64,7 +64,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 23,
   "notenum": 27,
   "rating": "8.9",
@@ -76,5 +76,5 @@
     "婚姻"
   ],
   "title": "围城",
-  "year_published": null
+  "year_published": "1947"
 }

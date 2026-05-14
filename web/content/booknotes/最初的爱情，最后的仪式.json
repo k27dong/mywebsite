@@ -67,7 +67,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "英国",
   "id": 88,
   "notenum": 40,
   "rating": "8.0",
@@ -79,5 +79,5 @@
     "恐怖伊恩"
   ],
   "title": "最初的爱情，最后的仪式",
-  "year_published": null
+  "year_published": "1975"
 }

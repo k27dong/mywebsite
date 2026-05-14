@@ -92,7 +92,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 72,
   "notenum": 40,
   "rating": "8.4",
@@ -104,5 +104,5 @@
     "物哀"
   ],
   "title": "仲夏之死",
-  "year_published": null
+  "year_published": "1953"
 }

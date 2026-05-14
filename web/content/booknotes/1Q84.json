@@ -392,7 +392,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "日本",
   "id": 51,
   "notenum": 120,
   "rating": "8.2",
@@ -404,5 +404,5 @@
     "爱情"
   ],
   "title": "1Q84",
-  "year_published": null
+  "year_published": "2009"
 }

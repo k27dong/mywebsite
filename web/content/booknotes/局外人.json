@@ -70,7 +70,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "法国",
   "id": 24,
   "notenum": 18,
   "rating": "9.0",
@@ -80,5 +80,5 @@
     "法国文学"
   ],
   "title": "局外人",
-  "year_published": null
+  "year_published": "1942"
 }

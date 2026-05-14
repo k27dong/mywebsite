@@ -97,7 +97,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 81,
   "notenum": 55,
   "rating": "9.0",
@@ -108,5 +108,5 @@
     "政治与社会"
   ],
   "title": "万历十五年",
-  "year_published": null
+  "year_published": "1981"
 }

@@ -30,7 +30,7 @@
       ]
     }
   ],
-  "country": null,
+  "country": "中国",
   "id": 28,
   "notenum": 8,
   "rating": "6.8",
@@ -41,5 +41,5 @@
     "社会批判"
   ],
   "title": "知道分子",
-  "year_published": null
+  "year_published": "1992"
 }
