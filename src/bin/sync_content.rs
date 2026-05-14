@@ -60,6 +60,9 @@ pub fn sync_booknotes() {
             "notenum": note.frontmatter.num,
             "rating": note.frontmatter.rating,
             "tags": note.frontmatter.tags,
+            "year_published": note.frontmatter.year_published,
+            "country": note.frontmatter.country,
+            "read_date": note.frontmatter.read_date,
             "content": note.content,
         });
 

@@ -12,6 +12,9 @@ pub struct BookNoteFrontmatter {
     pub num: u32,
     pub rating: String,
     pub tags: Vec<String>,
+    pub year_published: String,
+    pub country: String,
+    pub read_date: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]

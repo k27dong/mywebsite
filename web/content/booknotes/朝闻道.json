@@ -8,9 +8,15 @@
       ]
     }
   ],
+  "country": "中国",
   "id": 15,
   "notenum": 1,
   "rating": "8.2",
-  "tags": ["短篇", "科幻"],
-  "title": "朝闻道"
+  "read_date": "2021-01-30",
+  "tags": [
+    "短篇",
+    "科幻"
+  ],
+  "title": "朝闻道",
+  "year_published": "2002"
 }

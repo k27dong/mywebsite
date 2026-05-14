@@ -85,9 +85,14 @@
       ]
     }
   ],
+  "country": "中国",
   "id": 78,
   "notenum": 63,
   "rating": "9.9",
-  "tags": ["史记"],
-  "title": "高祖本纪"
+  "read_date": "2024-03-05",
+  "tags": [
+    "史记"
+  ],
+  "title": "高祖本纪",
+  "year_published": "西汉"
 }
