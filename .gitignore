@@ -61,3 +61,6 @@ data/
 
 # Agent-generated specs, plans, audits
 docs/superpowers/
+
+# Superpowers brainstorm sessions
+.superpowers/
