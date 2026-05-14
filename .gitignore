@@ -58,3 +58,6 @@ data/
 # AI assistants
 .cursor/
 .claude/
+
+# Agent-generated specs, plans, audits
+docs/superpowers/
