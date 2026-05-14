@@ -1,15 +1,23 @@
 ---
 import "../styles/global.css"
+import { ClientRouter } from "astro:transitions"
 
 interface Props {
   title: string
   description: string
   image: string
+  hasMath?: boolean
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { title, description, image } = Astro.props
+const { title, description, image, hasMath = false } = Astro.props
+
+const pathname = Astro.url.pathname
+const NEEDS_CJK =
+  pathname.startsWith("/blog") ||
+  pathname.startsWith("/book") ||
+  pathname.startsWith("/project")
 ---
 
 <!-- Global Metadata -->
@@ -32,33 +40,42 @@ const { title, description, image } = Astro.props
 <!-- Font preloads -->
 <link rel="preload" href="/fonts/jbmono-regular.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/jbmono-bold.woff2" as="font" type="font/woff2" crossorigin />
-<link
-  rel="preload"
-  href="/fonts/SourceHanSerifSC-Medium-subset.woff2"
-  as="font"
-  type="font/woff2"
-  crossorigin
-/>
-<link
-  rel="preload"
-  href="/fonts/SourceHanSerifSC-Regular-subset.woff2"
-  as="font"
-  type="font/woff2"
-  crossorigin
-/>
-<link
-  rel="preload"
-  href="/fonts/NotoSerifSC-ExtraBold-subset.woff2"
-  as="font"
-  type="font/woff2"
-  crossorigin
-/>
+{
+  NEEDS_CJK && (
+    <>
+      <link
+        rel="preload"
+        href="/fonts/SourceHanSerifSC-Medium-subset.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin
+      />
+      <link
+        rel="preload"
+        href="/fonts/SourceHanSerifSC-Regular-subset.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin
+      />
+      <link
+        rel="preload"
+        href="/fonts/NotoSerifSC-ExtraBold-subset.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin
+      />
+    </>
+  )
+}
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Sitemap -->
 <link rel="sitemap" href="/sitemap-index.xml" />
+
+<!-- View Transitions -->
+<ClientRouter />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -81,9 +98,23 @@ const { title, description, image } = Astro.props
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<!-- MathJax -->
-<script
-  type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-  is:inline
-  async></script>
+{
+  hasMath && (
+    <>
+      {/* MathJax */}
+      <script
+        type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        is:inline
+        async
+      />
+      <script is:inline>
+        {`document.addEventListener("astro:page-load", () => {
+          if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise()
+          }
+        })`}
+      </script>
+    </>
+  )
+}

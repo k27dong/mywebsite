@@ -1,3 +1,5 @@
+import { PUBLIC_API_URL } from "astro:env/client"
+
 export const SITE_TITLE = "kefan.me"
 export const SITE_DESCRIPTION = "Kefan Dong's personal website"
 export const SITE_PREVIEW_IMAGE = "/favicon.png"
@@ -14,4 +16,4 @@ export const EDUCATION = {
 }
 
 // API Configuration
-export const API_BASE_URL = import.meta.env.PUBLIC_API_URL || "http://localhost:5000"
+export const API_BASE_URL = PUBLIC_API_URL

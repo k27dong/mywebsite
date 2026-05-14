@@ -1,6 +1,4 @@
 ---
-// import BtnToggle from "./BtnToggle.astro"
-
 const home = { full_name: "kefan.me", short_name: "KD", path: "/" }
 
 const links = [
@@ -13,12 +11,12 @@ const links = [
 ---
 
 <nav
-  class="main-nav fixed left-0 top-0 z-[100] flex min-h-[var(--nav-height)] w-full items-center
+  class="main-nav fixed top-0 left-0 z-[100] flex min-h-[var(--nav-height)] w-full items-center
     gap-3.5 border-b border-black bg-[#f0f0f2] pr-[0.7em] sm:gap-4 md:gap-6"
 >
   <a
     class="grid aspect-[1/1] h-[var(--nav-height)] place-content-center bg-black px-[1.2rem]
-      text-[1rem] font-extrabold leading-[1] text-white no-underline active:translate-y-[1px]
+      text-[1rem] leading-[1] font-extrabold text-white no-underline active:translate-y-[1px]
       sm:aspect-[2.618/1] sm:px-[2rem] sm:text-[1.1rem]"
     href={home.path}
   >
@@ -29,13 +27,13 @@ const links = [
   {
     links.map((link) => (
       <a
-        class="text-[0.9rem] font-medium uppercase leading-[1] tracking-tight text-[var(--text-color)] no-underline [text-underline-offset:2px] hover:underline active:translate-y-[1px] sm:text-[0.9rem] sm:tracking-normal"
+        class="text-[0.9rem] leading-[1] font-medium tracking-tight text-[var(--text-color)]
+          uppercase no-underline [text-underline-offset:2px] hover:underline
+          active:translate-y-[1px] sm:text-[0.9rem] sm:tracking-normal"
         href={link.path}
       >
         {link.name}
       </a>
     ))
   }
-
-  <!-- <BtnToggle /> -->
 </nav>

@@ -1,9 +1,8 @@
-import { defineConfig } from "astro/config"
+import { defineConfig, envField } from "astro/config"
 import vercel from "@astrojs/vercel"
 
-import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
-import tailwind from "@astrojs/tailwind"
+import tailwindcss from "@tailwindcss/vite"
 import icon from "astro-icon"
 import react from "@astrojs/react"
 
@@ -18,16 +17,26 @@ export default defineConfig({
     },
   },
   output: "static",
+  env: {
+    schema: {
+      PUBLIC_API_URL: envField.string({
+        context: "client",
+        access: "public",
+        default: "http://localhost:5000",
+      }),
+    },
+  },
   adapter: vercel({
     webAnalytics: { enabled: true },
   }),
   integrations: [
-    mdx(),
     sitemap(),
-    tailwind(),
     icon({
       iconDir: "./web/icons",
     }),
     react(),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 })

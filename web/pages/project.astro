@@ -18,16 +18,14 @@ type Project = Omit<CollectionEntry<"projects">, "data"> & {
 }
 
 const projects: Project[] = (await getCollection("projects"))
-  .sort((a: Project, b: Project) => a.data.id - b.data.id)
-  .map((project) => {
-    return {
-      ...project,
-      data: {
-        ...project.data,
-        mobile_tags: get_mobile_tags(project.data.language),
-      },
-    }
-  })
+  .sort((a, b) => a.data.id - b.data.id)
+  .map((project) => ({
+    ...project,
+    data: {
+      ...project.data,
+      mobile_tags: get_mobile_tags(project.data.language),
+    },
+  }))
 
 const callout_desktop = `find ~ -name .git \\\n\t| awk -F'/' '{print$(NF-1)}' \\\n\t| nl `
 const callout_mobile = `ls ~/projects/ | nl`
@@ -67,22 +65,29 @@ const callout_mobile = `ls ~/projects/ | nl`
             href={project.data.link || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            class={`group relative flex h-48 flex-col justify-between border-b border-black p-4 pb-2 sm:p-4 ${
-              (index + 1) % 2 !== 0 ? "border-r" : ""
-            } ${(index + 1) % 3 !== 0 ? "md:border-r" : "md:border-r-0"} ${
-              (index + 1) % 4 !== 0 ? "xl:border-r" : "xl:border-r-0"
-            } transition-all duration-300 hover:bg-gray-100 hover:shadow-lg`}
+            class={`group relative flex h-48 flex-col justify-between border-b border-black p-4 pb-2
+              sm:p-4 ${(index + 1) % 2 !== 0 ? "border-r" : ""}
+              ${(index + 1) % 3 !== 0 ? "md:border-r" : "md:border-r-0"} ${
+                (index + 1) % 4 !== 0 ? "xl:border-r" : "xl:border-r-0"
+              } transition-all duration-300
+              hover:bg-gray-100 hover:shadow-lg`}
           >
             <div class="flex items-baseline">
               <h3 class="text-base font-bold underline-offset-4 group-hover:underline sm:text-lg">
                 {project.data.name}
               </h3>
-              <span class="ml-2 transform self-end leading-6 transition-transform duration-200 group-hover:-translate-y-1 group-hover:translate-x-1">
+              <span
+                class="ml-2 transform self-end leading-6 transition-transform duration-200
+                  group-hover:translate-x-1 group-hover:-translate-y-1"
+              >
                 ↗
               </span>
             </div>
 
-            <p class="mt-2 flex-grow overflow-hidden text-xs tracking-tighter text-gray-700 sm:mt-4 sm:text-sm sm:tracking-normal">
+            <p
+              class="mt-2 flex-grow overflow-hidden text-xs tracking-tighter text-gray-700 sm:mt-4
+                sm:text-sm sm:tracking-normal"
+            >
               {project.data.description}
             </p>
 

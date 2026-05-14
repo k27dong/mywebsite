@@ -13,6 +13,7 @@ interface Props {
   title?: string
   description?: string
   calloutPadding?: string
+  hasMath?: boolean
 }
 
 const {
@@ -21,13 +22,14 @@ const {
   tab_icon = SITE_PREVIEW_IMAGE,
   title,
   calloutPadding,
+  hasMath = false,
 } = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <Base title={tab_title} description={tab_description} image={tab_icon} />
+    <Base title={tab_title} description={tab_description} image={tab_icon} hasMath={hasMath} />
   </head>
 
   <body class="bg-light font-jbmono">
