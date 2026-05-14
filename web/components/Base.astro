@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css"
+import { ClientRouter } from "astro:transitions"
 
 interface Props {
   title: string
@@ -60,6 +61,9 @@ const { title, description, image } = Astro.props
 <!-- Sitemap -->
 <link rel="sitemap" href="/sitemap-index.xml" />
 
+<!-- View Transitions -->
+<ClientRouter />
+
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
@@ -87,3 +91,10 @@ const { title, description, image } = Astro.props
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
   is:inline
   async></script>
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise()
+    }
+  })
+</script>
