@@ -6,11 +6,12 @@ interface Props {
   title: string
   description: string
   image: string
+  hasMath?: boolean
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { title, description, image } = Astro.props
+const { title, description, image, hasMath = false } = Astro.props
 
 const pathname = Astro.url.pathname
 const NEEDS_CJK =
@@ -97,16 +98,23 @@ const NEEDS_CJK =
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<!-- MathJax -->
-<script
-  type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-  is:inline
-  async></script>
-<script is:inline>
-  document.addEventListener("astro:page-load", () => {
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      window.MathJax.typesetPromise()
-    }
-  })
-</script>
+{
+  hasMath && (
+    <>
+      {/* MathJax */}
+      <script
+        type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        is:inline
+        async
+      />
+      <script is:inline>
+        {`document.addEventListener("astro:page-load", () => {
+          if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise()
+          }
+        })`}
+      </script>
+    </>
+  )
+}
