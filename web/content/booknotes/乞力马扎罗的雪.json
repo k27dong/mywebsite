@@ -65,9 +65,16 @@
       ]
     }
   ],
+  "country": null,
   "id": 37,
   "notenum": 23,
   "rating": "8.4",
-  "tags": ["美国文学", "小说", "经典"],
-  "title": "乞力马扎罗的雪"
+  "read_date": null,
+  "tags": [
+    "美国文学",
+    "小说",
+    "经典"
+  ],
+  "title": "乞力马扎罗的雪",
+  "year_published": null
 }

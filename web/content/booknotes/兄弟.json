@@ -264,9 +264,16 @@
       ]
     }
   ],
+  "country": null,
   "id": 102,
   "notenum": 72,
   "rating": "8.5",
-  "tags": ["长篇小说", "荒诞", "文革"],
-  "title": "兄弟"
+  "read_date": null,
+  "tags": [
+    "长篇小说",
+    "荒诞",
+    "文革"
+  ],
+  "title": "兄弟",
+  "year_published": null
 }

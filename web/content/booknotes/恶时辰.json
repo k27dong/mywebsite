@@ -74,9 +74,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 49,
   "notenum": 27,
   "rating": "7.7",
-  "tags": ["拉美文学", "小说", "魔幻现实主义", "家族史"],
-  "title": "恶时辰"
+  "read_date": null,
+  "tags": [
+    "拉美文学",
+    "小说",
+    "魔幻现实主义",
+    "家族史"
+  ],
+  "title": "恶时辰",
+  "year_published": null
 }

@@ -18,9 +18,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 14,
   "notenum": 11,
   "rating": "8.3",
-  "tags": ["日本文学", "小说", "人性", "无赖派"],
-  "title": "人间失格"
+  "read_date": null,
+  "tags": [
+    "日本文学",
+    "小说",
+    "人性",
+    "无赖派"
+  ],
+  "title": "人间失格",
+  "year_published": null
 }

@@ -136,9 +136,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 100,
   "notenum": 74,
   "rating": "7.7",
-  "tags": ["中国历史", "近代史", "晚清", "糟糕翻译"],
-  "title": "中华帝国的衰落"
+  "read_date": null,
+  "tags": [
+    "中国历史",
+    "近代史",
+    "晚清",
+    "糟糕翻译"
+  ],
+  "title": "中华帝国的衰落",
+  "year_published": null
 }

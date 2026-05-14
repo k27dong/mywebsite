@@ -150,9 +150,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 98,
   "notenum": 103,
   "rating": "8.9",
-  "tags": ["写作", "小说", "纯文学", "创作技巧"],
-  "title": "小说课"
+  "read_date": null,
+  "tags": [
+    "写作",
+    "小说",
+    "纯文学",
+    "创作技巧"
+  ],
+  "title": "小说课",
+  "year_published": null
 }

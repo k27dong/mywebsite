@@ -78,9 +78,16 @@
       ]
     }
   ],
+  "country": null,
   "id": 30,
   "notenum": 41,
   "rating": "8.0",
-  "tags": ["日本文学", "小说", "短篇小说集"],
-  "title": "神的孩子全跳舞"
+  "read_date": null,
+  "tags": [
+    "日本文学",
+    "小说",
+    "短篇小说集"
+  ],
+  "title": "神的孩子全跳舞",
+  "year_published": null
 }

@@ -166,9 +166,16 @@
       ]
     }
   ],
+  "country": null,
   "id": 87,
   "notenum": 74,
   "rating": "8.3",
-  "tags": ["当代中国文学", "社会", "残疾人"],
-  "title": "推拿"
+  "read_date": null,
+  "tags": [
+    "当代中国文学",
+    "社会",
+    "残疾人"
+  ],
+  "title": "推拿",
+  "year_published": null
 }

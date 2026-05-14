@@ -83,9 +83,18 @@
       ]
     }
   ],
+  "country": null,
   "id": 66,
   "notenum": 71,
   "rating": "9.0",
-  "tags": ["德国文学", "小说", "哲学", "心理学", "精神成长"],
-  "title": "荒原狼"
+  "read_date": null,
+  "tags": [
+    "德国文学",
+    "小说",
+    "哲学",
+    "心理学",
+    "精神成长"
+  ],
+  "title": "荒原狼",
+  "year_published": null
 }

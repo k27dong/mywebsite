@@ -116,9 +116,16 @@
       ]
     }
   ],
+  "country": null,
   "id": 73,
   "notenum": 39,
   "rating": "9.1",
-  "tags": ["报告文学", "核灾难", "历史事件"],
-  "title": "切尔诺贝利的午夜"
+  "read_date": null,
+  "tags": [
+    "报告文学",
+    "核灾难",
+    "历史事件"
+  ],
+  "title": "切尔诺贝利的午夜",
+  "year_published": null
 }

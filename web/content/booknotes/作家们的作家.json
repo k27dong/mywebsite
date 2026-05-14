@@ -111,9 +111,15 @@
       ]
     }
   ],
+  "country": null,
   "id": 91,
   "notenum": 24,
   "rating": "6.4",
-  "tags": ["读后感", "随笔"],
-  "title": "作家们的作家"
+  "read_date": null,
+  "tags": [
+    "读后感",
+    "随笔"
+  ],
+  "title": "作家们的作家",
+  "year_published": null
 }

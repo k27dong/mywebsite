@@ -83,9 +83,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 39,
   "notenum": 31,
   "rating": "9.0",
-  "tags": ["小说", "哲学", "宗教", "佛教"],
-  "title": "悉达多"
+  "read_date": null,
+  "tags": [
+    "小说",
+    "哲学",
+    "宗教",
+    "佛教"
+  ],
+  "title": "悉达多",
+  "year_published": null
 }

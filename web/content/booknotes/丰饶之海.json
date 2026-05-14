@@ -847,9 +847,16 @@
       ]
     }
   ],
+  "country": null,
   "id": 110,
   "notenum": 280,
   "rating": "8.9",
-  "tags": ["日本文学", "大河小说", "转生"],
-  "title": "丰饶之海"
+  "read_date": null,
+  "tags": [
+    "日本文学",
+    "大河小说",
+    "转生"
+  ],
+  "title": "丰饶之海",
+  "year_published": null
 }

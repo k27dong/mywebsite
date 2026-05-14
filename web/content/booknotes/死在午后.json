@@ -161,9 +161,17 @@
       ]
     }
   ],
+  "country": null,
   "id": 92,
   "notenum": 64,
   "rating": "8.2",
-  "tags": ["斗牛艺术", "非虚构", "西班牙文化", "冒险精神"],
-  "title": "死在午后"
+  "read_date": null,
+  "tags": [
+    "斗牛艺术",
+    "非虚构",
+    "西班牙文化",
+    "冒险精神"
+  ],
+  "title": "死在午后",
+  "year_published": null
 }
